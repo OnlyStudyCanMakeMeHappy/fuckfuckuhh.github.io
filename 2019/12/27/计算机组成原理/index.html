@@ -1,300 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
-  
-  <title>零碎知识点 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="补码 负数在计算机中采用补码形式存储，例如在32位计算机中0xFFFFFFFF真值为-1。0在补码中没有正负之分。$$[x]_{complement}&#x3D;\begin{cases}x, 2^n&gt;x\ge0 \2^{n+1}+|x|, 0\ge x\ge-2^n\end{cases}$$    存储器 CPU能直接访问的存储器叫做内存，外存又叫做辅助存储器。随机存储器RAM具有易失性。$${\t">
-<meta property="og:type" content="article">
-<meta property="og:title" content="零碎知识点">
-<meta property="og:url" content="http://example.com/2019/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="补码 负数在计算机中采用补码形式存储，例如在32位计算机中0xFFFFFFFF真值为-1。0在补码中没有正负之分。$$[x]_{complement}&#x3D;\begin{cases}x, 2^n&gt;x\ge0 \2^{n+1}+|x|, 0\ge x\ge-2^n\end{cases}$$    存储器 CPU能直接访问的存储器叫做内存，外存又叫做辅助存储器。随机存储器RAM具有易失性。$${\t">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-12-27T05:20:34.000Z">
-<meta property="article:modified_time" content="2019-12-30T05:16:37.741Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="计算机组成原理">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-计算机组成原理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="article-date">
-  <time datetime="2019-12-27T05:20:34.000Z" itemprop="datePublished">2019-12-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      零碎知识点
-    </h1>
-  
+{% block page_class %}page-post-detail{% endblock %}
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><blockquote>
-<p>负数在计算机中采用补码形式存储，例如在32位计算机中0xFFFFFFFF真值为-1。<br>0在补码中没有正负之分。<br>$$[x]_{complement}=<br>\begin{cases}<br>x, 2^n&gt;x\ge0 \<br>2^{n+1}+|x|, 0\ge x\ge-2^n<br>\end{cases}$$  </p>
-</blockquote>
-<h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><blockquote>
-<p>CPU能直接访问的存储器叫做内存，外存又叫做辅助存储器。<br>随机存储器RAM具有易失性。<br>$${\text{非易失性存储器}}<br>\begin{cases}<br>ROM &amp; {\text{只读存储器}} \<br>PROM &amp; {\text{可编程}}\<br>EPROM &amp; {\text{光擦可编程}}\<br>EEPROM &amp; {\text{点擦可编程}}\<br>FLASH &amp; {\text{闪速存储器}}<br>\end{cases}$$<br><strong>刷新方式</strong><br>1、集中刷新：优点是速度高，缺点是死时间长。<br>2、分散刷新：没有死时间了，缺点是速度慢。<br>3、异步刷新：每行刷新的时间仍为0.5us，刷新一行只停止一个存取周期，但对每行来说，刷新间隔在2ms以内，死时间缩短为0.5us。<br><strong>cache写操作</strong></p>
-<ol>
-<li>写回法</li>
-<li>全写法</li>
-<li>写一次法</li>
-</ol>
-</blockquote>
-<h3 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h3><blockquote>
-<p>一般来说，一个包含n位操作码最多能表示$2^n$条指令。<br><strong>操作数的位置</strong><br>在CPU的内部寄存器中。<br>在主存储器中。<br>在I/O设备的端口（寄存器）中。</p>
-</blockquote>
-<p>寄存器间接寻址属于RS指令，指令中的寄存器内容不是操作数而是操作数在内存中的地址。<br><strong>指令分类</strong></p>
-<blockquote>
-<p>一个较完善的指令系统具体有：<br>数据处理:算术运算类指令、逻辑运算类指令、字符串类指令<br>数据传送:数据传送类指令(含输入输出类指令)<br>程序控制:程序控制类指令、系统控制类指令</p>
-</blockquote>
-<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p><strong><em>CPU功能</em></strong></p>
-<ol>
-<li>操作控制</li>
-<li>指令控制</li>
-<li>时间控制</li>
-<li>数据加工</li>
-<li>中断处理</li>
-</ol>
-<p><strong><em>CPU的执行过程：</em></strong></p>
-<ul>
-<li>首先将程序和数据输入计算机的存储器中，然后从主存中“程序入口(程&gt;序执行的第一条指令的地址)”开始依次取出指令和数据，并根据指令的要求对数据&gt;进行加工处理，得到需要的结果后，结束运行。</li>
-<li>控制器控制程序的执行过程实际上是控制指令的执行过程。</li>
-<li>控制器的作用是协调并控制计算机的各个部件执行程序的指令序列。</li>
-<li>当机器刚加电时，RAM和寄存器的状态是随机的。</li>
-<li>为了保证正常工作，在机器内部一般设置有存放固定程序的ROM，利用加电时硬件产生的一个复位(RESET)信号使计算机处于初始状态，<u>PC的值必须指向第一条指令的地址(ROM)</u>，然后从PC指示的地址开始运行程序。</li>
-<li>也可以在加电复位时直接在指令寄存器中置入一条无条件转移指令(转移到某个固定的地址)并执行。</li>
-</ul>
-<p><strong>* 通常用内存中读取一个指令字的最短时间来规定CPU周期*</strong></p>
-<h3 id="总线仲裁"><a href="#总线仲裁" class="headerlink" title="总线仲裁"></a>总线仲裁</h3><h4 id="集中式仲裁"><a href="#集中式仲裁" class="headerlink" title="集中式仲裁"></a>集中式仲裁</h4><ul>
-<li>链式查询方式： <strong>对电路故障很敏感</strong></li>
-<li>计数器定时查询方式</li>
-<li>独立请求方式： <strong>响应最快，现代总线普遍使用</strong><h4 id="分布式仲裁"><a href="#分布式仲裁" class="headerlink" title="分布式仲裁"></a>分布式仲裁</h4></li>
-<li>不需要集中的总线仲裁器</li>
-</ul>
-<p>** PCI总线是一个与处理器无关的高速外围总线，采用同步时序协议和集中式仲裁策略，支持猝发式传送。**</p>
-<h3 id="输入输出系统"><a href="#输入输出系统" class="headerlink" title="输入输出系统"></a>输入输出系统</h3><h4 id="信息交换方式"><a href="#信息交换方式" class="headerlink" title="信息交换方式"></a>信息交换方式</h4><ul>
-<li>程序查询方式</li>
-<li><left>$$<br>{\text{查询中断方式}}<br>\begin{cases}<br>{\text{单级中断}} \<br>{\text{多级中断}}<br>\end{cases}<br>$$</li>
-<li>*向量地址是中断服务程序入口的指示器**</li>
-<li>DMA方式</li>
-<li>*三种访内方式**<blockquote>
-<ul>
-<li>停止CPU访问内存</li>
-<li>周期挪用：访内冲突，I/O优先访内，适用于I/O设备读写周期大于内存存储周期情况</li>
-<li>DMA与CPU交替访内</li>
-</ul>
-</blockquote>
-</li>
-<li>通道方式</li>
-</ul>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" data-id="ckg28e533000wzw75byaed4sx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li></ul>
+{% block content %}
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/04/24/python%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          python基础
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/11/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">线性代数</div>
-    </a>
-  
-</nav>
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
 
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8C%87%E4%BB%A4/">指令</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/">概率论</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a></li></ul>
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag">概率论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li></ul>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 10px;">概率论</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 20px;">计算机组成原理</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/10/09/%E6%8E%92%E5%BA%8F/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/09/float/">IEEE754标准单精度浮点数</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/09/formulation/">formulation</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/">一些公式和统计量</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/24/post/">爬虫</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}
