@@ -5,14 +5,19 @@
   
 
   
-  <title>Archives | Hexo</title>
+  <title>一些公式和统计量 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="连续型随机变量的函数分布$Y&#x3D;g(X)$连续型随机变量的概率密度:$$F_Y(y)&#x3D;\begin{cases}f_x[h(y)]|h’(y)|,&amp;\alpha&lt;x&lt;\beta \0,               &amp;\text{其他}\end{cases}$$ 二维随机变量$二维随机变量的分布函数：F(x,y)&#x3D;P\lbrace(X\le x)\cap(Y\le y)\r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些公式和统计量">
+<meta property="og:url" content="http://example.com/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="连续型随机变量的函数分布$Y&#x3D;g(X)$连续型随机变量的概率密度:$$F_Y(y)&#x3D;\begin{cases}f_x[h(y)]|h’(y)|,&amp;\alpha&lt;x&lt;\beta \0,               &amp;\text{其他}\end{cases}$$ 二维随机变量$二维随机变量的分布函数：F(x,y)&#x3D;P\lbrace(X\le x)\cap(Y\le y)\r">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-25T15:05:15.000Z">
+<meta property="article:modified_time" content="2020-04-25T15:06:48.923Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="概率论">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -62,215 +67,82 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/09/%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  <time datetime="2020-10-09T12:33:48.319Z" itemprop="datePublished">Oct 9</time>
+        <section id="main"><article id="post-概率论" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/" class="article-date">
+  <time datetime="2020-04-25T15:05:15.000Z" itemprop="datePublished">2020-04-25</time>
 </a>
-      
-    </header>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/">概率论</a>
   </div>
-</article>
-  
+
+  </div>
+  <div class="article-inner">
     
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/09/float/" class="archive-article-date">
-  <time datetime="2020-10-09T12:33:48.309Z" itemprop="datePublished">Oct 9</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/09/float/">IEEE754标准单精度浮点数</a>
+    <h1 class="article-title" itemprop="name">
+      一些公式和统计量
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/10/09/formulation/" class="archive-article-date">
-  <time datetime="2020-10-09T12:33:48.309Z" itemprop="datePublished">Oct 9</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/09/formulation/">formulation</a>
-    </h1>
-  
+        <h2 id="连续型随机变量的函数分布"><a href="#连续型随机变量的函数分布" class="headerlink" title="连续型随机变量的函数分布"></a>连续型随机变量的函数分布</h2><p>$Y=g(X)$连续型随机变量的概率密度:<br>$$<br>F_Y(y)=<br>\begin{cases}<br>f_x[h(y)]|h’(y)|,&amp;\alpha&lt;x&lt;\beta \<br>0,               &amp;\text{其他}<br>\end{cases}<br>$$</p>
+<h3 id="二维随机变量"><a href="#二维随机变量" class="headerlink" title="二维随机变量"></a>二维随机变量</h3><p>$二维随机变量的分布函数：F(x,y)=P\lbrace(X\le x)\cap(Y\le y)\rbrace。$</p>
+<p>$P{x_1&lt;X&lt;x_2,y_1&lt;Y&lt;y_2}=F(x_2,y_2)-F(x_2,y_1)+F(x_1,y_1)-F(x_1,y_2)。$</p>
+<p>$若f(x,y)在点(x,y)连续，则有$<br>$$<br>\frac{\partial^2xF(x,y)}{\partial x \partial y}=f(x,y)<br>$$</p>
+<p>条件概率密度：<br>$$<br>f_{X|Y}=\frac{f(x,y)}{f_Y(y)}\<br>$$</p>
+<p>$$<br>\int_{-\infty}^{x}f_{X|Y}(x|y)dx=\int_{\infty}^{x}\frac{f(x,y)}{f_Y(y)}为在Y=y下，X的条件分布函数。<br>$$</p>
+<p>$卷积公式记为f_X<em>f_Y，即f_X</em>f_Y=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)dy=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)dx$</p>
+<h2 id="期望与方差"><a href="#期望与方差" class="headerlink" title="期望与方差"></a>期望与方差</h2><p>$设Y是随机变量X的函数：Y=g(X)(g是连续函数).$<br>$$<br>E(Y)=E[g(x)]=\int_{-\infty}^{\infty}g(x)f(x)dx<br>$$<br>$X的方差D(x),Var(x),即$<br>$$<br>D(x)=Var(x)=E{[x-E(x)]^2} \<br>D(x)=E(x^2)-[E(x)]^2<br>$$</p>
+<p>$$<br>Cov(x,y)=E{[x-E(x)][Y-E(Y)]}\<br>\rho_{xy}=\frac{Cov(x,y)}{\sqrt {D(x)}\sqrt{D(Y)}}\<br>$$</p>
+<h2 id="统计量"><a href="#统计量" class="headerlink" title="统计量"></a>统计量</h2><p>(一)$\chi^2分布$<br>设$X_1,X_2,……,X_n是来自总体N(0,1)的样本，则统计量$<br>$$<br>\chi^2=X_1^2+X_2^2+···+X_n^2<br>$$</p>
+<p>$服从自由度为n的\chi^2分布，记为\chi^2\sim\chi^2(n)。$</p>
+<p>(二)t分布<br>$设X\sim N(0,1),Y\sim\chi^2(n)，且X，Y相互独立，则称随机变量$<br>$$<br>t = \frac{X}{\sqrt{Y/n}}<br>$$</p>
+<p>$服从自由度为n的t分布，记为t\sim t(n)。$</p>
+<p>(三)F分布<br>$设U\sim\chi^2(n_1),V\sim\chi^2(n_2)，且U,V相互独立，则称随机变量$<br>$$<br>F = \frac{U/n_1}{V/n_2}<br>$$<br>$服从自由度为(n_1,n_2)的F分布，记为F\sim F(n_1,n_2)。$</p>
+<p>(四)正态总体的样本均值与样本方差的分布<br>$$<br>E(\overline{X})=\overline{X}，D(\overline{x})=\sigma^2/n \<br>E(S^2)=E[\frac{1}{n-1}(\sum_{i=1}^nX_i^2-n\overline{X}^2)]=\frac{1}{n-1}E[\sum_{i=1}^{n}(\sigma^2+\mu^2)-n(\sigma^2/n+\mu^2)]=\sigma^2<br>$$<br><strong>定理一</strong> $设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}是平均值则统计量。$<br>$$<br>\overline{X}\sim N(\mu,\sigma^2/n)<br>$$<br>$设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}，S^2分别是样本均值和样本方差，则有$</p>
+<p>$$<br>\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1),\frac{(n-1)S^2}{S/\sqrt{n}}\sim \chi^2(n-1)\<br>\frac{\overline{X}-\mu}{S/\sqrt{n}}\sim t(n-1)<br>$$</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/" class="archive-article-date">
-  <time datetime="2020-04-25T15:05:15.000Z" itemprop="datePublished">Apr 25</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/">一些公式和统计量</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/" data-id="ckg28e52z000nzw75hb8r6en7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag">概率论</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/24/post/" class="archive-article-date">
-  <time datetime="2020-04-24T12:35:41.000Z" itemprop="datePublished">Apr 24</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/24/post/">爬虫</a>
-    </h1>
+    <a href="/2020/10/09/formulation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          formulation
+        
+      </div>
+    </a>
   
+  
+    <a href="/2020/04/24/post/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">爬虫</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/24/python%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  <time datetime="2020-04-24T06:26:06.000Z" itemprop="datePublished">Apr 24</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/24/python%E5%9F%BA%E7%A1%80/">python基础</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  <time datetime="2019-12-27T05:20:34.000Z" itemprop="datePublished">Dec 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">零碎知识点</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/11/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="archive-article-date">
-  <time datetime="2019-11-09T10:55:04.000Z" itemprop="datePublished">Nov 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/11/09/KNN/" class="archive-article-date">
-  <time datetime="2019-11-09T04:41:43.000Z" itemprop="datePublished">Nov 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/09/KNN/">KNN</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/11/05/First/" class="archive-article-date">
-  <time datetime="2019-11-05T14:20:00.000Z" itemprop="datePublished">Nov 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/05/First/">指令系统和指令格式1</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
 
 </section>
         
