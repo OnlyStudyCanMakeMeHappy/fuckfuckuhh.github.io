@@ -1,262 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
-  
-  <title>一些公式和统计量 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="连续型随机变量的函数分布$Y&#x3D;g(X)$连续型随机变量的概率密度:$$F_Y(y)&#x3D;\begin{cases}f_x[h(y)]|h’(y)|,&amp;\alpha&lt;x&lt;\beta \0,               &amp;\text{其他}\end{cases}$$ 二维随机变量$二维随机变量的分布函数：F(x,y)&#x3D;P\lbrace(X\le x)\cap(Y\le y)\r">
-<meta property="og:type" content="article">
-<meta property="og:title" content="一些公式和统计量">
-<meta property="og:url" content="http://example.com/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="连续型随机变量的函数分布$Y&#x3D;g(X)$连续型随机变量的概率密度:$$F_Y(y)&#x3D;\begin{cases}f_x[h(y)]|h’(y)|,&amp;\alpha&lt;x&lt;\beta \0,               &amp;\text{其他}\end{cases}$$ 二维随机变量$二维随机变量的分布函数：F(x,y)&#x3D;P\lbrace(X\le x)\cap(Y\le y)\r">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-25T15:05:15.000Z">
-<meta property="article:modified_time" content="2020-04-25T15:06:48.923Z">
-<meta property="article:author" content="GGL">
-<meta property="article:tag" content="概率论">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-概率论" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/" class="article-date">
-  <time datetime="2020-04-25T15:05:15.000Z" itemprop="datePublished">2020-04-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/">概率论</a>
-  </div>
+{% block page_class %}page-post-detail{% endblock %}
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      一些公式和统计量
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="连续型随机变量的函数分布"><a href="#连续型随机变量的函数分布" class="headerlink" title="连续型随机变量的函数分布"></a>连续型随机变量的函数分布</h2><p>$Y=g(X)$连续型随机变量的概率密度:<br>$$<br>F_Y(y)=<br>\begin{cases}<br>f_x[h(y)]|h’(y)|,&amp;\alpha&lt;x&lt;\beta \<br>0,               &amp;\text{其他}<br>\end{cases}<br>$$</p>
-<h3 id="二维随机变量"><a href="#二维随机变量" class="headerlink" title="二维随机变量"></a>二维随机变量</h3><p>$二维随机变量的分布函数：F(x,y)=P\lbrace(X\le x)\cap(Y\le y)\rbrace。$</p>
-<p>$P{x_1&lt;X&lt;x_2,y_1&lt;Y&lt;y_2}=F(x_2,y_2)-F(x_2,y_1)+F(x_1,y_1)-F(x_1,y_2)。$</p>
-<p>$若f(x,y)在点(x,y)连续，则有$<br>$$<br>\frac{\partial^2xF(x,y)}{\partial x \partial y}=f(x,y)<br>$$</p>
-<p>条件概率密度：<br>$$<br>f_{X|Y}=\frac{f(x,y)}{f_Y(y)}\<br>$$</p>
-<p>$$<br>\int_{-\infty}^{x}f_{X|Y}(x|y)dx=\int_{\infty}^{x}\frac{f(x,y)}{f_Y(y)}为在Y=y下，X的条件分布函数。<br>$$</p>
-<p>$卷积公式记为f_X<em>f_Y，即f_X</em>f_Y=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)dy=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)dx$</p>
-<h2 id="期望与方差"><a href="#期望与方差" class="headerlink" title="期望与方差"></a>期望与方差</h2><p>$设Y是随机变量X的函数：Y=g(X)(g是连续函数).$<br>$$<br>E(Y)=E[g(x)]=\int_{-\infty}^{\infty}g(x)f(x)dx<br>$$<br>$X的方差D(x),Var(x),即$<br>$$<br>D(x)=Var(x)=E{[x-E(x)]^2} \<br>D(x)=E(x^2)-[E(x)]^2<br>$$</p>
-<p>$$<br>Cov(x,y)=E{[x-E(x)][Y-E(Y)]}\<br>\rho_{xy}=\frac{Cov(x,y)}{\sqrt {D(x)}\sqrt{D(Y)}}\<br>$$</p>
-<h2 id="统计量"><a href="#统计量" class="headerlink" title="统计量"></a>统计量</h2><p>(一)$\chi^2分布$<br>设$X_1,X_2,……,X_n是来自总体N(0,1)的样本，则统计量$<br>$$<br>\chi^2=X_1^2+X_2^2+···+X_n^2<br>$$</p>
-<p>$服从自由度为n的\chi^2分布，记为\chi^2\sim\chi^2(n)。$</p>
-<p>(二)t分布<br>$设X\sim N(0,1),Y\sim\chi^2(n)，且X，Y相互独立，则称随机变量$<br>$$<br>t = \frac{X}{\sqrt{Y/n}}<br>$$</p>
-<p>$服从自由度为n的t分布，记为t\sim t(n)。$</p>
-<p>(三)F分布<br>$设U\sim\chi^2(n_1),V\sim\chi^2(n_2)，且U,V相互独立，则称随机变量$<br>$$<br>F = \frac{U/n_1}{V/n_2}<br>$$<br>$服从自由度为(n_1,n_2)的F分布，记为F\sim F(n_1,n_2)。$</p>
-<p>(四)正态总体的样本均值与样本方差的分布<br>$$<br>E(\overline{X})=\overline{X}，D(\overline{x})=\sigma^2/n \<br>E(S^2)=E[\frac{1}{n-1}(\sum_{i=1}^nX_i^2-n\overline{X}^2)]=\frac{1}{n-1}E[\sum_{i=1}^{n}(\sigma^2+\mu^2)-n(\sigma^2/n+\mu^2)]=\sigma^2<br>$$<br><strong>定理一</strong> $设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}是平均值则统计量。$<br>$$<br>\overline{X}\sim N(\mu,\sigma^2/n)<br>$$<br>$设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}，S^2分别是样本均值和样本方差，则有$</p>
-<p>$$<br>\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1),\frac{(n-1)S^2}{S/\sqrt{n}}\sim \chi^2(n-1)\<br>\frac{\overline{X}-\mu}{S/\sqrt{n}}\sim t(n-1)<br>$$</p>
+{% block content %}
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/" data-id="ckg3dr8wk000lik7531arca5k" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag">概率论</a></li></ul>
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/10/09/formulation/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          formulation
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/04/24/post/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">爬虫</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8C%87%E4%BB%A4/">指令</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/">概率论</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a></li></ul>
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag">概率论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li></ul>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 10px;">概率论</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 20px;">计算机组成原理</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/10/09/%E6%8E%92%E5%BA%8F/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/09/float/">IEEE754标准单精度浮点数</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/09/formulation/">formulation</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/">一些公式和统计量</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/24/post/">爬虫</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 GGL<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}
