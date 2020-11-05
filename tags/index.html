@@ -196,14 +196,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -273,7 +273,7 @@
     目前共计 6 个标签
   </div>
   <div class="tag-cloud-tags">
-    <a href="/tags/python/" style="font-size: 12px;" class="tag-cloud-0">python</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 12px;" class="tag-cloud-0">机器学习</a> <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 12px;" class="tag-cloud-0">概率论</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 21px;" class="tag-cloud-5">爬虫</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12px;" class="tag-cloud-0">算法</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 30px;" class="tag-cloud-10">计算机组成原理</a>
+    <a href="/tags/python%E5%9F%BA%E7%A1%80/" style="font-size: 12px;" class="tag-cloud-0">python基础</a> <a href="/tags/python%E8%BF%9B%E9%98%B6/" style="font-size: 12px;" class="tag-cloud-0">python进阶</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 12px;" class="tag-cloud-0">机器学习</a> <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 12px;" class="tag-cloud-0">概率论</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 12px;" class="tag-cloud-0">爬虫</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 12px;" class="tag-cloud-0">算法</a>
   </div>
 </div>
 
@@ -374,6 +374,50 @@
   
 
   
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

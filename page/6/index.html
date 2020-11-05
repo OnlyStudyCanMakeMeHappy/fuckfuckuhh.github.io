@@ -193,14 +193,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -250,7 +250,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/24/python%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/09/KNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -264,7 +264,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/24/python%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">python基础</a>
+            <a href="/2019/11/09/KNN/" class="post-title-link" itemprop="url">KNN</a>
         </h2>
 
         <div class="post-meta-container">
@@ -276,7 +276,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-04-24 14:26:06 / 修改时间：15:47:25" itemprop="dateCreated datePublished" datetime="2020-04-24T14:26:06+08:00">2020-04-24</time>
+      <time title="创建时间：2019-11-09 12:41:43 / 修改时间：15:09:05" itemprop="dateCreated datePublished" datetime="2019-11-09T12:41:43+08:00">2019-11-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -284,7 +284,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
         </span>
     </span>
 
@@ -298,19 +298,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h2><p>__ name __ 是python内置变量，代表模块的名字，对于自身模块’__ main __ ==__ name __ ‘。当自身模块被运行时执行 ‘__ main __ ==__ name <strong>‘ 下的代码会被运行，当该模块被调用时，’</strong> main __ ==__ name __’下的代码不会被运行。  </p>
-<h2 id="python参数"><a href="#python参数" class="headerlink" title="python参数"></a>python参数</h2><ol>
-<li>默认参数</li>
-<li>可变参数*args：当参数传入时在函数内部自动组建成一个tuple。</li>
-<li>关键字参数 * *kwagrs : 参数在函数内部自动组建成一个dict。 </li>
-<li>命名关键字参数：限制关键字参数的名字。使用特殊分隔符*，后面的参数被视为命名关键字参数。例如：def person(name, age, *args, city, job)。<h2 id="new-和-init"><a href="#new-和-init" class="headerlink" title="__ new __ 和 __ init __"></a>__ new __ 和 __ init __</h2>__ new__ 方法用于创建对象并返回对象，当返回对象时会自动调用__ init __ 方法进行初始化。__ new__ 方法是静态方法，而 __ init __是实例方法。  </li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__new__</span>(<span class="params">cls,*args,**kwargs</span>)</span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">__init__</span>(<span class="params">self</span>)</span></span><br></pre></td></tr></table></figure>
-<h2 id="实例方法、静态方法和类方法"><a href="#实例方法、静态方法和类方法" class="headerlink" title="实例方法、静态方法和类方法"></a>实例方法、静态方法和类方法</h2><ol>
-<li>实例方法：类中定义的方法默认都是实例方法。</li>
-<li>类方法：类方法需要使用＠classmethod修饰符进行修饰，类方法推荐使用类名直接调用，当然也可以使用实例对象来调用。</li>
-<li>类静态方法：静态方法需要使用＠staticmethod修饰，既可以使用类名调用，也可以使用类对象调用。</li>
-</ol>
+          <h1 id="降维与度量学习"><a href="#降维与度量学习" class="headerlink" title="降维与度量学习"></a><center><strong>降维与度量学习</strong></center></h1><ul>
+<li><h2 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h2><p>　KNN(K-Nearset-Neighbour)k最近邻算法是一种常用的监督学习算法，给定测试样本基于某种性能度量找出与其最近的k个训练样本，基于k个样本的信息进行决策。对于分类问题采用投票法，回归问题用平均法，还可根据样本的远近进行加权平均。  </p>
+<blockquote>
+<p>例如 $L_p$范数： $L_P(x_i,x_j)=(\sum_{u=1}^n|x_{iu}-x_{ju}|^p)^\frac{1}{p}$　　  </p>
+</blockquote>
+<p>   有个有趣的结论就是：最近邻分类器的泛化错误率不超过贝叶斯分类器的两倍。　　</p>
+</li>
+<li><h2 id="低维嵌入"><a href="#低维嵌入" class="headerlink" title="低维嵌入"></a>低维嵌入</h2><p><strong>维度灾难：在高维情况下出现数据样本稀疏、距离计算困难等问题。</strong><br>这时候往往通过降维将原始高维属性空间转变为一个低维“子空间”，在这个子空间样本的密度大幅提升。<br>$^{x\times y}$</p>
+</li>
+</ul>
 
       
     </div>
@@ -332,7 +329,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
   </nav>
 
 
@@ -421,6 +418,50 @@
   
 
   
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
