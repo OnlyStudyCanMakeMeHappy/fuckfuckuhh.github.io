@@ -12,14 +12,14 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":6},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":6},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
   <meta name="description" content="Requests库Requests的get方法1requests.get(url,parmas&#x3D;None,**kwargs) url: 获取页面的url链接。params: url中的额外参数，字典或字节流格式，可选kwargs: 12个控制访问的参数get方法发出一个Requests请求，获得一个Respnse对象。     Requests库的异常   异常 说明    ConnectionE">
@@ -30,7 +30,7 @@
 <meta property="og:description" content="Requests库Requests的get方法1requests.get(url,parmas&#x3D;None,**kwargs) url: 获取页面的url链接。params: url中的额外参数，字典或字节流格式，可选kwargs: 12个控制访问的参数get方法发出一个Requests请求，获得一个Respnse对象。     Requests库的异常   异常 说明    ConnectionE">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-24T12:35:41.000Z">
-<meta property="article:modified_time" content="2020-04-24T14:09:52.445Z">
+<meta property="article:modified_time" content="2020-11-05T05:10:45.698Z">
 <meta property="article:author" content="ggl">
 <meta property="article:tag" content="爬虫">
 <meta name="twitter:card" content="summary">
@@ -132,6 +132,26 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
   </ul>
 </nav>
 
@@ -175,18 +195,23 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">11</span>
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">分类</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -253,17 +278,23 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-04-24 20:35:41 / 修改时间：22:09:52" itemprop="dateCreated datePublished" datetime="2020-04-24T20:35:41+08:00">2020-04-24</time>
+      <time title="创建时间：2020-04-24 20:35:41" itemprop="dateCreated datePublished" datetime="2020-04-24T20:35:41+08:00">2020-04-24</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-05 13:10:45" itemprop="dateModified" datetime="2020-11-05T13:10:45+08:00">2020-11-05</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" itemprop="url" rel="index"><span itemprop="name">数据挖掘</span></a>
         </span>
     </span>
 
@@ -390,6 +421,16 @@
     
 
     <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
+</div>
+
           <div class="post-tags">
               <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"># 爬虫</a>
           </div>

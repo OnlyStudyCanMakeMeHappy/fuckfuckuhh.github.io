@@ -12,14 +12,14 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":6},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":6},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
   <meta name="description" content="wdnmd">
@@ -129,6 +129,26 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
   </ul>
 </nav>
 
@@ -171,18 +191,23 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">11</span>
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">分类</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -239,7 +264,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/05/Scrapy/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2020/11/05/Scrapy/" class="post-title-link" itemprop="url">Scrapy</a>
         </h2>
 
         <div class="post-meta-container">
@@ -249,16 +274,19 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-11-05 11:20:03" itemprop="dateCreated datePublished" datetime="2020-11-05T11:20:03+08:00">2020-11-05</time>
+      <time title="创建时间：2020-11-05 11:20:03 / 修改时间：13:55:45" itemprop="dateCreated datePublished" datetime="2020-11-05T11:20:03+08:00">2020-11-05</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-21 09:22:17" itemprop="dateModified" datetime="2020-10-21T09:22:17+08:00">2020-10-21</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
       </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" itemprop="url" rel="index"><span itemprop="name">数据挖掘</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -283,11 +311,11 @@
 <li>Downloader Middlewares(下载中间件)：自定义扩展下载功能。</li>
 <li>Spider Middlewares(Spider中间件)：自定义Requests请求和进行Responses过滤。</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/12983160-796fd5bfb38a39ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1130/format/webp" alt="&quot;架构图&quot;">  </p>
+<p><img src="/2020/11/05/Scrapy/webp.jpg" alt="&quot;架构图&quot;">  </p>
 <center>Scrapy架构图</center>
-### Request和Response对象
 
-<p>Request.meta属性可以包括任意数据，但是有一些特殊的键被Scrapy和内建扩展所使用。</p>
+
+<h3 id="Request和Response对象"><a href="#Request和Response对象" class="headerlink" title="Request和Response对象"></a>Request和Response对象</h3><p>Request.meta属性可以包括任意数据，但是有一些特殊的键被Scrapy和内建扩展所使用。</p>
 <ul>
 <li>dont_redirect</li>
 <li>dont_retry</li>
@@ -526,12 +554,12 @@
 <p>urljoin方法：域名+路径</p>
 <h4 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#实现管道时,使用Item类</span></span><br><span class="line"><span class="comment">#这两个字段名可以被覆盖</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyItem</span>(<span class="params">scrapy.Item</span>):</span></span><br><span class="line">	file_urls = scrapy.Field()</span><br><span class="line">	file = scrapy.Field()</span><br><span class="line"><span class="comment">#获取的url放入一个列表</span></span><br><span class="line">MyItem[<span class="string">&#x27;file_urls&#x27;</span>] = [url]</span><br><span class="line"><span class="comment">#FilePipeline中的file_path方法决定了文件的命名</span></span><br><span class="line"><span class="comment">#ImagePipeline中image_url传入str或者Unicode</span></span><br><span class="line">item[<span class="string">&#x27;image_url&#x27;</span>] = str</span><br></pre></td></tr></table></figure>
 
-<h2 id="8、模拟登陆"><a href="#8、模拟登陆" class="headerlink" title="8、模拟登陆"></a>8、模拟登陆</h2><h4 id="登陆实质"><a href="#登陆实质" class="headerlink" title="登陆实质"></a>登陆实质</h4><p>HTML中的<form>元素</p>
+<h2 id="8、模拟登陆"><a href="#8、模拟登陆" class="headerlink" title="8、模拟登陆"></a>8、模拟登陆</h2><h4 id="登陆实质"><a href="#登陆实质" class="headerlink" title="登陆实质"></a>登陆实质</h4><p>HTML中的<form>元素</form></p>
 <ul>
 <li>method属性决定HTTP请求的方法</li>
 <li>action属性决定HTTP请求的url</li>
 <li>enctype属性决定了表单数据的编码类型</li>
-<li><input>元素决定了表单数据的内容</li>
+<li>&lt;input&gt;元素决定了表单数据的内容</li>
 </ul>
 <h3 id="Cookie登陆"><a href="#Cookie登陆" class="headerlink" title="Cookie登陆"></a>Cookie登陆</h3><p>使用browsercookie库获取Chrome和Firefox浏览器中的cookie。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> browsercookie</span><br><span class="line">chrome_cookiejar = browsercookie.chrome() </span><br><span class="line">chrome_cookiejar = browsercookie.firefox()</span><br></pre></td></tr></table></figure>
@@ -574,916 +602,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/10/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Kobe.jpg">
-      <meta itemprop="name" content="ggl">
-      <meta itemprop="description" content="wdnmd">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mr.fuck">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/10/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-10-10 16:57:12 / 修改时间：19:42:11" itemprop="dateCreated datePublished" datetime="2020-10-10T16:57:12+08:00">2020-10-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><ol>
-<li>通过ping fuckfuckuhh.github.io得到IP地址<br><img src="D:\blog\source\images\image-20201010162645161.png" alt="image-20201010162645161"></li>
-<li>添加一个IP解析记录<br><img src="D:\blog\source\images\image-20201010162702941.png" alt="image-20201010162702941"></li>
-</ol>
-<h2 id="配置next主题"><a href="#配置next主题" class="headerlink" title="配置next主题"></a>配置next主题</h2><ol>
-<li>下载next库<ul>
-<li>fatal: destination path ‘themes/next’ already exists and is not an empty directory. 清空之前下载的next文件。</li>
-<li>git clone <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a> themes/next</li>
-<li>将_config..yml中的theme修改为next。</li>
-</ul>
-</li>
-<li>__config.yml文件配置<pre><code>- 将language: zn-CN</code></pre>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://fontawesome.dashgame.com/">https://fontawesome.dashgame.com/</a> 图标网站</li>
-<li></li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/09/%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Kobe.jpg">
-      <meta itemprop="name" content="ggl">
-      <meta itemprop="description" content="wdnmd">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mr.fuck">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/09/%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-09 20:33:48" itemprop="dateCreated datePublished" datetime="2020-10-09T20:33:48+08:00">2020-10-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2019-11-29 19:58:28" itemprop="dateModified" datetime="2019-11-29T19:58:28+08:00">2019-11-29</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BInsertSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> low, mid, high;</span><br><span class="line">	<span class="keyword">int</span> i,j,t;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;n; i++)&#123;</span><br><span class="line">		t = A[i];</span><br><span class="line">		low = <span class="number">0</span>;</span><br><span class="line">		high = i<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">			mid = (low+high)/<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span>(A[mid]&gt;t)</span><br><span class="line">				high = mid<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				low = mid+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(j=i<span class="number">-1</span>; j&gt;=high; j--)</span><br><span class="line">			A[j+<span class="number">1</span>] = A[j];</span><br><span class="line">		A[high+<span class="number">1</span>] = t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		BInsertSort(a,n);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) </span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Shellsort</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,dk;	<span class="comment">//dk是增量 </span></span><br><span class="line">	<span class="keyword">int</span> tmp;</span><br><span class="line">	<span class="keyword">for</span>(dk=n/<span class="number">2</span>; dk&gt;<span class="number">0</span>; dk/=<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">for</span>(i=dk; i&lt;n; i++)&#123;</span><br><span class="line">			tmp = A[i];</span><br><span class="line">			<span class="keyword">for</span>(j=i; j&gt;=dk; j-=dk)</span><br><span class="line">				<span class="keyword">if</span>(tmp&lt;A[j-dk])</span><br><span class="line">					A[j] = A[j-dk];</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">			A[j] = tmp; </span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,i;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		Shellsort(a,n);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits\stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以三数取中取枢纽 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;	</span><br><span class="line">	<span class="keyword">int</span> pivot = A[low];	<span class="comment">//枢纽 </span></span><br><span class="line">	<span class="keyword">while</span>(low&lt;high)&#123;</span><br><span class="line">		<span class="keyword">while</span>(low&lt;high&amp;&amp;A[high]&gt;=pivot)	<span class="comment">//找到大于pivot的值 </span></span><br><span class="line">			high--;	</span><br><span class="line">		A[low] = A[high];</span><br><span class="line">		<span class="keyword">while</span>(low&lt;high&amp;&amp;A[low]&lt;=pivot)</span><br><span class="line">			low++;</span><br><span class="line">		A[high] = A[low];</span><br><span class="line">	&#125;</span><br><span class="line">	A[low] = pivot;</span><br><span class="line">	<span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Qsort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(low&lt;high)&#123;</span><br><span class="line">		<span class="keyword">int</span> pivot = partition(A,low,high);</span><br><span class="line">		Qsort(A,low,pivot<span class="number">-1</span>);</span><br><span class="line">		Qsort(A,pivot+<span class="number">1</span>,high);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">int</span> n,i;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;A[i];</span><br><span class="line">		Qsort(A,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;A[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/09/float/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Kobe.jpg">
-      <meta itemprop="name" content="ggl">
-      <meta itemprop="description" content="wdnmd">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mr.fuck">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/09/float/" class="post-title-link" itemprop="url">IEEE754标准单精度浮点数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-09 20:33:48" itemprop="dateCreated datePublished" datetime="2020-10-09T20:33:48+08:00">2020-10-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2019-12-27 11:30:40" itemprop="dateModified" datetime="2019-12-27T11:30:40+08:00">2019-12-27</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="格式：-1-s-times0-M-times2-E-127"><a href="#格式：-1-s-times0-M-times2-E-127" class="headerlink" title="格式：$(-1)^s\times0.M\times2^{E-127}$"></a>格式：$(-1)^s\times0.M\times2^{E-127}$</h3><h3 id="阶码E范围255-0-当E-0且M-0时-真值为0；当E-255且M-0时表示正负无穷（看符号位）。"><a href="#阶码E范围255-0-当E-0且M-0时-真值为0；当E-255且M-0时表示正负无穷（看符号位）。" class="headerlink" title="阶码E范围255-0,当E=0且M=0时,真值为0；当E=255且M=0时表示正负无穷（看符号位）。"></a>阶码E范围255-0,当E=0且M=0时,真值为0；当E=255且M=0时表示正负无穷（看符号位）。</h3><h2 id="·最大整数"><a href="#·最大整数" class="headerlink" title="·最大整数"></a>·最大整数</h2><p>$(2-2^{23})\times2^{127}$</p>
-<h2 id="·最小整数"><a href="#·最小整数" class="headerlink" title="·最小整数"></a>·最小整数</h2><p>$1.0\times2^{-126}$</p>
-<h2 id="·最大负数"><a href="#·最大负数" class="headerlink" title="·最大负数"></a>·最大负数</h2><p>$-1.0\times2^{-126}$</p>
-<h2 id="·最小负数"><a href="#·最小负数" class="headerlink" title="·最小负数"></a>·最小负数</h2><p>$-(2-2^{23})\times2^{127}$</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Kobe.jpg">
-      <meta itemprop="name" content="ggl">
-      <meta itemprop="description" content="wdnmd">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mr.fuck">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/" class="post-title-link" itemprop="url">一些公式和统计量</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-04-25 23:05:15" itemprop="dateCreated datePublished" datetime="2020-04-25T23:05:15+08:00">2020-04-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-10 18:43:16" itemprop="dateModified" datetime="2020-10-10T18:43:16+08:00">2020-10-10</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">概率论</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="连续型随机变量的函数分布"><a href="#连续型随机变量的函数分布" class="headerlink" title="连续型随机变量的函数分布"></a>连续型随机变量的函数分布</h2><p>$Y=g(X)$连续型随机变量的概率密度:<br>$$<br>F_Y(y)=<br>\begin{cases}<br>f_x[h(y)]|h’(y)|,&amp;\alpha&lt;x&lt;\beta \<br>0,               &amp;\text{其他}<br>\end{cases}<br>$$</p>
-<h3 id="二维随机变量"><a href="#二维随机变量" class="headerlink" title="二维随机变量"></a>二维随机变量</h3><p>$二维随机变量的分布函数：F(x,y)=P\lbrace(X\le x)\cap(Y\le y)\rbrace。$</p>
-<p>$P{x_1&lt;X&lt;x_2,y_1&lt;Y&lt;y_2}=F(x_2,y_2)-F(x_2,y_1)+F(x_1,y_1)-F(x_1,y_2)。$</p>
-<p>$若f(x,y)在点(x,y)连续，则有$<br>$$<br>\frac{\partial^2xF(x,y)}{\partial x \partial y}=f(x,y)<br>$$</p>
-<p>条件概率密度：<br>$$<br>f_{X|Y}=\frac{f(x,y)}{f_Y(y)}\<br>$$</p>
-<p>$$<br>\int_{-\infty}^{x}f_{X|Y}(x|y)dx=\int_{\infty}^{x}\frac{f(x,y)}{f_Y(y)}为在Y=y下，X的条件分布函数。<br>$$</p>
-<p>$卷积公式记为f_X<em>f_Y，即f_X</em>f_Y=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)dy=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)dx$</p>
-<h2 id="期望与方差"><a href="#期望与方差" class="headerlink" title="期望与方差"></a>期望与方差</h2><p>$设Y是随机变量X的函数：Y=g(X)(g是连续函数).$<br>$$<br>E(Y)=E[g(x)]=\int_{-\infty}^{\infty}g(x)f(x)dx<br>$$<br>$X的方差D(x),Var(x),即$<br>$$<br>D(x)=Var(x)=E{[x-E(x)]^2} \<br>D(x)=E(x^2)-[E(x)]^2<br>$$</p>
-<p>$$<br>Cov(x,y)=E{[x-E(x)][Y-E(Y)]}\<br>\rho_{xy}=\frac{Cov(x,y)}{\sqrt {D(x)}\sqrt{D(Y)}}\<br>$$</p>
-<h2 id="统计量"><a href="#统计量" class="headerlink" title="统计量"></a>统计量</h2><p>(一)$\chi^2分布$<br>设$X_1,X_2,……,X_n是来自总体N(0,1)的样本，则统计量$<br>$$<br>\chi^2=X_1^2+X_2^2+···+X_n^2<br>$$</p>
-<p>$服从自由度为n的\chi^2分布，记为\chi^2\sim\chi^2(n)。$</p>
-<p>(二)t分布<br>$设X\sim N(0,1),Y\sim\chi^2(n)，且X，Y相互独立，则称随机变量$<br>$$<br>t = \frac{X}{\sqrt{Y/n}}<br>$$</p>
-<p>$服从自由度为n的t分布，记为t\sim t(n)。$</p>
-<p>(三)F分布<br>$设U\sim\chi^2(n_1),V\sim\chi^2(n_2)，且U,V相互独立，则称随机变量$<br>$$<br>F = \frac{U/n_1}{V/n_2}<br>$$<br>$服从自由度为(n_1,n_2)的F分布，记为F\sim F(n_1,n_2)。$</p>
-<p>(四)正态总体的样本均值与样本方差的分布<br>$$<br>E(\overline{X})=\overline{X}，D(\overline{x})=\sigma^2/n \<br>E(S^2)=E[\frac{1}{n-1}(\sum_{i=1}^nX_i^2-n\overline{X}^2)]=\frac{1}{n-1}E[\sum_{i=1}^{n}(\sigma^2+\mu^2)-n(\sigma^2/n+\mu^2)]=\sigma^2<br>$$<br><strong>定理一</strong> $设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}是平均值则统计量。$<br>$$<br>\overline{X}\sim N(\mu,\sigma^2/n)<br>$$<br>$设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}，S^2分别是样本均值和样本方差，则有$</p>
-<p>$$<br>\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1),\frac{(n-1)S^2}{S/\sqrt{n}}\sim \chi^2(n-1)\<br>\frac{\overline{X}-\mu}{S/\sqrt{n}}\sim t(n-1)<br>$$</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/24/post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Kobe.jpg">
-      <meta itemprop="name" content="ggl">
-      <meta itemprop="description" content="wdnmd">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mr.fuck">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/24/post/" class="post-title-link" itemprop="url">爬虫</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-04-24 20:35:41 / 修改时间：22:09:52" itemprop="dateCreated datePublished" datetime="2020-04-24T20:35:41+08:00">2020-04-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Requests库"><a href="#Requests库" class="headerlink" title="Requests库"></a>Requests库</h1><h2 id="Requests的get方法"><a href="#Requests的get方法" class="headerlink" title="Requests的get方法"></a>Requests的get方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requests.get(url,parmas=<span class="literal">None</span>,**kwargs)</span><br></pre></td></tr></table></figure>
-<p>url: 获取页面的url链接。<br>params: url中的额外参数，字典或字节流格式，可选<br>kwargs: 12个控制访问的参数<br>get方法发出一个Requests请求，获得一个Respnse对象。    </p>
-<h2 id="Requests库的异常"><a href="#Requests库的异常" class="headerlink" title="Requests库的异常"></a>Requests库的异常</h2><table>
-<thead>
-<tr>
-<th>异常</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ConnectionError</td>
-<td>网络连接错误异常</td>
-</tr>
-<tr>
-<td>HTTPError</td>
-<td>HTTP错误异常</td>
-</tr>
-<tr>
-<td>URLRequired</td>
-<td>URL缺失异常</td>
-</tr>
-<tr>
-<td>TooManyRedirects</td>
-<td>超过最大重定向次数，产生重定向异常</td>
-</tr>
-<tr>
-<td>ConnectionTimeout</td>
-<td>连接远程服务器超时异常</td>
-</tr>
-<tr>
-<td>Timeout</td>
-<td>请求URL超时，产生超时异常</td>
-</tr>
-</tbody></table>
-<p>r.raise_for_status(): 如果不是200，产生异常requests.HTTPError。</p>
-<h2 id="HTTP协议对资源的操作"><a href="#HTTP协议对资源的操作" class="headerlink" title="HTTP协议对资源的操作"></a>HTTP协议对资源的操作</h2><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>GET</td>
-<td>请求获取URL资源</td>
-</tr>
-<tr>
-<td>HEAD</td>
-<td>获取资源头部信息</td>
-</tr>
-<tr>
-<td>POST</td>
-<td>请求后向URL位置的资源附加新的数据</td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>在URL位置存储一个资源，覆盖原URL位置资源</td>
-</tr>
-<tr>
-<td>PATCH</td>
-<td>请求局部更新URL位置的资源</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>删除URL位置的资源</td>
-</tr>
-</tbody></table>
-<h2 id="Requests库7个主要方法"><a href="#Requests库7个主要方法" class="headerlink" title="Requests库7个主要方法"></a>Requests库7个主要方法</h2><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>request</td>
-<td>构造一个请求，支撑以下各方法的基础方法</td>
-</tr>
-<tr>
-<td>get</td>
-<td>获取HTML网页的主要方法</td>
-</tr>
-<tr>
-<td>head</td>
-<td>获取HTML网页头信息的主要方法</td>
-</tr>
-<tr>
-<td>post</td>
-<td>向HTML网页提交POST请求</td>
-</tr>
-<tr>
-<td>put</td>
-<td>向HTML网页提交PUT请求</td>
-</tr>
-<tr>
-<td>patch</td>
-<td>向HTML网页提交局部修改请求</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>向HTML网页提交删除请求</td>
-</tr>
-</tbody></table>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requests.request(method,url,**kwargs)</span><br></pre></td></tr></table></figure>
-<p>**kwargs：控制访问参数，均为可选项<br>params：字典或字节序列，作为参数增加到url中。<br>data：字典、字节序列或文件对象，作为Request的内容<br>json：JSON格式数据，作为Request的内容<br>headers：字典，HTTP定制头<br>cookies：字典或CookerJar，Request中的cookie<br>auth：元组，支持HTTP认证功能<br>files: 字典类型，传输文件<br>timeout：设定超时时间，秒为单位<br>proxies：字典类型，设定访问代理服务器，可以增加登录认证<br>stream：获取内容是否立即下载  </p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/24/python%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Kobe.jpg">
-      <meta itemprop="name" content="ggl">
-      <meta itemprop="description" content="wdnmd">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mr.fuck">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/24/python%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">python基础</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-04-24 14:26:06 / 修改时间：15:47:25" itemprop="dateCreated datePublished" datetime="2020-04-24T14:26:06+08:00">2020-04-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h2><p>__ name __ 是python内置变量，代表模块的名字，对于自身模块’__ main __ ==__ name __ ‘。当自身模块被运行时执行 ‘__ main __ ==__ name <strong>‘ 下的代码会被运行，当该模块被调用时，’</strong> main __ ==__ name __’下的代码不会被运行。  </p>
-<h2 id="python参数"><a href="#python参数" class="headerlink" title="python参数"></a>python参数</h2><ol>
-<li>默认参数</li>
-<li>可变参数*args：当参数传入时在函数内部自动组建成一个tuple。</li>
-<li>关键字参数 * *kwagrs : 参数在函数内部自动组建成一个dict。 </li>
-<li>命名关键字参数：限制关键字参数的名字。使用特殊分隔符*，后面的参数被视为命名关键字参数。例如：def person(name, age, *args, city, job)。<h2 id="new-和-init"><a href="#new-和-init" class="headerlink" title="__ new __ 和 __ init __"></a>__ new __ 和 __ init __</h2>__ new__ 方法用于创建对象并返回对象，当返回对象时会自动调用__ init __ 方法进行初始化。__ new__ 方法是静态方法，而 __ init __是实例方法。  </li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__new__</span>(<span class="params">cls,*args,**kwargs</span>)</span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">__init__</span>(<span class="params">self</span>)</span></span><br></pre></td></tr></table></figure>
-<h2 id="实例方法、静态方法和类方法"><a href="#实例方法、静态方法和类方法" class="headerlink" title="实例方法、静态方法和类方法"></a>实例方法、静态方法和类方法</h2><ol>
-<li>实例方法：类中定义的方法默认都是实例方法。</li>
-<li>类方法：类方法需要使用＠classmethod修饰符进行修饰，类方法推荐使用类名直接调用，当然也可以使用实例对象来调用。</li>
-<li>类静态方法：静态方法需要使用＠staticmethod修饰，既可以使用类名调用，也可以使用类对象调用。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Kobe.jpg">
-      <meta itemprop="name" content="ggl">
-      <meta itemprop="description" content="wdnmd">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mr.fuck">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">零碎知识点</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-27 13:20:34" itemprop="dateCreated datePublished" datetime="2019-12-27T13:20:34+08:00">2019-12-27</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2019-12-30 13:16:37" itemprop="dateModified" datetime="2019-12-30T13:16:37+08:00">2019-12-30</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><blockquote>
-<p>负数在计算机中采用补码形式存储，例如在32位计算机中0xFFFFFFFF真值为-1。<br>0在补码中没有正负之分。<br>$$[x]_{complement}=<br>\begin{cases}<br>x, 2^n&gt;x\ge0 \<br>2^{n+1}+|x|, 0\ge x\ge-2^n<br>\end{cases}$$  </p>
-</blockquote>
-<h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><blockquote>
-<p>CPU能直接访问的存储器叫做内存，外存又叫做辅助存储器。<br>随机存储器RAM具有易失性。<br>$${\text{非易失性存储器}}<br>\begin{cases}<br>ROM &amp; {\text{只读存储器}} \<br>PROM &amp; {\text{可编程}}\<br>EPROM &amp; {\text{光擦可编程}}\<br>EEPROM &amp; {\text{点擦可编程}}\<br>FLASH &amp; {\text{闪速存储器}}<br>\end{cases}$$<br><strong>刷新方式</strong><br>1、集中刷新：优点是速度高，缺点是死时间长。<br>2、分散刷新：没有死时间了，缺点是速度慢。<br>3、异步刷新：每行刷新的时间仍为0.5us，刷新一行只停止一个存取周期，但对每行来说，刷新间隔在2ms以内，死时间缩短为0.5us。<br><strong>cache写操作</strong></p>
-<ol>
-<li>写回法</li>
-<li>全写法</li>
-<li>写一次法</li>
-</ol>
-</blockquote>
-<h3 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h3><blockquote>
-<p>一般来说，一个包含n位操作码最多能表示$2^n$条指令。<br><strong>操作数的位置</strong><br>在CPU的内部寄存器中。<br>在主存储器中。<br>在I/O设备的端口（寄存器）中。</p>
-</blockquote>
-<p>寄存器间接寻址属于RS指令，指令中的寄存器内容不是操作数而是操作数在内存中的地址。<br><strong>指令分类</strong></p>
-<blockquote>
-<p>一个较完善的指令系统具体有：<br>数据处理:算术运算类指令、逻辑运算类指令、字符串类指令<br>数据传送:数据传送类指令(含输入输出类指令)<br>程序控制:程序控制类指令、系统控制类指令</p>
-</blockquote>
-<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p><strong><em>CPU功能</em></strong></p>
-<ol>
-<li>操作控制</li>
-<li>指令控制</li>
-<li>时间控制</li>
-<li>数据加工</li>
-<li>中断处理</li>
-</ol>
-<p><strong><em>CPU的执行过程：</em></strong></p>
-<ul>
-<li>首先将程序和数据输入计算机的存储器中，然后从主存中“程序入口(程&gt;序执行的第一条指令的地址)”开始依次取出指令和数据，并根据指令的要求对数据&gt;进行加工处理，得到需要的结果后，结束运行。</li>
-<li>控制器控制程序的执行过程实际上是控制指令的执行过程。</li>
-<li>控制器的作用是协调并控制计算机的各个部件执行程序的指令序列。</li>
-<li>当机器刚加电时，RAM和寄存器的状态是随机的。</li>
-<li>为了保证正常工作，在机器内部一般设置有存放固定程序的ROM，利用加电时硬件产生的一个复位(RESET)信号使计算机处于初始状态，<u>PC的值必须指向第一条指令的地址(ROM)</u>，然后从PC指示的地址开始运行程序。</li>
-<li>也可以在加电复位时直接在指令寄存器中置入一条无条件转移指令(转移到某个固定的地址)并执行。</li>
-</ul>
-<p><strong>* 通常用内存中读取一个指令字的最短时间来规定CPU周期*</strong></p>
-<h3 id="总线仲裁"><a href="#总线仲裁" class="headerlink" title="总线仲裁"></a>总线仲裁</h3><h4 id="集中式仲裁"><a href="#集中式仲裁" class="headerlink" title="集中式仲裁"></a>集中式仲裁</h4><ul>
-<li>链式查询方式： <strong>对电路故障很敏感</strong></li>
-<li>计数器定时查询方式</li>
-<li>独立请求方式： <strong>响应最快，现代总线普遍使用</strong><h4 id="分布式仲裁"><a href="#分布式仲裁" class="headerlink" title="分布式仲裁"></a>分布式仲裁</h4></li>
-<li>不需要集中的总线仲裁器</li>
-</ul>
-<p>** PCI总线是一个与处理器无关的高速外围总线，采用同步时序协议和集中式仲裁策略，支持猝发式传送。**</p>
-<h3 id="输入输出系统"><a href="#输入输出系统" class="headerlink" title="输入输出系统"></a>输入输出系统</h3><h4 id="信息交换方式"><a href="#信息交换方式" class="headerlink" title="信息交换方式"></a>信息交换方式</h4><ul>
-<li>程序查询方式</li>
-<li><left>$$<br>{\text{查询中断方式}}<br>\begin{cases}<br>{\text{单级中断}} \<br>{\text{多级中断}}<br>\end{cases}<br>$$</li>
-<li>*向量地址是中断服务程序入口的指示器**</li>
-<li>DMA方式</li>
-<li>*三种访内方式**<blockquote>
-<ul>
-<li>停止CPU访问内存</li>
-<li>周期挪用：访内冲突，I/O优先访内，适用于I/O设备读写周期大于内存存储周期情况</li>
-<li>DMA与CPU交替访内</li>
-</ul>
-</blockquote>
-</li>
-<li>通道方式</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Kobe.jpg">
-      <meta itemprop="name" content="ggl">
-      <meta itemprop="description" content="wdnmd">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mr.fuck">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="post-title-link" itemprop="url">线性代数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2019-11-09 18:55:04 / 修改时间：19:57:30" itemprop="dateCreated datePublished" datetime="2019-11-09T18:55:04+08:00">2019-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>1. 特征值与特征向量</strong></p>
-<ul>
-<li><p>对于n阶方阵$A$存在一个一个$\lambda$使得：$Ax=\lambda x$成立，则称$\lambda$为矩阵$A$的特征值，$x$称为$A$的特征向量。</p>
-</li>
-<li><p>n阶矩阵的$n$个特征值$\lambda_1,\lambda_2….\lambda_n$,有　　　　　　 </p>
-<p>(1).$\sum_{i=1}^{n}\lambda_i=\sum_{i=1}^{n}a_{ii}=tr(A)$, $tr(A)$称为矩阵的迹。<br>(2).  $\lambda_1\lambda_2…\lambda_n=|A|$       </p>
-</li>
-</ul>
-<p><strong>2. 相似矩阵</strong>  </p>
-<ul>
-<li>$A ,B$都是$n$阶方阵，存在一个可逆矩阵$P$使得$P^{-1}AP=B$成立，则称$A,B$ 为相似矩阵。    </li>
-</ul>
-<p><strong>3. 正交矩阵</strong></p>
-<ul>
-<li>$n$阶矩阵满足<br>$A^TA=E$那么$A$被称为正交矩阵。</li>
-<li>$|A|=1$</li>
-<li>$A$的行向量或列向量两两正交        </li>
-</ul>
-<p><strong>4. 矩阵合同</strong></p>
-<ul>
-<li>如果存在$n$阶可逆矩阵$C$使得$C^TAC=B$,则称$A$与$B$合同。</li>
-</ul>
-<p><strong>5. 二次型及其有定性</strong></p>
-<ul>
-<li>实二次型$f=x^TAx$<br>(1). 若$f&gt;0$， 称二次型$f$为正定二次型，$A$为<strong>正定矩阵</strong><br>(2). 若$f&lt;0$， 称二次型$f$为负定二次型，$A$为<strong>负定矩阵</strong><br>(3). 若$f\geqslant0$， 称二次型$f$为半正定二次型，$A$为<strong>半正定矩阵</strong> </li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/09/KNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Kobe.jpg">
-      <meta itemprop="name" content="ggl">
-      <meta itemprop="description" content="wdnmd">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mr.fuck">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/09/KNN/" class="post-title-link" itemprop="url">KNN</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2019-11-09 12:41:43 / 修改时间：15:09:05" itemprop="dateCreated datePublished" datetime="2019-11-09T12:41:43+08:00">2019-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="降维与度量学习"><a href="#降维与度量学习" class="headerlink" title="降维与度量学习"></a><center><strong>降维与度量学习</strong></h1><ul>
-<li><h2 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h2><p>　KNN(K-Nearset-Neighbour)k最近邻算法是一种常用的监督学习算法，给定测试样本基于某种性能度量找出与其最近的k个训练样本，基于k个样本的信息进行决策。对于分类问题采用投票法，回归问题用平均法，还可根据样本的远近进行加权平均。  </p>
-<blockquote>
-<p>例如 $L_p$范数： $L_P(x_i,x_j)=(\sum_{u=1}^n|x_{iu}-x_{ju}|^p)^\frac{1}{p}$　　  </p>
-</blockquote>
-<p>   有个有趣的结论就是：最近邻分类器的泛化错误率不超过贝叶斯分类器的两倍。　　</p>
-</li>
-<li><h2 id="低维嵌入"><a href="#低维嵌入" class="headerlink" title="低维嵌入"></a>低维嵌入</h2><p><strong>维度灾难：在高维情况下出现数据样本稀疏、距离计算困难等问题。</strong><br>这时候往往通过降维将原始高维属性空间转变为一个低维“子空间”，在这个子空间样本的密度大幅提升。<br>$^{x\times y}$</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1572,50 +694,6 @@
   
 
   
-      <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
