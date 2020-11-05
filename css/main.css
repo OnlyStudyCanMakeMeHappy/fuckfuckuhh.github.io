@@ -3014,6 +3014,12 @@ mjx-container[display="true"] + br {
 .post-body {
   text-align: justify;
 }
+.content-wrap {
+  opacity: 0.8;
+}
+.sidebar {
+  opacity: 0.9;
+}
 .highlight figcaption {
   margin: 0em;
   padding: 0.5em;
@@ -3029,4 +3035,9 @@ mjx-container[display="true"] + br {
   padding: 25px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+body {
+  background: url("/images/bananas.png");
+  background-attachment: fixed;
+  background-position: 50% 50%;
 }
