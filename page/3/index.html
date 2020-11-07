@@ -289,7 +289,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-05 15:01:48" itemprop="dateModified" datetime="2020-11-05T15:01:48+08:00">2020-11-05</time>
+        <time title="修改时间：2020-11-07 20:04:46" itemprop="dateModified" datetime="2020-11-07T20:04:46+08:00">2020-11-07</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -450,7 +450,42 @@ method=None,)`
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">20</span>]: o = urlparse(<span class="string">&#x27;http://www.cwi.nl:80/%7Eguido/Python.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: o</span><br><span class="line">Out[<span class="number">21</span>]: ParseResult(scheme=<span class="string">&#x27;http&#x27;</span>, netloc=<span class="string">&#x27;www.cwi.nl:80&#x27;</span>, path=<span class="string">&#x27;/%7Eguido/Python.html&#x27;</span>, params=<span class="string">&#x27;&#x27;</span>, query=<span class="string">&#x27;&#x27;</span>, fragment=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="logging模块"><a href="#logging模块" class="headerlink" title="logging模块"></a>logging模块</h3><h3 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h3><p>socket连接</p>
+<h3 id="logging模块"><a href="#logging模块" class="headerlink" title="logging模块"></a>logging模块</h3><p>有六个级别，未定义级别时默认情况下是WRAING级别。值越大级别越高，每个级别对于低于自己级别的信息日志都略过。</p>
+<ul>
+<li>NOTSET:0</li>
+<li>DEBUG:10</li>
+<li>INFO:20</li>
+<li>WARNING:30</li>
+<li>ERROR:40</li>
+<li>CRITICAL:50</li>
+</ul>
+<p><code>basicConfig(**kwargs)</code>方法更改一些日志的配置</p>
+<p>参数</p>
+<ul>
+<li><p>filename：用指定的文件名创建FiledHandler，使日志保存在指定的文件中。</p>
+</li>
+<li><p>filemode：文件打开方式，’a’,’w’，</p>
+</li>
+<li><p>format：指定handler使用时的日志显示格式。</p>
+<p>格式化串可能使用到的参数：name、levelno、levelname、pathname、filename、module、funcName、lineno、created（创建时间）、asctime（当前时间）、thread、treadName、process、message（用户消息）。</p>
+</li>
+<li><p>datarmt：指定日期时间格式。</p>
+</li>
+<li><p>level：设置rootlogger的日志级别。</p>
+</li>
+<li><p>stream：用指定的stream创建StreamHandler。可以指定sys.stderr、sys.stdout、文件。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(level=logging.INFO,format=</span><br><span class="line"><span class="string">&#x27;%(asctime)s %(filename)s %(module)s %(process)s-%(threadName)s&#x27;</span></span><br><span class="line"><span class="string">&#x27; %(levelname)s:%(message)s&#x27;</span>,datefmt=<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>)</span><br><span class="line">logging.info(<span class="string">&quot;hello world!&quot;</span>)</span><br><span class="line">&gt;&gt;&gt;<span class="number">2020</span><span class="number">-11</span><span class="number">-07</span> <span class="number">19</span>:<span class="number">32</span>:<span class="number">17</span> log.py log <span class="number">19020</span>-MainThread INFO:hello world!</span><br></pre></td></tr></table></figure>
+<p>实现日志</p>
+<ul>
+<li>创建一个logger，定义logger的级别等。getlogger、setLevel</li>
+<li>创建一个文件或流的Handler，定义级别、字符串格式等。setFormatter</li>
+<li>将Handler添加到logger。</li>
+<li>通过logger记录日志。logger.debug…</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">user = getpass.getuser() <span class="comment">#这个常用语多用户操作系统</span></span><br><span class="line">logger = logging.getLogger(user) <span class="comment">#获得一个logger对象</span></span><br><span class="line">logger.setLevel(logging.DEBUG)</span><br><span class="line">logFile = sys.argv[<span class="number">0</span>][<span class="number">0</span>:<span class="number">-3</span>]+<span class="string">&#x27;.log&#x27;</span></span><br><span class="line">formatter = logging.Formatter(<span class="string">&#x27;%(asctime)-12s %(levelname)s-8s \</span></span><br><span class="line"><span class="string">        %(name)-10s %(message)-12s&#x27;</span>) <span class="comment">#格式化</span></span><br><span class="line">logHand = logging.FileHandler(logFile) <span class="comment">#打开指定文件并作为日志输出对象</span></span><br><span class="line">logHand.setFormatter(formatter) <span class="comment">#格式化输出串</span></span><br><span class="line">logHand.setLevel(logging.ERROR) <span class="comment">#只用错误信息才会被记录进文件</span></span><br><span class="line">logger.addHandler(logHand)</span><br><span class="line"><span class="comment">#logger记录日志</span></span><br><span class="line">logger.dubug(<span class="string">&quot;This is debug!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h3><p>socket连接</p>
 <ul>
 <li>AF_INET-IPv4，SOCK_STREAM-TCP，SOCK_DGRAM-UDP</li>
 <li>通过socket模块创建Socket对象，`def <strong>init</strong>(self,<pre><code>         family: int = ...,
