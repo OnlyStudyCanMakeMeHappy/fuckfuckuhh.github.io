@@ -1294,11 +1294,11 @@ pre code {
 }
 .header-inner {
   margin: 0 auto;
-  width: 700px;
+  width: 1000px;
 }
 @media (min-width: 1200px) {
   .header-inner {
-    width: 800px;
+    width: 1000px;
   }
 }
 @media (min-width: 1600px) {
@@ -1736,11 +1736,11 @@ pre code {
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  width: 700px;
+  width: 1000px;
 }
 @media (min-width: 1200px) {
   .footer-inner {
-    width: 800px;
+    width: 1000px;
   }
 }
 @media (min-width: 1600px) {
@@ -2840,11 +2840,11 @@ hr {
 }
 .main-inner {
   margin: 0 auto;
-  width: 700px;
+  width: 1000px;
 }
 @media (min-width: 1200px) {
   .main-inner {
-    width: 800px;
+    width: 1000px;
   }
 }
 @media (min-width: 1600px) {
@@ -2921,7 +2921,7 @@ hr {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff9d7d;
+  background: #ff61f7;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2990,11 +2990,11 @@ hr {
 .main-inner {
   background: #f0fff0;
   opacity: 0.8;
-  padding: 10px, 10px;
+  padding: 100px, 100px;
 }
 .header {
   background: #f0fff0;
-  opacity: 0;
+  opacity: 0.5;
 }
 .header-inner {
   opacity: 0.5;
