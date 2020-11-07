@@ -306,7 +306,7 @@
 <li>scrapy engine(引擎)：负责数据、信号在模块之间的传递。</li>
 <li>Scheduler(调度器)：接受引擎发送的Request请求。</li>
 <li>Downloader(下载器)：下载引擎的Requests请求，获取Responses交还给引擎并交给Spider处理。</li>
-<li>Spider(爬虫)：处理Responses，分析提取数据，获取Item字段所需数据。**<u>必须返回Request，BaseItem，dict或者None。</u>**</li>
+<li>Spider(爬虫)：处理Responses，分析提取数据，获取Item字段所需数据。<strong><u>必须返回Request，BaseItem，dict或者None。</u></strong></li>
 <li>Item Pipeline(管道)：负责Spider中获取的Item。</li>
 <li>Downloader Middlewares(下载中间件)：自定义扩展下载功能。</li>
 <li>Spider Middlewares(Spider中间件)：自定义Requests请求和进行Responses过滤。</li>
@@ -323,7 +323,6 @@
 <li>cookiejar</li>
 </ul>
 <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Request(url[,callback,method=<span class="string">&#x27;GRT&#x27;</span>,headers,body,cookies,meta,enconding=<span class="string">&#x27;utf-8&#x27;</span>,priority=<span class="number">0</span>,dont_filter=<span class="literal">False</span>,errback])</span><br><span class="line">meta元字典，为组件传递信息。例如：cookie，也可以给响应处理函数传递信息</span><br><span class="line">dont_filter：是否对同一个url多次提交重复下载，对于内容随时间变化的页面时，可以将参数置为<span class="literal">True</span></span><br><span class="line"></span><br><span class="line">Response根据响应内容有：TextResponse、HtmlResponse、XmlResponse</span><br><span class="line">Response.urljoin()</span><br><span class="line">- text</span><br><span class="line">- body</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
 <h3 id="spider开发流程"><a href="#spider开发流程" class="headerlink" title="spider开发流程"></a>spider开发流程</h3><ol>
 <li>继承scrapy.Spider<br>Spider基类实现的内容</li>
 </ol>
@@ -332,7 +331,7 @@
 <li>供用户使用的使用工具函数，log</li>
 <li>供用户访问的属性，settings</li>
 </ul>
-<ol start="2">
+<ol>
 <li><p>为Spider命名</p>
 <p> 类属性name标识</p>
 </li>
@@ -343,10 +342,12 @@
 <li>类属性start_urls设定爬取起点，url列表。</li>
 <li>由Spider基类的start_requests方法帮助我们构造提交Request对象。</li>
 </ul>
-<h2 id="2、使用Selector-提取数据"><a href="#2、使用Selector-提取数据" class="headerlink" title="2、使用Selector 提取数据"></a>2、使用Selector 提取数据</h2><h3 id="selector对象"><a href="#selector对象" class="headerlink" title="selector对象"></a>selector对象</h3><p>Selector类实现位于scrapy.selector模块<br>xpath、css方法返回一个SelectorList对象</p>
-<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> sel <span class="keyword">in</span> selector_list:</span><br><span class="line">	print(sel.xpath(<span class="string">&#x27;/.text()&#x27;</span>))</span><br></pre></td></tr></table></figure></div>
-<p><strong>提取数据</strong><br>    - extract()<br>        - re()<br>        - extract_first()<br>        - re_first()</p>
-<h3 id="Xpath"><a href="#Xpath" class="headerlink" title="Xpath"></a>Xpath</h3><p>xpath教程<a target="_blank" rel="noopener" href="http://www.zvon.org/comp/r/tut-XPath_1.html#intro">http://www.zvon.org/comp/r/tut-XPath_1.html#intro</a></p>
+<h2 id="2、使用Selector-提取数据"><a href="#2、使用Selector-提取数据" class="headerlink" title="2、使用Selector 提取数据"></a>2、使用Selector 提取数据</h2><h3 id="selector对象"><a href="#selector对象" class="headerlink" title="selector对象"></a>selector对象</h3><p>Selector类实现位于scrapy.selector模块<br>xpath、css方法返回一个SelectorList对象<br><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> sel <span class="keyword">in</span> selector_list:</span><br><span class="line">	print(sel.xpath(<span class="string">&#x27;/.text()&#x27;</span>))</span><br></pre></td></tr></table></figure></div><br><strong>提取数据</strong></p>
+<pre><code>- extract()
+    - re()
+    - extract_first()
+    - re_first()
+</code></pre><h3 id="Xpath"><a href="#Xpath" class="headerlink" title="Xpath"></a>Xpath</h3><p>xpath教程<a target="_blank" rel="noopener" href="http://www.zvon.org/comp/r/tut-XPath_1.html#intro">http://www.zvon.org/comp/r/tut-XPath_1.html#intro</a></p>
 <p>XML Path Langugae</p>
 <ol>
 <li><p>节点分类</p>
@@ -358,54 +359,7 @@
 </ul>
 </li>
 <li><p>基础语法</p>
-<table>
-<thead>
-<tr>
-<th>表达式</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>/</td>
-<td>根</td>
-</tr>
-<tr>
-<td>.</td>
-<td>当前节点</td>
-</tr>
-<tr>
-<td>..</td>
-<td>父节点</td>
-</tr>
-<tr>
-<td>ELEMENT</td>
-<td>子节点所有元素</td>
-</tr>
-<tr>
-<td>//ELEMENT</td>
-<td>后代节点中所有元素</td>
-</tr>
-<tr>
-<td>*</td>
-<td>选中所有元素子节点</td>
-</tr>
-<tr>
-<td>text()</td>
-<td>文本子节点</td>
-</tr>
-<tr>
-<td>@ATTR</td>
-<td>ATTR属性节点</td>
-</tr>
-<tr>
-<td>@*</td>
-<td>选中所有属性节点</td>
-</tr>
-<tr>
-<td>[]</td>
-<td>指定一个元素</td>
-</tr>
-</tbody></table>
+<p> | 表达式    | 描述               |<br> | ————- | ————————— |<br> | /         | 根                 |<br> | .         | 当前节点           |<br> | ..        | 父节点             |<br> | ELEMENT   | 子节点所有元素     |<br> | //ELEMENT | 后代节点中所有元素 |<br> | <em>         | 选中所有元素子节点 |<br> | text()    | 文本子节点         |<br> | @ATTR     | ATTR属性节点       |<br> | @</em>        | 选中所有属性节点   |<br> | []        | 指定一个元素       |</p>
 <p> //选中所有无论在什么位置</p>
 <p> [@ATTR=” xxx”]</p>
 </li>
@@ -425,7 +379,7 @@
 <li>E1&gt;E2    E1后代元素中的E2元素</li>
 <li>E1+E2    E1的兄弟元素中的E2</li>
 <li>.CLASS     CLASS属性包含CLASS的元素</li>
-<li>#ID    id属性包含ID的元素</li>
+<li><h1 id="ID-id属性包含ID的元素"><a href="#ID-id属性包含ID的元素" class="headerlink" title="ID    id属性包含ID的元素"></a>ID    id属性包含ID的元素</h1></li>
 <li>[ATTR=VALUE]    包含ATTR属性的元素</li>
 <li>[ATTR~=VALUE]    不包含ATTR属性的元素</li>
 <li>[ATTR^=VALUE]    以VALUE开头的属性</li>
@@ -435,9 +389,10 @@
 <li>E:first(last)-child</li>
 <li>E:empty    选中没有子元素的E元素</li>
 <li>E::text     选中E元素的文本节点</li>
-<li>attr::(attr)    选中元素的attr属性</li>
+<li><p>attr::(attr)    选中元素的attr属性</p>
+<p><strong>类名如果带空格，可以用.代替</strong></p>
+</li>
 </ul>
-<p> <strong>类名如果带空格，可以用.代替</strong></p>
 </li>
 </ol>
 <h2 id="3、使用Item封装数据"><a href="#3、使用Item封装数据" class="headerlink" title="3、使用Item封装数据"></a>3、使用Item封装数据</h2><blockquote>
@@ -472,7 +427,7 @@
 <p><strong>更多使用</strong></p>
 <ul>
 <li>过滤重复数据，从scripy.exceptions导入DropItem。raise DropItem()</li>
-<li>将数据存入MongoDB：安装教程<a target="_blank" rel="noopener" href="https://blog.csdn.net/Time_xiaoxia/article/details/108760031%EF%BC%8C%E5%88%A0%E9%99%A4%E6%95%99%E7%A8%8B%EF%BC%9Ahttps://blog.csdn.net/qq_42442369/article/details/84403964%E3%80%82MongoDB">https://blog.csdn.net/Time_xiaoxia/article/details/108760031，删除教程：https://blog.csdn.net/qq_42442369/article/details/84403964。MongoDB</a> compass停留在初始化界面，将C:\Windows\System32\wbem添加到环境变量。</li>
+<li>将数据存入MongoDB：安装教程<a target="_blank" rel="noopener" href="https://blog.csdn.net/Time_xiaoxia/article/details/108760031，删除教程：https://blog.csdn.net/qq_42442369/article/details/84403964。MongoDB">https://blog.csdn.net/Time_xiaoxia/article/details/108760031，删除教程：https://blog.csdn.net/qq_42442369/article/details/84403964。MongoDB</a> compass停留在初始化界面，将C:\Windows\System32\wbem添加到环境变量。</li>
 <li>保存在数据库教程<ol>
 <li>创建一个数据库Pipeline</li>
 <li>在settings文件中设置相关参数</li>
@@ -507,8 +462,8 @@
 (3) CSV  
 (4) XML  
 (5) Pickle  
-(6) Marshal   </code></pre>
-<h3 id="导出数据"><a href="#导出数据" class="headerlink" title="导出数据"></a>导出数据</h3><ul>
+(6) Marshal   
+</code></pre><h3 id="导出数据"><a href="#导出数据" class="headerlink" title="导出数据"></a>导出数据</h3><ul>
 <li><p>导出文件路径 -o</p>
 </li>
 <li><p>导出数据格式 -t:books -t csv</p>
@@ -517,11 +472,11 @@
 </ul>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
 <li><p>FEED_URL</p>
-<p>导出文件路径<br><code>FEED_URL = &#39;export_data/%(name)s.data&#39;            </code></p>
+<p>导出文件路径<br><code>FEED_URL = &#39;export_data/%(name)s.data&#39;</code></p>
 </li>
 <li><p>FEED_FORMAT</p>
 <p>导出数据格式</p>
-<p><code>FEED_FORMAT = &#39;csv&#39;  </code></p>
+<p><code>FEED_FORMAT = &#39;csv&#39;</code></p>
 </li>
 <li><p>FEED_EXPROT_ENCODING </p>
 <p>默认下json使用数据编码，其他使用utf-8编码</p>
@@ -553,37 +508,30 @@
 </ol>
 <p>urljoin方法：域名+路径</p>
 <h4 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#实现管道时,使用Item类</span></span><br><span class="line"><span class="comment">#这两个字段名可以被覆盖</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyItem</span>(<span class="params">scrapy.Item</span>):</span></span><br><span class="line">	file_urls = scrapy.Field()</span><br><span class="line">	file = scrapy.Field()</span><br><span class="line"><span class="comment">#获取的url放入一个列表</span></span><br><span class="line">MyItem[<span class="string">&#x27;file_urls&#x27;</span>] = [url]</span><br><span class="line"><span class="comment">#FilePipeline中的file_path方法决定了文件的命名</span></span><br><span class="line"><span class="comment">#ImagePipeline中image_url传入str或者Unicode</span></span><br><span class="line">item[<span class="string">&#x27;image_url&#x27;</span>] = str</span><br></pre></td></tr></table></figure></div>
-
 <h2 id="8、模拟登陆"><a href="#8、模拟登陆" class="headerlink" title="8、模拟登陆"></a>8、模拟登陆</h2><h4 id="登陆实质"><a href="#登陆实质" class="headerlink" title="登陆实质"></a>登陆实质</h4><p>HTML中的<form>元素</form></p>
 <ul>
 <li>method属性决定HTTP请求的方法</li>
 <li>action属性决定HTTP请求的url</li>
 <li>enctype属性决定了表单数据的编码类型</li>
-<li>&lt;input&gt;元素决定了表单数据的内容</li>
+<li>\<input\>元素决定了表单数据的内容</input\></li>
 </ul>
 <h3 id="Cookie登陆"><a href="#Cookie登陆" class="headerlink" title="Cookie登陆"></a>Cookie登陆</h3><p>使用browsercookie库获取Chrome和Firefox浏览器中的cookie。</p>
 <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> browsercookie</span><br><span class="line">chrome_cookiejar = browsercookie.chrome() </span><br><span class="line">chrome_cookiejar = browsercookie.firefox()</span><br></pre></td></tr></table></figure></div>
 <p>scrapy使用的Cookie由内置下载中间件CookiesMiddleware自动处理。<br>配置文件中启用COOKIES_ENABLED，启用该中间件。<br>利用browser_cookie3对CookiesMiddleware进行改良，实现一个能使用浏览器的中间件。  </p>
 <p>browser_cookie3.chrome()返回的是一个http.cookiejar.CookieJar对象。</p>
 <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> browser_cookie3</span><br><span class="line"><span class="keyword">from</span> scrapy.downloadermiddlewares.cookies <span class="keyword">import</span> CookiesMiddleware</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserCookiesMiddleware</span>(<span class="params">CookiesMiddleware</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,debug=False</span>):</span></span><br><span class="line">		super().__init__()</span><br><span class="line">		self.load_browser_cookies()</span><br><span class="line"><span class="comment">#    jars是个CookieJar对象的defaultdict</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">load_browser_cookies</span>(<span class="params">self</span>):</span></span><br><span class="line">		jar = self.jars[<span class="string">&#x27;chrome&#x27;</span>]</span><br><span class="line">		chrome_cookiejar = browser_cookie3.chrome()</span><br><span class="line">		<span class="keyword">for</span> cookie <span class="keyword">in</span> chrome_cookiejar:</span><br><span class="line">			jar.set_cookie(cookie)</span><br><span class="line">            </span><br><span class="line">		jar = self.jars[<span class="string">&#x27;firefox&#x27;</span>]</span><br><span class="line">		firefox_cookiejar = browser_cookie3.firefox()</span><br><span class="line">		<span class="keyword">for</span> cookie <span class="keyword">in</span> firefox_cookiejar:</span><br><span class="line">			jar.set_cookie(cookie)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用方法</span></span><br><span class="line">scrapy.Request(url.meta=&#123;<span class="string">&#x27;cookiejar&#x27;</span>:<span class="string">&#x27;chrome&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure></div>
-<p>在settings.py中加入USER_AGENT伪装成常规浏览器</p>
-<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#scrapy使用cookies</span></span><br><span class="line">cookies = [i.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">0</span>]:i.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> cookies.split(<span class="string">&#x27;;&#x27;</span>)]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span>(<span class="params">self</span>):</span></span><br><span class="line">	<span class="keyword">yield</span> scrapy.Request(self.url,callback=self.parse,cookies=cookies)</span><br></pre></td></tr></table></figure></div>
-
+<p>在settings.py中加入USER_AGENT伪装成常规浏览器<br><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#scrapy使用cookies</span></span><br><span class="line">cookies = [i.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">0</span>]:i.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> cookies.split(<span class="string">&#x27;;&#x27;</span>)]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span>(<span class="params">self</span>):</span></span><br><span class="line">	<span class="keyword">yield</span> scrapy.Request(self.url,callback=self.parse,cookies=cookies)</span><br></pre></td></tr></table></figure></div></p>
 <h2 id="9、爬取动态页面"><a href="#9、爬取动态页面" class="headerlink" title="9、爬取动态页面"></a>9、爬取动态页面</h2><p>数据被编码与JavaScript代码中，JavaScript通过HTTP请求动态跟网站交互数据（AJAX），动态网页需要执行JavaScript动态渲染再爬取。</p>
 <p>安装Chromewebdrive，解压放在Anaconda目录下。</p>
 <h3 id="selenium使用"><a href="#selenium使用" class="headerlink" title="selenium使用"></a>selenium使用</h3><p>教程一篇：<a target="_blank" rel="noopener" href="https://my.oschina.net/pansy0425/blog/3000598">https://my.oschina.net/pansy0425/blog/3000598</a></p>
 <p>实现一个selenium下载</p>
 <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#实现一个selenium下载中间件</span></span><br><span class="line"><span class="comment">#实现一个process_request()方法，得到页面源代码，返回一个HtmlResonse对象</span></span><br><span class="line"><span class="keyword">return</span> scrapy.http.HtmlResponse(url=request.url,body=html,encoding=<span class="string">&#x27;utf-8&#x27;</span>,request=request)</span><br></pre></td></tr></table></figure></div>
-
 <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.option <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">参数设置</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--headless&#x27;</span>) <span class="comment">#无头浏览器</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--disable-gpu&#x27;</span>) <span class="comment">#规避bug</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--no-sandbox&#x27;</span>)<span class="comment">#取消沙盒模式</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;blink-settings=imagesEnabled=false&#x27;</span>) <span class="comment">#不加载图片, 提升速度</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;lang=zh_CN.UTF-8&#x27;</span>) <span class="comment">#设置编码格式</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;user-agent&#x27;</span>+user-agent)<span class="comment">#加上请求头</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--proxy-server=http://&#x27;</span>+proxy)  <span class="comment">#设置代理</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">等待页面元素加载出来</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">driver = Chrome(chrome_options = chrome_options)</span><br><span class="line">wait = WebDriverWair(driver,<span class="number">10</span>)</span><br><span class="line">wait.until(EC.presence_of_element_located((By.XPATH,xxx)))<span class="comment">#传入元组</span></span><br><span class="line">driver.add_cookie(&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;pansy_nuist&#x27;</span>,<span class="string">&#x27;domain&#x27;</span>:<span class="string">&#x27;www.taobao.com&#x27;</span>,<span class="string">&#x27;value&#x27;</span>:<span class="string">&#x27;nuist&#x27;</span>&#125;)<span class="comment">#增加cookies</span></span><br><span class="line">cookies = driver.get_cookies()</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
 <h2 id="10、使用HTTP代理"><a href="#10、使用HTTP代理" class="headerlink" title="10、使用HTTP代理"></a>10、使用HTTP代理</h2><p>return和yield区别：yield不立即返回结果，节省内存空间。通过next()函数迭代。</p>
 <p>阿布云代理1小时套餐：<a target="_blank" rel="noopener" href="https://www.abuyun.com/http-proxy/products.html">https://www.abuyun.com/http-proxy/products.html</a></p>
 <h3 id="proxy-pool代理池"><a href="#proxy-pool代理池" class="headerlink" title="proxy_pool代理池"></a>proxy_pool代理池</h3><p>代理池：<a target="_blank" rel="noopener" href="https://github.com/jhao104/proxy_pool">https://github.com/jhao104/proxy_pool</a></p>
 <p>启动服务：python proxyPool.py server</p>
-<p>端口<a target="_blank" rel="noopener" href="http://127.0.0.1:5010/">http://127.0.0.1:5010</a></p>
-<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">url = <span class="string">&#x27;http://127.0.0.1:5010/get&#x27;</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = requests.get(url)</span><br><span class="line">    proxy_ip = json.loads(response.content)[<span class="string">&#x27;proxy&#x27;</span>]</span><br><span class="line">    print(proxy_ip)</span><br><span class="line"><span class="keyword">except</span> Exception:</span><br><span class="line">    print(<span class="string">&#x27;connect error&#x27;</span>)</span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">&#x27;https&#x27;</span>:<span class="string">&#x27;http://&#x27;</span>+</span><br><span class="line">    proxy_ip</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
+<p>端口<a target="_blank" rel="noopener" href="http://127.0.0.1:5010/">http://127.0.0.1:5010</a><br><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">url = <span class="string">&#x27;http://127.0.0.1:5010/get&#x27;</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = requests.get(url)</span><br><span class="line">    proxy_ip = json.loads(response.content)[<span class="string">&#x27;proxy&#x27;</span>]</span><br><span class="line">    print(proxy_ip)</span><br><span class="line"><span class="keyword">except</span> Exception:</span><br><span class="line">    print(<span class="string">&#x27;connect error&#x27;</span>)</span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">&#x27;https&#x27;</span>:<span class="string">&#x27;http://&#x27;</span>+</span><br><span class="line">    proxy_ip</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
 <h3 id="Logging模块使用"><a href="#Logging模块使用" class="headerlink" title="Logging模块使用"></a>Logging模块使用</h3>
       
     </div>
@@ -693,44 +641,61 @@
   
 
   
-      <script>
+      
+
+<script>
   if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
     window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
       }
     };
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
-    script.defer = true;
-    document.head.appendChild(script);
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
   } else {
     MathJax.startup.document.state(0);
-    MathJax.typesetClear();
     MathJax.texReset();
     MathJax.typeset();
   }

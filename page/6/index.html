@@ -300,10 +300,9 @@
     <div class="post-body" itemprop="articleBody">
           <p><strong>1. 特征值与特征向量</strong></p>
 <ul>
-<li><p>对于n阶方阵$A$存在一个一个$\lambda$使得：$Ax=\lambda x$成立，则称$\lambda$为矩阵$A$的特征值，$x$称为$A$的特征向量。</p>
-</li>
+<li>对于n阶方阵$A$存在一个一个$\lambda$使得：$Ax=\lambda x$成立，则称$\lambda$为矩阵$A$的特征值，$x$称为$A$的特征向量。</li>
 <li><p>n阶矩阵的$n$个特征值$\lambda_1,\lambda_2….\lambda_n$,有　　　　　　 </p>
-<p>(1).$\sum_{i=1}^{n}\lambda_i=\sum_{i=1}^{n}a_{ii}=tr(A)$, $tr(A)$称为矩阵的迹。<br>(2).  $\lambda_1\lambda_2…\lambda_n=|A|$       </p>
+<p>(1).$\sum<em>{i=1}^{n}\lambda_i=\sum</em>{i=1}^{n}a_{ii}=tr(A)$, $tr(A)$称为矩阵的迹。<br>(2).  $\lambda_1\lambda_2…\lambda_n=|A|$       </p>
 </li>
 </ul>
 <p><strong>2. 相似矩阵</strong>  </p>
@@ -433,44 +432,61 @@
   
 
   
-      <script>
+      
+
+<script>
   if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
     window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
       }
     };
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
-    script.defer = true;
-    document.head.appendChild(script);
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
   } else {
     MathJax.startup.document.state(0);
-    MathJax.typesetClear();
     MathJax.texReset();
     MathJax.typeset();
   }
