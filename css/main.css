@@ -2904,7 +2904,7 @@ hr {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f27896;
+  background: #39ff79;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2971,13 +2971,13 @@ hr {
 }
 .main-inner {
   background: #fff;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 .header-inner {
   opacity: 0.8;
 }
 body {
-  background: url("/images/bananas.jpg");
+  background: url("/images/bananas.png");
 }
 /*标题样式设置*/
 .site-meta .site-title {
