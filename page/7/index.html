@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/09/%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/" class="post-title-link" itemprop="url">一些公式和统计量</a>
+            <a href="/2020/10/09/%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">排序算法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,24 +282,15 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-04-25 23:05:15" itemprop="dateCreated datePublished" datetime="2020-04-25T23:05:15+08:00">2020-04-25</time>
+      <time title="创建时间：2020-10-09 20:33:48" itemprop="dateCreated datePublished" datetime="2020-10-09T20:33:48+08:00">2020-10-09</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-05 14:57:40" itemprop="dateModified" datetime="2020-11-05T14:57:40+08:00">2020-11-05</time>
+        <time title="修改时间：2020-11-05 13:14:17" itemprop="dateModified" datetime="2020-11-05T13:14:17+08:00">2020-11-05</time>
       </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">概率论</span></a>
-        </span>
-    </span>
 
   
 </div>
@@ -311,45 +302,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="连续型随机变量的函数分布"><a href="#连续型随机变量的函数分布" class="headerlink" title="连续型随机变量的函数分布"></a>连续型随机变量的函数分布</h2><p>$Y=g(X)$连续型随机变量的概率密度:</p>
-<script type="math/tex; mode=display">
-F_Y(y)=
-\begin{cases}
-f_x[h(y)]|h'(y)|,&\alpha<x<\beta \\
-0,               &\text{其他}
-\end{cases}</script><h3 id="二维随机变量"><a href="#二维随机变量" class="headerlink" title="二维随机变量"></a>二维随机变量</h3><p>$二维随机变量的分布函数：F(x,y)=P\lbrace(X\le x)\cap(Y\le y)\rbrace。$</p>
-<p>$P{x_1&lt;X&lt;x_2,y_1&lt;Y&lt;y_2}=F(x_2,y_2)-F(x_2,y_1)+F(x_1,y_1)-F(x_1,y_2)。$</p>
-<p>$若f(x,y)在点(x,y)连续，则有$</p>
-<script type="math/tex; mode=display">
-\frac{\partial^2xF(x,y)}{\partial x \partial y}=f(x,y)</script><p>条件概率密度：</p>
-<script type="math/tex; mode=display">
-f_{X|Y}=\frac{f(x,y)}{f_Y(y)}\\</script><script type="math/tex; mode=display">
-\int_{-\infty}^{x}f_{X|Y}(x|y)dx=\int_{\infty}^{x}\frac{f(x,y)}{f_Y(y)}为在Y=y下，X的条件分布函数。</script><script type="math/tex; mode=display">
-卷积公式记为f_X*f_Y，即f_X*f_Y=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)dy=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)dx</script><h2 id="期望与方差"><a href="#期望与方差" class="headerlink" title="期望与方差"></a>期望与方差</h2><p>$设Y是随机变量X的函数：Y=g(X)(g是连续函数).$</p>
-<script type="math/tex; mode=display">
-E(Y)=E[g(x)]=\int_{-\infty}^{\infty}g(x)f(x)dx</script><p>$X的方差D(x),Var(x),即$</p>
-<script type="math/tex; mode=display">
-D(x)=Var(x)=E\{[x-E(x)]^2\} \\
-D(x)=E(x^2)-[E(x)]^2</script><script type="math/tex; mode=display">
-Cov(x,y)=E\{[x-E(x)][Y-E(Y)]\}\\
-\rho_{xy}=\frac{Cov(x,y)}{\sqrt {D(x)}\sqrt{D(Y)}}\\</script><h2 id="统计量"><a href="#统计量" class="headerlink" title="统计量"></a>统计量</h2><p>(一)$\chi^2分布$<br>设$X_1,X_2,……,X_n是来自总体N(0,1)的样本，则统计量$  </p>
-<script type="math/tex; mode=display">
-\chi^2=X_1^2+X_2^2+···+X_n^2</script><p>$服从自由度为n的\chi^2分布，记为\chi^2\sim\chi^2(n)。$</p>
-<p>(二)t分布<br>$设X\sim N(0,1),Y\sim\chi^2(n)，且X，Y相互独立，则称随机变量$  </p>
-<script type="math/tex; mode=display">
-t = \frac{X}{\sqrt{Y/n}}</script><p>$服从自由度为n的t分布，记为t\sim t(n)。$</p>
-<p>(三)F分布<br>$设U\sim\chi^2(n_1),V\sim\chi^2(n_2)，且U,V相互独立，则称随机变量$   </p>
-<script type="math/tex; mode=display">
-F = \frac{U/n_1}{V/n_2}</script><p>$服从自由度为(n_1,n_2)的F分布，记为F\sim F(n_1,n_2)。$</p>
-<p>(四)正态总体的样本均值与样本方差的分布  </p>
-<script type="math/tex; mode=display">
-E(\overline{X})=\overline{X}，D(\overline{x})=\sigma^2/n \\
-E(S^2)=E[\frac{1}{n-1}(\sum_{i=1}^nX_i^2-n\overline{X}^2)]=\frac{1}{n-1}E[\sum_{i=1}^{n}(\sigma^2+\mu^2)-n(\sigma^2/n+\mu^2)]=\sigma^2</script><p><strong>定理一</strong> $设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}是平均值则统计量。$    </p>
-<script type="math/tex; mode=display">
-\overline{X}\sim N(\mu,\sigma^2/n)</script><p>$设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}，S^2分别是样本均值和样本方差，则有$</p>
-<script type="math/tex; mode=display">
-\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1),\frac{(n-1)S^2}{S/\sqrt{n}}\sim \chi^2(n-1)\\
-\frac{\overline{X}-\mu}{S/\sqrt{n}}\sim t(n-1)</script>
+          <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BInsertSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> low, mid, high;</span><br><span class="line">	<span class="keyword">int</span> i,j,t;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;n; i++)&#123;</span><br><span class="line">		t = A[i];</span><br><span class="line">		low = <span class="number">0</span>;</span><br><span class="line">		high = i<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">			mid = (low+high)/<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span>(A[mid]&gt;t)</span><br><span class="line">				high = mid<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				low = mid+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(j=i<span class="number">-1</span>; j&gt;=high; j--)</span><br><span class="line">			A[j+<span class="number">1</span>] = A[j];</span><br><span class="line">		A[high+<span class="number">1</span>] = t;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		BInsertSort(a,n);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) </span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Shellsort</span><span class="params">(<span class="keyword">int</span> A[],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,dk;	<span class="comment">//dk是增量 </span></span><br><span class="line">	<span class="keyword">int</span> tmp;</span><br><span class="line">	<span class="keyword">for</span>(dk=n/<span class="number">2</span>; dk&gt;<span class="number">0</span>; dk/=<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">for</span>(i=dk; i&lt;n; i++)&#123;</span><br><span class="line">			tmp = A[i];</span><br><span class="line">			<span class="keyword">for</span>(j=i; j&gt;=dk; j-=dk)</span><br><span class="line">				<span class="keyword">if</span>(tmp&lt;A[j-dk])</span><br><span class="line">					A[j] = A[j-dk];</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">			A[j] = tmp; </span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,i;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		Shellsort(a,n);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits\stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以三数取中取枢纽 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;	</span><br><span class="line">	<span class="keyword">int</span> pivot = A[low];	<span class="comment">//枢纽 </span></span><br><span class="line">	<span class="keyword">while</span>(low&lt;high)&#123;</span><br><span class="line">		<span class="keyword">while</span>(low&lt;high&amp;&amp;A[high]&gt;=pivot)	<span class="comment">//找到大于pivot的值 </span></span><br><span class="line">			high--;	</span><br><span class="line">		A[low] = A[high];</span><br><span class="line">		<span class="keyword">while</span>(low&lt;high&amp;&amp;A[low]&lt;=pivot)</span><br><span class="line">			low++;</span><br><span class="line">		A[high] = A[low];</span><br><span class="line">	&#125;</span><br><span class="line">	A[low] = pivot;</span><br><span class="line">	<span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Qsort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(low&lt;high)&#123;</span><br><span class="line">		<span class="keyword">int</span> pivot = partition(A,low,high);</span><br><span class="line">		Qsort(A,low,pivot<span class="number">-1</span>);</span><br><span class="line">		Qsort(A,pivot+<span class="number">1</span>,high);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">int</span> n,i;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;A[i];</span><br><span class="line">		Qsort(A,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;A[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -370,7 +325,7 @@ E(S^2)=E[\frac{1}{n-1}(\sum_{i=1}^nX_i^2-n\overline{X}^2)]=\frac{1}{n-1}E[\sum_{
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

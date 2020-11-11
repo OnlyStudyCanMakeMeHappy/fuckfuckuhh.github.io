@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/SVM/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/07/SGD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/06/SVM/" class="post-title-link" itemprop="url">SVM</a>
+            <a href="/2020/11/07/SGD/" class="post-title-link" itemprop="url">SGD</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,16 +281,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-11-06 10:56:43" itemprop="dateCreated datePublished" datetime="2020-11-06T10:56:43+08:00">2020-11-06</time>
+      <time title="创建时间：2020-11-07 22:35:46 / 修改时间：22:42:37" itemprop="dateCreated datePublished" datetime="2020-11-07T22:35:46+08:00">2020-11-07</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-07 22:11:03" itemprop="dateModified" datetime="2020-11-07T22:11:03+08:00">2020-11-07</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -311,18 +305,100 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h2><ul>
-<li>支持向量机算法本身不能够很好地支持非标准化的数据，所以 <strong>我们强烈建议您将数据标准化</strong>。 举个示例，对于输入向量 X， 规整它的每个数值范围为 [0, 1] 或 [-1, +1] ，或者标准化它的为均值为0方差为1的数据分布。可以通过sklearn预处理库中的StandardScaler函数实现。</li>
-<li>底层实现的随机性:SVC的底层实现仅使用随机数生成器来打乱数据顺序进行概率估计(当probability被设置为True时)。这种随机性可以用random_state参数来控制。</li>
+          <h2 id="随机梯度下降SGD"><a href="#随机梯度下降SGD" class="headerlink" title="随机梯度下降SGD"></a>随机梯度下降SGD</h2><h3 id="凸函数"><a href="#凸函数" class="headerlink" title="凸函数"></a>凸函数</h3><h4 id="凸集"><a href="#凸集" class="headerlink" title="凸集"></a>凸集</h4><p>如果对点集$\chi$中任意两个点$\mathbf x,\mathbf y$存在</p>
+<script type="math/tex; mode=display">
+\{\alpha\mathbf{x}+(1-\alpha)\mathbf y:0\le\alpha\le1\}\in\chi</script><p>称这个点集为凸集。</p>
+<h4 id="凸函数定义"><a href="#凸函数定义" class="headerlink" title="凸函数定义"></a>凸函数定义</h4><p>存在凸集$\chi$,函数映射$f:\chi\rightarrow\mathbb{R}^n,对$$\forall \mathbf{x,y}\in\chi,\alpha\in[0,1]$</p>
+<script type="math/tex; mode=display">
+f(\alpha \mathbf{x}+(1-\alpha)\mathbf{y})\le\alpha f(\mathbf x)+(1-\alpha)f(\mathbf y)</script><p>则称函数$f$为凸函数。</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><script type="math/tex; mode=display">
+f(\mathbf y)-f(\mathbf x)\ge\nabla f(\mathbf x)(\mathbf{y-x}) \\
+Hessian矩阵正定：\nabla^2f(\mathbf x)\ge0</script><p><img src="/2020/11/07/SGD/1.png" alt="image-20201106141450669"></p>
+<h3 id="随机梯度下降法-Stochastic-Gradient-Descent"><a href="#随机梯度下降法-Stochastic-Gradient-Descent" class="headerlink" title="随机梯度下降法(Stochastic Gradient Descent)"></a>随机梯度下降法(Stochastic Gradient Descent)</h3><p>SGD可以应用在大规模样本和稀疏机器学习问题，主要用于凸损失函数下线性分类器的判别式学习。</p>
+<p>优势</p>
+<ul>
+<li>高效易于实现，速度比批量梯度下降快。</li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/06/SVM/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<p>劣势</p>
+<ul>
+<li>超参数需要设定</li>
+<li>对特征缩放敏感</li>
+</ul>
+<h4 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h4><ul>
+<li><p>优化的损失函数$J(\theta)$，参数初始化，给定迭代次数和步长$\alpha$。</p>
+</li>
+<li><p>第$n$次迭代更新，<strong>不同于梯度下降法每次更新使用所有样本，随机梯度下降每次更新只使用一个样本</strong>。</p>
+<blockquote>
+<p>随机选取一个样本$x_j$，计算损失函数$J(\theta)$</p>
+<p>for i in n:</p>
+<p>​    $\theta_i:= \theta_i-\frac{\partial J(\theta)}{\partial \theta_i}$</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="鞍点"><a href="#鞍点" class="headerlink" title="鞍点"></a>鞍点</h4><p>函数在鞍点一阶导数为0但不是极值点，鞍点的Hessian矩阵不定(即存在特征值正负摇摆，负定矩阵奇数阶顺序主子式负，偶数阶顺序主子式为正)。在高维情况下鞍点的范围可能非常大，使用SGD算法可能在鞍点附近徘徊。</p>
+<h3 id="sklearn"><a href="#sklearn" class="headerlink" title="sklearn"></a>sklearn</h3><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">sklearn</span>.<span class="title">linear_model</span>.<span class="title">SGDClassifier</span>(<span class="params">loss=<span class="string">&#x27;hinge&#x27;</span>, *, penalty=<span class="string">&#x27;l2&#x27;</span>, alpha=<span class="number">0.0001</span>, l1_ratio=<span class="number">0.15</span>, fit_intercept=True, max_iter=<span class="number">1000</span>, tol=<span class="number">0.001</span>, shuffle=True, verbose=<span class="number">0</span>, epsilon=<span class="number">0.1</span>, n_jobs=None, random_state=None, learning_rate=<span class="string">&#x27;optimal&#x27;</span>, eta0=<span class="number">0.0</span>, power_t=<span class="number">0.5</span>, early_stopping=False, validation_fraction=<span class="number">0.1</span>, n_iter_no_change=<span class="number">5</span>, class_weight=None, warm_start=False, average=False</span>)</span></span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<ul>
+<li><p>loss</p>
+<p>| loss                        | name                                                         |<br>| —————————————- | —————————————————————————————— |<br>| hinge                       | svm合页损失函数，max(1-z,0)                                  |<br>| log                         | logistic regression                                          |<br>| modified_huber              | huber损失函数                                                |<br>| squared_hinge               | like hinge but is quadratically penalized                    |<br>| perceptron                  | 感知机使用                                                   |<br>| squared_loss                | 一致最小二乘拟合                                             |<br>| huber                       | 将平方损失转换为线性损失超过ε距离，从而将注意力集中在纠正异常值上。 |<br>| epsilon_insensitive         | 超过ε容差的平方损失                                          |<br>| squared_epsilon_insensitive | 变成超过ε容差的平方损失                                      |</p>
+</li>
+<li><p>penalty：l1、l2、l2和l1的凸组合elasticnet=$\alpha\sum<em>{i=1}^{n}\omega^2+(1-\alpha)\sum</em>{i=1}^n||\omega||$。</p>
+</li>
+</ul>
+<p><img src="/2020/11/07/SGD/2.jpg" alt="正则化类型"></p>
+<ul>
+<li><p>alpha：控制正则化项的参数，值越高正则化越强。</p>
+</li>
+<li><p>l1_ratio：当使用elasticnet时，需要该参数。</p>
+</li>
+<li><p>fit_intercept：是否估计截距。</p>
+</li>
+<li><p>max_iter：训练集的最大通过轮次。</p>
+</li>
+<li><p>learning_rate：</p>
+<ul>
+<li>constant: eta0</li>
+<li>optimal: eta = 1.0 / (alpha * (t + t0))  ,默认</li>
+<li>invscaling: eta = eta0 / pow(t, power_t)</li>
+<li>adaptive: eta = eta0 ，自适应</li>
+</ul>
+</li>
+<li><p>early_stopping：当验证分数没有提高时是否终止训练。</p>
+<ul>
+<li><p><code>early_stopping = True</code>时,输入数据分为训练集和验证集。该模型在训练集拟合,停止判据是基于验证集上的预测分数。改变参数<code>validation_fraction</code>可以调整验证集的大小。</p>
+</li>
+<li><p><code>early_stop = False</code>时，模型对整个输入数据进行拟合，停止判据基于整个输入数据上的目标函数来计算</p>
+</li>
+<li>判据在每个<code>epoch</code>计算一次，当判据没有改变的次数超过参数<code>n_iter_no_change</code>的值时，算法将停止。改进是用一个容错参数<code>tol</code>来评估的，并且算法在最大迭代次数<code>max_iter</code>之后停止。</li>
+</ul>
+</li>
+<li><p>n_iter_no_change：迭代次数，没有改善，请提前停止。</p>
+</li>
+<li><p>validation_fraction：预留的训练集作为验证集的比例。</p>
+</li>
+</ul>
+<p>属性</p>
+<ul>
+<li>coef_</li>
+<li>intercept_</li>
+<li>n_iter：实际迭代次数</li>
+<li>loss_function</li>
+<li>t_：训练期间进行的权重更新次数</li>
+</ul>
+<p>方法</p>
+<ul>
+<li>density：将系数矩阵转换为密度数组格式</li>
+<li>decision_function(x)：样本的置信度分数，是该样本到超平面的有符号距离。</li>
+<li>predict_proba方法, 其给出每个样本 $x$的概率估计 $P(y|x)$的一个向量。</li>
+</ul>
+<p>生成各向同性的高斯斑点</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line">make_blobs(n_samples=<span class="number">100</span>, n_features=<span class="number">2</span>, *, centers=<span class="literal">None</span>, cluster_std=<span class="number">1.0</span>, center_box=(<span class="number">-10.0</span>, <span class="number">10.0</span>), shuffle=<span class="literal">True</span>, random_state=<span class="literal">None</span>, return_centers=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>centers： 生成的中心数或固定的中心位置。</li>
+<li>center_box：每个聚类中心的边界。</li>
+</ul>
+<h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>跟分类器参数一致，仅仅损失函数不同。</p>
+
       
     </div>
 
@@ -343,7 +419,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
