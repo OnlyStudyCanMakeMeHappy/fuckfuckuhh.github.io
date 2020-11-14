@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/12/click/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/13/Bayesian/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/12/click/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2020/11/13/Bayesian/" class="post-title-link" itemprop="url">Bayesian</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,15 +282,24 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-12 23:04:02" itemprop="dateCreated datePublished" datetime="2020-11-12T23:04:02+08:00">2020-11-12</time>
+      <time title="创建时间：2020-11-13 19:51:00" itemprop="dateCreated datePublished" datetime="2020-11-13T19:51:00+08:00">2020-11-13</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-13 13:28:02" itemprop="dateModified" datetime="2020-11-13T13:28:02+08:00">2020-11-13</time>
+        <time title="修改时间：2020-11-14 19:06:14" itemprop="dateModified" datetime="2020-11-14T19:06:14+08:00">2020-11-14</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -302,24 +311,50 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="click"><a href="#click" class="headerlink" title="click"></a>click</h2><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>普通函数经过装饰器修饰后可以变成命令行工具，将函数装饰为Command对象。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> click</span><br><span class="line"><span class="meta">@click.command()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>():</span></span><br><span class="line">    click.echo(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>等待按键<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">9</span>]: click.pause()</span><br><span class="line">Press any key to <span class="keyword">continue</span> ...</span><br></pre></td></tr></table></figure></p>
-<h3 id="Echoing"><a href="#Echoing" class="headerlink" title="Echoing"></a>Echoing</h3><p><code>click.echo(message=None, file=None, nl=True, err=False, color=None)</code></p>
-<ul>
-<li>nl：换行符是否打印</li>
-<li>color：是否支持ANSI颜色，默认为自动检测。</li>
+          <h2 id="贝叶斯决策论"><a href="#贝叶斯决策论" class="headerlink" title="贝叶斯决策论"></a>贝叶斯决策论</h2><p>定义$\lambda_{ij}$为将将真实标记为$c_j$的样本误分类为$c_i$所产生的损失，通常误分类带来的损失为1。期望损失表达式。</p>
+<script type="math/tex; mode=display">
+R(c_i|x) = \sum_{i=1}^{N}\lambda_{ij}P(c_j|x)</script><p>对于每个样本，学习器$h$能最小化条件风险$R(h(x)|x)$，总体风险$R(h)$也被最小化。</p>
+<script type="math/tex; mode=display">
+h^*(x) = arg\min_{x\in Y}R(c|x)</script><p>那么$h^<em>(x)$被称为贝叶斯最优分类器，$R(h^</em>)$称为贝叶斯风险。</p>
+<script type="math/tex; mode=display">
+R(h^*) = \mathbb{E}_x[R(h^*(x)|x)]</script><h3 id="条件风险"><a href="#条件风险" class="headerlink" title="条件风险"></a>条件风险</h3><script type="math/tex; mode=display">
+R(c_i|x) = 1·P(c_1|x)+...+0·P(c_i|x)+...+1·P(c_N|x)\\
+R(c|x) = 1-P(c|x)</script><p>最小化贝叶斯风险等价于</p>
+<script type="math/tex; mode=display">
+h^*(x) = \arg\max_{c\in Y}P(c|x)</script><p>即对于每个样本选择使后验概率$P(c|x)$最大。</p>
+<h3 id="判别式和生成式模型"><a href="#判别式和生成式模型" class="headerlink" title="判别式和生成式模型"></a>判别式和生成式模型</h3><ul>
+<li>判别式模型：给定$x$，通过直接建模$P(c|x)$来预测c。</li>
+<li>生成式模型：对联合概率分布$P(c,x)$建模得到$P(c|x)$</li>
 </ul>
-<h4 id="ANSI-Colors"><a href="#ANSI-Colors" class="headerlink" title="ANSI Colors"></a>ANSI Colors</h4><p>为了样式字符串使用<code>style</code>函数</p>
-<p><code>style(text, fg=None, bg=None, bold=None, dim=None, underline=None, blink=None, reverse=None, reset=True)</code></p>
-<p>或者<code>secho()</code>函数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">4</span>]: click.echo(click.style(<span class="string">&#x27;Hello world&#x27;</span>,fg=<span class="string">&#x27;green&#x27;</span>,bg=<span class="string">&#x27;yellow&#x27;</span>,</span><br><span class="line">   ...: bold=<span class="literal">True</span>))</span><br><span class="line"><span class="comment">#secho</span></span><br><span class="line">In [<span class="number">2</span>]: click.secho(<span class="string">&#x27;Hello world&#x27;</span>,fg=<span class="string">&#x27;green&#x27;</span>,bg=<span class="string">&#x27;yellow&#x27;</span>,blink=<span class="literal">True</span>,</span><br><span class="line">   ...: bold=<span class="string">&#x27;True&#x27;</span>)     </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="嵌套命令"><a href="#嵌套命令" class="headerlink" title="嵌套命令"></a>嵌套命令</h3><p><code>click.Group(name=None, commands=None, **attrs)</code></p>
-<p>一个组允许命令添加子命令，这是实现嵌套的最常用法。</p>
-<p><code>group(*args,**kwargs)</code></p>
-<p>用于在组中声明和附加命令的快捷方式装饰器,立即通过调用<code>add_command()</code>在此实例中注册创建的命令。</p>
-<h3 id="添加参数"><a href="#添加参数" class="headerlink" title="添加参数"></a>添加参数</h3><p>使用<code>option()</code>和<code>argument()</code>装饰器添加参数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+P(c|x) = \frac{P(c)P(x|c)}{P(x)}</script><p>$P(c)$是类先验概率通过大数定理由频率预测，$P(x|c)$是样本相对于类标记的条件概率，通常直接计算比较困难。</p>
+<h2 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h2><p>navie-bayes</p>
+<p>假设属性条件独立</p>
+<script type="math/tex; mode=display">
+P(c|x) = \frac{P(c)}{P(x)}\prod_{i=1}^dP(x_i|c)</script><p>由贝叶斯判定准则,$P(x)$对于所有类别相同。记$D_{c,x_i}$表示$D_c$中在第$i$个属性取值为$x_i$的样本。</p>
+<script type="math/tex; mode=display">
+h_{nb}(x) = \arg\max_{c\in Y}P(c)\prod_{i=1}^dP(x_i|c)\\
+P(c) = \frac{|D_c|}{|D|} \\
+离散属性：P(x_i|c) = \frac{|D_{c,x_i}|}{|D|} \\
+连续属性：p(x_i|c)=\frac{1}{\sqrt{2\pi}\sigma_{c,i}}exp(-\frac{(x_i-\mu_{c,i})^2}{2\sigma^2_{c,i}})</script><h3 id="拉普拉斯修正"><a href="#拉普拉斯修正" class="headerlink" title="拉普拉斯修正"></a>拉普拉斯修正</h3><p>作用是平滑概率值，实质上假设了属性值与类别均匀分布。避免了样本不充分时导致概率估值为零的问题。</p>
+<script type="math/tex; mode=display">
+P(c) = \frac{|D_c|+1}{|D|+N}\\
+P(x_i|c) = \frac{|D_{c,x_i}|+1}{|D|+N_i}</script><h2 id="sklearn-朴素贝叶斯"><a href="#sklearn-朴素贝叶斯" class="headerlink" title="sklearn-朴素贝叶斯"></a>sklearn-朴素贝叶斯</h2><h3 id="高斯朴素贝叶斯"><a href="#高斯朴素贝叶斯" class="headerlink" title="高斯朴素贝叶斯"></a>高斯朴素贝叶斯</h3><p><code>sklearn.naive_bayes.GaussianNB(*, priors=None, var_smoothing=1e-09)</code></p>
+<ul>
+<li>priors：一个n_classes数组，先验概率</li>
+<li>var_smoothing：所有为了提高计算稳定性添加到方差的特征的最大方差部分。</li>
+</ul>
+<h3 id="多项分布朴素贝叶斯"><a href="#多项分布朴素贝叶斯" class="headerlink" title="多项分布朴素贝叶斯"></a>多项分布朴素贝叶斯</h3><h4 id="多项分布"><a href="#多项分布" class="headerlink" title="多项分布"></a>多项分布</h4><p>随机试验有k个结果$A_1,…,A_k$，他们的概率分布分别是$p_1,…,p_k$，在n次采样总结果中，$A_i$出现$n_i$次,</p>
+<script type="math/tex; mode=display">
+P(X_1=n_1,...,X_k=N_k) = \frac{n!}{n_1!...n_k!}p_1^{n_1}...p_k^{n_k},\sum_{i=1}^kn_i=n</script><p>MultinomialNB实现了服从多项分布的朴素贝叶斯算法，适用于具有离散特征的分类。</p>
+<p>分布参数由每类$y$的$\theta<em>y=(\theta</em>{y1},…,\theta<em>{yn})$向量决定，n是特征数量，$\theta</em>{yi}$是类$y$中特征$i$的概率$p(x_i|y)$。</p>
+<p>其中$\hat\theta<em>{y}=\frac{N</em>{yi}+\alpha}{N_y+N\alpha}$，$\alpha\ge0$称作先验平滑因子，$\alpha=1$就是拉普拉斯平滑，$\alpha&lt;1$称作Lidstone平滑。</p>
+<p><code>sklearn.naive_bayes.MultinomialNB(*, alpha=1.0, fit_prior=True, class_prior=None)</code></p>
+<ul>
+<li>alpha：平滑参数，0表示不平滑。</li>
+<li>fit_priot：是否学习类先验概率。</li>
+<li>class_prior：类的先验概率，如果指定那么先验概率不会根据数据进行调整。</li>
+</ul>
 
       
     </div>
@@ -341,7 +376,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
