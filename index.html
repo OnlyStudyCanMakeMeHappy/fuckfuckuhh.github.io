@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/13/Bayesian/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/14/%E5%86%B3%E7%AD%96%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/13/Bayesian/" class="post-title-link" itemprop="url">Bayesian</a>
+            <a href="/2020/11/14/%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-title-link" itemprop="url">决策树</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-13 19:51:00" itemprop="dateCreated datePublished" datetime="2020-11-13T19:51:00+08:00">2020-11-13</time>
+      <time title="创建时间：2020-11-14 20:19:47" itemprop="dateCreated datePublished" datetime="2020-11-14T20:19:47+08:00">2020-11-14</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-14 19:20:47" itemprop="dateModified" datetime="2020-11-14T19:20:47+08:00">2020-11-14</time>
+        <time title="修改时间：2020-11-15 12:39:31" itemprop="dateModified" datetime="2020-11-15T12:39:31+08:00">2020-11-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,50 +311,73 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="贝叶斯决策论"><a href="#贝叶斯决策论" class="headerlink" title="贝叶斯决策论"></a>贝叶斯决策论</h2><p>定义$\lambda_{ij}$为将将真实标记为$c_j$的样本误分类为$c_i$所产生的损失，通常误分类带来的损失为1。期望损失表达式。</p>
-<script type="math/tex; mode=display">
-R(c_i|x) = \sum_{i=1}^{N}\lambda_{ij}P(c_j|x)</script><p>对于每个样本，学习器$h$能最小化条件风险$R(h(x)|x)$，总体风险$R(h)$也被最小化。</p>
-<script type="math/tex; mode=display">
-h^*(x) = arg\min_{x\in Y}R(c|x)</script><p>那么$h^<em>(x)$被称为贝叶斯最优分类器，$R(h^</em>)$称为贝叶斯风险。</p>
-<script type="math/tex; mode=display">
-R(h^*) = \mathbb{E}_x[R(h^*(x)|x)]</script><h3 id="条件风险"><a href="#条件风险" class="headerlink" title="条件风险"></a>条件风险</h3><script type="math/tex; mode=display">
-R(c_i|x) = 1·P(c_1|x)+...+0·P(c_i|x)+...+1·P(c_N|x)\\
-R(c|x) = 1-P(c|x)</script><p>最小化贝叶斯风险等价于</p>
-<script type="math/tex; mode=display">
-h^*(x) = \arg\max_{c\in Y}P(c|x)</script><p>即对于每个样本选择使后验概率$P(c|x)$最大。</p>
-<h3 id="判别式和生成式模型"><a href="#判别式和生成式模型" class="headerlink" title="判别式和生成式模型"></a>判别式和生成式模型</h3><ul>
-<li>判别式模型：给定$x$，通过直接建模$P(c|x)$来预测c。</li>
-<li>生成式模型：对联合概率分布$P(c,x)$建模得到$P(c|x)$</li>
+          <h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>训练树模型的时间复杂度和数据成对数分布</li>
+<li>白盒模型，模型可观察。</li>
 </ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>容易生成过于复杂的模型。</li>
+<li><p>不稳定，微小变化都会导致树的的不同。</p>
+</li>
+<li><p>实际的决策树学习算法是基于启发式算法，例如在每个节点进 行局部最优决策的贪心算法。这样的算法不能保证返回全局最优决策树。</p>
+</li>
+<li>如果某些类在问题中占主导地位会使得创建的决策树有偏差</li>
+</ul>
+<h2 id="划分选择"><a href="#划分选择" class="headerlink" title="划分选择"></a>划分选择</h2><h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><p>信息熵是度量样本纯度的最常用指标，信息熵越小说明样本纯度越高。记$p_k$是样本集合$D$中第$k$类的比例,Y为类别总数。</p>
 <script type="math/tex; mode=display">
-P(c|x) = \frac{P(c)P(x|c)}{P(x)}</script><p>$P(c)$是类先验概率通过大数定理由频率预测，$P(x|c)$是样本相对于类标记的条件概率，通常直接计算比较困难。</p>
-<h2 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h2><p>navie-bayes</p>
-<p>假设属性条件独立</p>
+Ent(D) = -\sum_{i=1}^Yp_k\log_2p_k\\
+当样本集合只有一类时取得最小值0\\
+当样本集合所有类比例相同时时取最大值-Y·\frac{1}{Y}\log_2\frac{1}{Y}=\log_2Y</script><p>离散属性a有V个取值，取值为$a^v$的样本数记为$D^v$。计算每个属性的信息增益。</p>
 <script type="math/tex; mode=display">
-P(c|x) = \frac{P(c)}{P(x)}\prod_{i=1}^dP(x_i|c)</script><p>由贝叶斯判定准则,$P(x)$对于所有类别相同。记$D_{c,x_i}$表示$D_c$中在第$i$个属性取值为$x_i$的样本。</p>
+Gain(D,a) = Ent(D)-\sum_{i=1}^V\frac{|D^v|}{|D|}Ent(D^v)\\</script><p>ID3决策树就是以信息增益作为准则作为划分属性。</p>
 <script type="math/tex; mode=display">
-h_{nb}(x) = \arg\max_{c\in Y}P(c)\prod_{i=1}^dP(x_i|c)\\
-P(c) = \frac{|D_c|}{|D|} \\
-离散属性：P(x_i|c) = \frac{|D_{c,x_i}|}{|D|} \\
-连续属性：p(x_i|c)=\frac{1}{\sqrt{2\pi}\sigma_{c,i}}exp(-\frac{(x_i-\mu_{c,i})^2}{2\sigma^2_{c,i}})</script><h3 id="拉普拉斯修正"><a href="#拉普拉斯修正" class="headerlink" title="拉普拉斯修正"></a>拉普拉斯修正</h3><p>作用是平滑概率值，实质上假设了属性值与类别均匀分布。避免了样本不充分时导致概率估值为零的问题。</p>
+a_* = \arg\max_{a\in A}Gain(D,a)</script><h3 id="增益率"><a href="#增益率" class="headerlink" title="增益率"></a>增益率</h3><p>信息增益准则对取值数目较多的属性有所偏好。</p>
+<p>C4.5决策树算法选择增益率作为划分属性的标准</p>
 <script type="math/tex; mode=display">
-P(c) = \frac{|D_c|+1}{|D|+N}\\
-P(x_i|c) = \frac{|D_{c,x_i}|+1}{|D|+N_i}</script><h2 id="sklearn-朴素贝叶斯"><a href="#sklearn-朴素贝叶斯" class="headerlink" title="sklearn-朴素贝叶斯"></a>sklearn-朴素贝叶斯</h2><h3 id="高斯朴素贝叶斯"><a href="#高斯朴素贝叶斯" class="headerlink" title="高斯朴素贝叶斯"></a>高斯朴素贝叶斯</h3><p><code>sklearn.naive_bayes.GaussianNB(*, priors=None, var_smoothing=1e-09)</code></p>
+Gain\_ratio = \frac{Gain(D,a)}{IV(a)}\\
+IV(a) = -\sum_{v=1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script><p>IV(a)称为属性a的固定值，a的取值数目越多，IV(a)就越大。增益率对取值数目较少的属性有所偏好，所以采用启发式：先从候选划分属性中找出信息增益高于平均水平的属性，再从中选择增益率最高的。</p>
+<h3 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h3><p>CART决策树使用基尼指数来划分属性。基尼指数反映从数据集D中随机抽取两个样本，类别标记不一致的概率。基尼指数越小表示数据集D的纯度越高。</p>
+<p>基尼值</p>
+<script type="math/tex; mode=display">
+Gini(D) = \sum_{i=1}^{Y}\sum_{j\ne i}p_ip_j
+=1-\sum_{i=1}^Yp_i^2</script><p>基尼指数</p>
+<script type="math/tex; mode=display">
+Gini\_index(D,a)=\sum_{v=1}^V\frac{D^v}{D}Gini(D^v)</script><p>划分准则</p>
+<script type="math/tex; mode=display">
+a_* = \arg\min_{a\in A}Gini\_index(D,a)</script><h2 id="sklearn-DecisionTree"><a href="#sklearn-DecisionTree" class="headerlink" title="sklearn-DecisionTree"></a>sklearn-DecisionTree</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p><code>sklearn.tree.DecisionTreeClassifier(*, criterion=&#39;gini&#39;, splitter=&#39;best&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, class_weight=None, presort=&#39;deprecated&#39;, ccp_alpha=0.0)</code></p>
+<p>参数</p>
 <ul>
-<li>priors：一个n_classes数组，先验概率</li>
-<li>var_smoothing：所有为了提高计算稳定性添加到方差的特征的最大方差部分。</li>
+<li>criterion：{“gini”, “entropy”}, default=”gini”。基尼和信息增益</li>
+<li>splitter{“best”, “random”}, default=”best”<br>在每个节点选择拆分的策略。</li>
+<li>min_samples_splitint： default=2，拆分内部节点所需的最少样本数。</li>
+<li>min_samples_leaf：default=1，在任何深度的分割点在左分支和右分支中的每个分支上至少留下min_samples_leaf个训练样本时，才考虑该点。</li>
+<li>max_featuresint： float or {“auto”, “sqrt”, “log2”}, default=None<br>  寻找最佳分割需要考虑的特征数。auto=sqrt=sqrt(n_features),log2=log2(n_features)</li>
 </ul>
-<h3 id="多项分布朴素贝叶斯"><a href="#多项分布朴素贝叶斯" class="headerlink" title="多项分布朴素贝叶斯"></a>多项分布朴素贝叶斯</h3><h4 id="多项分布"><a href="#多项分布" class="headerlink" title="多项分布"></a>多项分布</h4><p>随机试验有k个结果$A_1,…,A_k$，他们的概率分布分别是$p_1,…,p_k$，在n次采样总结果中，$A_i$出现$n_i$次,</p>
-<script type="math/tex; mode=display">
-P(X_1=n_1,...,X_k=N_k) = \frac{n!}{n_1!...n_k!}p_1^{n_1}...p_k^{n_k},\sum_{i=1}^kn_i=n</script><p>MultinomialNB实现了服从多项分布的朴素贝叶斯算法，适用于具有离散特征的分类。</p>
-<p>分布参数由每类$y$的$\theta<em>y=(\theta</em>{y1},…,\theta<em>{yn})$向量决定，n是特征数量，$\theta</em>{yi}$是类$y$中特征$i$的概率$p(x_i|y)$。</p>
-<p>其中$\hat\theta<em>{y}=\frac{N</em>{yi}+\alpha}{N_y+N\alpha}$，$\alpha\ge0$称作先验平滑因子，$\alpha=1$就是拉普拉斯平滑，$\alpha&lt;1$称作Lidstone平滑。</p>
-<p><code>sklearn.naive_bayes.MultinomialNB(*, alpha=1.0, fit_prior=True, class_prior=None)</code></p>
+<p>属性</p>
 <ul>
-<li>alpha：平滑参数，0表示不平滑。</li>
-<li>fit_priot：是否学习类先验概率。</li>
-<li>class_prior：类的先验概率，如果指定那么先验概率不会根据数据进行调整。</li>
+<li>feature_importances_：返回特征的重要性</li>
+<li>n_features_：fit执行用到的特征数</li>
 </ul>
+<p>方法</p>
+<ul>
+<li>apply：返回每个样本被预测为叶子的概率</li>
+<li>get_depth：返回决策树的深度</li>
+<li>get_n_leaves：返回决策树的叶子数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clf = DecisionTreeClassifier()</span><br><span class="line">iris = load_iris()</span><br><span class="line">cross_val_score(clf,iris.data,iris.target,cv=<span class="number">10</span>)</span><br><span class="line">&gt;&gt;&gt;array([<span class="number">1.</span>        , <span class="number">0.93333333</span>, <span class="number">1.</span>        , <span class="number">0.93333333</span>, <span class="number">0.93333333</span>,</span><br><span class="line">       <span class="number">0.86666667</span>, <span class="number">0.93333333</span>, <span class="number">1.</span>        , <span class="number">1.</span>        , <span class="number">1.</span>        ])</span><br></pre></td></tr></table></figure>
+<h3 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h3><p><code>class sklearn.tree.DecisionTreeRegressor(*, criterion=&#39;mse&#39;, splitter=&#39;best&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, presort=&#39;deprecated&#39;, ccp_alpha=0.0)</code></p>
+<p>实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_diabetes</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line">X, y = load_diabetes(return_X_y=<span class="literal">True</span>)</span><br><span class="line">regressor = DecisionTreeRegressor(random_state=<span class="number">0</span>)</span><br><span class="line">cross_val_score(regressor, X, y, cv=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">array([<span class="number">-0.39</span>..., <span class="number">-0.46</span>...,  <span class="number">0.02</span>...,  <span class="number">0.06</span>..., <span class="number">-0.50</span>...,</span><br><span class="line">       <span class="number">0.16</span>...,  <span class="number">0.11</span>..., <span class="number">-0.73</span>..., <span class="number">-0.30</span>..., <span class="number">-0.00</span>...])</span><br></pre></td></tr></table></figure>
+<h2 id="graphviz"><a href="#graphviz" class="headerlink" title="graphviz"></a>graphviz</h2><h3 id="安装、配置环境变量"><a href="#安装、配置环境变量" class="headerlink" title="安装、配置环境变量"></a>安装、配置环境变量</h3><ul>
+<li><p>下载：<a target="_blank" rel="noopener" href="https://www2.graphviz.org/Packages/stable/windows/10/cmake/Release/x64/graphviz-install-2.44.1-win64.exe">https://www2.graphviz.org/Packages/stable/windows/10/cmake/Release/x64/graphviz-install-2.44.1-win64.exe</a></p>
+</li>
+<li><p>配置到环境变量 </p>
+</li>
+<li>pip install graphviz</li>
+</ul>
+<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dot_data = tree.export_graphviz(clf, out_file=<span class="literal">None</span>,                 feature_names=iris.feature_names,  </span><br><span class="line">class_names=iris.target_names,  </span><br><span class="line">filled=<span class="literal">True</span>, rounded=<span class="literal">True</span>,  </span><br><span class="line">special_characters=<span class="literal">True</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>graph = graphviz.Source(dot_data)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>graph.render(<span class="string">&#x27;iris&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出保存为一个’iris.pdf’文件</p>
+<p><img src="/2020/11/14/%E5%86%B3%E7%AD%96%E6%A0%91/&quot;image-20201115122056709.png&quot;" alt="image-20201115122056709"></p>
 
       
     </div>
@@ -376,7 +399,7 @@ P(X_1=n_1,...,X_k=N_k) = \frac{n!}{n_1!...n_k!}p_1^{n_1}...p_k^{n_k},\sum_{i=1}^
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
