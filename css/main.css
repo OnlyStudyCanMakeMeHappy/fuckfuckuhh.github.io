@@ -2921,7 +2921,7 @@ hr {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f90beb;
+  background: #ff41da;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -3051,6 +3051,7 @@ footer {
   border: 3px solid #cf3;
   border-radius: 100%;
 }
+/*
 /* 适配手机样式 began ------------------------> */
 @media (max-width: 767px) {
   body {
@@ -3374,3 +3375,4 @@ footer {
   }
 }
 /* 适配手机样式 end  ------------------------> */
+*
