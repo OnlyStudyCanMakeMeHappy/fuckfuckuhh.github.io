@@ -289,7 +289,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-16 16:59:30" itemprop="dateModified" datetime="2020-11-16T16:59:30+08:00">2020-11-16</time>
+        <time title="修改时间：2020-11-16 21:29:55" itemprop="dateModified" datetime="2020-11-16T21:29:55+08:00">2020-11-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,58 +311,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="计算机组成原理和结构"><a href="#计算机组成原理和结构" class="headerlink" title="计算机组成原理和结构"></a>计算机组成原理和结构</h1><h2 id="1-冯·洛依曼体系"><a href="#1-冯·洛依曼体系" class="headerlink" title="1. 冯·洛依曼体系"></a>1. 冯·洛依曼体系</h2><p>主要特点</p>
-<ul>
-<li><p>计算机由存储器、运算器、控制器、输入输出设备组成。运算器和控制器称为CPU。</p>
-</li>
-<li><p>存储器是按地址访问的线性编址的一维结构，每个单元的位数固定。</p>
-</li>
-<li><p>采用存储程序方式，指令和数据不加区别混合存储在同一个存储器。</p>
-</li>
-<li><p>控制器通过执行指令发出控制信号控制计算机的操作。指令在存储器中按顺序存放，由指令计数器指明要执行的指令的单元地址。</p>
-</li>
-<li><p>输入输出设备与存储器之间的数据存放都要经过运算器。</p>
-</li>
-</ul>
-<h2 id="2-计算机组成部件"><a href="#2-计算机组成部件" class="headerlink" title="2. 计算机组成部件"></a>2. 计算机组成部件</h2><h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><ol>
-<li><p>磁性存储介质。硬盘、磁带等，特点是存储密度高、成本低、具有非易失性，但访存速度慢。</p>
-</li>
-<li><p>闪存。非易失性存储介质，与磁盘比访问速度快，成本高，容量小。</p>
-</li>
-<li><p>DRAM。易失性存储器，存储密度高，周期性刷新，访问速度快。SDRAM构建主存</p>
-</li>
-<li>SRAM。易失性存储器，存储密度不如SDRAM，不同周期性刷新，访问速度快。构建cache</li>
-</ol>
-<p>高速缓冲Cache：现代多核处理器通常有多级Cache，一级指令Cache和数据Cache各为几十KB，二级Cache为几百KB，三级Cache为多核共享几MB到几十MB不等。</p>
-<h3 id="输入输出设备"><a href="#输入输出设备" class="headerlink" title="输入输出设备"></a>输入输出设备</h3><ol>
-<li>GPU图像处理单元。与CPU有大量数据传输，通过DMA方式读取数据，通过解析和运算写至显存。</li>
-<li>硬盘。存放操作系统内核代码、文件系统、应用程序和用户文件数据等。</li>
-<li>闪存Flash。半导体存储器，SD卡、U盘和SSD固态硬盘等。</li>
-</ol>
-<p>DDR(Double Data Rate)SDRAM：双倍速率同步静态随机存储器。</p>
-<h2 id="3-计算机硬件结构发展"><a href="#3-计算机硬件结构发展" class="headerlink" title="3. 计算机硬件结构发展"></a>3. 计算机硬件结构发展</h2><ul>
-<li>中央处理器</li>
-<li>图形处理器</li>
-<li>北桥：离CPU最近的芯片，负责控制显卡、内存与CPU之间数据交换。向上连接CPU，向下连接南桥。</li>
-<li>南桥：负责硬盘、键盘以及各种带宽要求较低的IO接口于内存、CPU之间的数据交换。</li>
-</ul>
-<h3 id="CPU-GPU-北桥-南桥"><a href="#CPU-GPU-北桥-南桥" class="headerlink" title="CPU-GPU-北桥-南桥"></a>CPU-GPU-北桥-南桥</h3><p>CPU、北桥和南桥芯片直接以芯片形式安装在主板，GPU则以显卡形式安装在计算机主板插槽上，通过系统总线和北桥直接相连。</p>
-<p>内存控制器集成在北桥芯片，硬盘接口、USB接口、网络接口、音频接口、鼠标和键盘等接口放在南桥芯片。</p>
-<h3 id="CPU-北桥-南桥"><a href="#CPU-北桥-南桥" class="headerlink" title="CPU-北桥-南桥"></a>CPU-北桥-南桥</h3><p>与四片结构最大的不同是GPU功能被集成到北桥，也就是集成显卡。内存控制器、显示功能集成在北桥芯片。在北桥集成的IO接口速率也不断提高。</p>
-<h3 id="CPU-弱北桥-南桥"><a href="#CPU-弱北桥-南桥" class="headerlink" title="CPU-弱北桥-南桥"></a>CPU-弱北桥-南桥</h3><p>内存控制器集成到CPU芯片，缓解存储墙问题。</p>
-<p>北桥功能被弱化，主要集成GPU、显示接口、高速IO接口（PCIE接口）。</p>
-<h3 id="CPU-南桥"><a href="#CPU-南桥" class="headerlink" title="CPU-南桥"></a>CPU-南桥</h3><p>CPU芯片集成处理器核、内存控制器、GPU。对外提供显示接口、内存接口等。</p>
-<p>南桥芯片则包含硬盘、USB、网络控制器以及PCIE/PCI、LPC等总线接口。</p>
-<p>还有一些两片结构把GPU集成在南桥芯片。</p>
-<h3 id="SoC单片结构"><a href="#SoC单片结构" class="headerlink" title="SoC单片结构"></a>SoC单片结构</h3><p>System on Chip</p>
-<p>单个芯片集成处理器、内存控制器、GPU以及硬盘、USB、网络等IO接口。</p>
-<p>主要应用在移动处理器和工业控制领域。</p>
-<h1 id="计算机系统启动过程"><a href="#计算机系统启动过程" class="headerlink" title="计算机系统启动过程"></a>计算机系统启动过程</h1><p>处理器的启动过程，实际上就是一个特定程序的执行过程。这个程序叫做固件，也称为BIOS(Basis Input Output System)。</p>
-<p>UEFI(Unified Extensible Firmware Interface)统一可扩展固件接口。</p>
-<h3 id="一、BIOS"><a href="#一、BIOS" class="headerlink" title="一、BIOS"></a>一、BIOS</h3><p>BIOS被存放在ROM中，系统通电后，处理器第一条指令的地址会被定位到BIOS存储器。在X86系统，这个地址是0xFFFF0。</p>
-<h4 id="1-POST"><a href="#1-POST" class="headerlink" title="1.POST"></a>1.POST</h4><p>POST(Power-On Self-Test)，硬件自检。硬件出现问题，主板就会出现不同含义的蜂鸣，</p>
-<h4 id="2-Bost-Sequence"><a href="#2-Bost-Sequence" class="headerlink" title="2.Bost Sequence"></a>2.Bost Sequence</h4><p>硬件自检完成后，BIOS把控制权交给下一阶段的启动程序。</p>
-<h3 id="二、主引导顺序"><a href="#二、主引导顺序" class="headerlink" title="二、主引导顺序"></a>二、主引导顺序</h3>
+          <h1 id="计算机组成原理和结构"><a href="#计算机组成原理和结构" class="headerlink" title="计算机组成原理和结构"></a>计算机组成原理和结构</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -520,7 +477,7 @@
     };
     (function () {
       var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
       script.defer = true;
       document.head.appendChild(script);
     })();

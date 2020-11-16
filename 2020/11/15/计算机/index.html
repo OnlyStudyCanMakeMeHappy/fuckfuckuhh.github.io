@@ -22,17 +22,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":6},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="计算机组成原理和结构1. 冯·洛依曼体系主要特点  计算机由存储器、运算器、控制器、输入输出设备组成。运算器和控制器称为CPU。  存储器是按地址访问的线性编址的一维结构，每个单元的位数固定。  采用存储程序方式，指令和数据不加区别混合存储在同一个存储器。  控制器通过执行指令发出控制信号控制计算机的操作。指令在存储器中按顺序存放，由指令计数器指明要执行的指令的单元地址。  输入输出设备与存储器之">
+  <meta name="description" content="计算机组成原理和结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机">
 <meta property="og:url" content="http://example.com/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.html">
 <meta property="og:site_name" content="Mr.fuck">
-<meta property="og:description" content="计算机组成原理和结构1. 冯·洛依曼体系主要特点  计算机由存储器、运算器、控制器、输入输出设备组成。运算器和控制器称为CPU。  存储器是按地址访问的线性编址的一维结构，每个单元的位数固定。  采用存储程序方式，指令和数据不加区别混合存储在同一个存储器。  控制器通过执行指令发出控制信号控制计算机的操作。指令在存储器中按顺序存放，由指令计数器指明要执行的指令的单元地址。  输入输出设备与存储器之">
+<meta property="og:description" content="计算机组成原理和结构">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/分区.png">
 <meta property="article:published_time" content="2020-11-15T08:31:41.000Z">
-<meta property="article:modified_time" content="2020-11-16T08:59:30.058Z">
+<meta property="article:modified_time" content="2020-11-16T13:29:55.920Z">
 <meta property="article:author" content="ggl">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/分区.png">
 
 
 <link rel="canonical" href="http://example.com/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
@@ -180,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%92%8C%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">计算机组成原理和结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%86%AF%C2%B7%E6%B4%9B%E4%BE%9D%E6%9B%BC%E4%BD%93%E7%B3%BB"><span class="nav-number">1.1.</span> <span class="nav-text">1. 冯·洛依曼体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E9%83%A8%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">2. 计算机组成部件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87"><span class="nav-number">1.2.2.</span> <span class="nav-text">输入输出设备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84%E5%8F%91%E5%B1%95"><span class="nav-number">1.3.</span> <span class="nav-text">3. 计算机硬件结构发展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-GPU-%E5%8C%97%E6%A1%A5-%E5%8D%97%E6%A1%A5"><span class="nav-number">1.3.1.</span> <span class="nav-text">CPU-GPU-北桥-南桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-%E5%8C%97%E6%A1%A5-%E5%8D%97%E6%A1%A5"><span class="nav-number">1.3.2.</span> <span class="nav-text">CPU-北桥-南桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-%E5%BC%B1%E5%8C%97%E6%A1%A5-%E5%8D%97%E6%A1%A5"><span class="nav-number">1.3.3.</span> <span class="nav-text">CPU-弱北桥-南桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-%E5%8D%97%E6%A1%A5"><span class="nav-number">1.3.4.</span> <span class="nav-text">CPU-南桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SoC%E5%8D%95%E7%89%87%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.5.</span> <span class="nav-text">SoC单片结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">计算机系统启动过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81BIOS"><span class="nav-number">2.0.1.</span> <span class="nav-text">一、BIOS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-POST"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">1.POST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Bost-Sequence"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">2.Bost Sequence</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BB%E5%BC%95%E5%AF%BC%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.0.2.</span> <span class="nav-text">二、主引导顺序</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%92%8C%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">计算机组成原理和结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%86%AF%C2%B7%E6%B4%9B%E4%BE%9D%E6%9B%BC%E4%BD%93%E7%B3%BB"><span class="nav-number">1.1.</span> <span class="nav-text">1. 冯·洛依曼体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E9%83%A8%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">2. 计算机组成部件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87"><span class="nav-number">1.2.2.</span> <span class="nav-text">输入输出设备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84%E5%8F%91%E5%B1%95"><span class="nav-number">1.3.</span> <span class="nav-text">3. 计算机硬件结构发展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-GPU-%E5%8C%97%E6%A1%A5-%E5%8D%97%E6%A1%A5"><span class="nav-number">1.3.1.</span> <span class="nav-text">CPU-GPU-北桥-南桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-%E5%8C%97%E6%A1%A5-%E5%8D%97%E6%A1%A5"><span class="nav-number">1.3.2.</span> <span class="nav-text">CPU-北桥-南桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-%E5%BC%B1%E5%8C%97%E6%A1%A5-%E5%8D%97%E6%A1%A5"><span class="nav-number">1.3.3.</span> <span class="nav-text">CPU-弱北桥-南桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-%E5%8D%97%E6%A1%A5"><span class="nav-number">1.3.4.</span> <span class="nav-text">CPU-南桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SoC%E5%8D%95%E7%89%87%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.5.</span> <span class="nav-text">SoC单片结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">计算机系统启动过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81BIOS"><span class="nav-number">2.0.1.</span> <span class="nav-text">一、BIOS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-POST"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">1.POST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Bost-Sequence"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">2.Bost Sequence</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BB%E5%BC%95%E5%AF%BC%E8%AE%B0%E5%BD%95"><span class="nav-number">2.0.2.</span> <span class="nav-text">二、主引导记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-MBR"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">1.MBR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-MBR%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">2.MBR的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%88%86%E5%8C%BA%E8%A1%A8"><span class="nav-number">2.0.2.3.</span> <span class="nav-text">3. 分区表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%A1%AC%E7%9B%98%E5%90%AF%E5%8A%A8"><span class="nav-number">2.0.3.</span> <span class="nav-text">三、硬盘启动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8D%B7%E5%BC%95%E5%AF%BC%E8%AE%B0%E5%BD%95"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">1. 卷引导记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%89%A9%E5%B1%95%E5%88%86%E5%8C%BA%E5%92%8C%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA"><span class="nav-number">2.0.3.2.</span> <span class="nav-text">2. 扩展分区和逻辑分区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%90%AF%E5%8A%A8%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-number">2.0.3.3.</span> <span class="nav-text">3.启动管理器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.0.4.</span> <span class="nav-text">四、术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-UEFI"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">1.UEFI</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#UEFI%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">2.0.4.1.1.</span> <span class="nav-text">UEFI启动过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GPT"><span class="nav-number">2.0.4.2.</span> <span class="nav-text">2.GPT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-UEFI%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.0.4.3.</span> <span class="nav-text">3.UEFI系统</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -292,7 +294,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-16 16:59:30" itemprop="dateModified" datetime="2020-11-16T16:59:30+08:00">2020-11-16</time>
+        <time title="修改时间：2020-11-16 21:29:55" itemprop="dateModified" datetime="2020-11-16T21:29:55+08:00">2020-11-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -314,7 +316,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="计算机组成原理和结构"><a href="#计算机组成原理和结构" class="headerlink" title="计算机组成原理和结构"></a>计算机组成原理和结构</h1><h2 id="1-冯·洛依曼体系"><a href="#1-冯·洛依曼体系" class="headerlink" title="1. 冯·洛依曼体系"></a>1. 冯·洛依曼体系</h2><p>主要特点</p>
+        <h1 id="计算机组成原理和结构"><a href="#计算机组成原理和结构" class="headerlink" title="计算机组成原理和结构"></a>计算机组成原理和结构</h1><a id="more"></a>
+<h2 id="1-冯·洛依曼体系"><a href="#1-冯·洛依曼体系" class="headerlink" title="1. 冯·洛依曼体系"></a>1. 冯·洛依曼体系</h2><p>主要特点</p>
 <ul>
 <li><p>计算机由存储器、运算器、控制器、输入输出设备组成。运算器和控制器称为CPU。</p>
 </li>
@@ -363,9 +366,80 @@
 <h1 id="计算机系统启动过程"><a href="#计算机系统启动过程" class="headerlink" title="计算机系统启动过程"></a>计算机系统启动过程</h1><p>处理器的启动过程，实际上就是一个特定程序的执行过程。这个程序叫做固件，也称为BIOS(Basis Input Output System)。</p>
 <p>UEFI(Unified Extensible Firmware Interface)统一可扩展固件接口。</p>
 <h3 id="一、BIOS"><a href="#一、BIOS" class="headerlink" title="一、BIOS"></a>一、BIOS</h3><p>BIOS被存放在ROM中，系统通电后，处理器第一条指令的地址会被定位到BIOS存储器。在X86系统，这个地址是0xFFFF0。</p>
-<h4 id="1-POST"><a href="#1-POST" class="headerlink" title="1.POST"></a>1.POST</h4><p>POST(Power-On Self-Test)，硬件自检。硬件出现问题，主板就会出现不同含义的蜂鸣，</p>
-<h4 id="2-Bost-Sequence"><a href="#2-Bost-Sequence" class="headerlink" title="2.Bost Sequence"></a>2.Bost Sequence</h4><p>硬件自检完成后，BIOS把控制权交给下一阶段的启动程序。</p>
-<h3 id="二、主引导顺序"><a href="#二、主引导顺序" class="headerlink" title="二、主引导顺序"></a>二、主引导顺序</h3>
+<h4 id="1-POST"><a href="#1-POST" class="headerlink" title="1.POST"></a>1.POST</h4><p>POST(Power-On Self-Test)，硬件自检。硬件出现问题，主板就会出现不同含义的蜂鸣。硬件设备、ROM、主板、CMOS存储器、串口、并口、显卡等设备。</p>
+<p>显卡初始化，BIOS查找显卡的BIOS，调用显卡BIOS的代码。由显卡BIOS的代码去初始化显卡。</p>
+<h4 id="2-Bost-Sequence"><a href="#2-Bost-Sequence" class="headerlink" title="2.Bost Sequence"></a>2.Bost Sequence</h4><p>硬件自检完成后，BIOS按照CMOS设置中的启动顺序搜寻有效的驱动器，读入操作系统引导记录。CMOS一般被集成在南北桥芯片。</p>
+<h3 id="二、主引导记录"><a href="#二、主引导记录" class="headerlink" title="二、主引导记录"></a>二、主引导记录</h3><h4 id="1-MBR"><a href="#1-MBR" class="headerlink" title="1.MBR"></a>1.MBR</h4><p>MBR(Master Boot Record)，主引导扇区是计算机访问硬盘要读取的第一个扇区512字节。如果最后两个字节是0x55和0xAA表明这个设备可以用于启动。如果不是，BIOS会把控制权交给“启动顺序”的下一个设备。</p>
+<h4 id="2-MBR的结构"><a href="#2-MBR的结构" class="headerlink" title="2.MBR的结构"></a>2.MBR的结构</h4><p>MBR主要由三部分组成</p>
+<ul>
+<li>1-466bytes：调用操作系统的程序。boot loader</li>
+<li>447-510bytes：分区表。</li>
+<li>511-512：签名。magic number</li>
+</ul>
+<h4 id="3-分区表"><a href="#3-分区表" class="headerlink" title="3. 分区表"></a>3. 分区表</h4><p>分区表共64字节，每个分区16字节，所以最多只能有4个主分区。</p>
+<ul>
+<li><p>第1字节：0x80-激活。四个分区只能有一个是激活的。</p>
+</li>
+<li><p>第2-4字节：主分区第一个扇区的物理位置。</p>
+</li>
+<li><p>第5字节：主分区类型。</p>
+<ul>
+<li>00H：未指定</li>
+</ul>
+</li>
+<li><p>06H：FAT16</p>
+<ul>
+<li>0BH：FAT32</li>
+<li>05H：扩展分区</li>
+<li>07H：NTFS分区 new technology file system</li>
+<li>0FH：（LBA模式）扩展分区</li>
+<li>83H：Linux分区</li>
+</ul>
+</li>
+<li><p>第6-8字节：主分区最后一个扇区的物理位置。</p>
+</li>
+<li><p>第9-12字节：该主分区第一个扇区的逻辑地址。</p>
+</li>
+<li><p>第13-16字节：主分区的扇区数。</p>
+</li>
+</ul>
+<h3 id="三、硬盘启动"><a href="#三、硬盘启动" class="headerlink" title="三、硬盘启动"></a>三、硬盘启动</h3><h4 id="1-卷引导记录"><a href="#1-卷引导记录" class="headerlink" title="1. 卷引导记录"></a>1. 卷引导记录</h4><p>四个分区里面有一个是激活的，计算机开始读取激活的第一个扇区，叫做“卷引导记录”(Volume Boot Record)VBR。然后计算机开始加载操作系统。</p>
+<h4 id="2-扩展分区和逻辑分区"><a href="#2-扩展分区和逻辑分区" class="headerlink" title="2. 扩展分区和逻辑分区"></a>2. 扩展分区和逻辑分区</h4><ul>
+<li>扩展分区：在四个分区中选定一个分区进行继续分区，这个分区被称为扩展分区。</li>
+<li>逻辑分区：扩展分区中又分为多个区每个区都叫做逻辑分区。</li>
+</ul>
+<p>计算机先读取扩展分区的第一个扇区叫做“扩展引导记录”(Extended Boot Record)EBR。期内有一个64字节分区表，最多有两项。</p>
+<p>计算机读取一个逻辑分区的第一个扇区，从中找到下一个分区的位置。以此类推，直到某个逻辑分区的分区表只包含自身为止。</p>
+<h4 id="3-启动管理器"><a href="#3-启动管理器" class="headerlink" title="3.启动管理器"></a>3.启动管理器</h4><p>计算机在读取前面446字节的机器码后，运行事先安装的启动管理器，由用户选择操作系统。 Linux下使用grub引导。</p>
+<p>启动管理器boot loader：在操作系统内核运行之前运行。可以初始化硬件设备、建立内存空间映射图，从而将系统的软硬件环境带到一个合适状态，以便为最终调用操作系统内核准备好正确的环境。</p>
+<p>然后是操作系统内核加载到内存中。</p>
+<h3 id="四、术语"><a href="#四、术语" class="headerlink" title="四、术语"></a>四、术语</h3><h4 id="1-UEFI"><a href="#1-UEFI" class="headerlink" title="1.UEFI"></a>1.UEFI</h4><p>UEFI(Unified Extensible Firmware Interface)统一可扩展固件接口。</p>
+<p>uefi启动是一种新的主板引导项，uefi最主要的特点是图形界面，更利于用户对象图形化的操作选择。</p>
+<p>UEFI和BIOS的主要功能都是：<strong>初始化硬件</strong>和<strong>提供硬件的软件抽象</strong>。</p>
+<h5 id="UEFI启动过程"><a href="#UEFI启动过程" class="headerlink" title="UEFI启动过程"></a>UEFI启动过程</h5><ul>
+<li>上电自检-POST</li>
+<li>加载UEFI固件，初始化启动需要的硬件。</li>
+<li>固件读取引导管理器的数据确定从何处加载UEFI应用。</li>
+<li>固件按照引导管理器的启动项目，加载UEFI应用。</li>
+<li>加载的UEFI应用可能加载其他应用或者启动内核及initramfs（对应于GRUB之类引导器的情况）。</li>
+</ul>
+<h4 id="2-GPT"><a href="#2-GPT" class="headerlink" title="2.GPT"></a>2.GPT</h4><p>GUID分区表是源自EFI标准的一种新型磁盘分区结构标准。与MBR相比提供了更灵活的磁盘分区机制。</p>
+<p>与普通MBR分区标准相比有以下特点：</p>
+<ul>
+<li>GPT支持大于2.2T的硬盘</li>
+<li>GPT可以无限分区，但windows支持128个</li>
+<li>分区表自带备份。</li>
+</ul>
+<p>windows下<code>win+R</code>键入msinfo32.exe查看BIOS的值，如果值为UEFI，则Windows在UEFI / GPT模式下启动。如果值为Legacy，则Windows将以BIOS / MBR模式启动。</p>
+<h4 id="3-UEFI系统"><a href="#3-UEFI系统" class="headerlink" title="3.UEFI系统"></a>3.UEFI系统</h4><p>windows系统，GPT格式的磁盘上创建的一些分区，这四个分区是必不可少的。</p>
+<ul>
+<li>一个windows恢复环境分区，通常大小499MB。包好windows文件，相当于linux的/boot。</li>
+<li>具有FAT32文件系统的EFI系统分区。</li>
+<li>一个Microsoft保留分区，通常128MB大小。</li>
+<li>NTFS文件系统的Microsoft基本数据分区。</li>
+</ul>
+<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/分区.png" alt="image-20201116212108070"></p>
+
     </div>
 
     
@@ -540,7 +614,7 @@
     };
     (function () {
       var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
       script.defer = true;
       document.head.appendChild(script);
     })();
