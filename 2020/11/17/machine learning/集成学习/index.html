@@ -30,10 +30,10 @@
 <meta property="og:description" content="1. BoostingAdaBoost算法流程输入：训练数据$T &#x3D; {(x_1,_1),..,(x_N,y_N)}$，其中$x_i\in\chi$,$y_i\in{-1,+1}$；弱学习算法。 输出：最终分类器$G(x)$  初始化数据的权值分布  D_1 &#x3D; (w_{11},..,w_{1i},..,w_{1N})\\ w_{1i} &#x3D; \frac{1}{N},i&#x3D;1,2,..,N 对m&#x3D;1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-17T02:08:16.000Z">
-<meta property="article:modified_time" content="2020-11-17T06:47:57.363Z">
+<meta property="article:modified_time" content="2020-11-17T12:46:41.076Z">
 <meta property="article:author" content="ggl">
-<meta property="article:tag" content="集成学习">
 <meta property="article:tag" content="sklearn">
+<meta property="article:tag" content="集成学习">
 <meta name="twitter:card" content="summary">
 
 
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Boosting"><span class="nav-number">1.</span> <span class="nav-text">1. Boosting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AdaBoost"><span class="nav-number">1.1.</span> <span class="nav-text">AdaBoost</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.1.2.</span> <span class="nav-text">推导</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Boosting"><span class="nav-number">1.</span> <span class="nav-text">1. Boosting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AdaBoost"><span class="nav-number">1.1.</span> <span class="nav-text">AdaBoost</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%90%91%E5%88%86%E6%AD%A5%E7%AE%97%E6%B3%95%E4%B8%8EAdaBoost"><span class="nav-number">1.1.2.</span> <span class="nav-text">前向分步算法与AdaBoost</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Bagging%E5%92%8C%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97"><span class="nav-number">2.</span> <span class="nav-text">2. Bagging和随机森林</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Bagging"><span class="nav-number">2.1.</span> <span class="nav-text">1. Bagging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A9%E6%B3%95"><span class="nav-number">2.1.1.</span> <span class="nav-text">自助法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.1.2.</span> <span class="nav-text">算法描述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Random-Forest"><span class="nav-number">2.2.</span> <span class="nav-text">2.Random Forest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B3%9B%E5%8C%96%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3"><span class="nav-number">2.3.</span> <span class="nav-text">3.泛化误差分解</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -288,7 +288,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-11-17 10:08:16 / 修改时间：14:47:57" itemprop="dateCreated datePublished" datetime="2020-11-17T10:08:16+08:00">2020-11-17</time>
+      <time title="创建时间：2020-11-17 10:08:16 / 修改时间：20:46:41" itemprop="dateCreated datePublished" datetime="2020-11-17T10:08:16+08:00">2020-11-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -328,9 +328,9 @@ e_m = P(G_m(x)\ne y_i) = \sum_{i=1}^Nw_{mi}I(G_m(x)\ne y_i)</script><p>c. 计算
 \alpha_m = \frac{1}{2}\log\frac{1-e_m}{e_m}</script><p>d. 更新训练集权值分布</p>
 <script type="math/tex; mode=display">
 D_{m+1} = (w_{m+1,1},..,w_{m+1,i},...,w_{m+1,N})\\
-w_{m1+1,i} = \frac{w_{mi}}{Z_m}e^{-\alpha_my_iG_m(x_i)},\ i=1,2,...,N</script><p>​    其中，$Z_m$是规范化因子</p>
+w_{m1+1,i} = \frac{w_{mi}}{Z_m}e^{-\alpha_my_iG_m(x_i)},\ i=1,2,...,N</script><p>​    其中，$Z_m$是规范化因子，对于分类错误的样本权重变大引起下一个学习器的重视。</p>
 <script type="math/tex; mode=display">
-Z_m = \sum_{i=1}^Nw_{mi}e^{-\alpha_iy_iG_m(x_i)}</script><p>​    使$D_{m+1}$称为一个概率分布。</p>
+Z_m = \sum_{i=1}^Nw_{mi}e^{-\alpha_iy_iG_m(x_i)}</script><p>​    使$D_{m+1}$成为一个概率分布。</p>
 </li>
 <li><p>构建基本分类器的线性组合</p>
 <script type="math/tex; mode=display">
@@ -338,7 +338,7 @@ f(x) = \sum_{m=1}^M \alpha_mG_m(x)</script><p>最终分类器</p>
 <script type="math/tex; mode=display">
 G(X) = sign(f(x))</script></li>
 </ol>
-<h4 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h4><p>AdaBoost的最终分类器</p>
+<h4 id="前向分步算法与AdaBoost"><a href="#前向分步算法与AdaBoost" class="headerlink" title="前向分步算法与AdaBoost"></a>前向分步算法与AdaBoost</h4><p>AdaBoost的最终分类器</p>
 <script type="math/tex; mode=display">
 f(x) = \sum_{m=1}^M\alpha_mG_m(x)</script><p>前向分布算法的损失函数是指数损失函数</p>
 <script type="math/tex; mode=display">
@@ -361,19 +361,48 @@ G^*(x) = \arg\min_G\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G(x_i)) \tag{3}</script><p>�
 </li>
 <li><p>对$\alpha$</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^N \bar{w}_{mi}exp[-y_i\alpha G(x_i)]\\
-= \sum_{y_i=G_m(x_i)}\bar{w}_{mi}e^{-\alpha}+\sum_{y_i\ne G_m(x_i)}\bar{w}_{mi}e^{\alpha}\\
-= (e^{\alpha}-e^{-\alpha})\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G(x_i))+\sum_{i=1}^N\bar{w}_{mi}e^{-\alpha}</script><p>上式求导令为零得</p>
+\begin{align}
+\sum_{i=1}^N \bar{w}_{mi}exp[-y_i\alpha G(x_i)]
+&= \sum_{y_i=G_m(x_i)}\bar{w}_{mi}e^{-\alpha}+\sum_{y_i\ne G_m(x_i)}\bar{w}_{mi}e^{\alpha}\\
+&= (e^{\alpha}-e^{-\alpha})\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G(x_i))+\sum_{i=1}^N\bar{w}_{mi}e^{-\alpha}
+\end{align}</script><p>上式求导令为零得</p>
 <script type="math/tex; mode=display">
-e^{2\alpha} = \frac{\sum_{i=1}^N\bar{w}_{mi}I(y_i=G_m(x_i))}{\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G_m(x_i))}\\
-\alpha^* = \frac{1}{2}\log\frac{1-e_m}{e_m}</script><p>其中$e_m$是错误分类率</p>
+\begin{align}
+e^{2\alpha} &= \frac{\sum_{i=1}^N\bar{w}_{mi}-\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G_m(x_i))}{\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G_m(x_i))}\\
+e^{2\alpha}&=\frac{(1-e_m)\sum_{i=1}^N\bar{w}_{mi}}{e_m\sum_{i=1}^N\bar{w}_{mi}} \\
+\alpha^* &= \frac{1}{2}\log\frac{1-e_m}{e_m}
+\end{align}</script><p>其中$e_m$是错误分类率</p>
 <script type="math/tex; mode=display">
 e_m = \frac{\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G_m(x_i))}{\sum_{i=1}^N\bar{w}_{mi}}=\sum_{i=1}^Nw_{mi}I(y_i\ne G_m(x_i))</script></li>
 </ul>
 <p>每一轮的更新</p>
 <script type="math/tex; mode=display">
-f_m(x) = f_{m-1}(x)+\alpha_m G_m(x)\\
-\bar{w}_{m+1,i} = \bar{w}_{mi}exp[-y_i\alpha_mG_m(x)]</script>
+\begin{align}
+f_m(x) &= f_{m-1}(x)+\alpha_m G_m(x)\\
+\bar{w}_{m+1,i} &= \bar{w}_{mi}exp[-y_i\alpha_mG_m(x)]\\
+\end{align}</script><p>规范化</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\bar{w}_{m+1,i} &= exp(-f_m(x_i)y_i)\\
+w_{m+1,i} &= \frac{\bar{w}_{m+1,i}}{\sum_{i=1}^N\bar{w}_{m+1,i}}
+\end{align}</script><h2 id="2-Bagging和随机森林"><a href="#2-Bagging和随机森林" class="headerlink" title="2. Bagging和随机森林"></a>2. Bagging和随机森林</h2><h3 id="1-Bagging"><a href="#1-Bagging" class="headerlink" title="1. Bagging"></a>1. Bagging</h3><p>使用自助采样法bootstrap sampling，进行m次采样操作。</p>
+<h4 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h4><p>给定包含m个样本的的数据集D，每次随机从D中挑选一个样本拷贝放入$D^{\prime}$。然后将该样本放入D，使得该样本下次仍可能被取得。整个过程重复m次，就得到一个包含m个样本的$D^{\prime}$。样本在m次采样中始终不被采到的概率为</p>
+<script type="math/tex; mode=display">
+\lim_{m\to\infty}{(1-\frac{1}{m})^m} = \frac{1}{e} \approx0.368</script><p>自助法在数据集较小时、难以划分训练/测试集时很有用。</p>
+<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><script type="math/tex; mode=display">
+\begin{align}
+&for\  i\ to \ k \ do:   \\
+&\qquad生成大小为N的自助样本集D_i \\
+&\qquad在自助样本集D_i上训练一个基分类器c_i    \\
+&end\ for    \\
+&C(x) = \mathop{arg\max}_{y}\sum_i I(c_i(x)=y)
+\end{align}</script><h3 id="2-Random-Forest"><a href="#2-Random-Forest" class="headerlink" title="2.Random Forest"></a>2.Random Forest</h3><p>以决策树为基学习器构建Bagging基础上，训练过程引入了随机属性选择。</p>
+<p>在基决策树的每个结点，先从属性集随机选取一个包含k个属性的子集，然后选择一个最优属性进行划分。k的推荐值$\log_2d$。</p>
+<p>基学习器的多样性来自样本扰动(基于Bagging)，属性扰动。</p>
+<h3 id="3-泛化误差分解"><a href="#3-泛化误差分解" class="headerlink" title="3.泛化误差分解"></a>3.泛化误差分解</h3><script type="math/tex; mode=display">
+\begin{align}
+
+\end{align}</script>
     </div>
 
     
@@ -396,8 +425,8 @@ f_m(x) = f_{m-1}(x)+\alpha_m G_m(x)\\
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" rel="tag"># 集成学习</a>
               <a href="/tags/sklearn/" rel="tag"># sklearn</a>
+              <a href="/tags/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" rel="tag"># 集成学习</a>
           </div>
 
         
@@ -409,9 +438,6 @@ f_m(x) = f_{m-1}(x)+\alpha_m G_m(x)\\
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/11/17/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" rel="next" title="集成学习">
-                  集成学习 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
