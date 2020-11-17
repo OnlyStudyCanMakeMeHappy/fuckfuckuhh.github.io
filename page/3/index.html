@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/13/machine%20learning/Bayesian/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/13/machine%20learning/Bayesian/" class="post-title-link" itemprop="url">Bayesian</a>
+            <a href="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="post-title-link" itemprop="url">计算机</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-13 19:51:00" itemprop="dateCreated datePublished" datetime="2020-11-13T19:51:00+08:00">2020-11-13</time>
+      <time title="创建时间：2020-11-15 16:31:41" itemprop="dateCreated datePublished" datetime="2020-11-15T16:31:41+08:00">2020-11-15</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-14 19:58:45" itemprop="dateModified" datetime="2020-11-14T19:58:45+08:00">2020-11-14</time>
+        <time title="修改时间：2020-11-16 21:29:55" itemprop="dateModified" datetime="2020-11-16T21:29:55+08:00">2020-11-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机知识</span></a>
         </span>
     </span>
 
@@ -311,62 +311,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="贝叶斯决策论"><a href="#贝叶斯决策论" class="headerlink" title="贝叶斯决策论"></a>贝叶斯决策论</h2><p>定义$\lambda_{ij}$为将将真实标记为$c_j$的样本误分类为$c_i$所产生的损失，通常误分类带来的损失为1。期望损失表达式。</p>
-<script type="math/tex; mode=display">
-R(c_i|x) = \sum_{i=1}^{N}\lambda_{ij}P(c_j|x)</script><p>对于每个样本，学习器$h$能最小化条件风险$R(h(x)|x)$，总体风险$R(h)$也被最小化。</p>
-<script type="math/tex; mode=display">
-h^*(x) = arg\min_{x\in Y}R(c|x)</script><p>那么$h^<em>(x)$被称为贝叶斯最优分类器，$R(h^</em>)$称为贝叶斯风险。</p>
-<script type="math/tex; mode=display">
-R(h^*) = \mathbb{E}_x[R(h^*(x)|x)]</script><h3 id="条件风险"><a href="#条件风险" class="headerlink" title="条件风险"></a>条件风险</h3><script type="math/tex; mode=display">
-R(c_i|x) = 1·P(c_1|x)+...+0·P(c_i|x)+...+1·P(c_N|x)\\
-R(c|x) = 1-P(c|x)</script><p>最小化贝叶斯风险等价于</p>
-<script type="math/tex; mode=display">
-h^*(x) = \arg\max_{c\in Y}P(c|x)</script><p>即对于每个样本选择使后验概率$P(c|x)$最大。</p>
-<h3 id="判别式和生成式模型"><a href="#判别式和生成式模型" class="headerlink" title="判别式和生成式模型"></a>判别式和生成式模型</h3><ul>
-<li>判别式模型：给定$x$，通过直接建模$P(c|x)$来预测c。</li>
-<li>生成式模型：对联合概率分布$P(c,x)$建模得到$P(c|x)$</li>
-</ul>
-<script type="math/tex; mode=display">
-P(c|x) = \frac{P(c)P(x|c)}{P(x)}</script><p>$P(c)$是类先验概率通过大数定理由频率预测，$P(x|c)$是样本相对于类标记的条件概率，通常直接计算比较困难。</p>
-<h2 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h2><p>navie-bayes</p>
-<p>假设属性条件独立</p>
-<script type="math/tex; mode=display">
-P(c|x) = \frac{P(c)}{P(x)}\prod_{i=1}^dP(x_i|c)</script><p>由贝叶斯判定准则,$P(x)$对于所有类别相同。记$D_{c,x_i}$表示$D_c$中在第$i$个属性取值为$x_i$的样本。</p>
-<script type="math/tex; mode=display">
-h_{nb}(x) = \arg\max_{c\in Y}P(c)\prod_{i=1}^dP(x_i|c)\\
-P(c) = \frac{|D_c|}{|D|} \\
-离散属性：P(x_i|c) = \frac{|D_{c,x_i}|}{|D|} \\
-连续属性：p(x_i|c)=\frac{1}{\sqrt{2\pi}\sigma_{c,i}}exp(-\frac{(x_i-\mu_{c,i})^2}{2\sigma^2_{c,i}})</script><h3 id="拉普拉斯修正"><a href="#拉普拉斯修正" class="headerlink" title="拉普拉斯修正"></a>拉普拉斯修正</h3><p>作用是平滑概率值，实质上假设了属性值与类别均匀分布。避免了样本不充分时导致概率估值为零的问题。</p>
-<script type="math/tex; mode=display">
-P(c) = \frac{|D_c|+1}{|D|+N}\\
-P(x_i|c) = \frac{|D_{c,x_i}|+1}{|D|+N_i}</script><h2 id="sklearn-朴素贝叶斯"><a href="#sklearn-朴素贝叶斯" class="headerlink" title="sklearn-朴素贝叶斯"></a>sklearn-朴素贝叶斯</h2><h3 id="高斯朴素贝叶斯"><a href="#高斯朴素贝叶斯" class="headerlink" title="高斯朴素贝叶斯"></a>高斯朴素贝叶斯</h3><p><code>sklearn.naive_bayes.GaussianNB(*, priors=None, var_smoothing=1e-09)</code></p>
-<ul>
-<li>priors：一个n_classes数组，先验概率</li>
-<li>var_smoothing：所有为了提高计算稳定性添加到方差的特征的最大方差部分。</li>
-</ul>
-<h3 id="多项分布朴素贝叶斯"><a href="#多项分布朴素贝叶斯" class="headerlink" title="多项分布朴素贝叶斯"></a>多项分布朴素贝叶斯</h3><h4 id="多项分布"><a href="#多项分布" class="headerlink" title="多项分布"></a>多项分布</h4><p>随机试验有k个结果$A_1,…,A_k$，他们的概率分布分别是$p_1,…,p_k$，在n次采样总结果中，$A_i$出现$n_i$次,</p>
-<script type="math/tex; mode=display">
-P(X_1=n_1,...,X_k=N_k) = \frac{n!}{n_1!...n_k!}p_1^{n_1}...p_k^{n_k},\sum_{i=1}^kn_i=n</script><p>MultinomialNB实现了服从多项分布的朴素贝叶斯算法，适用于具有离散特征的分类。</p>
-<script type="math/tex; mode=display">
-分布参数由每类y的\theta_{y}=(\theta_{y1},...,\theta_{yn})向量决定，\\
-n是特征数量，\theta_{yi}是类y中特征i的概率p(x_i|y)。\\
-其中\hat\theta_{y}=\frac{N_{yi}+\alpha}{N_y+N\alpha}\\
-\alpha\ge0称作先验平滑因子，\alpha=1就是拉普拉斯平滑，\alpha<1称作Lidstone平滑。</script><p><code>sklearn.naive_bayes.MultinomialNB(*, alpha=1.0, fit_prior=True, class_prior=None)</code></p>
-<ul>
-<li>alpha：平滑参数，0表示不平滑。</li>
-<li>fit_priot：是否学习类先验概率。</li>
-<li>class_prior：类的先验概率，如果指定那么先验概率不会根据数据进行调整。</li>
-</ul>
-<h3 id="伯努利朴素贝叶斯"><a href="#伯努利朴素贝叶斯" class="headerlink" title="伯努利朴素贝叶斯"></a>伯努利朴素贝叶斯</h3><p>要求样本以二元值特征向量表示，决策规则$p(x_i|p)=p(i|y)x_i+(1-p(i|y))(1-x_i)$。<br><code>sklearn.naive_bayes.BernoulliNB(*, alpha=1.0, binarize=0.0, fit_prior=True, class_prior=None)</code></p>
-<p>参数</p>
-<ul>
-<li>binarize：样本特征二值化的阈值。</li>
-</ul>
-<p>方法</p>
-<ul>
-<li>partial_fit：解决训练集不能导入内存的大规模分类问题，动态增加数据。与fit方法不同，需要传递一个所有期望的类标签的列表。</li>
-</ul>
-
+          <h1 id="计算机组成原理和结构"><a href="#计算机组成原理和结构" class="headerlink" title="计算机组成原理和结构"></a>计算机组成原理和结构</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -387,7 +340,7 @@ n是特征数量，\theta_{yi}是类y中特征i的概率p(x_i|y)。\\
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

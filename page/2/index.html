@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/17/machine%20learning/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-title-link" itemprop="url">决策树</a>
+            <a href="/2020/11/17/machine%20learning/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">集成学习</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,16 +281,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-11-14 20:19:47" itemprop="dateCreated datePublished" datetime="2020-11-14T20:19:47+08:00">2020-11-14</time>
+      <time title="创建时间：2020-11-17 10:08:16 / 修改时间：14:47:57" itemprop="dateCreated datePublished" datetime="2020-11-17T10:08:16+08:00">2020-11-17</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-15 13:02:34" itemprop="dateModified" datetime="2020-11-15T13:02:34+08:00">2020-11-15</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -311,74 +305,70 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>训练树模型的时间复杂度和数据成对数分布</li>
-<li>白盒模型，模型可观察。</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>容易生成过于复杂的模型。</li>
-<li><p>不稳定，微小变化都会导致树的的不同。</p>
+          <a id="more"></a>
+<h2 id="1-Boosting"><a href="#1-Boosting" class="headerlink" title="1. Boosting"></a>1. Boosting</h2><h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><h4 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h4><p>输入：训练数据$T = {(x_1,_1),..,(x_N,y_N)}$，其中$x_i\in\chi$,$y_i\in{-1,+1}$；弱学习算法。</p>
+<p>输出：最终分类器$G(x)$</p>
+<ol>
+<li><p>初始化数据的权值分布</p>
+<script type="math/tex; mode=display">
+D_1 = (w_{11},..,w_{1i},..,w_{1N})\\
+w_{1i} = \frac{1}{N},i=1,2,..,N</script></li>
+<li><p>对m=1,2,…,M</p>
+<p>a. 对具有权值分布的$D_m$训练集学习，得到基本分类器</p>
+<script type="math/tex; mode=display">
+G_m(x):\chi\rightarrow\lbrace-1,+1\rbrace</script><p>b. 计算$G_m(x)$在训练集的分类错误率</p>
+<script type="math/tex; mode=display">
+e_m = P(G_m(x)\ne y_i) = \sum_{i=1}^Nw_{mi}I(G_m(x)\ne y_i)</script><p>c. 计算$G_m(x)$的系数</p>
+<script type="math/tex; mode=display">
+\alpha_m = \frac{1}{2}\log\frac{1-e_m}{e_m}</script><p>d. 更新训练集权值分布</p>
+<script type="math/tex; mode=display">
+D_{m+1} = (w_{m+1,1},..,w_{m+1,i},...,w_{m+1,N})\\
+w_{m1+1,i} = \frac{w_{mi}}{Z_m}e^{-\alpha_my_iG_m(x_i)},\ i=1,2,...,N</script><p>​    其中，$Z_m$是规范化因子</p>
+<script type="math/tex; mode=display">
+Z_m = \sum_{i=1}^Nw_{mi}e^{-\alpha_iy_iG_m(x_i)}</script><p>​    使$D_{m+1}$称为一个概率分布。</p>
 </li>
-<li><p>实际的决策树学习算法是基于启发式算法，例如在每个节点进 行局部最优决策的贪心算法。这样的算法不能保证返回全局最优决策树。</p>
-</li>
-<li>如果某些类在问题中占主导地位会使得创建的决策树有偏差</li>
-</ul>
-<h2 id="划分选择"><a href="#划分选择" class="headerlink" title="划分选择"></a>划分选择</h2><h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><p>信息熵是度量样本纯度的最常用指标，信息熵越小说明样本纯度越高。记$p_k$是样本集合$D$中第$k$类的比例,Y为类别总数。</p>
+<li><p>构建基本分类器的线性组合</p>
 <script type="math/tex; mode=display">
-Ent(D) = -\sum_{i=1}^Yp_k\log_2p_k\\
-当样本集合只有一类时取得最小值0\\
-当样本集合所有类比例相同时时取最大值-Y·\frac{1}{Y}\log_2\frac{1}{Y}=\log_2Y</script><p>离散属性a有V个取值，取值为$a^v$的样本数记为$D^v$。计算每个属性的信息增益。</p>
+f(x) = \sum_{m=1}^M \alpha_mG_m(x)</script><p>最终分类器</p>
 <script type="math/tex; mode=display">
-Gain(D,a) = Ent(D)-\sum_{i=1}^V\frac{|D^v|}{|D|}Ent(D^v)\\</script><p>ID3决策树就是以信息增益作为准则作为划分属性。</p>
+G(X) = sign(f(x))</script></li>
+</ol>
+<h4 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h4><p>AdaBoost的最终分类器</p>
 <script type="math/tex; mode=display">
-a_* = \arg\max_{a\in A}Gain(D,a)</script><h3 id="增益率"><a href="#增益率" class="headerlink" title="增益率"></a>增益率</h3><p>信息增益准则对取值数目较多的属性有所偏好。</p>
-<p>C4.5决策树算法选择增益率作为划分属性的标准</p>
+f(x) = \sum_{m=1}^M\alpha_mG_m(x)</script><p>前向分布算法的损失函数是指数损失函数</p>
 <script type="math/tex; mode=display">
-Gain\_ratio = \frac{Gain(D,a)}{IV(a)}\\
-IV(a) = -\sum_{v=1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script><p>IV(a)称为属性a的固定值，a的取值数目越多，IV(a)就越大。增益率对取值数目较少的属性有所偏好，所以采用启发式：先从候选划分属性中找出信息增益高于平均水平的属性，再从中选择增益率最高的。</p>
-<h3 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h3><p>CART决策树使用基尼指数来划分属性。基尼指数反映从数据集D中随机抽取两个样本，类别标记不一致的概率。基尼指数越小表示数据集D的纯度越高。</p>
-<p>基尼值</p>
+L(y,f(x)) = exp(-yf(x))</script><p>在经过m-1轮迭代向前分步算法后得到$f_{m-1}(x)$</p>
 <script type="math/tex; mode=display">
-Gini(D) = \sum_{i=1}^{Y}\sum_{j\ne i}p_ip_j
-=1-\sum_{i=1}^Yp_i^2</script><p>基尼指数</p>
+f_{m-1}(x) 
+=\alpha G_1(x)+...+\alpha_{m-1}G_{m-1}(x)</script><p>在第m轮迭代得到$\alpha_m$,$G_m(x)$和$f_m(x)$</p>
 <script type="math/tex; mode=display">
-Gini\_index(D,a)=\sum_{v=1}^V\frac{D^v}{D}Gini(D^v)</script><p>划分准则</p>
+f_m(x) = f_{m-1}(x)+\alpha_mG_m(x)</script><p>指数损失函数最小化</p>
 <script type="math/tex; mode=display">
-a_* = \arg\min_{a\in A}Gini\_index(D,a)</script><h2 id="sklearn-DecisionTree"><a href="#sklearn-DecisionTree" class="headerlink" title="sklearn-DecisionTree"></a>sklearn-DecisionTree</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p><code>sklearn.tree.DecisionTreeClassifier(*, criterion=&#39;gini&#39;, splitter=&#39;best&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, class_weight=None, presort=&#39;deprecated&#39;, ccp_alpha=0.0)</code></p>
-<p>参数</p>
+(\alpha_m,G_m(x)) = \arg\min_{\alpha,G}\sum_{i=1}^Ne^{-y_i(f_{m-1}(x_i)+\alpha G(x_i))} \tag{1}</script><p>式(1)表示为</p>
+<script type="math/tex; mode=display">
+(\alpha_m,G_m(x)) = \arg\min_{\alpha,G}\sum_{i=1}^N\bar{w}_{mi}exp[-y_i\alpha G(x_i)]\\ \tag{2}
+\bar{w}_{mi} = exp[-y_if_{m-1}(x_i)]</script><p>$\bar{w}_{mi}$就是上一轮学得的学习器在样本上的指数损失。</p>
+<p>求使(2)式最小的$\alpha$和$G_m(x)$</p>
 <ul>
-<li>criterion：{“gini”, “entropy”}, default=”gini”。基尼和信息增益</li>
-<li>splitter{“best”, “random”}, default=”best”<br>在每个节点选择拆分的策略。</li>
-<li>min_samples_splitint： default=2，拆分内部节点所需的最少样本数。</li>
-<li>min_samples_leaf：default=1，在任何深度的分割点在左分支和右分支中的每个分支上至少留下min_samples_leaf个训练样本时，才考虑该点。</li>
-<li>max_featuresint： float or {“auto”, “sqrt”, “log2”}, default=None<br>  寻找最佳分割需要考虑的特征数。auto=sqrt=sqrt(n_features),log2=log2(n_features)</li>
-</ul>
-<p>属性</p>
-<ul>
-<li>feature_importances_：返回特征的重要性</li>
-<li>n_features_：fit执行用到的特征数</li>
-</ul>
-<p>方法</p>
-<ul>
-<li>apply：返回每个样本被预测为叶子的概率</li>
-<li>get_depth：返回决策树的深度</li>
-<li>get_n_leaves：返回决策树的叶子数</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clf = DecisionTreeClassifier()</span><br><span class="line">iris = load_iris()</span><br><span class="line">cross_val_score(clf,iris.data,iris.target,cv=<span class="number">10</span>)</span><br><span class="line">&gt;&gt;&gt;array([<span class="number">1.</span>        , <span class="number">0.93333333</span>, <span class="number">1.</span>        , <span class="number">0.93333333</span>, <span class="number">0.93333333</span>,</span><br><span class="line">       <span class="number">0.86666667</span>, <span class="number">0.93333333</span>, <span class="number">1.</span>        , <span class="number">1.</span>        , <span class="number">1.</span>        ])</span><br></pre></td></tr></table></figure>
-<h3 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h3><p><code>class sklearn.tree.DecisionTreeRegressor(*, criterion=&#39;mse&#39;, splitter=&#39;best&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, presort=&#39;deprecated&#39;, ccp_alpha=0.0)</code></p>
-<p>实例</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_diabetes</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line">X, y = load_diabetes(return_X_y=<span class="literal">True</span>)</span><br><span class="line">regressor = DecisionTreeRegressor(random_state=<span class="number">0</span>)</span><br><span class="line">cross_val_score(regressor, X, y, cv=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">array([<span class="number">-0.39</span>..., <span class="number">-0.46</span>...,  <span class="number">0.02</span>...,  <span class="number">0.06</span>..., <span class="number">-0.50</span>...,</span><br><span class="line">       <span class="number">0.16</span>...,  <span class="number">0.11</span>..., <span class="number">-0.73</span>..., <span class="number">-0.30</span>..., <span class="number">-0.00</span>...])</span><br></pre></td></tr></table></figure>
-<h2 id="graphviz"><a href="#graphviz" class="headerlink" title="graphviz"></a>graphviz</h2><h3 id="安装、配置环境变量"><a href="#安装、配置环境变量" class="headerlink" title="安装、配置环境变量"></a>安装、配置环境变量</h3><ul>
-<li><p>下载：<a target="_blank" rel="noopener" href="https://www2.graphviz.org/Packages/stable/windows/10/cmake/Release/x64/graphviz-install-2.44.1-win64.exe">https://www2.graphviz.org/Packages/stable/windows/10/cmake/Release/x64/graphviz-install-2.44.1-win64.exe</a></p>
+<li><p>对任意的$\alpha&gt;0$，使(2)式最小的$G(x)$如下</p>
+<script type="math/tex; mode=display">
+G^*(x) = \arg\min_G\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G(x_i)) \tag{3}</script><p>固定$\alpha$,$y_i$与$G(x_i)$不等的样本越少上式越小。</p>
 </li>
-<li><p>配置到环境变量 </p>
-</li>
-<li>pip install graphviz</li>
+<li><p>对$\alpha$</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^N \bar{w}_{mi}exp[-y_i\alpha G(x_i)]\\
+= \sum_{y_i=G_m(x_i)}\bar{w}_{mi}e^{-\alpha}+\sum_{y_i\ne G_m(x_i)}\bar{w}_{mi}e^{\alpha}\\
+= (e^{\alpha}-e^{-\alpha})\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G(x_i))+\sum_{i=1}^N\bar{w}_{mi}e^{-\alpha}</script><p>上式求导令为零得</p>
+<script type="math/tex; mode=display">
+e^{2\alpha} = \frac{\sum_{i=1}^N\bar{w}_{mi}I(y_i=G_m(x_i))}{\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G_m(x_i))}\\
+\alpha^* = \frac{1}{2}\log\frac{1-e_m}{e_m}</script><p>其中$e_m$是错误分类率</p>
+<script type="math/tex; mode=display">
+e_m = \frac{\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G_m(x_i))}{\sum_{i=1}^N\bar{w}_{mi}}=\sum_{i=1}^Nw_{mi}I(y_i\ne G_m(x_i))</script></li>
 </ul>
-<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dot_data = tree.export_graphviz(clf, out_file=<span class="literal">None</span>,                 feature_names=iris.feature_names,  </span><br><span class="line">class_names=iris.target_names,  </span><br><span class="line">filled=<span class="literal">True</span>, rounded=<span class="literal">True</span>,  </span><br><span class="line">special_characters=<span class="literal">True</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>graph = graphviz.Source(dot_data)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>graph.render(<span class="string">&#x27;iris&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>输出保存为一个’iris.pdf’文件</p>
-<p><img src="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/iris.png" alt="&quot;iris.pdf&quot;"></p>
-
+<p>每一轮的更新</p>
+<script type="math/tex; mode=display">
+f_m(x) = f_{m-1}(x)+\alpha_m G_m(x)\\
+\bar{w}_{m+1,i} = \bar{w}_{mi}exp[-y_i\alpha_mG_m(x)]</script>
       
     </div>
 
@@ -399,7 +389,7 @@ a_* = \arg\min_{a\in A}Gini\_index(D,a)</script><h2 id="sklearn-DecisionTree"><a
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/machine%20learning/SVM/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/07/machine%20learning/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/06/machine%20learning/SVM/" class="post-title-link" itemprop="url">SVM</a>
+            <a href="/2020/11/07/machine%20learning/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">线性模型</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-06 10:56:43" itemprop="dateCreated datePublished" datetime="2020-11-06T10:56:43+08:00">2020-11-06</time>
+      <time title="创建时间：2020-11-07 22:55:08" itemprop="dateCreated datePublished" datetime="2020-11-07T22:55:08+08:00">2020-11-07</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-07 22:11:03" itemprop="dateModified" datetime="2020-11-07T22:11:03+08:00">2020-11-07</time>
+        <time title="修改时间：2020-11-15 12:36:00" itemprop="dateModified" datetime="2020-11-15T12:36:00+08:00">2020-11-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,18 +311,40 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h2><ul>
-<li>支持向量机算法本身不能够很好地支持非标准化的数据，所以 <strong>我们强烈建议您将数据标准化</strong>。 举个示例，对于输入向量 X， 规整它的每个数值范围为 [0, 1] 或 [-1, +1] ，或者标准化它的为均值为0方差为1的数据分布。可以通过sklearn预处理库中的StandardScaler函数实现。</li>
-<li>底层实现的随机性:SVC的底层实现仅使用随机数生成器来打乱数据顺序进行概率估计(当probability被设置为True时)。这种随机性可以用random_state参数来控制。</li>
+          <h2 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h2><ol>
+<li><p>基本形式</p>
+<p>$y = w^{T}x+b$</p>
+</li>
+<li><p>线性回归</p>
+<ul>
+<li><p>单变量线性回归</p>
+<script type="math/tex; mode=display">
+w = \frac{\sum_{i=1}^{m}y_i(x_i-\bar{x})}{\sum_{i=1}^{m}x_i^2-\frac{1}{m}(\sum_{i=1}^mx_i)^2}\\b = \frac{1}{m}\sum_{i=1}^{m}(y_i-wx_i)</script></li>
+<li><p>多元线性回归</p>
+</li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/06/machine%20learning/SVM/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<script type="math/tex; mode=display">
+\widehat{w} = (w;b) \\
+X = \begin{pmatrix}
+x_1^T & 1 \\
+x_2^T & 1 \\
+...     \\
+x_n^T & 1
+\end{pmatrix} \\
+f(\bar{x}_i) = \bar{x}_i(X^TX)^{-1}X^Ty</script></li>
+<li><p>对数几率回归</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+sigmoid(x) = \frac{1}{1+e^{-z}}</script><ol>
+<li>LDA线性判别分析</li>
+</ol>
+<script type="math/tex; mode=display">
+m个样本每个样本为n维。X = [X_1,X_2...X_n]^T,X_i=[X_{i1},X_{i3}...X_{im}]\\
+以维度计算：\Sigma = E[(X-E[X])(X-E[X])^T] \\
+以样本计算：\Sigma = \frac{1}{m-1}\sum_{i=1}^{m}(X_i-\mu_i)(X_i-\mu_i)^T,其中X_i为样本，\mu_i为每一个维度的均值，与X_i同size。</script><p><img src="https://img-blog.csdnimg.cn/2018122910081941.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1ZWx1b3d1dG9uZw==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<script type="math/tex; mode=display">
+样本均值到方向向量\boldsymbol{\omega}的投影为\boldsymbol{\omega^T}\boldsymbol{\mu} \\样本协方差到方向向量\boldsymbol{\omega}的投影为\boldsymbol{\omega^T\Sigma\omega} \\最大化目标J：\frac{||\boldsymbol{\omega^T\mu}-\boldsymbol{\omega^T\mu}||_2^2}{\boldsymbol{\omega^T\Sigma_0\omega}+\boldsymbol{\omega^T\Sigma_0\omega}},即类间距离/类内距离最大化。\\定义类内散度矩阵S_{\omega} = \Sigma_0+\Sigma_1，类间散度矩阵S_b = (\mu_0-\mu_1)(\mu_0-\mu_1)^T \\则最大化目标J = \frac{\omega^TS_b\omega}{\omega^TS_{\omega}\omega} \\令\omega^TS_{\omega}\omega = 1，则等价于\\min_w -\omega^TS_b\omega \\s.t.\ \omega^TS_{\omega}\omega = 1 \\得到：\qquad \omega=S_{\omega}^{-1}(\mu_0-\mu_1)奇异值分解</script>
       
     </div>
 
@@ -343,7 +365,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

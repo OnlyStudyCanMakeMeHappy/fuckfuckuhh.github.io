@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/09/machine%20learning/KNN/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/09/machine%20learning/KNN/" class="post-title-link" itemprop="url">KNN</a>
+            <a href="/2020/04/25/%E6%A6%82%E7%8E%87%E8%AE%BA/" class="post-title-link" itemprop="url">一些公式和统计量</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-11-09 12:41:43" itemprop="dateCreated datePublished" datetime="2019-11-09T12:41:43+08:00">2019-11-09</time>
+      <time title="创建时间：2020-04-25 23:05:15" itemprop="dateCreated datePublished" datetime="2020-04-25T23:05:15+08:00">2020-04-25</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-08 13:50:12" itemprop="dateModified" datetime="2020-11-08T13:50:12+08:00">2020-11-08</time>
+        <time title="修改时间：2020-11-05 14:57:40" itemprop="dateModified" datetime="2020-11-05T14:57:40+08:00">2020-11-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+          <a href="/categories/%E6%A6%82%E7%8E%87%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">概率论</span></a>
         </span>
     </span>
 
@@ -311,78 +311,45 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h1><h2 id="1、K近邻算法"><a href="#1、K近邻算法" class="headerlink" title="1、K近邻算法"></a>1、K近邻算法</h2><p>   KNN(K-Nearset-Neighbour)k最近邻算法是一种常用的监督学习算法，给定测试样本基于某种性能度量找出与其最近的k个训练样本，基于k个样本的信息进行决策。对于分类问题采用投票法，回归问题用平均法，还可根据样本的远近进行加权平均。  </p>
-<h3 id="1-1-三个基本要素"><a href="#1-1-三个基本要素" class="headerlink" title="1.1 三个基本要素"></a>1.1 三个基本要素</h3><ul>
-<li>距离度量</li>
-<li>k值的选择</li>
-<li>分类决策规则</li>
-</ul>
-<h3 id="1-2-决策规则"><a href="#1-2-决策规则" class="headerlink" title="1.2 决策规则"></a>1.2 决策规则</h3><script type="math/tex; mode=display">y=arg \max{c_j}\sum_{X_i \in N_k(x)}I(c_j=y_i)\\i=1,2,...,N;j=1,2,..K</script><h3 id="1-3-距离度量"><a href="#1-3-距离度量" class="headerlink" title="1.3 距离度量"></a>1.3 距离度量</h3><p>距离度量需要满足的基本性质</p>
-<ul>
-<li>非负性</li>
-<li>同一性：$dist(x_i,x_j)=0$当且仅当$i=j$。</li>
-<li>对称性：$dist(x_i,x_j)=dist(x_j,x_i)$</li>
-<li>三角不等式：$dist(x_i,x_j)\le dist(x_i,x_k)+dist(x_k,x_j)$</li>
-</ul>
-<p>无序属性例如：{彩电，冰箱，空调}。对于有序属性采用$L_p$距离。</p>
+          <h2 id="连续型随机变量的函数分布"><a href="#连续型随机变量的函数分布" class="headerlink" title="连续型随机变量的函数分布"></a>连续型随机变量的函数分布</h2><p>$Y=g(X)$连续型随机变量的概率密度:</p>
 <script type="math/tex; mode=display">
-L_p(x_i,x_j) = [\sum_{i=1}^n (x_i^l-x_j^l)^p]^\frac{1}{p}\\
-p=1时，叫做曼哈顿距离\\
-p=2时，叫做欧式距离\\</script><p>处理混合属性</p>
+F_Y(y)=
+\begin{cases}
+f_x[h(y)]|h'(y)|,&\alpha<x<\beta \\
+0,               &\text{其他}
+\end{cases}</script><h3 id="二维随机变量"><a href="#二维随机变量" class="headerlink" title="二维随机变量"></a>二维随机变量</h3><p>$二维随机变量的分布函数：F(x,y)=P\lbrace(X\le x)\cap(Y\le y)\rbrace。$</p>
+<p>$P{x_1&lt;X&lt;x_2,y_1&lt;Y&lt;y_2}=F(x_2,y_2)-F(x_2,y_1)+F(x_1,y_1)-F(x_1,y_2)。$</p>
+<p>$若f(x,y)在点(x,y)连续，则有$</p>
 <script type="math/tex; mode=display">
-MinkowDM_p(x_i,x_j)=(\sum_{u=1}^{n_c}|x_{iu}-x_{ju}|^p+\sum_{u=n_c+1}VDM_p(x_{iu},x_{ju})) \\
-VDM_p(a,b) = \sum_{i=1}^k |\frac{m_{u,a,i}}{m_{u,a}}-\frac{m_{u,b,i}}{m_{u,b}}|^p</script><p>其中$m_{u,a,i}$表示第i个样本簇在属性u上取值为a的样本数。</p>
-<h3 id="1-4-k值选择"><a href="#1-4-k值选择" class="headerlink" title="1.4 k值选择"></a>1.4 k值选择</h3><p>常取较小的值或者用交叉验证来选取最优的k值。</p>
-<h2 id="2、kd树"><a href="#2、kd树" class="headerlink" title="2、kd树"></a>2、kd树</h2><p>kd树是二叉树表示对k维空间的划分，不断用垂直于坐标轴的超平面将k维空间切分，构成一系列的</p>
-<p>k维超矩形区域。</p>
-<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><p>输入：$T={x_1,x_2,…,x_N},x_i=(x_i^1,x_i^2,..,x_i^k)$</p>
-<ol>
-<li>开始构造根结点。选择$x^1$为根结点，所有样本在$x^1$坐标的中位数为划分点，将根结点对应的超矩形区域划分为两个子区域。</li>
-<li>重复：对深度为j的节点，选择$x^l$为划分的坐标轴，$l=j(mod\ k)+1$。以改区域中所有实例的$x^l$坐标的中位数为划分点，划分为两个子区域。划分通过切分点并与坐标轴$x^l$垂直的超平面实现。</li>
-<li>知道两个子区域没有实例存在而终止。</li>
-</ol>
-<p>叶子节点对应的就是最小超矩形区域。</p>
-<h2 id="3、sklearn中的最近邻"><a href="#3、sklearn中的最近邻" class="headerlink" title="3、sklearn中的最近邻"></a>3、sklearn中的最近邻</h2><h3 id="3-1-近邻搜索的无监督学习"><a href="#3-1-近邻搜索的无监督学习" class="headerlink" title="3.1 近邻搜索的无监督学习"></a>3.1 近邻搜索的无监督学习</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">sklearn</span>.<span class="title">neighbors</span>.<span class="title">NearestNeighbors</span>(<span class="params">*, n_neighbors=<span class="number">5</span>, radius=<span class="number">1.0</span>, algorithm=<span class="string">&#x27;auto&#x27;</span>, leaf_size=<span class="number">30</span>, metric=<span class="string">&#x27;minkowski&#x27;</span>, p=<span class="number">2</span>, metric_params=None, n_jobs=None</span>)</span></span><br></pre></td></tr></table></figure>
-<p>参数</p>
-<ul>
-<li>n_neighborsint, default=5：k值</li>
-<li>radius：指定半径</li>
-<li>algorithm：{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’}, default=’auto’。</li>
-<li>leaf_size：叶子大小，影响构造和查询的速度。更大的值会导致建树的时间越少，因为需要创建更少的节点。</li>
-<li>p：Minkowski距离的p参数。</li>
-</ul>
-<p>方法</p>
-<ul>
-<li>kneighbors：k近邻点，返回每个点邻居的索引和距离。</li>
-<li>radius_neighbors：指定半径内的近邻点。</li>
-<li>kneighbors_graph：计算X的邻居图，标示连接情况。使用toarray方法转换为数组。</li>
-</ul>
-<h3 id="3-2-KDTree和BallTree"><a href="#3-2-KDTree和BallTree" class="headerlink" title="3.2 KDTree和BallTree"></a>3.2 KDTree和BallTree</h3><p>不同于其他学习器，这两个学习器构造器都需要训练集。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sklearn.neighbors.KDTree(X, leaf_size=<span class="number">40</span>, metric=<span class="string">&#x27;minkowski&#x27;</span>, **kwargs)</span><br><span class="line">sklearn.neighbors.BallTree(X, leaf_size=<span class="number">40</span>, metric=<span class="string">&#x27;minkowski&#x27;</span>, **kwargs)</span><br></pre></td></tr></table></figure>
-<p>参数</p>
-<ul>
-<li>metric：树使用的距离度量。默认值=“ minkowski”，p = 2</li>
-</ul>
-<p>方法</p>
-<ul>
-<li>query(x,k)：查询x的k近邻。</li>
-</ul>
-<h4 id="3-2-1-BallTree"><a href="#3-2-1-BallTree" class="headerlink" title="3.2.1 BallTree"></a>3.2.1 BallTree</h4><p>对于高结构化的数据非常有效。ball 树将数据递归地划分为由质心 C 和半径 R 定义的节点,使得节点中的每个点位于由和 定义的超平面内，通过使用三角不等式$|x+y|\le|x|+|y|$减少近邻搜索的候选点数。</p>
-<h3 id="3-3-最近邻分类"><a href="#3-3-最近邻分类" class="headerlink" title="3.3 最近邻分类"></a>3.3 最近邻分类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sklearn.neighbors.KNeighborsClassifier(n_neighbors=<span class="number">5</span>, *, weights=<span class="string">&#x27;uniform&#x27;</span>, algorithm=<span class="string">&#x27;auto&#x27;</span>, leaf_size=<span class="number">30</span>, p=<span class="number">2</span>, metric=<span class="string">&#x27;minkowski&#x27;</span>, metric_params=<span class="literal">None</span>, n_jobs=<span class="literal">None</span>, **kwargs)</span><br></pre></td></tr></table></figure>
-<p>参数</p>
-<ul>
-<li>weights：{‘uniform’, ‘distance’} or callable, default=’uniform’。预测中使用的权重函数。<ul>
-<li>uniform：均匀权重</li>
-<li>distance：距离倒数</li>
-<li>callable：用户自定义函数，接受距离数组返回形状权重数组。</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-4-最近邻回归"><a href="#3-4-最近邻回归" class="headerlink" title="3.4 最近邻回归"></a>3.4 最近邻回归</h3><p>通过对训练集中最近邻居的相关目标进行<strong>局部插值</strong>来预测目标，原来用到的是插值法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sklearn.neighbors.KNeighborsRegressor(n_neighbors=<span class="number">5</span>, *, weights=<span class="string">&#x27;uniform&#x27;</span>, algorithm=<span class="string">&#x27;auto&#x27;</span>, leaf_size=<span class="number">30</span>, p=<span class="number">2</span>, metric=<span class="string">&#x27;minkowski&#x27;</span>, metric_params=<span class="literal">None</span>, n_jobs=<span class="literal">None</span>, **kwargs)</span><br></pre></td></tr></table></figure>
-<p>实例</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">X = [[<span class="number">0</span>], [<span class="number">3</span>], [<span class="number">1</span>]]</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> NearestNeighbors</span><br><span class="line">neigh = NearestNeighbors(n_neighbors=<span class="number">2</span>)</span><br><span class="line">neigh.fit(X)</span><br><span class="line"></span><br><span class="line">A = neigh.kneighbors_graph(X)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A.toarray()</span><br><span class="line">array([[<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">1.</span>],</span><br><span class="line">       [<span class="number">0.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">       [<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">1.</span>]])</span><br></pre></td></tr></table></figure>
-
+\frac{\partial^2xF(x,y)}{\partial x \partial y}=f(x,y)</script><p>条件概率密度：</p>
+<script type="math/tex; mode=display">
+f_{X|Y}=\frac{f(x,y)}{f_Y(y)}\\</script><script type="math/tex; mode=display">
+\int_{-\infty}^{x}f_{X|Y}(x|y)dx=\int_{\infty}^{x}\frac{f(x,y)}{f_Y(y)}为在Y=y下，X的条件分布函数。</script><script type="math/tex; mode=display">
+卷积公式记为f_X*f_Y，即f_X*f_Y=\int_{-\infty}^{\infty}f_X(z-y)f_Y(y)dy=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)dx</script><h2 id="期望与方差"><a href="#期望与方差" class="headerlink" title="期望与方差"></a>期望与方差</h2><p>$设Y是随机变量X的函数：Y=g(X)(g是连续函数).$</p>
+<script type="math/tex; mode=display">
+E(Y)=E[g(x)]=\int_{-\infty}^{\infty}g(x)f(x)dx</script><p>$X的方差D(x),Var(x),即$</p>
+<script type="math/tex; mode=display">
+D(x)=Var(x)=E\{[x-E(x)]^2\} \\
+D(x)=E(x^2)-[E(x)]^2</script><script type="math/tex; mode=display">
+Cov(x,y)=E\{[x-E(x)][Y-E(Y)]\}\\
+\rho_{xy}=\frac{Cov(x,y)}{\sqrt {D(x)}\sqrt{D(Y)}}\\</script><h2 id="统计量"><a href="#统计量" class="headerlink" title="统计量"></a>统计量</h2><p>(一)$\chi^2分布$<br>设$X_1,X_2,……,X_n是来自总体N(0,1)的样本，则统计量$  </p>
+<script type="math/tex; mode=display">
+\chi^2=X_1^2+X_2^2+···+X_n^2</script><p>$服从自由度为n的\chi^2分布，记为\chi^2\sim\chi^2(n)。$</p>
+<p>(二)t分布<br>$设X\sim N(0,1),Y\sim\chi^2(n)，且X，Y相互独立，则称随机变量$  </p>
+<script type="math/tex; mode=display">
+t = \frac{X}{\sqrt{Y/n}}</script><p>$服从自由度为n的t分布，记为t\sim t(n)。$</p>
+<p>(三)F分布<br>$设U\sim\chi^2(n_1),V\sim\chi^2(n_2)，且U,V相互独立，则称随机变量$   </p>
+<script type="math/tex; mode=display">
+F = \frac{U/n_1}{V/n_2}</script><p>$服从自由度为(n_1,n_2)的F分布，记为F\sim F(n_1,n_2)。$</p>
+<p>(四)正态总体的样本均值与样本方差的分布  </p>
+<script type="math/tex; mode=display">
+E(\overline{X})=\overline{X}，D(\overline{x})=\sigma^2/n \\
+E(S^2)=E[\frac{1}{n-1}(\sum_{i=1}^nX_i^2-n\overline{X}^2)]=\frac{1}{n-1}E[\sum_{i=1}^{n}(\sigma^2+\mu^2)-n(\sigma^2/n+\mu^2)]=\sigma^2</script><p><strong>定理一</strong> $设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}是平均值则统计量。$    </p>
+<script type="math/tex; mode=display">
+\overline{X}\sim N(\mu,\sigma^2/n)</script><p>$设X_1,X_2,……,X_n是来自正态总体N(\mu,\sigma^2)的样本，\overline{X}，S^2分别是样本均值和样本方差，则有$</p>
+<script type="math/tex; mode=display">
+\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1),\frac{(n-1)S^2}{S/\sqrt{n}}\sim \chi^2(n-1)\\
+\frac{\overline{X}-\mu}{S/\sqrt{n}}\sim t(n-1)</script>
       
     </div>
 
@@ -403,7 +370,7 @@ VDM_p(a,b) = \sum_{i=1}^k |\frac{m_{u,a,i}}{m_{u,a}}-\frac{m_{u,b,i}}{m_{u,b}}|^
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

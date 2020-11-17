@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/17/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="post-title-link" itemprop="url">计算机</a>
+            <a href="/2020/11/17/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">集成学习</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,23 +281,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-11-15 16:31:41" itemprop="dateCreated datePublished" datetime="2020-11-15T16:31:41+08:00">2020-11-15</time>
+      <time title="创建时间：2020-11-17 10:08:16 / 修改时间：19:17:29" itemprop="dateCreated datePublished" datetime="2020-11-17T10:08:16+08:00">2020-11-17</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-16 21:29:55" itemprop="dateModified" datetime="2020-11-16T21:29:55+08:00">2020-11-16</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机知识</span></a>
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
         </span>
     </span>
 
@@ -311,15 +305,79 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="计算机组成原理和结构"><a href="#计算机组成原理和结构" class="headerlink" title="计算机组成原理和结构"></a>计算机组成原理和结构</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <a id="more"></a>
+<h2 id="1-Boosting"><a href="#1-Boosting" class="headerlink" title="1. Boosting"></a>1. Boosting</h2><h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><h4 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h4><p>输入：训练数据$T = {(x_1,_1),..,(x_N,y_N)}$，其中$x_i\in\chi$,$y_i\in{-1,+1}$；弱学习算法。</p>
+<p>输出：最终分类器$G(x)$</p>
+<ol>
+<li><p>初始化数据的权值分布</p>
+<script type="math/tex; mode=display">
+D_1 = (w_{11},..,w_{1i},..,w_{1N})\\
+w_{1i} = \frac{1}{N},i=1,2,..,N</script></li>
+<li><p>对m=1,2,…,M</p>
+<p>a. 对具有权值分布的$D_m$训练集学习，得到基本分类器</p>
+<script type="math/tex; mode=display">
+G_m(x):\chi\rightarrow\lbrace-1,+1\rbrace</script><p>b. 计算$G_m(x)$在训练集的分类错误率</p>
+<script type="math/tex; mode=display">
+e_m = P(G_m(x)\ne y_i) = \sum_{i=1}^Nw_{mi}I(G_m(x)\ne y_i)</script><p>c. 计算$G_m(x)$的系数</p>
+<script type="math/tex; mode=display">
+\alpha_m = \frac{1}{2}\log\frac{1-e_m}{e_m}</script><p>d. 更新训练集权值分布</p>
+<script type="math/tex; mode=display">
+D_{m+1} = (w_{m+1,1},..,w_{m+1,i},...,w_{m+1,N})\\
+w_{m1+1,i} = \frac{w_{mi}}{Z_m}e^{-\alpha_my_iG_m(x_i)},\ i=1,2,...,N</script><p>​    其中，$Z_m$是规范化因子，对于分类错误的样本权重变大引起下一个学习器的重视。</p>
+<script type="math/tex; mode=display">
+Z_m = \sum_{i=1}^Nw_{mi}e^{-\alpha_iy_iG_m(x_i)}</script><p>​    使$D_{m+1}$成为一个概率分布。</p>
+</li>
+<li><p>构建基本分类器的线性组合</p>
+<script type="math/tex; mode=display">
+f(x) = \sum_{m=1}^M \alpha_mG_m(x)</script><p>最终分类器</p>
+<script type="math/tex; mode=display">
+G(X) = sign(f(x))</script></li>
+</ol>
+<h4 id="前向分步算法与AdaBoost"><a href="#前向分步算法与AdaBoost" class="headerlink" title="前向分步算法与AdaBoost"></a>前向分步算法与AdaBoost</h4><p>AdaBoost的最终分类器</p>
+<script type="math/tex; mode=display">
+f(x) = \sum_{m=1}^M\alpha_mG_m(x)</script><p>前向分布算法的损失函数是指数损失函数</p>
+<script type="math/tex; mode=display">
+L(y,f(x)) = exp(-yf(x))</script><p>在经过m-1轮迭代向前分步算法后得到$f_{m-1}(x)$</p>
+<script type="math/tex; mode=display">
+f_{m-1}(x) 
+=\alpha G_1(x)+...+\alpha_{m-1}G_{m-1}(x)</script><p>在第m轮迭代得到$\alpha_m$,$G_m(x)$和$f_m(x)$</p>
+<script type="math/tex; mode=display">
+f_m(x) = f_{m-1}(x)+\alpha_mG_m(x)</script><p>指数损失函数最小化</p>
+<script type="math/tex; mode=display">
+(\alpha_m,G_m(x)) = \arg\min_{\alpha,G}\sum_{i=1}^Ne^{-y_i(f_{m-1}(x_i)+\alpha G(x_i))} \tag{1}</script><p>式(1)表示为</p>
+<script type="math/tex; mode=display">
+(\alpha_m,G_m(x)) = \arg\min_{\alpha,G}\sum_{i=1}^N\bar{w}_{mi}exp[-y_i\alpha G(x_i)]\\ \tag{2}
+\bar{w}_{mi} = exp[-y_if_{m-1}(x_i)]</script><p>$\bar{w}_{mi}$就是上一轮学得的学习器在样本上的指数损失。</p>
+<p>求使(2)式最小的$\alpha$和$G_m(x)$</p>
+<ul>
+<li><p>对任意的$\alpha&gt;0$，使(2)式最小的$G(x)$如下</p>
+<script type="math/tex; mode=display">
+G^*(x) = \arg\min_G\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G(x_i)) \tag{3}</script><p>固定$\alpha$,$y_i$与$G(x_i)$不等的样本越少上式越小。</p>
+</li>
+<li><p>对$\alpha$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum_{i=1}^N \bar{w}_{mi}exp[-y_i\alpha G(x_i)]
+&= \sum_{y_i=G_m(x_i)}\bar{w}_{mi}e^{-\alpha}+\sum_{y_i\ne G_m(x_i)}\bar{w}_{mi}e^{\alpha}\\
+&= (e^{\alpha}-e^{-\alpha})\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G(x_i))+\sum_{i=1}^N\bar{w}_{mi}e^{-\alpha}
+\end{align}</script><p>上式求导令为零得</p>
+<script type="math/tex; mode=display">
+\begin{align}
+e^{2\alpha} &= \frac{\sum_{i=1}^N\bar{w}_{mi}-\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G_m(x_i))}{\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G_m(x_i))}\\
+e^{2\alpha}&=\frac{(1-e_m)\sum_{i=1}^N\bar{w}_{mi}}{e_m\sum_{i=1}^N\bar{w}_{mi}} \\
+\alpha^* &= \frac{1}{2}\log\frac{1-e_m}{e_m}
+\end{align}</script><p>其中$e_m$是错误分类率</p>
+<script type="math/tex; mode=display">
+e_m = \frac{\sum_{i=1}^N\bar{w}_{mi}I(y_i\ne G_m(x_i))}{\sum_{i=1}^N\bar{w}_{mi}}=\sum_{i=1}^Nw_{mi}I(y_i\ne G_m(x_i))</script></li>
+</ul>
+<p>每一轮的更新</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f_m(x) &= f_{m-1}(x)+\alpha_m G_m(x)\\
+\bar{w}_{m+1,i} &= \bar{w}_{mi}exp[-y_i\alpha_mG_m(x)]\\
+\end{align}</script><p>规范化</p>
+<script type="math/tex; mode=display">
+w_{m+1,i} = \frac{\bar{w}_{m+1,i}}{\sum_{i=1}^N\bar{w}_{m+1,i}}</script><h2 id="2-Bagging和随机森林"><a href="#2-Bagging和随机森林" class="headerlink" title="2. Bagging和随机森林"></a>2. Bagging和随机森林</h2><h3 id="1-Bagging"><a href="#1-Bagging" class="headerlink" title="1. Bagging"></a>1. Bagging</h3>
       
     </div>
 
@@ -340,7 +398,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
