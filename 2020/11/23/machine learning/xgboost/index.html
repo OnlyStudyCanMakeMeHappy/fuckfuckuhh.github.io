@@ -25,23 +25,25 @@
   <meta name="description" content="xgboost学习对象模型  \hat y_i &#x3D; \phi(\mathbf{x}_i) &#x3D; \sum_{k&#x3D;1}^K f_k(\mathbf{x}_i)待优化项  L(\phi) &#x3D; \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\ where\ \Omega(f) &#x3D; \gamma T+\frac{1}{2}\lambda||w||^2其中T是叶子数，w是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xgboost">
-<meta property="og:url" content="http://example.com/2020/11/23/xgboost/index.html">
+<meta property="og:url" content="http://example.com/2020/11/23/machine%20learning/xgboost/index.html">
 <meta property="og:site_name" content="Mr.fuck">
 <meta property="og:description" content="xgboost学习对象模型  \hat y_i &#x3D; \phi(\mathbf{x}_i) &#x3D; \sum_{k&#x3D;1}^K f_k(\mathbf{x}_i)待优化项  L(\phi) &#x3D; \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\ where\ \Omega(f) &#x3D; \gamma T+\frac{1}{2}\lambda||w||^2其中T是叶子数，w是">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2020/11/23/xgboost/博客/source/_posts/xgboost/4.png">
-<meta property="og:image" content="http://example.com/2020/11/23/xgboost/1.png">
-<meta property="og:image" content="http://example.com/2020/11/23/xgboost/2.png">
-<meta property="og:image" content="http://example.com/2020/11/23/xgboost/3.png">
+<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/博客/source/_posts/xgboost/4.png">
+<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/1.png">
+<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/2.png">
+<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/3.png">
+<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/6.png">
+<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/7.png">
 <meta property="article:published_time" content="2020-11-23T13:59:04.000Z">
-<meta property="article:modified_time" content="2020-11-24T11:12:16.813Z">
+<meta property="article:modified_time" content="2020-11-24T12:13:45.897Z">
 <meta property="article:author" content="ggl">
 <meta property="article:tag" content="xgboost">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/23/xgboost/博客/source/_posts/xgboost/4.png">
+<meta name="twitter:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/博客/source/_posts/xgboost/4.png">
 
 
-<link rel="canonical" href="http://example.com/2020/11/23/xgboost/">
+<link rel="canonical" href="http://example.com/2020/11/23/machine%20learning/xgboost/">
 
 
 <script class="page-configurations">
@@ -202,7 +204,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -215,7 +217,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -267,7 +269,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/xgboost/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/machine%20learning/xgboost/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -298,7 +300,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-24 19:12:16" itemprop="dateModified" datetime="2020-11-24T19:12:16+08:00">2020-11-24</time>
+        <time title="修改时间：2020-11-24 20:13:45" itemprop="dateModified" datetime="2020-11-24T20:13:45+08:00">2020-11-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -338,18 +340,18 @@ L_t = \sum_{j=1}^T[(\sum_{i\in T_j}g_i)w_j+\frac{1}{2}(\sum_{i\in I_j}h_i+\lambd
 <script type="math/tex; mode=display">
 w^*_j = -\frac{\sum_{i\in I_j}g_i}{\sum_{i\in I_j}h_i+\lambda}</script><p>对于树结构q，下式作为一棵树好坏的指标</p>
 <script type="math/tex; mode=display">
-L_t(q) = -\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_j}g_i)^2}{\sum_{i\in I_j}h_i+\lambda}+\gamma T</script><p><img src="/2020/11/23/xgboost/博客\source\_posts\xgboost\4.png" alt="score"></p>
+L_t(q) = -\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_j}g_i)^2}{\sum_{i\in I_j}h_i+\lambda}+\gamma T</script><p><img src="/2020/11/23/machine%20learning/xgboost/博客\source\_posts\xgboost\4.png" alt="score"></p>
 <p>使用贪心算法去分割结点，分割后损失值变化。</p>
-<p><img src="/2020/11/23/xgboost/1.png" alt="image-20201124132700202"></p>
+<p><img src="/2020/11/23/machine%20learning/xgboost/1.png" alt="image-20201124132700202"></p>
 <p>令$G=\sum<em>{i \in I_j}g_i$，$H = \sum</em>{i\in I_j}h_i$上式等价于</p>
 <script type="math/tex; mode=display">
 L_{split} = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}+\frac{G^2}{H+\lambda}]-\gamma</script><p>同时只有当增益大于某个阈值时才进行分裂。这个阈值就是$\lambda$</p>
 <h2 id="分割查找算法"><a href="#分割查找算法" class="headerlink" title="分割查找算法"></a>分割查找算法</h2><h3 id="精确分割贪心算法"><a href="#精确分割贪心算法" class="headerlink" title="精确分割贪心算法"></a>精确分割贪心算法</h3><p>对当前节点，遍历所有样本，对属性所有取值进行排序后计算score的最大值。</p>
 <p>选取属性的取值作为划分依据。</p>
-<p><img src="/2020/11/23/xgboost/2.png" alt="image-20201124134727385" style="zoom:70%;"></p>
+<p><img src="/2020/11/23/machine%20learning/xgboost/2.png" alt="image-20201124134727385" style="zoom:70%;"></p>
 <h3 id="近似分割算法"><a href="#近似分割算法" class="headerlink" title="近似分割算法"></a>近似分割算法</h3><p>对于特征k，根据特征分布的分位数找到切割点的候选集合$S<em>k$，根据$S_k$将特征k的值划分到桶中(bucket)，对每个桶内的样本统计值进行累加得到$G</em>{kv},H_{k,v}$。</p>
 <p>有global和local两种方式</p>
-<p><img src="/2020/11/23/xgboost/3.png" alt="分割查找近似算法" style="zoom:70%;"></p>
+<p><img src="/2020/11/23/machine%20learning/xgboost/3.png" alt="分割查找近似算法" style="zoom:70%;"></p>
 <h2 id="权重分位数素描"><a href="#权重分位数素描" class="headerlink" title="权重分位数素描"></a>权重分位数素描</h2><p>近似算法分割点时，通常使用特征分布的分位数。定义一个多重集$D<em>k = {(x</em>{ik},h<em>k}</em>{i=1}^n$，分别为样本在k上的特征集和二阶导。</p>
 <p>定义一个rank函数，统计x小于z的样本二阶导的和占总和的比例。</p>
 <script type="math/tex; mode=display">
@@ -444,20 +446,13 @@ r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><p>寻�
 <h3 id="scikit-learn-API"><a href="#scikit-learn-API" class="headerlink" title="scikit-learn API"></a>scikit-learn API</h3><p><code>xgboost.XGBRegressor(**kwargs)</code></p>
 <p>参数</p>
 <ul>
-<li><p>n_estimators：梯度提升树的数量。相当于提升轮数</p>
-</li>
-<li><p>max_depth ：基学习器的最大深度</p>
-</li>
-<li><p>learning_rate ：学习率</p>
-</li>
-<li><p>verbosity ：详细程度，从0(slient)1(warning)2(info)3(debug)</p>
-</li>
-<li><p>objective：自定义目标函数</p>
-</li>
-<li><p>booster：指定要使用的提升器</p>
-</li>
-<li><p>tree_method ：默认auto，指定使用的树方法。</p>
-<ul>
+<li>n_estimators：梯度提升树的数量。相当于提升轮数</li>
+<li>max_depth ：基学习器的最大深度</li>
+<li>learning_rate ：学习率</li>
+<li>verbosity ：详细程度，从0(slient)1(warning)2(info)3(debug)</li>
+<li>objective：自定义目标函数</li>
+<li>booster：指定要使用的提升器</li>
+<li>tree_method ：默认auto，指定使用的树方法。<ul>
 <li>auto：启发式寻找最快的方法</li>
 <li>exact：Enumerates枚举所有分割点</li>
 <li>approx：使用分位数草图和梯度直方图的近似贪婪算法。</li>
@@ -465,16 +460,11 @@ r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><p>寻�
 <li>gpu_hist：GPU实现hist算法</li>
 </ul>
 </li>
-<li><p>sketch_eps：$\epsilon$，tree_method=approx时使用，大致形成o(1/sketch_eps)个bins。</p>
-</li>
-<li><p>n_jobs：运行xgboost使用的线程数</p>
-</li>
-<li><p>gamma：$\gamma$,在树的叶节点上进行分割所需的最小损失减少阈值。</p>
-</li>
-<li><p>min_child_weight：子实例中实例重量（hessian）的最小总和</p>
-</li>
-<li><p>max_delta_step：允许每棵树的权重估算的最大步长增量,每个叶子的输出。</p>
-</li>
+<li>sketch_eps：$\epsilon$，tree_method=approx时使用，大致形成o(1/sketch_eps)个bins。</li>
+<li>n_jobs：运行xgboost使用的线程数</li>
+<li>gamma：$\gamma$,在树的叶节点上进行分割所需的最小损失减少阈值。</li>
+<li>min_child_weight：子实例中实例重量（hessian）的最小总和，如果划分导致叶结点的实例总和小于该值则将停止进一步的划分。</li>
+<li>max_delta_step：允许每棵树的权重估算的最大步长增量,每个叶子的输出。为0表示没有约束。</li>
 <li><p>subsample ：子样本比例-</p>
 <ul>
 <li>colsample_bytree ：每棵树的列子采样率</li>
@@ -484,18 +474,12 @@ r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><p>寻�
 </li>
 </ul>
 </li>
-<li><p>reg_alpha：L1正则化参数$\alpha$</p>
-</li>
-<li><p>reg_lambda ：L2正则化参数$\lambda$</p>
-</li>
-<li><p>scale_pos_weight：平衡正负权重</p>
-</li>
-<li><p>base_score ：初始所有实例的预测得分</p>
-</li>
-<li><p>random_state ：随机种子</p>
-</li>
-<li><p>missing：缺失值填充</p>
-</li>
+<li>reg_alpha：L1正则化参数$\alpha$</li>
+<li>reg_lambda ：L2正则化参数$\lambda$</li>
+<li>scale_pos_weight：平衡正负权重</li>
+<li>base_score ：初始所有实例的预测得分</li>
+<li>random_state ：随机种子</li>
+<li>missing：缺失值填充</li>
 <li>num_parallel_tree：并行化提升树的数量</li>
 </ul>
 <p>方法</p>
@@ -505,11 +489,23 @@ r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><p>寻�
 <li><p><code>fit(X, y, *, sample_weight=None, base_margin=None, eval_set=None, eval_metric=None, early_stopping_rounds=None, verbose=True, xgb_model=None, sample_weight_eval_set=None, feature_weights=None, callbacks=None)</code></p>
 <ul>
 <li>base_margin：每个实例的全局偏差</li>
-<li></li>
+<li>eval_set：用于验证集的(X,y)元组对,将其视为计算指标。跟踪模型的性能</li>
+<li>eval_metric：评价指标</li>
+<li>early_stopping_rounds：验证指标eval_set至少要在<strong>early_stopping_rounds</strong>回合中提升一次才会继续训练。</li>
+<li>sample_weight、feature_weight</li>
 </ul>
 </li>
+<li><code>predict(data, output_margin=False, ntree_limit=None, validate_features=True, base_margin=None)</code></li>
 </ul>
-<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p>最重要的三个参数booster，n_estimators和objectve</p>
+<p>eval_metric</p>
+<p>详见：<a target="_blank" rel="noopener" href="https://xgboost.readthedocs.io/en/latest/parameter.html">https://xgboost.readthedocs.io/en/latest/parameter.html</a></p>
+<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost  <span class="keyword">as</span> xgb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets.samples_generator <span class="keyword">import</span> make_classification</span><br><span class="line"></span><br><span class="line"><span class="comment">#redundant冗余特征0,每个类别一个簇</span></span><br><span class="line">X,y = make_classification(n_samples=<span class="number">10000</span>,n_features=<span class="number">20</span>,n_redundant=<span class="number">0</span>,n_clusters_per_class=<span class="number">1</span>,n_classes=<span class="number">2</span>,flip_y=<span class="number">0.1</span>)</span><br><span class="line">X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=<span class="number">1</span>)</span><br><span class="line">dtrain = xgb.DMatrix(X_train,y_train)</span><br><span class="line">dtest = xgb.DMatrix(X_test,y_test)</span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;max_depth&#x27;</span>:<span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;eta&#x27;</span>:<span class="number">0.5</span>,</span><br><span class="line">    <span class="string">&#x27;verbosity&#x27;</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;objective&#x27;</span>:<span class="string">&#x27;binary:logistic&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">clf = xgb.XGBClassifier(**params)</span><br><span class="line">clf.fit(X_train,y_train,early_stopping_rounds=<span class="number">10</span>,eval_metric=<span class="string">&#x27;error&#x27;</span>,eval_set=[(X_test,y_test)])</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/23/machine%20learning/xgboost/6.png" alt="image-20201124194922807"></p>
+<p>网格调参</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">gscv = GridSearchCV(clf,&#123;<span class="string">&#x27;max_depth&#x27;</span>:[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],<span class="string">&#x27;n_estimators&#x27;</span>:[<span class="number">5</span>,<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">gscv.fit(X_train,y_train)</span><br><span class="line">print(gscv.best_score_)</span><br><span class="line">print(gscv.best_params_)</span><br><span class="line">clf2 = xgb.XGBClassifier(max_depth=<span class="number">4</span>,n_estimators=<span class="number">5</span>,verbosity=<span class="number">1</span>,objective=<span class="string">&#x27;binary:logistic&#x27;</span>,random_state=<span class="number">1</span>)</span><br><span class="line">gscv2=GridSearchCV(clf2,&#123;<span class="string">&#x27;learning_rate&#x27;</span>:[<span class="number">0.3</span>,<span class="number">0.5</span>,<span class="number">0.7</span>]&#125;)</span><br><span class="line">gscv2.fit(X_train,y_train)</span><br><span class="line">print(gscv2.best_score_)</span><br><span class="line">print(gscv2.best_params_)</span><br><span class="line">clf2 = xgb.XGBClassifier(max_depth=<span class="number">4</span>,learning_rate= <span class="number">0.5</span>, verbosity=<span class="number">1</span>, objective=<span class="string">&#x27;binary:logistic&#x27;</span>,n_estimators=<span class="number">5</span>)</span><br><span class="line">clf2.fit(X_train, y_train, early_stopping_rounds=<span class="number">10</span>, eval_metric=<span class="string">&quot;error&quot;</span>,eval_set=[(X_test, y_test)])</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/23/machine%20learning/xgboost/7.png" alt="image-20201124195901508"></p>
+<p>更多示例：<a target="_blank" rel="noopener" href="https://github.com/dmlc/xgboost/tree/master/demo/guide-python">https://github.com/dmlc/xgboost/tree/master/demo/guide-python</a></p>
 
     </div>
 
@@ -545,6 +541,9 @@ r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><p>寻�
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2020/11/25/math/" rel="next" title="math">
+                  math <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

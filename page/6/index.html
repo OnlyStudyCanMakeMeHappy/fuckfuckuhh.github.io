@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/19/html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-title-link" itemprop="url">决策树</a>
+            <a href="/2020/11/19/html/" class="post-title-link" itemprop="url">html</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,23 +281,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-11-14 20:19:47" itemprop="dateCreated datePublished" datetime="2020-11-14T20:19:47+08:00">2020-11-14</time>
+      <time title="创建时间：2020-11-19 12:59:44 / 修改时间：21:45:23" itemprop="dateCreated datePublished" datetime="2020-11-19T12:59:44+08:00">2020-11-19</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-23 13:37:36" itemprop="dateModified" datetime="2020-11-23T13:37:36+08:00">2020-11-23</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
         </span>
     </span>
 
@@ -311,81 +305,234 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="回归树"><a href="#回归树" class="headerlink" title="回归树"></a>回归树</h2><p><img src="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/1.png" alt="image-20201123133034055" style="zoom:50%;"></p>
-<p>每个结点用样本的平均值作为当前结点的值。</p>
-<p><img src="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/3.jpg" alt="img2"></p>
-<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="结点划分停止依据"><a href="#结点划分停止依据" class="headerlink" title="结点划分停止依据"></a>结点划分停止依据</h3><ul>
-<li>当前样本同属于一个类别</li>
-<li>所有属性取值为空或取值相等</li>
-<li>样本集合为空</li>
-</ul>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>训练树模型的时间复杂度和数据成对数分布</li>
-<li>白盒模型，模型可观察。</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>容易生成过于复杂的模型。</li>
-<li><p>不稳定，微小变化都会导致树的的不同。</p>
-</li>
-<li><p>实际的决策树学习算法是基于启发式算法，例如在每个节点进 行局部最优决策的贪心算法。这样的算法不能保证返回全局最优决策树。</p>
-</li>
-<li>如果某些类在问题中占主导地位会使得创建的决策树有偏差</li>
-</ul>
-<h3 id="划分选择"><a href="#划分选择" class="headerlink" title="划分选择"></a>划分选择</h3><h4 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h4><p>信息熵是度量样本纯度的最常用指标，信息熵越小说明样本纯度越高。记$p_k$是样本集合$D$中第$k$类的比例,Y为类别总数。</p>
-<script type="math/tex; mode=display">
-Ent(D) = -\sum_{i=1}^Yp_k\log_2p_k\\
-当样本集合只有一类时取得最小值0\\
-当样本集合所有类比例相同时时取最大值-Y·\frac{1}{Y}\log_2\frac{1}{Y}=\log_2Y</script><p>离散属性a有V个取值，取值为$a^v$的样本数记为$D^v$。计算每个属性的信息增益。</p>
-<script type="math/tex; mode=display">
-Gain(D,a) = Ent(D)-\sum_{i=1}^V\frac{|D^v|}{|D|}Ent(D^v)\\</script><p>ID3决策树就是以信息增益作为准则作为划分属性。</p>
-<script type="math/tex; mode=display">
-a_* = \arg\max_{a\in A}Gain(D,a)</script><h4 id="增益率"><a href="#增益率" class="headerlink" title="增益率"></a>增益率</h4><p>信息增益准则对取值数目较多的属性有所偏好。</p>
-<p>C4.5决策树算法选择增益率作为划分属性的标准</p>
-<script type="math/tex; mode=display">
-Gain\_ratio = \frac{Gain(D,a)}{IV(a)}\\
-IV(a) = -\sum_{v=1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script><p>IV(a)称为属性a的固定值，a的取值数目越多，IV(a)就越大。增益率对取值数目较少的属性有所偏好，所以采用启发式：先从候选划分属性中找出信息增益高于平均水平的属性，再从中选择增益率最高的。</p>
-<h4 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h4><p>CART决策树使用基尼指数来划分属性。基尼指数反映从数据集D中随机抽取两个样本，类别标记不一致的概率。基尼指数越小表示数据集D的纯度越高。</p>
-<p>基尼值</p>
-<script type="math/tex; mode=display">
-Gini(D) = \sum_{i=1}^{Y}\sum_{j\ne i}p_ip_j
-=1-\sum_{i=1}^Yp_i^2</script><p>基尼指数</p>
-<script type="math/tex; mode=display">
-Gini\_index(D,a)=\sum_{v=1}^V\frac{D^v}{D}Gini(D^v)</script><p>划分准则</p>
-<script type="math/tex; mode=display">
-a_* = \arg\min_{a\in A}Gini\_index(D,a)</script><h2 id="sklearn-DecisionTree"><a href="#sklearn-DecisionTree" class="headerlink" title="sklearn-DecisionTree"></a>sklearn-DecisionTree</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p><code>sklearn.tree.DecisionTreeClassifier(*, criterion=&#39;gini&#39;, splitter=&#39;best&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, class_weight=None, presort=&#39;deprecated&#39;, ccp_alpha=0.0)</code></p>
-<p>参数</p>
+          <h2 id="HTML基础"><a href="#HTML基础" class="headerlink" title="HTML基础"></a>HTML基础</h2><h3 id="HTML元素"><a href="#HTML元素" class="headerlink" title="HTML元素"></a>HTML元素</h3><p><code>&lt;p&gt;</code>定义段落。</p>
+<p><code>&lt;body&gt;</code>定义HTML文档的主体。</p>
+<p><code>&lt;html&gt;</code>定义整个HTML文档。</p>
+<h3 id="HTML属性"><a href="#HTML属性" class="headerlink" title="HTML属性"></a>HTML属性</h3><p>name=value</p>
+<p>通用</p>
 <ul>
-<li>criterion：{“gini”, “entropy”}, default=”gini”。基尼和信息增益</li>
-<li>splitter{“best”, “random”}, default=”best”<br>在每个节点选择拆分的策略。</li>
-<li>min_samples_splitint： default=2，拆分内部节点所需的最少样本数。</li>
-<li>min_samples_leaf：default=1，在任何深度的分割点在左分支和右分支中的每个分支上至少留下min_samples_leaf个训练样本时，才考虑该点。</li>
-<li>max_featuresint： float or {“auto”, “sqrt”, “log2”}, default=None<br>  寻找最佳分割需要考虑的特征数。auto=sqrt=sqrt(n_features),log2=log2(n_features)</li>
+<li>class：元素的类名</li>
+<li>id：元素的唯一id</li>
+<li>style：行内样式</li>
+<li>title：元素的额外信息</li>
 </ul>
-<p>属性</p>
+<h3 id="HTML标题"><a href="#HTML标题" class="headerlink" title="HTML标题"></a>HTML标题</h3><p>支持h1-h6标题</p>
+<p>水平线<code>&lt;hr /&gt;</code></p>
+<p>换行<code>&lt;br /&gt;</code></p>
+<p><code>&lt;!--注释--&gt;</code>注释</p>
+<h3 id="HTML段落"><a href="#HTML段落" class="headerlink" title="HTML段落"></a>HTML段落</h3><p>浏览器会自动在段落前后添加空行。<code>&lt;p&gt;</code>是块级元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">To break<span class="tag">&lt;<span class="name">br</span> /&gt;</span>lines<span class="tag">&lt;<span class="name">br</span> /&gt;</span>in a<span class="tag">&lt;<span class="name">br</span> /&gt;</span>paragraph,<span class="tag">&lt;<span class="name">br</span> /&gt;</span>use the br tag.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="HTML样式"><a href="#HTML样式" class="headerlink" title="HTML样式"></a>HTML样式</h3><p><strong>style</strong></p>
+<p>样式之间用;隔开</p>
 <ul>
-<li>feature_importances_：返回特征的重要性</li>
-<li>n_features_：fit执行用到的特征数</li>
+<li><p>背景颜色：<code>style=&quot;background-color:yellow&quot;</code></p>
+</li>
+<li><p>字体、颜色和尺寸：font-family、color、font-size</p>
+</li>
+<li>文本对齐方式：text-align</li>
 </ul>
-<p>方法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">sytle</span>=<span class="string">&#x27;font-family:verdana&#x27;</span>&gt;</span>This is heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&#x27;text-align:center;font-size:160px;color:red&#x27;</span>&gt;</span>wocao<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="HTML文本格式化"><a href="#HTML文本格式化" class="headerlink" title="HTML文本格式化"></a>HTML文本格式化</h3><p>文本格式化标签<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>  <span class="tag">&lt;<span class="name">big</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>:着重  </span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span>:斜体 <span class="tag">&lt;<span class="name">small</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">sub</span>&gt;</span>:下标字  <span class="tag">&lt;<span class="name">sup</span>&gt;</span>:上标字 </span><br><span class="line"><span class="tag">&lt;<span class="name">ins</span>&gt;</span>:插入字 <span class="tag">&lt;<span class="name">del</span>&gt;</span>:删除字 </span><br></pre></td></tr></table></figure></p>
+<p>计算机输出标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">code</span>&gt;</span>:计算机代码</span><br><span class="line"><span class="tag">&lt;<span class="name">kbd</span>&gt;</span>: 键盘码</span><br><span class="line"><span class="tag">&lt;<span class="name">samp</span>&gt;</span>: 定义计算机代码样本</span><br><span class="line"><span class="tag">&lt;<span class="name">tt</span>&gt;</span>:定义打字机代码,teletype text</span><br><span class="line"><span class="tag">&lt;<span class="name">var</span>&gt;</span>:定义变量,</span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span>:定义预格式文本,保留了空格和换行</span><br></pre></td></tr></table></figure>
+<h3 id="HTML引用"><a href="#HTML引用" class="headerlink" title="HTML引用"></a>HTML引用</h3><p><code>&lt;q&gt;</code>短引用,<code>&lt;blockquote&gt;</code>短引用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">q</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span></span><br><span class="line">    xxx</span><br><span class="line">    YYY</span><br><span class="line"><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>缩略词<code>&lt;abbr&gt;</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">&quot;World Health Organization&quot;</span>&gt;</span>WHO<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>定义词<code>&lt;dfn&gt;</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dfn</span> <span class="attr">title</span>=<span class="string">&quot;World Health Organization&quot;</span>&gt;</span>WHO<span class="tag">&lt;/<span class="name">dfn</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>著作标题<code>&lt;cite&gt;</code></p>
+<p>双向重写的<code>&lt;bdo&gt;</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bdo</span> <span class="attr">dir</span>=<span class="string">&quot;rtl&quot;</span>&gt;</span></span><br><span class="line">This line will be written from right to left</span><br><span class="line"><span class="tag">&lt;/<span class="name">bdo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="HTML链接"><a href="#HTML链接" class="headerlink" title="HTML链接"></a>HTML链接</h3><p>超级链接<code>&lt;a&gt;</code></p>
 <ul>
-<li>apply：返回每个样本被预测为叶子的概率</li>
-<li>get_depth：返回决策树的深度</li>
-<li>get_n_leaves：返回决策树的叶子数</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clf = DecisionTreeClassifier()</span><br><span class="line">iris = load_iris()</span><br><span class="line">cross_val_score(clf,iris.data,iris.target,cv=<span class="number">10</span>)</span><br><span class="line">&gt;&gt;&gt;array([<span class="number">1.</span>        , <span class="number">0.93333333</span>, <span class="number">1.</span>        , <span class="number">0.93333333</span>, <span class="number">0.93333333</span>,</span><br><span class="line">       <span class="number">0.86666667</span>, <span class="number">0.93333333</span>, <span class="number">1.</span>        , <span class="number">1.</span>        , <span class="number">1.</span>        ])</span><br></pre></td></tr></table></figure>
-<h3 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h3><p><code>class sklearn.tree.DecisionTreeRegressor(*, criterion=&#39;mse&#39;, splitter=&#39;best&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, presort=&#39;deprecated&#39;, ccp_alpha=0.0)</code></p>
-<p>实例</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_diabetes</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line">X, y = load_diabetes(return_X_y=<span class="literal">True</span>)</span><br><span class="line">regressor = DecisionTreeRegressor(random_state=<span class="number">0</span>)</span><br><span class="line">cross_val_score(regressor, X, y, cv=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">array([<span class="number">-0.39</span>..., <span class="number">-0.46</span>...,  <span class="number">0.02</span>...,  <span class="number">0.06</span>..., <span class="number">-0.50</span>...,</span><br><span class="line">       <span class="number">0.16</span>...,  <span class="number">0.11</span>..., <span class="number">-0.73</span>..., <span class="number">-0.30</span>..., <span class="number">-0.00</span>...])</span><br></pre></td></tr></table></figure>
-<h2 id="graphviz"><a href="#graphviz" class="headerlink" title="graphviz"></a>graphviz</h2><h3 id="安装、配置环境变量"><a href="#安装、配置环境变量" class="headerlink" title="安装、配置环境变量"></a>安装、配置环境变量</h3><ul>
-<li><p>下载：<a target="_blank" rel="noopener" href="https://www2.graphviz.org/Packages/stable/windows/10/cmake/Release/x64/graphviz-install-2.44.1-win64.exe">https://www2.graphviz.org/Packages/stable/windows/10/cmake/Release/x64/graphviz-install-2.44.1-win64.exe</a></p>
+<li><p>target属性，链接文档在何处显示。<code>_blank</code>，新建空白页。</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.nba.com.cn/&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>Visit NBA!<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>配置到环境变量 </p>
-</li>
-<li>pip install graphviz</li>
 </ul>
-<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dot_data = tree.export_graphviz(clf, out_file=<span class="literal">None</span>,                 feature_names=iris.feature_names,  </span><br><span class="line">class_names=iris.target_names,  </span><br><span class="line">filled=<span class="literal">True</span>, rounded=<span class="literal">True</span>,  </span><br><span class="line">special_characters=<span class="literal">True</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>graph = graphviz.Source(dot_data)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>graph.render(<span class="string">&#x27;iris&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>输出保存为一个’iris.pdf’文件</p>
-<p><img src="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/iris.png" alt="&quot;iris.pdf&quot;"></p>
+<h3 id="HTML图像"><a href="#HTML图像" class="headerlink" title="HTML图像"></a>HTML图像</h3><p><code>&lt;img src=&#39;xxx&#39;&gt;</code></p>
+<ul>
+<li>alt属性：替换图像的文本，如果图片不能加载就显示文本信息。</li>
+</ul>
+<h3 id="HTML表格"><a href="#HTML表格" class="headerlink" title="HTML表格"></a>HTML表格</h3><p><code>&lt;table&gt;</code>表格，每个表格有若干个行<code>&lt;tr&gt;</code>，每行有若干个单元格<code>&lt;td&gt;</code>(table data)</p>
+<p>如果不定义边框属性<code>border</code>，表格不显示边框。</p>
+<p><code>&lt;th&gt;</code>表格表头，粗体居中。</p>
+<p><code>&lt;caption&gt;</code>标题，<code>&lt;cellpadding&gt;</code>单元格内容与边框的距离。</p>
+<p>某一项没有内容使用占位符<code>&amp;nbsp;</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">6</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">td</span>&gt;</span>name<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>age<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">td</span>&gt;</span>cjx<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">td</span>&gt;</span>10<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<table border="6">
+<caption>效果图</caption>
+    <tr>
+        <td>name</td>
+        <td>age</td>
+    </tr>
+    <tr>
+        <td>cjx</td>
+        <td>10</td>
+    </tr>
+</table>
+
+<h3 id="HTML列表"><a href="#HTML列表" class="headerlink" title="HTML列表"></a>HTML列表</h3><ul>
+<li>有序列表：<code>&lt;ol&gt;</code>,每个列表项<code>&lt;li&gt;</code></li>
+<li>无序列表：<code>&lt;ul&gt;</code>,每个列表项<code>&lt;li&gt;</code></li>
+<li>定义列表：<code>&lt;dl&gt;</code>，每一项数据<code>&lt;dd&gt;</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>iphone<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>xiaomi<span class="tag">&lt;/<span class="name">li?</span></span></span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>iphone<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>huawei<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>iphone<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>huawei<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果3</p>
+<dl>
+    <dd>iphone</dd>
+    <dd>huawei</dd>
+</dl>
+
+
+
+<h3 id="HTML块"><a href="#HTML块" class="headerlink" title="HTML块"></a>HTML块</h3><p>块级元素block level element和内联元素inline elment。</p>
+<ul>
+<li>块元素：<code>&lt;h1&gt;,&lt;p&gt;,&lt;ul&gt;,&lt;table&gt;</code></li>
+<li>内联元素：<code>&lt;b&gt;,&lt;td&gt;,&lt;a&gt;,&lt;img&gt;</code></li>
+</ul>
+<ol>
+<li><p><code>&lt;div&gt;</code>元素</p>
+<p>块级元素用于组合其他HTML元素的容器。</p>
+<p>浏览器的在前后折行。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color:#00FF00&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>This is a header<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p><code>&lt;span&gt;</code>元素</p>
+<p>内联元素，可用作文本的容器。</p>
+</li>
+</ol>
+<h3 id="HTML布局"><a href="#HTML布局" class="headerlink" title="HTML布局"></a>HTML布局</h3><ul>
+<li>header：文档页眉</li>
+<li>nav：导航链接的容器</li>
+<li>section：文档中的节</li>
+<li>article：自包含文章</li>
+<li>aside：内容之外的内容（侧边栏等）</li>
+<li>footer：页脚</li>
+<li>details：额外的细节</li>
+<li>summary：details元素的标题</li>
+</ul>
+<h2 id="HTML表单"><a href="#HTML表单" class="headerlink" title="HTML表单"></a>HTML表单</h2><h3 id="HTML表单元素"><a href="#HTML表单元素" class="headerlink" title="HTML表单元素"></a>HTML表单元素</h3><p><code>&lt;form&gt;</code>元素定义表单</p>
+<h4 id="lt-input-gt-元素"><a href="#lt-input-gt-元素" class="headerlink" title="&lt;input&gt;元素"></a><code>&lt;input&gt;</code>元素</h4><ul>
+<li><p>text：文本输入，默认宽度20字符</p>
+</li>
+<li><p>radio：单选按钮输入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;radio&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;sex&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;male&#x27;</span>&gt;</span>Male</span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;female&quot;</span>&gt;</span>Female</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<form>
+  <input type="radio" name="sex" value="male">Male
+  <input type="radio" name="sex" value="female">Female
+</form> 
+
+
+</li>
+</ul>
+<ul>
+<li>submit：提交按钮</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  First name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;firstname&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  Last name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;lastname&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<form>
+  First name:<br>
+  <input type="text" name="firstname">
+  <br>
+  Last name:<br>
+  <input type="text" name="lastname">
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p><code>action</code>属性定义在提交表单时执行的动作。省略这个属性则会设置为当前页面。</p>
+<p><code>method</code>属性提交表单时所用的HTTP方法</p>
+<p><code>name</code>属性，要被正确提交需要这个属性</p>
+<h4 id="使用field元素"><a href="#使用field元素" class="headerlink" title="使用field元素"></a>使用field元素</h4><p><code>&lt;fieldset&gt;</code>元素组合表单中的相关数据</p>
+<p><code>&lt;legend&gt;</code>元素为 <code>&lt;fieldset&gt;</code> 元素定义标题。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">legend</span>&gt;</span>Personal information:<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    First name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;firstname&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    Last name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;lastname&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<form>
+  <fieldset>
+      <legend>Personal information:</legend>
+    First name:<br>
+    <input type="text" name="firstname">
+    <br>
+    Last name:<br>
+    <input type="text" name="lastname">
+    <br>
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>
+
+<h4 id="lt-select-gt-元素下拉列表选择"><a href="#lt-select-gt-元素下拉列表选择" class="headerlink" title="&lt;select&gt;元素下拉列表选择"></a><code>&lt;select&gt;</code>元素下拉列表选择</h4><p><code>&lt;select&gt;</code>下拉列表</p>
+<p><code>&lt;option&gt;</code>待选项</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;players&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;Paul&quot;</span>&gt;</span>Paul<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;Curry&quot;</span>&gt;</span>Curry<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<form>
+    <select name="players">
+      <option value="Paul">Paul</option>
+      <option value="Curry">Curry</option>
+    </select>
+    <br>
+    <input type="submit">
+</form>
+
+<h4 id="lt-textarea-gt-元素"><a href="#lt-textarea-gt-元素" class="headerlink" title="&lt;textarea&gt;元素"></a><code>&lt;textarea&gt;</code>元素</h4><p>多行输入字段</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">cols</span>=<span class="string">&quot;10&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;2&quot;</span> <span class="attr">disable</span>&gt;</span></span><br><span class="line">220年度MVP</span><br><span class="line">    最佳1号床 </span><br><span class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<textarea cols="10" rows="2" disable>
+220年度MVP
+    最佳1号床 
+</textarea>
+
+<h4 id="lt-button-gt-元素"><a href="#lt-button-gt-元素" class="headerlink" title="&lt;button&gt;元素"></a><code>&lt;button&gt;</code>元素</h4><p>可点击的按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;Hello World!&#x27;)&quot;</span>&gt;</span>Click！<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<button type="button" onclick="alert('Hello World!')">Click！</button>
+
+<h3 id="HTML输入类型"><a href="#HTML输入类型" class="headerlink" title="HTML输入类型"></a>HTML输入类型</h3><ul>
+<li><p>text</p>
+</li>
+<li><p>password</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">User name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;userid&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">User password:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;psw&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<form>
+User name:<br>
+<input type="text" name="userid">
+<br>
+User password:<br>
+<input type="password" name="psw">
+</form>
+</li>
+<li><p>submit</p>
+</li>
+<li><p>radio</p>
+</li>
+<li><p>checkbox：复选框</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;vehicle&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Bike&quot;</span>&gt;</span>I have a bike</span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;vehicle&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Car&quot;</span>&gt;</span>I have a car </span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<form>
+  <input type="checkbox" name="vehicle" value="Bike">I have a bike
+  <br>
+  <input type="checkbox" name="vehicle" value="Car">I have a car 
+  <br><br>
+</form> 
+</li>
+<li><p>button</p>
+</li>
+<li><p>number</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  数量（1 到 5 之间）：</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;number&quot;</span> <span class="attr">min</span>=<span class="string">&quot;1&quot;</span> <span class="attr">max</span>=<span class="string">&quot;5&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<form>
+  数量（1 到 5 之间）：
+  <input type="number" min="1" max="5">
+  <input type="submit">
+</form>
+</li>
+<li><p>date</p>
+</li>
+<li>color</li>
+<li>month</li>
+</ul>
+<h3 id="HTML输入属性"><a href="#HTML输入属性" class="headerlink" title="HTML输入属性"></a>HTML输入属性</h3><ul>
+<li>value：输入字段的初始值</li>
+<li>readonly：规定字段为只读</li>
+<li>disabled：字段禁用，不可点击</li>
+<li>size：输入字段的尺寸</li>
+<li>maxlength：输入字段允许的最大字段</li>
+<li>min、max</li>
+<li>height、width</li>
+</ul>
 
       
     </div>
@@ -407,7 +554,7 @@ a_* = \arg\min_{a\in A}Gini\_index(D,a)</script><h2 id="sklearn-DecisionTree"><a
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

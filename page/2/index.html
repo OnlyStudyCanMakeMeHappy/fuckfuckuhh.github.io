@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/22/machine%20learning/%E5%A4%9A%E7%B1%BB%E5%92%8C%E5%A4%9A%E6%A0%87%E7%AD%BE%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/machine%20learning/PCA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/22/machine%20learning/%E5%A4%9A%E7%B1%BB%E5%92%8C%E5%A4%9A%E6%A0%87%E7%AD%BE%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">多类和多标签算法</a>
+            <a href="/2020/11/25/machine%20learning/PCA/" class="post-title-link" itemprop="url">PCA</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,10 +281,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-22 20:24:39 / 修改时间：22:05:33" itemprop="dateCreated datePublished" datetime="2020-11-22T20:24:39+08:00">2020-11-22</time>
+      <time title="创建时间：2020-11-25 21:08:34" itemprop="dateCreated datePublished" datetime="2020-11-25T21:08:34+08:00">2020-11-25</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-26 17:10:07" itemprop="dateModified" datetime="2020-11-26T17:10:07+08:00">2020-11-26</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -305,36 +311,67 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h4 id="单标签多分类"><a href="#单标签多分类" class="headerlink" title="单标签多分类"></a>单标签多分类</h4><p>对单标签的多类别进行判别</p>
-<p>模型</p>
+          <h2 id="principal-component-analysis"><a href="#principal-component-analysis" class="headerlink" title="principal component analysis"></a>principal component analysis</h2><h3 id="正交投影矩阵"><a href="#正交投影矩阵" class="headerlink" title="正交投影矩阵"></a>正交投影矩阵</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>设$A\in\mathbb{R}^{m\times n},x\in\mathbb{R}^m,c\in\mathbb{R}^n$，$x_w$为投影，$x-x_w$正交所有基向量得</p>
 <script type="math/tex; mode=display">
-y = f(x),y\in\lbrace t_1,t_2,...,t_n\rbrace</script><p>策略</p>
-<ul>
-<li><p>OvO：将n个类别的两两类别的数据进行训练，训练出$k=\frac{n(n-1)}{2}$个分类器。最后用这k个分类器进行投票决出类别。</p>
+A^Tx_w=0\Rightarrow A^T(x-Ac) = \vec 0\Rightarrow x_w=Ac=A(A^TA)^{-1}A^Tx</script><p>所以投影矩阵为$P=A(A^TA)^{-1}A^T\in\mathbb{R}^{m\times m}$，rank(P) = k。</p>
+<p>如果A的列向量是正交规范基，那么$P=AIA^T$。</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><script type="math/tex; mode=display">
+\begin{align}
+&P = P^T\\
+&P^2 = P\\
+\end{align}</script><ul>
+<li><p>特征值只包含0和1。</p>
 </li>
-<li><p>OvR：每次将一个类别的样例作为正例，其余类别作为反例作为训练数据，训练出$n$个分类器。如果分类器中只有一个分类器预测为正类，则对应类别作为标签的类别。如果有多个训练其判别为正类则考虑分类置信度。<br><img src="/2020/11/22/machine%20learning/%E5%A4%9A%E7%B1%BB%E5%92%8C%E5%A4%9A%E6%A0%87%E7%AD%BE%E7%AE%97%E6%B3%95/1.png" alt="img" style="zoom:50%;"></p>
-</li>
-<li><p>MvM：每次将若干个类作为正类，其余作为反类。常用技术EOOC(纠错输出码)。</p>
-<ul>
-<li><p>编码：将N个类别做M次划分，每次划分将一部分类别作为正类，其他类别作为反类。得到M个分类器。</p>
-</li>
-<li><p>解码：将预测编码与各类别编码进行比较，返回距离最小的类别。</p>
-</li>
-</ul>
+<li><p>正交投影矩阵是一个幂等矩阵。</p>
 </li>
 </ul>
-<p><img src="/2020/11/22/machine%20learning/%E5%A4%9A%E7%B1%BB%E5%92%8C%E5%A4%9A%E6%A0%87%E7%AD%BE%E7%AE%97%E6%B3%95/2.png" alt="2" style="zoom:50%;"></p>
-<hr>
-<h4 id="多标签多分类"><a href="#多标签多分类" class="headerlink" title="多标签多分类"></a>多标签多分类</h4><p>模型需要预测多个标签的值，每个标签有多个取值。例如一条新闻可以归类为金融、时政…</p>
-<p>支持多标签分类的算法有：决策树模型、近邻算法、随机森林、神经网络</p>
-<ul>
-<li>标签之间无关联：将多标签分类转换为多个单标签分类问题</li>
-<li><p>标签之间有依赖：二元分类器链，每一个模型的预测结果将会传递给链上的下一个模型作为特征来进行使用。链上的第一个模型没有关于其他标签的信息，而链上的最后一个模型将会具有所有其他标签的信息。 在一般情况下，我们并不知道链上模型最优的顺序，因此通常会使用许多随机的顺序，将他们的预测求平均</p>
-</li>
-<li><p>标签之间两两关联：</p>
-</li>
-</ul>
+<h3 id="Rayleigh商"><a href="#Rayleigh商" class="headerlink" title="Rayleigh商"></a>Rayleigh商</h3><p><strong>对称矩阵A</strong>的瑞利商，定义R(x)一个标量，待求向量x</p>
+<script type="math/tex; mode=display">
+R(x) = \frac{x^TAx}{x^Tx}</script><h4 id="Rayleigh-Ritz-定理"><a href="#Rayleigh-Ritz-定理" class="headerlink" title="Rayleigh-Ritz 定理"></a>Rayleigh-Ritz 定理</h4><p>令A的特征值递增排列</p>
+<script type="math/tex; mode=display">
+\lambda_{min} = \lambda_1 \le\lambda_2\dots\le\lambda_{n-1}\le\lambda_{n}=\lambda_{max}</script><p>则</p>
+<script type="math/tex; mode=display">
+\max\frac{x^TAx}{x^Tx}=\max_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{max},若Ax=\lambda_{max}x\\
+\min\frac{x^TAx}{x^Tx}=\min_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{min},若Ax=\lambda_{min}x\\</script><h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>A是对称矩阵所以存在一个正交矩阵M和对角矩阵$\Lambda=(\lambda_1,\dots,\lambda_n)$,使得$A=M\Lambda M^T$，所以</p>
+<script type="math/tex; mode=display">
+\frac{x^TAx}{x^Tx} = \frac{x^TM\Lambda M^Tx}{x^Tx} = \frac{p^T\Lambda p}{x^Tx}</script><p>其中$p=M^Tx$，所以</p>
+<script type="math/tex; mode=display">
+R(x) = \frac{p^T\Lambda p}{x^Tx} = \frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>所以有</p>
+<script type="math/tex; mode=display">
+\frac{\lambda_1||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\lambda_n||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>容易求得$p_i^2=x_i^2$。所以</p>
+<script type="math/tex; mode=display">
+R(x)_{min}=\lambda_{min},R(x)_{max}=\lambda_{max}​</script><p>​    </p>
+<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><h4 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h4><p>让$\large\mathbf x$去均值中心化，$\sum_{i=1}^m\mathbf{x_i=0}$。定义$\mathcal P_k\in\mathbb R^{N\times N}$为N维秩为k的正交投影矩阵。</p>
+<p>将样本降维后，目标要最小化重构错误。</p>
+<script type="math/tex; mode=display">
+\min_{\mathbf P\in\mathcal P_k}||\mathbf{PX-X}||^2_F</script><p>样本的协方差矩阵$\mathrm{C}=\frac{1}{m}\mathrm{XX^T}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+||\mathbf{PX-X}||^2_F &= Tr[\mathbf{(PX-X)^T(PX-X)}]\\
+&=Tr[\mathbf{X^TP^2X-2X^TPX+X^TX}]\\
+&=-Tr[\mathbf{X^TPX}]+Tr[\mathbf{X^TX}]\\
+&=-Tr[\mathbf{X^TPX}]+costant\\
+\end{align}</script><hr>
+<script type="math/tex; mode=display">
+\underset{\mathrm P\in\mathcal P_k}{\arg\min}||\mathbf{PX-X}||^2_F=\underset{\mathrm P\in\mathcal P_k}{\arg\max}Tr[\mathbf{X^TPX}]</script><hr>
 
+<p>$\mathbf{P=UU^T},U\in\mathbb{R}^{N\times k}$包含正交规范列向量。$\mathbf{U}$由$\mathbf{C}$的最大前K个特征值对应的特征向量组成。</p>
+<ul>
+<li>$||u_i||=1，u_iu_j=0$。</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+Tr[\mathbf{X^TPX}] &= Tr[\mathbf{X^TUU^TX}]=Tr[\mathbf{U^TXX^TU}] \\
+&= \sum_{i=1}^ku_i^T\mathbf{XX^T}u_i = \sum_{i=1}^k\frac{u_i^T\mathbf{XX^T}u_i}{u_i^Tu_i}
+\end{align}</script><ul>
+<li>因为$\mathbf{XX^T}$与$\mathbf{C}$只相差缩放因子，所以两矩阵有相同的奇异向量。选择最大的前k个奇异值能最大化上式和。</li>
+<li>$\mathbf{Y=U_k^TX}$表示$\mathbf{X}$使用$\mathbf{U_k}$作为基向量，$\mathbf{PX=UU^TX=UY}$表示$\mathbf{Y}$在新空间下的线性组合(坐标)，即在新空间下的投影。</li>
+</ul>
+<p>PCA也可以被视为投射到最大方差子空间。在这种解释下，第一个主成分是从投影到最大方差方向的，由C的上最大奇异值对应的奇异向量决定。同样，对于1≤i≤k，第i个主成分，<br>是从最大方差的第i个方向上的投影得出，服从正交最大方差的前i − 1方向约束。</p>
+<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><p><img src="/2020/11/25/machine%20learning/PCA/1.png" alt="PCA描述"></p>
+<p>对于${d}’$值可以通过通过k近邻分类器和交叉验证选取，还可以通过设置一个重构阈值，例如t=95%，满足</p>
+<script type="math/tex; mode=display">
+\frac{\sum_{i=1}^{d'}\lambda_i}{\sum_{i=1}^{d}\lambda_i}\ge t</script>
       
     </div>
 
@@ -355,7 +392,7 @@ y = f(x),y\in\lbrace t_1,t_2,...,t_n\rbrace</script><p>策略</p>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

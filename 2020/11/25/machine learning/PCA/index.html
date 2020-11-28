@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon-money.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon-money.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":6},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="principal component analysis正交投影矩阵定义设$A\in\mathbb{R}^{m\times n},x\in\mathbb{R}^m,c\in\mathbb{R}^n$，$x_w$为投影，$x-x_w$正交所有基向量得  A^Tx_w&#x3D;0\Rightarrow A^T(x-Ac) &#x3D; \vec 0\Rightarrow x_w&#x3D;Ac&#x3D;A(A^TA)^{-1}A^Tx所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PCA">
+<meta property="og:url" content="http://example.com/2020/11/25/machine%20learning/PCA/index.html">
+<meta property="og:site_name" content="Mr.fuck">
+<meta property="og:description" content="principal component analysis正交投影矩阵定义设$A\in\mathbb{R}^{m\times n},x\in\mathbb{R}^m,c\in\mathbb{R}^n$，$x_w$为投影，$x-x_w$正交所有基向量得  A^Tx_w&#x3D;0\Rightarrow A^T(x-Ac) &#x3D; \vec 0\Rightarrow x_w&#x3D;Ac&#x3D;A(A^TA)^{-1}A^Tx所">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/11/25/machine%20learning/PCA/1.png">
+<meta property="article:published_time" content="2020-11-25T13:08:34.000Z">
+<meta property="article:modified_time" content="2020-11-26T09:10:07.452Z">
+<meta property="article:author" content="ggl">
+<meta property="article:tag" content="降维">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/25/machine%20learning/PCA/1.png">
+
+
+<link rel="canonical" href="http://example.com/2020/11/25/machine%20learning/PCA/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>PCA | Mr.fuck</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Mr.fuck</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#principal-component-analysis"><span class="nav-number">1.</span> <span class="nav-text">principal component analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5"><span class="nav-number">1.1.</span> <span class="nav-text">正交投影矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">性质</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rayleigh%E5%95%86"><span class="nav-number">1.2.</span> <span class="nav-text">Rayleigh商</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Rayleigh-Ritz-%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">Rayleigh-Ritz 定理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">证明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA"><span class="nav-number">1.3.</span> <span class="nav-text">PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.3.1.</span> <span class="nav-text">数学推导</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.3.2.</span> <span class="nav-text">算法描述</span></a></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ggl"
+      src="/images/Kobe.jpg">
+  <p class="site-author-name" itemprop="name">ggl</p>
+  <div class="site-description" itemprop="description">wdnmd</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button site-overview-item animated"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fuckfuckuhh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fuckfuckuhh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenxiaoxiang0102@gmail.com" title="E-Mail → mailto:chenxiaoxiang0102@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/machine%20learning/PCA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Kobe.jpg">
+      <meta itemprop="name" content="ggl">
+      <meta itemprop="description" content="wdnmd">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.fuck">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PCA
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-25 21:08:34" itemprop="dateCreated datePublished" datetime="2020-11-25T21:08:34+08:00">2020-11-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-26 17:10:07" itemprop="dateModified" datetime="2020-11-26T17:10:07+08:00">2020-11-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="principal-component-analysis"><a href="#principal-component-analysis" class="headerlink" title="principal component analysis"></a>principal component analysis</h2><h3 id="正交投影矩阵"><a href="#正交投影矩阵" class="headerlink" title="正交投影矩阵"></a>正交投影矩阵</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>设$A\in\mathbb{R}^{m\times n},x\in\mathbb{R}^m,c\in\mathbb{R}^n$，$x_w$为投影，$x-x_w$正交所有基向量得</p>
+<script type="math/tex; mode=display">
+A^Tx_w=0\Rightarrow A^T(x-Ac) = \vec 0\Rightarrow x_w=Ac=A(A^TA)^{-1}A^Tx</script><p>所以投影矩阵为$P=A(A^TA)^{-1}A^T\in\mathbb{R}^{m\times m}$，rank(P) = k。</p>
+<p>如果A的列向量是正交规范基，那么$P=AIA^T$。</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><script type="math/tex; mode=display">
+\begin{align}
+&P = P^T\\
+&P^2 = P\\
+\end{align}</script><ul>
+<li><p>特征值只包含0和1。</p>
+</li>
+<li><p>正交投影矩阵是一个幂等矩阵。</p>
+</li>
+</ul>
+<h3 id="Rayleigh商"><a href="#Rayleigh商" class="headerlink" title="Rayleigh商"></a>Rayleigh商</h3><p><strong>对称矩阵A</strong>的瑞利商，定义R(x)一个标量，待求向量x</p>
+<script type="math/tex; mode=display">
+R(x) = \frac{x^TAx}{x^Tx}</script><h4 id="Rayleigh-Ritz-定理"><a href="#Rayleigh-Ritz-定理" class="headerlink" title="Rayleigh-Ritz 定理"></a>Rayleigh-Ritz 定理</h4><p>令A的特征值递增排列</p>
+<script type="math/tex; mode=display">
+\lambda_{min} = \lambda_1 \le\lambda_2\dots\le\lambda_{n-1}\le\lambda_{n}=\lambda_{max}</script><p>则</p>
+<script type="math/tex; mode=display">
+\max\frac{x^TAx}{x^Tx}=\max_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{max},若Ax=\lambda_{max}x\\
+\min\frac{x^TAx}{x^Tx}=\min_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{min},若Ax=\lambda_{min}x\\</script><h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>A是对称矩阵所以存在一个正交矩阵M和对角矩阵$\Lambda=(\lambda_1,\dots,\lambda_n)$,使得$A=M\Lambda M^T$，所以</p>
+<script type="math/tex; mode=display">
+\frac{x^TAx}{x^Tx} = \frac{x^TM\Lambda M^Tx}{x^Tx} = \frac{p^T\Lambda p}{x^Tx}</script><p>其中$p=M^Tx$，所以</p>
+<script type="math/tex; mode=display">
+R(x) = \frac{p^T\Lambda p}{x^Tx} = \frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>所以有</p>
+<script type="math/tex; mode=display">
+\frac{\lambda_1||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\lambda_n||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>容易求得$p_i^2=x_i^2$。所以</p>
+<script type="math/tex; mode=display">
+R(x)_{min}=\lambda_{min},R(x)_{max}=\lambda_{max}​</script><p>​    </p>
+<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><h4 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h4><p>让$\large\mathbf x$去均值中心化，$\sum_{i=1}^m\mathbf{x_i=0}$。定义$\mathcal P_k\in\mathbb R^{N\times N}$为N维秩为k的正交投影矩阵。</p>
+<p>将样本降维后，目标要最小化重构错误。</p>
+<script type="math/tex; mode=display">
+\min_{\mathbf P\in\mathcal P_k}||\mathbf{PX-X}||^2_F</script><p>样本的协方差矩阵$\mathrm{C}=\frac{1}{m}\mathrm{XX^T}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+||\mathbf{PX-X}||^2_F &= Tr[\mathbf{(PX-X)^T(PX-X)}]\\
+&=Tr[\mathbf{X^TP^2X-2X^TPX+X^TX}]\\
+&=-Tr[\mathbf{X^TPX}]+Tr[\mathbf{X^TX}]\\
+&=-Tr[\mathbf{X^TPX}]+costant\\
+\end{align}</script><hr>
+<script type="math/tex; mode=display">
+\underset{\mathrm P\in\mathcal P_k}{\arg\min}||\mathbf{PX-X}||^2_F=\underset{\mathrm P\in\mathcal P_k}{\arg\max}Tr[\mathbf{X^TPX}]</script><hr>
+
+<p>$\mathbf{P=UU^T},U\in\mathbb{R}^{N\times k}$包含正交规范列向量。$\mathbf{U}$由$\mathbf{C}$的最大前K个特征值对应的特征向量组成。</p>
+<ul>
+<li>$||u_i||=1，u_iu_j=0$。</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+Tr[\mathbf{X^TPX}] &= Tr[\mathbf{X^TUU^TX}]=Tr[\mathbf{U^TXX^TU}] \\
+&= \sum_{i=1}^ku_i^T\mathbf{XX^T}u_i = \sum_{i=1}^k\frac{u_i^T\mathbf{XX^T}u_i}{u_i^Tu_i}
+\end{align}</script><ul>
+<li>因为$\mathbf{XX^T}$与$\mathbf{C}$只相差缩放因子，所以两矩阵有相同的奇异向量。选择最大的前k个奇异值能最大化上式和。</li>
+<li>$\mathbf{Y=U_k^TX}$表示$\mathbf{X}$使用$\mathbf{U_k}$作为基向量，$\mathbf{PX=UU^TX=UY}$表示$\mathbf{Y}$在新空间下的线性组合(坐标)，即在新空间下的投影。</li>
+</ul>
+<p>PCA也可以被视为投射到最大方差子空间。在这种解释下，第一个主成分是从投影到最大方差方向的，由C的上最大奇异值对应的奇异向量决定。同样，对于1≤i≤k，第i个主成分，<br>是从最大方差的第i个方向上的投影得出，服从正交最大方差的前i − 1方向约束。</p>
+<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><p><img src="/2020/11/25/machine%20learning/PCA/1.png" alt="PCA描述"></p>
+<p>对于${d}’$值可以通过通过k近邻分类器和交叉验证选取，还可以通过设置一个重构阈值，例如t=95%，满足</p>
+<script type="math/tex; mode=display">
+\frac{\sum_{i=1}^{d'}\lambda_i}{\sum_{i=1}^{d}\lambda_i}\ge t</script>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/alipay.png" alt="ggl 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E9%99%8D%E7%BB%B4/" rel="tag"># 降维</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/25/math/" rel="prev" title="math">
+                  <i class="fa fa-chevron-left"></i> math
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/26/machine%20learning/%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/" rel="next" title="特征选择">
+                  特征选择 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ggl</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
