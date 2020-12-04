@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2020/11/25/machine%20learning/PCA/1.png">
 <meta property="article:published_time" content="2020-11-25T13:08:34.000Z">
-<meta property="article:modified_time" content="2020-11-26T09:10:07.452Z">
+<meta property="article:modified_time" content="2020-12-01T13:33:56.781Z">
 <meta property="article:author" content="ggl">
 <meta property="article:tag" content="降维">
 <meta name="twitter:card" content="summary">
@@ -183,7 +183,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#principal-component-analysis"><span class="nav-number">1.</span> <span class="nav-text">principal component analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5"><span class="nav-number">1.1.</span> <span class="nav-text">正交投影矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">性质</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rayleigh%E5%95%86"><span class="nav-number">1.2.</span> <span class="nav-text">Rayleigh商</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Rayleigh-Ritz-%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">Rayleigh-Ritz 定理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">证明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA"><span class="nav-number">1.3.</span> <span class="nav-text">PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.3.1.</span> <span class="nav-text">数学推导</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.3.2.</span> <span class="nav-text">算法描述</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#principal-component-analysis"><span class="nav-number">1.</span> <span class="nav-text">principal component analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5"><span class="nav-number">1.1.</span> <span class="nav-text">正交投影矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">性质</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rayleigh%E5%95%86"><span class="nav-number">1.2.</span> <span class="nav-text">Rayleigh商</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Rayleigh-Ritz-%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">Rayleigh-Ritz 定理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">证明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA"><span class="nav-number">1.3.</span> <span class="nav-text">PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.3.1.</span> <span class="nav-text">数学推导</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%AD%E5%BF%83%E5%8C%96"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">中心化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.3.2.</span> <span class="nav-text">算法描述</span></a></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -199,7 +199,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -212,7 +212,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -295,7 +295,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-26 17:10:07" itemprop="dateModified" datetime="2020-11-26T17:10:07+08:00">2020-11-26</time>
+        <time title="修改时间：2020-12-01 21:33:56" itemprop="dateModified" datetime="2020-12-01T21:33:56+08:00">2020-12-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -347,7 +347,16 @@ R(x) = \frac{p^T\Lambda p}{x^Tx} = \frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i
 \frac{\lambda_1||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\lambda_n||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>容易求得$p_i^2=x_i^2$。所以</p>
 <script type="math/tex; mode=display">
 R(x)_{min}=\lambda_{min},R(x)_{max}=\lambda_{max}​</script><p>​    </p>
-<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><h4 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h4><p>让$\large\mathbf x$去均值中心化，$\sum_{i=1}^m\mathbf{x_i=0}$。定义$\mathcal P_k\in\mathbb R^{N\times N}$为N维秩为k的正交投影矩阵。</p>
+<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><h4 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h4><h5 id="中心化"><a href="#中心化" class="headerlink" title="中心化"></a>中心化</h5><script type="math/tex; mode=display">
+\begin{align}
+&\mu = \frac{1}{m}\sum_{i=1}^m\mathbf x_i =\frac{1}{m}\mathbf X\mathbf 1\\
+\Sigma &= \frac{1}{m}\sum_{i=1}^m(\mathbf x-\mu)(\mathbf x-\mu)^T \\
+& = \frac{1}{m}[(\mathbf x_1,\dots,\mathbf x_m)-\mu(1,\dots,1)_m][(\mathbf x_1,\dots,\mathbf x_m)-\mu(1,\dots,1)_m]^T\\
+& = \frac{1}{m}(\mathbf X-\frac{1}{m}\mathbf {X1^T})(\mathbf X-\frac{1}{m}\mathbf {X1^T})^T\\
+& = \frac{1}{m}[\mathbf X(\mathbf I-\frac{1}{m}\mathbf {1^T})][\mathbf X(\mathbf I-\frac{1}{m}\mathbf {1^T})]^T\\
+\end{align}</script><p>记矩阵$\mathbf{1-\frac{1}{m}1^T}$为centering matrix，上式等价于</p>
+<script type="math/tex; mode=display">
+\Sigma = \frac{1}{m}\mathbf{XHH^TX}</script><p>让$\large\mathbf x$去均值中心化，$\sum_{i=1}^m\mathbf{x_i=0}$。定义$\mathcal P_k\in\mathbb R^{N\times N}$为N维秩为k的正交投影矩阵。</p>
 <p>将样本降维后，目标要最小化重构错误。</p>
 <script type="math/tex; mode=display">
 \min_{\mathbf P\in\mathcal P_k}||\mathbf{PX-X}||^2_F</script><p>样本的协方差矩阵$\mathrm{C}=\frac{1}{m}\mathrm{XX^T}$</p>

@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/machine%20learning/PCA/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/30/EM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/25/machine%20learning/PCA/" class="post-title-link" itemprop="url">PCA</a>
+            <a href="/2020/11/30/EM/" class="post-title-link" itemprop="url">EM</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,16 +281,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-11-25 21:08:34" itemprop="dateCreated datePublished" datetime="2020-11-25T21:08:34+08:00">2020-11-25</time>
+      <time title="创建时间：2020-11-30 10:21:44 / 修改时间：19:25:56" itemprop="dateCreated datePublished" datetime="2020-11-30T10:21:44+08:00">2020-11-30</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-26 17:10:07" itemprop="dateModified" datetime="2020-11-26T17:10:07+08:00">2020-11-26</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -311,67 +305,84 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="principal-component-analysis"><a href="#principal-component-analysis" class="headerlink" title="principal component analysis"></a>principal component analysis</h2><h3 id="正交投影矩阵"><a href="#正交投影矩阵" class="headerlink" title="正交投影矩阵"></a>正交投影矩阵</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>设$A\in\mathbb{R}^{m\times n},x\in\mathbb{R}^m,c\in\mathbb{R}^n$，$x_w$为投影，$x-x_w$正交所有基向量得</p>
-<script type="math/tex; mode=display">
-A^Tx_w=0\Rightarrow A^T(x-Ac) = \vec 0\Rightarrow x_w=Ac=A(A^TA)^{-1}A^Tx</script><p>所以投影矩阵为$P=A(A^TA)^{-1}A^T\in\mathbb{R}^{m\times m}$，rank(P) = k。</p>
-<p>如果A的列向量是正交规范基，那么$P=AIA^T$。</p>
-<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><script type="math/tex; mode=display">
-\begin{align}
-&P = P^T\\
-&P^2 = P\\
-\end{align}</script><ul>
-<li><p>特征值只包含0和1。</p>
+          <h1 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><ul>
+<li><p>输入：观测数据Y，隐变量数据Z，联合分布$p(Y,Z|\theta)$，条件分布$p(Z|Y,\theta)$</p>
 </li>
-<li><p>正交投影矩阵是一个幂等矩阵。</p>
+<li><p>输出：模型参数$\theta$</p>
 </li>
-</ul>
-<h3 id="Rayleigh商"><a href="#Rayleigh商" class="headerlink" title="Rayleigh商"></a>Rayleigh商</h3><p><strong>对称矩阵A</strong>的瑞利商，定义R(x)一个标量，待求向量x</p>
-<script type="math/tex; mode=display">
-R(x) = \frac{x^TAx}{x^Tx}</script><h4 id="Rayleigh-Ritz-定理"><a href="#Rayleigh-Ritz-定理" class="headerlink" title="Rayleigh-Ritz 定理"></a>Rayleigh-Ritz 定理</h4><p>令A的特征值递增排列</p>
-<script type="math/tex; mode=display">
-\lambda_{min} = \lambda_1 \le\lambda_2\dots\le\lambda_{n-1}\le\lambda_{n}=\lambda_{max}</script><p>则</p>
-<script type="math/tex; mode=display">
-\max\frac{x^TAx}{x^Tx}=\max_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{max},若Ax=\lambda_{max}x\\
-\min\frac{x^TAx}{x^Tx}=\min_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{min},若Ax=\lambda_{min}x\\</script><h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>A是对称矩阵所以存在一个正交矩阵M和对角矩阵$\Lambda=(\lambda_1,\dots,\lambda_n)$,使得$A=M\Lambda M^T$，所以</p>
-<script type="math/tex; mode=display">
-\frac{x^TAx}{x^Tx} = \frac{x^TM\Lambda M^Tx}{x^Tx} = \frac{p^T\Lambda p}{x^Tx}</script><p>其中$p=M^Tx$，所以</p>
-<script type="math/tex; mode=display">
-R(x) = \frac{p^T\Lambda p}{x^Tx} = \frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>所以有</p>
-<script type="math/tex; mode=display">
-\frac{\lambda_1||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\lambda_n||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>容易求得$p_i^2=x_i^2$。所以</p>
-<script type="math/tex; mode=display">
-R(x)_{min}=\lambda_{min},R(x)_{max}=\lambda_{max}​</script><p>​    </p>
-<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><h4 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h4><p>让$\large\mathbf x$去均值中心化，$\sum_{i=1}^m\mathbf{x_i=0}$。定义$\mathcal P_k\in\mathbb R^{N\times N}$为N维秩为k的正交投影矩阵。</p>
-<p>将样本降维后，目标要最小化重构错误。</p>
-<script type="math/tex; mode=display">
-\min_{\mathbf P\in\mathcal P_k}||\mathbf{PX-X}||^2_F</script><p>样本的协方差矩阵$\mathrm{C}=\frac{1}{m}\mathrm{XX^T}$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-||\mathbf{PX-X}||^2_F &= Tr[\mathbf{(PX-X)^T(PX-X)}]\\
-&=Tr[\mathbf{X^TP^2X-2X^TPX+X^TX}]\\
-&=-Tr[\mathbf{X^TPX}]+Tr[\mathbf{X^TX}]\\
-&=-Tr[\mathbf{X^TPX}]+costant\\
-\end{align}</script><hr>
-<script type="math/tex; mode=display">
-\underset{\mathrm P\in\mathcal P_k}{\arg\min}||\mathbf{PX-X}||^2_F=\underset{\mathrm P\in\mathcal P_k}{\arg\max}Tr[\mathbf{X^TPX}]</script><hr>
-
-<p>$\mathbf{P=UU^T},U\in\mathbb{R}^{N\times k}$包含正交规范列向量。$\mathbf{U}$由$\mathbf{C}$的最大前K个特征值对应的特征向量组成。</p>
+<li><p>算法流程</p>
 <ul>
-<li>$||u_i||=1，u_iu_j=0$。</li>
+<li><p>选择参数$\theta^{(0)}$作为初始值</p>
+</li>
+<li><p>E步：记$\theta^{(i)}$为第i次迭代的参数估计值，第i+1次迭代E步，计算完全数据关于当前Y和$\theta^{(i)}$下Z的条件概率分布</p>
+<script type="math/tex; mode=display">
+Q(\theta,\theta^{(i+1)}) = E_z[\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})]=\sum_z\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})</script></li>
+<li><p>M步：求出最大化Q函数的$\theta$，使$\theta^{(i+1)}:=\theta$</p>
+</li>
+<li><p>重复E和M步,直至收敛</p>
+</li>
 </ul>
+</li>
+</ul>
+<p>B函数是对数似然函数的下界，EM算法是通过<strong>不断求解下界的极大化逼近</strong>求解对数似然函数。</p>
+<h2 id="EM算法在高斯混合模型中的应用"><a href="#EM算法在高斯混合模型中的应用" class="headerlink" title="EM算法在高斯混合模型中的应用"></a>EM算法在高斯混合模型中的应用</h2><p>高斯很合模型</p>
+<script type="math/tex; mode=display">
+P(y|\theta) = \sum_{k=1}^K\alpha_k\phi(y|\theta_k),\alpha_k\ge0,\sum\alpha=0</script><h3 id="1-明确隐变量"><a href="#1-明确隐变量" class="headerlink" title="1. 明确隐变量"></a>1. 明确隐变量</h3><p>定义隐变量$\gamma_{jk}$</p>
+<script type="math/tex; mode=display">
+\gamma_{jk}=\left\{\begin{matrix}
+1,& 第j个观测来自第k个模型\\
+0，& 否则
+\end{matrix}\right.</script><p>完全数据</p>
+<script type="math/tex; mode=display">
+(y_j,\gamma_{j1},\dots,\gamma_{jK}),j=1,2,\dots,N</script><p>完全数据的似然函数</p>
 <script type="math/tex; mode=display">
 \begin{align}
-Tr[\mathbf{X^TPX}] &= Tr[\mathbf{X^TUU^TX}]=Tr[\mathbf{U^TXX^TU}] \\
-&= \sum_{i=1}^ku_i^T\mathbf{XX^T}u_i = \sum_{i=1}^k\frac{u_i^T\mathbf{XX^T}u_i}{u_i^Tu_i}
-\end{align}</script><ul>
-<li>因为$\mathbf{XX^T}$与$\mathbf{C}$只相差缩放因子，所以两矩阵有相同的奇异向量。选择最大的前k个奇异值能最大化上式和。</li>
-<li>$\mathbf{Y=U_k^TX}$表示$\mathbf{X}$使用$\mathbf{U_k}$作为基向量，$\mathbf{PX=UU^TX=UY}$表示$\mathbf{Y}$在新空间下的线性组合(坐标)，即在新空间下的投影。</li>
-</ul>
-<p>PCA也可以被视为投射到最大方差子空间。在这种解释下，第一个主成分是从投影到最大方差方向的，由C的上最大奇异值对应的奇异向量决定。同样，对于1≤i≤k，第i个主成分，<br>是从最大方差的第i个方向上的投影得出，服从正交最大方差的前i − 1方向约束。</p>
-<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><p><img src="/2020/11/25/machine%20learning/PCA/1.png" alt="PCA描述"></p>
-<p>对于${d}’$值可以通过通过k近邻分类器和交叉验证选取，还可以通过设置一个重构阈值，例如t=95%，满足</p>
+P(y,\gamma|\theta) &= \prod_{j=1}^NP(y_j,\gamma_{j1},\dots,\gamma_{jK}|\theta)\\
+&=\prod_{k=1}^K\prod_{j=1}^N[\alpha_k\phi(y_j|\theta_k)]^{\gamma_{jk}}\\
+&=\prod_{k=1}^K\alpha_k^{n_k}\prod_{j=1}^N[\phi(y_j|\theta_k)]^{\gamma_{jk}}
+\end{align}</script><p>完全数据对数似然函数</p>
 <script type="math/tex; mode=display">
-\frac{\sum_{i=1}^{d'}\lambda_i}{\sum_{i=1}^{d}\lambda_i}\ge t</script>
+\log P(y,\gamma|\theta) = \sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\gamma_{jk}\log[\phi(y_j|\mu_k,\Sigma_k)]</script><h3 id="2-E步：确定Q函数"><a href="#2-E步：确定Q函数" class="headerlink" title="2.E步：确定Q函数"></a>2.E步：确定Q函数</h3><script type="math/tex; mode=display">
+\begin{align}
+Q(\theta,\theta^{(i)}) &= E\{\sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\gamma_{jk}\log[\phi(y_j|\mu_k,\Sigma_k)\}\\
+&=\sum_{k=1}^K\{\sum_{j=1}^N(E\gamma_{jk})\log\alpha_k+\sum_{j=1}^N(E\gamma_{jk})\phi(y_j|\theta)\} \tag{1}
+\end{align}</script><p>记$E(\gamma<em>{jk}|y,\theta)$为$\hat{\gamma}</em>{jk}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat{\gamma}_{jk} &= P(\gamma_{jk}=1|y,\theta)\\
+&= \frac{P(y_j|\gamma_{jk}=1,\theta)P(\gamma_{jk}=1|\theta)}{\sum_{k=1}^KP(y_j|\gamma_{jk}=1,\theta)P(\gamma_{jk}=1|\theta)}\\
+&= \frac{\alpha_k\phi(y_j|\theta_k)}{\sum_{k=1}^K\alpha_k\phi(y_j|\theta_k)},j=1,2,...,N;\ k=1,2,...,K
+\end{align}</script><p>(1)式等价于下式</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Q(\theta,\theta^{(i)}) &= \sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\hat{\gamma}_{jk}\log[\phi(y_j|\theta_k)\\
+&=\sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\hat{\gamma}_{jk}[\log(\frac{1}{\sqrt{2\pi}})-\log\sigma_k-\frac{1}{2\sigma_k^2}(y_j-\mu_k)^2]
+\tag{2}
+\end{align}</script><h3 id="3-M步"><a href="#3-M步" class="headerlink" title="3.M步"></a>3.M步</h3><p>(2)式对参数分别对$\mu_k,\sigma_k^2$求偏导的令为0得</p>
+<script type="math/tex; mode=display">
+\hat\mu_k = \frac{\sum_{j=1}^N\hat\gamma_{jk}y_j}{\sum_{j=1}^N\hat\gamma_{jk}},\\
+\sigma^2_k = \frac{\sum_{j=1}^N\hat\gamma_{jk}y_j}{\sum_{j=1}^N\hat\gamma_{jk}}\\
+k = 1,2,...,K</script><p>因为$\sum_{k=1}^K\alpha_k=1$,用拉格朗日乘子法求得</p>
+<script type="math/tex; mode=display">
+\mathcal L(\lambda,\theta)= Q(\theta,\theta^{(i)})+\lambda(1-\sum_{k=1}^K\alpha_k)\\
+对\alpha求导令为0得，
+\hat\alpha_k = \frac{n_k}{N} = \frac{\sum_{j=1}^N\hat\gamma_{jk}}{N}\\</script><h2 id="Scikti-learn"><a href="#Scikti-learn" class="headerlink" title="Scikti-learn"></a>Scikti-learn</h2><p><code>sklearn.mixture.GaussianMixture(n_components=1, *, covariance_type=&#39;full&#39;, tol=0.001, reg_covar=1e-06, max_iter=100, n_init=1, init_params=&#39;kmeans&#39;, weights_init=None, means_init=None, precisions_init=None, random_state=None, warm_start=False, verbose=0, verbose_interval=10)</code><br>参数</p>
+<ul>
+<li>covariance_type：{‘full’ (default), ‘tied’, ‘diag’, ‘spherical’}<ul>
+<li>full：成员都独立的一般协方差矩阵</li>
+<li>tied：成员共享一个协方差矩阵</li>
+<li>diag：每个分量都有自己的对角协方差矩阵</li>
+<li>spherical：每个分量都有自己的单方差</li>
+</ul>
+</li>
+<li>tol：EM算法收敛阈值</li>
+<li>reg_cover：非负正则化添加到协方差的对角线上。确保协方差矩阵均为正</li>
+<li>max_iter：default=100，迭代次数</li>
+<li>n_init：要执行的初始化次数</li>
+<li>init_parmas：{‘kmeans’,’random’}，初始化权重的方法、均值和精度的方法</li>
+<li></li>
+</ul>
+
       
     </div>
 
@@ -392,7 +403,7 @@ Tr[\mathbf{X^TPX}] &= Tr[\mathbf{X^TUU^TX}]=Tr[\mathbf{U^TXX^TU}] \\
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

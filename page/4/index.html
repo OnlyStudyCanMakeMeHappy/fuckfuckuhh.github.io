@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/machine%20learning/xgboost/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/machine%20learning/PCA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/23/machine%20learning/xgboost/" class="post-title-link" itemprop="url">xgboost</a>
+            <a href="/2020/11/25/machine%20learning/PCA/" class="post-title-link" itemprop="url">PCA</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-23 21:59:04" itemprop="dateCreated datePublished" datetime="2020-11-23T21:59:04+08:00">2020-11-23</time>
+      <time title="创建时间：2020-11-25 21:08:34" itemprop="dateCreated datePublished" datetime="2020-11-25T21:08:34+08:00">2020-11-25</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-24 20:13:45" itemprop="dateModified" datetime="2020-11-24T20:13:45+08:00">2020-11-24</time>
+        <time title="修改时间：2020-12-01 21:33:56" itemprop="dateModified" datetime="2020-12-01T21:33:56+08:00">2020-12-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,191 +311,76 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="xgboost"><a href="#xgboost" class="headerlink" title="xgboost"></a>xgboost</h1><h2 id="学习对象"><a href="#学习对象" class="headerlink" title="学习对象"></a>学习对象</h2><p>模型</p>
+          <h2 id="principal-component-analysis"><a href="#principal-component-analysis" class="headerlink" title="principal component analysis"></a>principal component analysis</h2><h3 id="正交投影矩阵"><a href="#正交投影矩阵" class="headerlink" title="正交投影矩阵"></a>正交投影矩阵</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>设$A\in\mathbb{R}^{m\times n},x\in\mathbb{R}^m,c\in\mathbb{R}^n$，$x_w$为投影，$x-x_w$正交所有基向量得</p>
 <script type="math/tex; mode=display">
-\hat y_i = \phi(\mathbf{x}_i) = \sum_{k=1}^K f_k(\mathbf{x}_i)</script><p>待优化项</p>
-<script type="math/tex; mode=display">
-L(\phi) = \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\
-where\ \Omega(f) = \gamma T+\frac{1}{2}\lambda||w||^2</script><p>其中T是叶子数，w是叶子的均值。</p>
-<h2 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h2><script type="math/tex; mode=display">
+A^Tx_w=0\Rightarrow A^T(x-Ac) = \vec 0\Rightarrow x_w=Ac=A(A^TA)^{-1}A^Tx</script><p>所以投影矩阵为$P=A(A^TA)^{-1}A^T\in\mathbb{R}^{m\times m}$，rank(P) = k。</p>
+<p>如果A的列向量是正交规范基，那么$P=AIA^T$。</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><script type="math/tex; mode=display">
 \begin{align}
-L_t &= \sum_{i=1}^nl(y_i,\hat{y}_{t-1}+f_t(\mathbf{x}_i))+\Omega(f_t)\\
-&\approx\sum_{i=1}^n l(y_i,\hat y_{t-1})+\partial_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t(\mathbf{x}_i)+\frac{1}{2}\partial^2_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t^2(\mathbf{x}_i)+\Omega (f_t)\\
-&=\sum_{i=1}^n l(y_i,\hat y_{t-1})+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\Omega (f_t) \\
-&=\sum_{i=1}^n constant+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\Omega (f_t)
-\end{align}</script><p>忽略常数项，改成由叶节点表示的形式，共有T个叶子节点</p>
+&P = P^T\\
+&P^2 = P\\
+\end{align}</script><ul>
+<li><p>特征值只包含0和1。</p>
+</li>
+<li><p>正交投影矩阵是一个幂等矩阵。</p>
+</li>
+</ul>
+<h3 id="Rayleigh商"><a href="#Rayleigh商" class="headerlink" title="Rayleigh商"></a>Rayleigh商</h3><p><strong>对称矩阵A</strong>的瑞利商，定义R(x)一个标量，待求向量x</p>
 <script type="math/tex; mode=display">
-L_t = \sum_{j=1}^T[(\sum_{i\in T_j}g_i)w_j+\frac{1}{2}(\sum_{i\in I_j}h_i+\lambda)w_j^2]+\gamma T</script><p>计算出最优的w</p>
+R(x) = \frac{x^TAx}{x^Tx}</script><h4 id="Rayleigh-Ritz-定理"><a href="#Rayleigh-Ritz-定理" class="headerlink" title="Rayleigh-Ritz 定理"></a>Rayleigh-Ritz 定理</h4><p>令A的特征值递增排列</p>
 <script type="math/tex; mode=display">
-w^*_j = -\frac{\sum_{i\in I_j}g_i}{\sum_{i\in I_j}h_i+\lambda}</script><p>对于树结构q，下式作为一棵树好坏的指标</p>
+\lambda_{min} = \lambda_1 \le\lambda_2\dots\le\lambda_{n-1}\le\lambda_{n}=\lambda_{max}</script><p>则</p>
 <script type="math/tex; mode=display">
-L_t(q) = -\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_j}g_i)^2}{\sum_{i\in I_j}h_i+\lambda}+\gamma T</script><p><img src="/2020/11/23/machine%20learning/xgboost/博客\source\_posts\xgboost\4.png" alt="score"></p>
-<p>使用贪心算法去分割结点，分割后损失值变化。</p>
-<p><img src="/2020/11/23/machine%20learning/xgboost/1.png" alt="image-20201124132700202"></p>
-<p>令$G=\sum<em>{i \in I_j}g_i$，$H = \sum</em>{i\in I_j}h_i$上式等价于</p>
+\max\frac{x^TAx}{x^Tx}=\max_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{max},若Ax=\lambda_{max}x\\
+\min\frac{x^TAx}{x^Tx}=\min_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{min},若Ax=\lambda_{min}x\\</script><h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>A是对称矩阵所以存在一个正交矩阵M和对角矩阵$\Lambda=(\lambda_1,\dots,\lambda_n)$,使得$A=M\Lambda M^T$，所以</p>
 <script type="math/tex; mode=display">
-L_{split} = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}+\frac{G^2}{H+\lambda}]-\gamma</script><p>同时只有当增益大于某个阈值时才进行分裂。这个阈值就是$\lambda$</p>
-<h2 id="分割查找算法"><a href="#分割查找算法" class="headerlink" title="分割查找算法"></a>分割查找算法</h2><h3 id="精确分割贪心算法"><a href="#精确分割贪心算法" class="headerlink" title="精确分割贪心算法"></a>精确分割贪心算法</h3><p>对当前节点，遍历所有样本，对属性所有取值进行排序后计算score的最大值。</p>
-<p>选取属性的取值作为划分依据。</p>
-<p><img src="/2020/11/23/machine%20learning/xgboost/2.png" alt="image-20201124134727385" style="zoom:70%;"></p>
-<h3 id="近似分割算法"><a href="#近似分割算法" class="headerlink" title="近似分割算法"></a>近似分割算法</h3><p>对于特征k，根据特征分布的分位数找到切割点的候选集合$S<em>k$，根据$S_k$将特征k的值划分到桶中(bucket)，对每个桶内的样本统计值进行累加得到$G</em>{kv},H_{k,v}$。</p>
-<p>有global和local两种方式</p>
-<p><img src="/2020/11/23/machine%20learning/xgboost/3.png" alt="分割查找近似算法" style="zoom:70%;"></p>
-<h2 id="权重分位数素描"><a href="#权重分位数素描" class="headerlink" title="权重分位数素描"></a>权重分位数素描</h2><p>近似算法分割点时，通常使用特征分布的分位数。定义一个多重集$D<em>k = {(x</em>{ik},h<em>k}</em>{i=1}^n$，分别为样本在k上的特征集和二阶导。</p>
-<p>定义一个rank函数，统计x小于z的样本二阶导的和占总和的比例。</p>
+\frac{x^TAx}{x^Tx} = \frac{x^TM\Lambda M^Tx}{x^Tx} = \frac{p^T\Lambda p}{x^Tx}</script><p>其中$p=M^Tx$，所以</p>
 <script type="math/tex; mode=display">
-r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><p>寻找候选分割点满足如下条件，表示相邻的两个划分点要满足</p>
+R(x) = \frac{p^T\Lambda p}{x^Tx} = \frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>所以有</p>
 <script type="math/tex; mode=display">
-|r_k(s_k,j)-r_k(s_{k，j+1})|<\epsilon</script><p>会产生大约$1/\epsilon$个候选集合，每个数据点的权重为$h_i$。</p>
-<p>$\epsilon$-approximately quantile summary，无论多大数据无需排序只要给定查询的rank值，就可以获得误差$\epsilon N$内的近视分位点。</p>
-<p>原问题配方得</p>
+\frac{\lambda_1||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\lambda_n||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>容易求得$p_i^2=x_i^2$。所以</p>
 <script type="math/tex; mode=display">
-\sum_i[1/2h_i(f_t(\mathbf{x}_i)-(-g_i/h_i))^2]+\Omega(f_t)+constant</script><p>将原问题看做关于标签$-g_i/h_i$权重为$h_i$的平方误差形式。</p>
-<h2 id="与传统GBDT区别"><a href="#与传统GBDT区别" class="headerlink" title="与传统GBDT区别"></a>与传统GBDT区别</h2><ul>
-<li>GBDT使用CART作为基分类器，xgboost支持线性分类器。</li>
-<li>GBDT对loss函数优化时使用一阶导数信息，xgboost扩展到二阶泰勒展开。xgboost支持自定义代价函数。</li>
-<li>shrinkage和column subsampling，缩减和列抽样。能防止过拟合。类似随机森林的特征采样。</li>
-<li>支持并行化，特征粒度上的并行。xgboost在训练之前，预先对数据进行排序然后保存为block结构，后面迭代中反复使用该结构，大大减少了计算量。</li>
-<li>通过枚举所有缺失值是进入左子树还是右子树获得更好的模型。</li>
-</ul>
-<h1 id="python包"><a href="#python包" class="headerlink" title="python包"></a>python包</h1><h2 id="包介绍"><a href="#包介绍" class="headerlink" title="包介绍"></a>包介绍</h2><p><code>import xgboost as xgb</code></p>
-<h3 id="数据接口"><a href="#数据接口" class="headerlink" title="数据接口"></a>数据接口</h3><ul>
-<li>LibSVM text format file</li>
-<li>csv file</li>
-<li>NumPy 2D array</li>
-<li>Scipy 2D sparse array</li>
-<li>cuDF DataFrame</li>
-<li>Pandas data frame</li>
-<li><p>XGBoost binary buffer file</p>
-</li>
-<li><p>不支持分类特征处理所以数据包含分类特征使用<code>sklearn.preprocessing.OneHotEncoder</code>预处理。</p>
-</li>
-<li><p>使用<code>DMatrix</code>方法接受文件url或者数据和标签生成数据。</p>
-</li>
-<li><p>缺失值使用missing参数，权重使用weight参数</p>
-</li>
-</ul>
-<h3 id="参数设置"><a href="#参数设置" class="headerlink" title="参数设置"></a>参数设置</h3><p>XGBoost可以使用列表对或者字典来设置参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#booster parameters</span></span><br><span class="line">param = &#123;<span class="string">&#x27;max_depth&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;eta&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;objective&#x27;</span>: <span class="string">&#x27;binary:logistic&#x27;</span>&#125;</span><br><span class="line">param[<span class="string">&#x27;nthread&#x27;</span>] = <span class="number">4</span></span><br><span class="line">param[<span class="string">&#x27;eval_metric&#x27;</span>] = <span class="string">&#x27;auc&#x27;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#eval metrics 评估指标</span></span><br><span class="line">param[<span class="string">&#x27;eval_metric&#x27;</span>] = [<span class="string">&#x27;auc&#x27;</span>, <span class="string">&#x27;ams@0&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#指定验证以观察性能</span></span><br><span class="line">evallist = [(dtest, <span class="string">&#x27;eval&#x27;</span>), (dtrain, <span class="string">&#x27;train&#x27;</span>)]</span><br></pre></td></tr></table></figure>
-<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>训练一个模型需要参数列表和数据集<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num_round = <span class="number">10</span></span><br><span class="line">bst = xgb.train(param,dtrain,num_round,evallist)</span><br></pre></td></tr></table></figure></p>
-<p>保存模型</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bst.save_model(<span class="string">&#x27;0001.model&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>模型可特征图转储为文本文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bst.dump_model(<span class="string">&#x27;dump.raw.txt&#x27;</span>,<span class="string">&#x27;fetamap.txt&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>保存模型的加载</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bst = xgb.Boost(&#123;<span class="string">&#x27;nthread&#x27;</span>:<span class="number">4</span>&#125;)</span><br><span class="line">bst.load_model(<span class="string">&#x27;model.bin&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="提前终止"><a href="#提前终止" class="headerlink" title="提前终止"></a>提前终止</h3><p>使用验证集提前终止来寻找最佳增强回合。至少需要一个评估</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train(...,evals=evals,early_stopping_rounds=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果提前停止发生，模型将具有三个附加字段：bst.best_score，bst.best_iteration和bst.best_ntree_limit。xgboost.train将返回上一次迭代的模型，而不是最佳迭代的模型。</li>
-<li>如果指定了多个评估指标，则param [‘eval_metric’]中的最后一个将用于提前停止。</li>
-</ul>
-<h3 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h3><p>经过训练或加载的模型对数据进行预测</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dtest = xgb.DMatrix(data)</span><br><span class="line">bst.predict(dtest)</span><br></pre></td></tr></table></figure>
-<p>如果在训练期间启用了提前停止，则可以使用bst.best_ntree_limit从最佳迭代中获得预测</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ypred = bst.predict(dtest, ntree_limit=bst.best_ntree_limit)</span><br></pre></td></tr></table></figure>
-<h3 id="plotting"><a href="#plotting" class="headerlink" title="plotting"></a>plotting</h3><p>plot importance</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xgb.plot_importance(bst)</span><br></pre></td></tr></table></figure>
-<p>plot output tree </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xgb.plot(bst,num_trees=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p>graphviz instance</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xgb.to_graphviz(bst,num_trees=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="数据矩阵"><a href="#数据矩阵" class="headerlink" title="数据矩阵"></a>数据矩阵</h3><p><code>xgboost.DMatrix(data, label=None, weight=None, base_margin=None, missing=None, silent=False, feature_names=None, feature_types=None, nthread=None, enable_categorical=False)</code></p>
-<p>参数</p>
-<ul>
-<li>data(os.PathLike/string/numpy.array/scipy.sparse/pd.DataFrame/)</li>
-<li>label：training data label</li>
-<li>missing：缺失值</li>
-<li>weight：每个实例的权重，ranking中是每个组的权重</li>
-<li>slient：构建期间是否打印消息</li>
-<li>feature_names</li>
-<li>feature_types</li>
-<li>nthread：并行化加载数据的线程数</li>
-</ul>
-<p>方法</p>
-<ul>
-<li>num_row()、num_col()</li>
-</ul>
-<h3 id="Booster-of-xgboost"><a href="#Booster-of-xgboost" class="headerlink" title="Booster of xgboost"></a>Booster of xgboost</h3><p>xgboost的模型</p>
-<p><code>xgboost.Booster(params=None, cache=(), model_file=None)</code></p>
-<h3 id="training"><a href="#training" class="headerlink" title="training"></a>training</h3><p><code>xgboost.train(params, dtrain, num_boost_round=10, evals=(), obj=None, feval=None, maximize=None, early_stopping_rounds=None, evals_result=None, verbose_eval=True, xgb_model=None, callbacks=None)</code></p>
-<p>参数</p>
-<ul>
-<li>params：booster参数</li>
-<li>dtrain：训练数据</li>
-<li>num_boost_round：boosting迭代次数</li>
-<li>evals：验证指标用于跟踪模型的性能。</li>
-<li>boj：定制目标函数</li>
-<li>feval：定制评估指标</li>
-<li>maximize：是否最大化feval</li>
-<li>callbacks：每次迭代结束调用的回调函数</li>
-</ul>
-<h3 id="scikit-learn-API"><a href="#scikit-learn-API" class="headerlink" title="scikit-learn API"></a>scikit-learn API</h3><p><code>xgboost.XGBRegressor(**kwargs)</code></p>
-<p>参数</p>
-<ul>
-<li>n_estimators：梯度提升树的数量。相当于提升轮数</li>
-<li>max_depth ：基学习器的最大深度</li>
-<li>learning_rate ：学习率</li>
-<li>verbosity ：详细程度，从0(slient)1(warning)2(info)3(debug)</li>
-<li>objective：自定义目标函数</li>
-<li>booster：指定要使用的提升器</li>
-<li>tree_method ：默认auto，指定使用的树方法。<ul>
-<li>auto：启发式寻找最快的方法</li>
-<li>exact：Enumerates枚举所有分割点</li>
-<li>approx：使用分位数草图和梯度直方图的近似贪婪算法。</li>
-<li>hist：更快的直方图优化的近似贪心算法</li>
-<li>gpu_hist：GPU实现hist算法</li>
-</ul>
-</li>
-<li>sketch_eps：$\epsilon$，tree_method=approx时使用，大致形成o(1/sketch_eps)个bins。</li>
-<li>n_jobs：运行xgboost使用的线程数</li>
-<li>gamma：$\gamma$,在树的叶节点上进行分割所需的最小损失减少阈值。</li>
-<li>min_child_weight：子实例中实例重量（hessian）的最小总和，如果划分导致叶结点的实例总和小于该值则将停止进一步的划分。</li>
-<li>max_delta_step：允许每棵树的权重估算的最大步长增量,每个叶子的输出。为0表示没有约束。</li>
-<li><p>subsample ：子样本比例-</p>
-<ul>
-<li>colsample_bytree ：每棵树的列子采样率</li>
-<li><p>colsample_bylevel ：每个级别的列子采样率</p>
-</li>
-<li><p>colsample_bynode ：每次分割的列子采样率</p>
-</li>
-</ul>
-</li>
-<li>reg_alpha：L1正则化参数$\alpha$</li>
-<li>reg_lambda ：L2正则化参数$\lambda$</li>
-<li>scale_pos_weight：平衡正负权重</li>
-<li>base_score ：初始所有实例的预测得分</li>
-<li>random_state ：随机种子</li>
-<li>missing：缺失值填充</li>
-<li>num_parallel_tree：并行化提升树的数量</li>
-</ul>
-<p>方法</p>
-<ul>
-<li><code>apply(x,ntree_limit=0)</code>:返回每个样本每棵树的预测叶子，默认为0代表所有树。</li>
-<li><code>evals_result()</code>：返回评估的结果</li>
-<li><p><code>fit(X, y, *, sample_weight=None, base_margin=None, eval_set=None, eval_metric=None, early_stopping_rounds=None, verbose=True, xgb_model=None, sample_weight_eval_set=None, feature_weights=None, callbacks=None)</code></p>
-<ul>
-<li>base_margin：每个实例的全局偏差</li>
-<li>eval_set：用于验证集的(X,y)元组对,将其视为计算指标。跟踪模型的性能</li>
-<li>eval_metric：评价指标</li>
-<li>early_stopping_rounds：验证指标eval_set至少要在<strong>early_stopping_rounds</strong>回合中提升一次才会继续训练。</li>
-<li>sample_weight、feature_weight</li>
-</ul>
-</li>
-<li><code>predict(data, output_margin=False, ntree_limit=None, validate_features=True, base_margin=None)</code></li>
-</ul>
-<p>最重要的三个参数booster，n_estimators和objectve</p>
-<p>eval_metric</p>
-<p>详见：<a target="_blank" rel="noopener" href="https://xgboost.readthedocs.io/en/latest/parameter.html">https://xgboost.readthedocs.io/en/latest/parameter.html</a></p>
-<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost  <span class="keyword">as</span> xgb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets.samples_generator <span class="keyword">import</span> make_classification</span><br><span class="line"></span><br><span class="line"><span class="comment">#redundant冗余特征0,每个类别一个簇</span></span><br><span class="line">X,y = make_classification(n_samples=<span class="number">10000</span>,n_features=<span class="number">20</span>,n_redundant=<span class="number">0</span>,n_clusters_per_class=<span class="number">1</span>,n_classes=<span class="number">2</span>,flip_y=<span class="number">0.1</span>)</span><br><span class="line">X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=<span class="number">1</span>)</span><br><span class="line">dtrain = xgb.DMatrix(X_train,y_train)</span><br><span class="line">dtest = xgb.DMatrix(X_test,y_test)</span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;max_depth&#x27;</span>:<span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;eta&#x27;</span>:<span class="number">0.5</span>,</span><br><span class="line">    <span class="string">&#x27;verbosity&#x27;</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;objective&#x27;</span>:<span class="string">&#x27;binary:logistic&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">clf = xgb.XGBClassifier(**params)</span><br><span class="line">clf.fit(X_train,y_train,early_stopping_rounds=<span class="number">10</span>,eval_metric=<span class="string">&#x27;error&#x27;</span>,eval_set=[(X_test,y_test)])</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/11/23/machine%20learning/xgboost/6.png" alt="image-20201124194922807"></p>
-<p>网格调参</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">gscv = GridSearchCV(clf,&#123;<span class="string">&#x27;max_depth&#x27;</span>:[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],<span class="string">&#x27;n_estimators&#x27;</span>:[<span class="number">5</span>,<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">gscv.fit(X_train,y_train)</span><br><span class="line">print(gscv.best_score_)</span><br><span class="line">print(gscv.best_params_)</span><br><span class="line">clf2 = xgb.XGBClassifier(max_depth=<span class="number">4</span>,n_estimators=<span class="number">5</span>,verbosity=<span class="number">1</span>,objective=<span class="string">&#x27;binary:logistic&#x27;</span>,random_state=<span class="number">1</span>)</span><br><span class="line">gscv2=GridSearchCV(clf2,&#123;<span class="string">&#x27;learning_rate&#x27;</span>:[<span class="number">0.3</span>,<span class="number">0.5</span>,<span class="number">0.7</span>]&#125;)</span><br><span class="line">gscv2.fit(X_train,y_train)</span><br><span class="line">print(gscv2.best_score_)</span><br><span class="line">print(gscv2.best_params_)</span><br><span class="line">clf2 = xgb.XGBClassifier(max_depth=<span class="number">4</span>,learning_rate= <span class="number">0.5</span>, verbosity=<span class="number">1</span>, objective=<span class="string">&#x27;binary:logistic&#x27;</span>,n_estimators=<span class="number">5</span>)</span><br><span class="line">clf2.fit(X_train, y_train, early_stopping_rounds=<span class="number">10</span>, eval_metric=<span class="string">&quot;error&quot;</span>,eval_set=[(X_test, y_test)])</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/11/23/machine%20learning/xgboost/7.png" alt="image-20201124195901508"></p>
-<p>更多示例：<a target="_blank" rel="noopener" href="https://github.com/dmlc/xgboost/tree/master/demo/guide-python">https://github.com/dmlc/xgboost/tree/master/demo/guide-python</a></p>
+R(x)_{min}=\lambda_{min},R(x)_{max}=\lambda_{max}​</script><p>​    </p>
+<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><h4 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h4><h5 id="中心化"><a href="#中心化" class="headerlink" title="中心化"></a>中心化</h5><script type="math/tex; mode=display">
+\begin{align}
+&\mu = \frac{1}{m}\sum_{i=1}^m\mathbf x_i =\frac{1}{m}\mathbf X\mathbf 1\\
+\Sigma &= \frac{1}{m}\sum_{i=1}^m(\mathbf x-\mu)(\mathbf x-\mu)^T \\
+& = \frac{1}{m}[(\mathbf x_1,\dots,\mathbf x_m)-\mu(1,\dots,1)_m][(\mathbf x_1,\dots,\mathbf x_m)-\mu(1,\dots,1)_m]^T\\
+& = \frac{1}{m}(\mathbf X-\frac{1}{m}\mathbf {X1^T})(\mathbf X-\frac{1}{m}\mathbf {X1^T})^T\\
+& = \frac{1}{m}[\mathbf X(\mathbf I-\frac{1}{m}\mathbf {1^T})][\mathbf X(\mathbf I-\frac{1}{m}\mathbf {1^T})]^T\\
+\end{align}</script><p>记矩阵$\mathbf{1-\frac{1}{m}1^T}$为centering matrix，上式等价于</p>
+<script type="math/tex; mode=display">
+\Sigma = \frac{1}{m}\mathbf{XHH^TX}</script><p>让$\large\mathbf x$去均值中心化，$\sum_{i=1}^m\mathbf{x_i=0}$。定义$\mathcal P_k\in\mathbb R^{N\times N}$为N维秩为k的正交投影矩阵。</p>
+<p>将样本降维后，目标要最小化重构错误。</p>
+<script type="math/tex; mode=display">
+\min_{\mathbf P\in\mathcal P_k}||\mathbf{PX-X}||^2_F</script><p>样本的协方差矩阵$\mathrm{C}=\frac{1}{m}\mathrm{XX^T}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+||\mathbf{PX-X}||^2_F &= Tr[\mathbf{(PX-X)^T(PX-X)}]\\
+&=Tr[\mathbf{X^TP^2X-2X^TPX+X^TX}]\\
+&=-Tr[\mathbf{X^TPX}]+Tr[\mathbf{X^TX}]\\
+&=-Tr[\mathbf{X^TPX}]+costant\\
+\end{align}</script><hr>
+<script type="math/tex; mode=display">
+\underset{\mathrm P\in\mathcal P_k}{\arg\min}||\mathbf{PX-X}||^2_F=\underset{\mathrm P\in\mathcal P_k}{\arg\max}Tr[\mathbf{X^TPX}]</script><hr>
 
+<p>$\mathbf{P=UU^T},U\in\mathbb{R}^{N\times k}$包含正交规范列向量。$\mathbf{U}$由$\mathbf{C}$的最大前K个特征值对应的特征向量组成。</p>
+<ul>
+<li>$||u_i||=1，u_iu_j=0$。</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+Tr[\mathbf{X^TPX}] &= Tr[\mathbf{X^TUU^TX}]=Tr[\mathbf{U^TXX^TU}] \\
+&= \sum_{i=1}^ku_i^T\mathbf{XX^T}u_i = \sum_{i=1}^k\frac{u_i^T\mathbf{XX^T}u_i}{u_i^Tu_i}
+\end{align}</script><ul>
+<li>因为$\mathbf{XX^T}$与$\mathbf{C}$只相差缩放因子，所以两矩阵有相同的奇异向量。选择最大的前k个奇异值能最大化上式和。</li>
+<li>$\mathbf{Y=U_k^TX}$表示$\mathbf{X}$使用$\mathbf{U_k}$作为基向量，$\mathbf{PX=UU^TX=UY}$表示$\mathbf{Y}$在新空间下的线性组合(坐标)，即在新空间下的投影。</li>
+</ul>
+<p>PCA也可以被视为投射到最大方差子空间。在这种解释下，第一个主成分是从投影到最大方差方向的，由C的上最大奇异值对应的奇异向量决定。同样，对于1≤i≤k，第i个主成分，<br>是从最大方差的第i个方向上的投影得出，服从正交最大方差的前i − 1方向约束。</p>
+<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><p><img src="/2020/11/25/machine%20learning/PCA/1.png" alt="PCA描述"></p>
+<p>对于${d}’$值可以通过通过k近邻分类器和交叉验证选取，还可以通过设置一个重构阈值，例如t=95%，满足</p>
+<script type="math/tex; mode=display">
+\frac{\sum_{i=1}^{d'}\lambda_i}{\sum_{i=1}^{d}\lambda_i}\ge t</script>
       
     </div>
 
@@ -516,7 +401,7 @@ r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><p>寻�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

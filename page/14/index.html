@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/11/vim/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/12/click/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/11/vim/" class="post-title-link" itemprop="url">vim</a>
+            <a href="/2020/11/12/click/" class="post-title-link" itemprop="url">click模块使用</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,17 +281,23 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-11 14:30:00 / 修改时间：14:32:00" itemprop="dateCreated datePublished" datetime="2020-11-11T14:30:00+08:00">2020-11-11</time>
+      <time title="创建时间：2020-11-12 23:04:02" itemprop="dateCreated datePublished" datetime="2020-11-12T23:04:02+08:00">2020-11-12</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-15 12:38:25" itemprop="dateModified" datetime="2020-11-15T12:38:25+08:00">2020-11-15</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
         </span>
     </span>
 
@@ -305,7 +311,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h2 id="提醒自己"><a href="#提醒自己" class="headerlink" title="提醒自己"></a>提醒自己</h2><p>Ctrl+s，vim会阻止之后的输入。Ctrl+Q恢复，解除限制。</p>
+          <h2 id="click"><a href="#click" class="headerlink" title="click"></a>click</h2><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>普通函数经过装饰器修饰后可以变成命令行工具，将函数装饰为Command对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> click</span><br><span class="line"><span class="meta">@click.command()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>():</span></span><br><span class="line">    click.echo(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>等待按键<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">9</span>]: click.pause()</span><br><span class="line">Press any key to <span class="keyword">continue</span> ...</span><br></pre></td></tr></table></figure></p>
+<h3 id="Echoing"><a href="#Echoing" class="headerlink" title="Echoing"></a>Echoing</h3><p><code>click.echo(message=None, file=None, nl=True, err=False, color=None)</code></p>
+<ul>
+<li>nl：换行符是否打印</li>
+<li>color：是否支持ANSI颜色，默认为自动检测。</li>
+</ul>
+<h4 id="ANSI-Colors"><a href="#ANSI-Colors" class="headerlink" title="ANSI Colors"></a>ANSI Colors</h4><p>为了样式字符串使用<code>style</code>函数</p>
+<p><code>style(text, fg=None, bg=None, bold=None, dim=None, underline=None, blink=None, reverse=None, reset=True)</code></p>
+<p>或者<code>secho()</code>函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">4</span>]: click.echo(click.style(<span class="string">&#x27;Hello world&#x27;</span>,fg=<span class="string">&#x27;green&#x27;</span>,bg=<span class="string">&#x27;yellow&#x27;</span>,</span><br><span class="line">   ...: bold=<span class="literal">True</span>))</span><br><span class="line"><span class="comment">#secho</span></span><br><span class="line">In [<span class="number">2</span>]: click.secho(<span class="string">&#x27;Hello world&#x27;</span>,fg=<span class="string">&#x27;green&#x27;</span>,bg=<span class="string">&#x27;yellow&#x27;</span>,blink=<span class="literal">True</span>,</span><br><span class="line">   ...: bold=<span class="string">&#x27;True&#x27;</span>)     </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="嵌套命令"><a href="#嵌套命令" class="headerlink" title="嵌套命令"></a>嵌套命令</h3><p><code>click.Group(name=None, commands=None, **attrs)</code></p>
+<p>一个组允许命令添加子命令，这是实现嵌套的最常用法。</p>
+<p><code>group(*args,**kwargs)</code></p>
+<p>用于在组中声明和附加命令的快捷方式装饰器,立即通过调用<code>add_command()</code>在此实例中注册创建的命令。</p>
+<h3 id="添加参数"><a href="#添加参数" class="headerlink" title="添加参数"></a>添加参数</h3><p>使用<code>option()</code>和<code>argument()</code>装饰器添加参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -327,7 +350,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

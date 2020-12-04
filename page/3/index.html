@@ -193,7 +193,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/math/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/26/machine%20learning/%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/25/math/" class="post-title-link" itemprop="url">math</a>
+            <a href="/2020/11/26/machine%20learning/%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/" class="post-title-link" itemprop="url">特征选择</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-25 12:55:03" itemprop="dateCreated datePublished" datetime="2020-11-25T12:55:03+08:00">2020-11-25</time>
+      <time title="创建时间：2020-11-26 16:01:56" itemprop="dateCreated datePublished" datetime="2020-11-26T16:01:56+08:00">2020-11-26</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-27 11:46:49" itemprop="dateModified" datetime="2020-11-27T11:46:49+08:00">2020-11-27</time>
+        <time title="修改时间：2020-12-01 13:16:11" itemprop="dateModified" datetime="2020-12-01T13:16:11+08:00">2020-12-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/math/" itemprop="url" rel="index"><span itemprop="name">math</span></a>
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
         </span>
     </span>
 
@@ -311,136 +311,72 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="高等数学"><a href="#高等数学" class="headerlink" title="高等数学"></a>高等数学</h1><h1 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h1><h2 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h2><h3 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h3><ul>
-<li><p>可加性</p>
+          <h2 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h2><h3 id="错误率与精度"><a href="#错误率与精度" class="headerlink" title="错误率与精度"></a>错误率与精度</h3><p>错误率</p>
 <script type="math/tex; mode=display">
-L(\vec v+\vec w) = L(\vec v)+L(\vec w)\\</script></li>
-<li><p>成比例，一阶齐次</p>
+Err(y,\hat y) = \frac{1}{n}\sum_{i=1}^n\mathbb I(\hat y_iney_i)</script><p>精度</p>
 <script type="math/tex; mode=display">
-L(c\vec v) = cL(\vec v)</script></li>
-</ul>
-<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><ul>
-<li><p>矩阵乘法表示向量基变换，<strong>向量与基的相对关系保持不变</strong>的变换，如下图示例。原向量在标准坐标轴下的坐标为(x,y)，将原标准基x轴坐标(1,0)和y轴坐标(0,1)，变换为(a,c,e)和(b,d,f)后(x,y)坐标线性变换为(ax+by,cx+dy,ex+fy)。向量由二维变换为三维。</p>
-</li>
-<li><p>将矩阵看做是特殊的线性变换，空间的特殊变换。矩阵就是新的坐标基，每一列都是一个基坐标，列坐标的维度(矩阵行数)就是向量变换后的新维度。</p>
-</li>
-<li><p>基坐标变化可以看做是原点不变，保持网格平行且等距的线性变换。</p>
-</li>
-<li><p>如果基向量线性相关，则</p>
-</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{bmatrix}
-  a&b \\
-  c&d \\
-  e&f
-\end{bmatrix}
-\begin{bmatrix}
-  x \\
-  y
-\end{bmatrix} = 
-x\begin{bmatrix}
-  a \\
-  c \\
-  e
-\end{bmatrix}
-+y\begin{bmatrix}
-  b \\
-  d \\
-  f
-\end{bmatrix}=
-\begin{bmatrix}
-ax+by\\
-cx+dy\\
-ex+fy
-\end{bmatrix}</script><h3 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h3><p>对于二维平面</p>
+Acc = 1-Err</script><h3 id="查准率和查全率"><a href="#查准率和查全率" class="headerlink" title="查准率和查全率"></a>查准率和查全率</h3><p>对于二分类问题</p>
+<p><img src="/2020/11/26/machine%20learning/%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/1.png" alt="混淆矩阵"></p>
 <ul>
-<li><p>行列式表示区域面积缩放比例。</p>
-</li>
-<li><p>如果矩阵线性相关，表示空间被压缩到更小的维度，同时矩阵行列式为0。变换后的任何区域的面积都为0。</p>
-</li>
-<li><p>空间定向改变情况下例如二维平面翻转，行列式为负。<br><img src="/2020/11/25/math/1.png" alt="行列式"></p>
+<li><p>查准率</p>
+<script type="math/tex; mode=display">
+P = \frac{TP}{TP+FP}</script></li>
+<li><p>查全率(Recall)</p>
+<script type="math/tex; mode=display">
+R = \frac{TP}{TP+FN}</script></li>
+<li><p>$F_{\beta}$度量是查全率和查准率的加权调和平均</p>
+<script type="math/tex; mode=display">
+F_{\beta} = \frac{(1+\beta^2)\times P\times R}{(\beta^2\times P)+R}</script><p>如果$\beta=1$是查全率和查准率的调和平均</p>
+<script type="math/tex; mode=display">
+F_1 = \frac{2\times P\times R}{P+R}</script><p>$\beta&gt;1$时更注重查全率，$\beta&lt;1$时更注重查准率。</p>
 </li>
 </ul>
-<p>对于高维平面</p>
 <ul>
-<li>行列式表示体积的缩放比例。</li>
-<li>立方体变换为平行六面体。</li>
-</ul>
-<h3 id="基"><a href="#基" class="headerlink" title="基"></a>基</h3><p>确定子空间$U=span[x_1,\dots,x_m]$基的步骤</p>
-<ul>
-<li>将这些空间向量协程矩阵$A$的列向量形式</li>
-<li>将$A$化为行梯形形式</li>
-<li>与轴枢有关的空间向量就是子空间$U$的基。</li>
-</ul>
-<p><img src="/2020/11/25/math/4.png" alt="image-20201126201717405" style="zoom:67%;"></p>
-<h3 id="线性映射的矩阵表示"><a href="#线性映射的矩阵表示" class="headerlink" title="线性映射的矩阵表示"></a>线性映射的矩阵表示</h3><p>考虑两个向量空间$V,W$对应两个基坐标系$B=(\vec b_1,\dots,\vec b_n)$和$C=(\vec c_1,\dots,\vec c_m)$。此外，考虑线性映射$\Phi:V\to W$,对于$j\in{1,…,n}$，有</p>
-<script type="math/tex; mode=display">
-\Phi(\vec b_j) = \alpha_{1j}\vec c_1+\dots+\alpha_{mj}\vec c_m = \sum_{i=1}^m\alpha_{ij}\vec c_i</script><p>我们称矩阵$m\times n$的矩阵$A_{\Phi}$为转换矩阵</p>
-<script type="math/tex; mode=display">
-A_{\Phi}(i,j) = \alpha_{ij}</script><p><img src="/2020/11/25/math/5.png" alt="image-20201126221408342" style="zoom:60%;"></p>
-<h2 id="向量计算"><a href="#向量计算" class="headerlink" title="向量计算"></a>向量计算</h2><h3 id="投影坐标"><a href="#投影坐标" class="headerlink" title="投影坐标"></a>投影坐标</h3><p>假设向量$\bold v$和$\bold w$，向量$\bold v$在向量$\bold w$上的投影长度为。设投影向量为$n\bold w$，则有</p>
-<script type="math/tex; mode=display">
-n\bold w\cdot\bold v = n||\bold w||\times||\bold v||\times\frac{n||\bold w||}{||\bold v||}</script><p>由上式求得</p>
-<script type="math/tex; mode=display">
-n = \frac{<\bold{w,v}>}{||\bold w||^2}</script><p>n即为投影后新轴上的新坐标，若$||\bold w||=1$，投影向量即为内积。</p>
-<script type="math/tex; mode=display">
-n\bold w = <\bold{w,v}> = \bold{w^Tv}</script><h3 id="偏导和梯度"><a href="#偏导和梯度" class="headerlink" title="偏导和梯度"></a>偏导和梯度</h3><p>梯度</p>
-<p>$f:\mathbb{R}^n\to\mathbb{R},x\in\mathbb{R}^n$</p>
-<script type="math/tex; mode=display">
-\nabla_xf = gradf = \frac{\mathrm{d} f}{\mathrm{d} x}=[\frac{\partial f}{\partial x_1}\ \dots\frac{\partial f}{\partial x_n}]\in\mathbb{R}^{1\times n} \\</script><p>链式准则</p>
-<p>$f:\mathbb{R}^2\to\mathbb{R},x_1(t),x_2(t)$</p>
-<script type="math/tex; mode=display">
-\frac{\mathrm{d} f}{\mathrm{d} t}  = \frac{\partial y}{\partial x_1}\frac{\partial x_1}{\partial t}+\frac{\partial y}{\partial x_2}\frac{\partial x_2}{\partial t}</script><p>如果$f(x_1,x_2)$,并且$x_1(s,t),x_2(x,t)$</p>
-<script type="math/tex; mode=display">
-\frac{\mathrm df}{\mathrm d(s,t)} = \frac{\partial f}{\partial\mathbf x}\frac{\partial \mathbf x}{\partial(s,t)}=[\frac{\partial f}{\partial x_1},\frac{\partial f}{\partial x_2}]\begin{bmatrix}
- \frac{\partial x_1}{\partial s}  & \frac{\partial x_1}{\partial t}\\
-  \frac{\partial x_2}{\partial s}&\frac{\partial x_2}{\partial t}
-\end{bmatrix}</script><p><img src="/2020/11/25/math/2.png" alt="image-20201125172221418" style="zoom: 67%;"></p>
-<h3 id="向量函数的梯度"><a href="#向量函数的梯度" class="headerlink" title="向量函数的梯度"></a>向量函数的梯度</h3><ul>
-<li>定义一个函数$\bold f:\mathbb R^n\to\mathbb R^m$，向量$\vec x=[x_1,\dots,x_2]$</li>
-</ul>
-<script type="math/tex; mode=display">
-f(\vec x) = \begin{bmatrix}
- f_1(\vec x)\\
- \vdots\\
- f_2(\vec x_) \\
-\end{bmatrix}</script><ul>
-<li>对$x_i$求偏导</li>
-</ul>
-<script type="math/tex; mode=display">
-\frac{\partial \bold f}{\partial x_i} = \begin{bmatrix}
-\frac{f_1}{\partial x_i}\\
- \vdots\\
-\frac{f_n}{\partial x_i}
-\end{bmatrix}</script><ul>
-<li><p>向量对向量求导<strong>Jacobian矩阵</strong> ，采用分子布局。</p>
-<p>分子布局即$f\in\mathbb R^m,x\in\mathbb R^n$得到一个$\mathbb R^{m\times n}$矩阵。f定义了行，x的元素定义了列。</p>
+<li><p>平均数</p>
+<p>调和平均</p>
 </li>
 </ul>
-<p><img src="/2020/11/25/math/3.png" alt="image-20201125180902326" style="zoom:60%;"></p>
-<h3 id="常用公式"><a href="#常用公式" class="headerlink" title="常用公式"></a>常用公式</h3><p>采用分母布局</p>
 <script type="math/tex; mode=display">
-\begin{align}
-&\frac{\partial x^Ta}{\partial x} = a\\
-&\frac{\partial a^Tx}{\partial x} = a\\
-&\frac{\partial{AB}}{\partial x} = \frac{\partial{A}}{\partial x}B +\frac{\partial{B}}{\partial{x}}{A} \\
-&\frac{\partial A^{-1}}{\partial x}=-A^{-1}\frac{\partial A}{\partial x}A^{-1} \tag{1} \\
-&\frac{\partial\ tr(A^TB)}{\partial A}=B \tag{2}\\
-&\frac{\partial\ tr(ABA^T)}{\partial A} = (BA^T)^T+AB = A(B^T+B)\\
-&\frac{\partial\ tr(AA^T)}{\partial A} = 2A\\
-
-\end{align}</script><p>(1)式证明如下</p>
+H = \frac{1}{\frac{1}{n}\sum_{i=1}^n\frac{1}{x_i}}</script><p>​        几何平均</p>
 <script type="math/tex; mode=display">
-\begin{align}
-\because&\frac{\partial {AA}^{-1}}{\partial x} = 0   \\
-\Longrightarrow &\frac{\partial{A}}{\partial x}A^{-1}+\frac{\partial{A}^{-1}}{\partial x}A =0 \\
-\Longrightarrow &\frac{\partial{A}^{-1}}{\partial x}=-A^{-1}\frac{\partial{A}}{\partial x}A^{-1}
-\end{align}</script><p>(2)式证明</p>
+G = \sqrt[n] {\prod_{i=1}^n x_i}</script><h3 id="ROC与AUC"><a href="#ROC与AUC" class="headerlink" title="ROC与AUC"></a>ROC与AUC</h3><h4 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h4><p>ROC空间将伪阳性率定义为X轴，真阳性率定义为Y轴。</p>
 <script type="math/tex; mode=display">
-tr(A^TB) = \sum_i\sum_jA_{ij}B_{ij},即AB对应列向量的内积,求导时只有对应项\ne0\\
-\therefore\frac{tr(A^TB)}{\partial A_{ij}} = B_{ij}\\
-\therefore \frac{tr(A^TB)}{\partial A} = B</script><h1 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h1>
+TPR = \frac{TP}{TP+FN}\\
+FRP = \frac{FP}{FP+TN}</script><p>通过按照样例的预测值，从低到高调整阈值改变ROC曲线</p>
+<ul>
+<li>当阈值设定为最高时，没有样本被预测为正例，TPR和FRP都为0。此时坐标为(0,0)</li>
+<li>当阈值设定为最低时，没有样本被预测为反例，TPR和FRP都为1。此时坐标为(1,1)</li>
+<li>随着阈值的调低，TP和FP都增加，TN和FN都减少</li>
+</ul>
+<p>假设有$m^+$个正例，$m^-$个反例。设前一个标记点为(x,y)</p>
+<ul>
+<li>如果当前样本为正例，则对应标记点坐标为$(x,y+\frac{1}{m^+})$</li>
+<li>如果当前样本为反例，则对应标记点坐标为$(x+\frac{1}{m^-},y)$</li>
+</ul>
+<p><img src="/2020/11/26/machine%20learning/%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/2.png" alt="ROC曲线" style="zoom:150%;"></p>
+<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>ROC曲线下方的面积，通过对ROC曲线下各部分面积求和得到。</p>
+<p>用于衡量分类器的优劣，分类器正确判断阳性样本的值高于阴性样本之几率 =AUC。</p>
+<h2 id="移除低方差特征"><a href="#移除低方差特征" class="headerlink" title="移除低方差特征"></a>移除低方差特征</h2><p><code>VarianceThreshold(threshold=0.0)</code></p>
+<p>移除所有那些方差不满足一些阈值的特征，例如移除整个数据集中特征值为o或1的比例超过80%的特征。布尔特征是伯努利随机变量，方差为$Var[X] = p(1-p)$。</p>
+<p>调用<code>fit_transform(X,[y])</code>方法应用在数据上。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> VarianceThreshold</span><br><span class="line">X = [[<span class="number">0</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">3</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>]]</span><br><span class="line">selector = VarianceThreshold()</span><br><span class="line">selector.fit_transform(X)</span><br><span class="line">&gt;&gt;&gt;array([[<span class="number">2</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">4</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>]])</span><br><span class="line"><span class="comment">####</span></span><br><span class="line">X = [[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]]</span><br><span class="line">sel = VarianceThreshold(threshold=(<span class="number">.8</span> * (<span class="number">1</span> - <span class="number">.8</span>)))</span><br><span class="line">sel.fit_transform(X)</span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>]])</span><br></pre></td></tr></table></figure>
+<h2 id="单变量特征选择"><a href="#单变量特征选择" class="headerlink" title="单变量特征选择"></a>单变量特征选择</h2><p>基于单变量的统计测试来选择最好的特征</p>
+<h3 id="选择评分最高的K个特征"><a href="#选择评分最高的K个特征" class="headerlink" title="选择评分最高的K个特征"></a>选择评分最高的K个特征</h3><p><code>SelectKBest(score_func=&lt;function f_classif&gt;, *, k=10)</code></p>
+<p>参数</p>
+<ul>
+<li>score_func：接受数组X和y的函数，返回一个分数数组。</li>
+<li>k：int or “all”,default=10</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_digits</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> SelectKBest,chi2</span><br><span class="line"><span class="comment">#chi2计算卡方统计量</span></span><br><span class="line">X, y = load_digits(return_X_y = <span class="literal">True</span>)</span><br><span class="line">X_new = SelectKBest(chi2,k=<span class="number">20</span>).fit_transform(X,y)</span><br><span class="line">print(X.shape,X_new.shape)</span><br><span class="line">&gt;&gt;&gt;(<span class="number">1797</span>, <span class="number">64</span>) (<span class="number">1797</span>, <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="用户指定最高得分百分比"><a href="#用户指定最高得分百分比" class="headerlink" title="用户指定最高得分百分比"></a>用户指定最高得分百分比</h3><p><code>sklearn.feature_selection.SelectPercentile(score_func=&lt;function f_classif&gt;, *, percentile=10)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_digits</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> SelectPercentile, chi2</span><br><span class="line">X, y = load_digits(return_X_y=<span class="literal">True</span>)</span><br><span class="line">X_new = SelectPercentile(chi2, percentile=<span class="number">10</span>).fit_transform(X, y)</span><br><span class="line">X.shape,X_new.shape</span><br><span class="line">&gt;&gt;&gt;((<span class="number">1797</span>, <span class="number">64</span>), (<span class="number">1797</span>, <span class="number">7</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="常见单变量统计测试"><a href="#常见单变量统计测试" class="headerlink" title="常见单变量统计测试"></a>常见单变量统计测试</h3><p><code>SelectFpr</code>假阳性率，<code>SelectFdr</code>假发现率，<code>SelectFwe</code>族系误差。</p>
+<h3 id="得分函数"><a href="#得分函数" class="headerlink" title="得分函数"></a>得分函数</h3><ul>
+<li>回归：<code>f_regression</code>单变量回归，<code>mutual_info_regression</code>连续目标量的互信息</li>
+<li>分类：<code>chi2</code>卡方、<code>f_classif</code>计算提供的样本的方差分析 F值、<code>mutual_info_classif</code>连续目标量的互信息</li>
+</ul>
+<p>这些基于 F-test(联合假设检验) 的方法计算两个随机变量之间的线性相关程度。另一方面，mutual information methods（互信息）能够计算任何种类的统计相关性，但是作为非参数的方法，互信息需要更多的样本来进行准确的估计。</p>
+<h2 id="使用SelectFromModel选取特征"><a href="#使用SelectFromModel选取特征" class="headerlink" title="使用SelectFromModel选取特征"></a>使用SelectFromModel选取特征</h2>
       
     </div>
 
@@ -461,7 +397,7 @@ tr(A^TB) = \sum_i\sum_jA_{ij}B_{ij},即AB对应列向量的内积,求导时只�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
