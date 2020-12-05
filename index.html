@@ -289,7 +289,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-03 23:45:24" itemprop="dateModified" datetime="2020-12-03T23:45:24+08:00">2020-12-03</time>
+        <time title="修改时间：2020-12-04 16:15:34" itemprop="dateModified" datetime="2020-12-04T16:15:34+08:00">2020-12-04</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -354,7 +354,7 @@ p(a,b,c) = p(a)p(b)p(c|a,b)</script><p>如果没有结点被观测到路径block
 p(a,b) = \sum_cp(a,b,c) = p(a)p(b)</script><p>假设条件作用于c，路径变成通路则有</p>
 <script type="math/tex; mode=display">
 p(a,b|c) = \frac{p(a,b,c)}{p(c)}=\frac{p(a)p(b)p(c|a,b)}{p(c)}</script><p>a,b在给定c下不满足边际独立性</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/博客\source\_posts\概率图\5.png" alt="image-20201202162449393"></p>
+<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/5.png" alt="image-20201202162449393"></p>
 <h3 id="D-separation"><a href="#D-separation" class="headerlink" title="D-separation"></a>D-separation</h3><p>使用有向分离，将一个有向图转变为一个无向图，便于分析图中变量的条件独立性。</p>
 <h4 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h4><ul>
 <li>找出有向图中的所有V型结构，在V型结构的两个父节点中加上一条无向边。</li>
@@ -449,20 +449,12 @@ b_{ij} = P(x_t=o_j\mid y_t=s_i)</script><p>状态为$s_i$，观测值为$o_j$被
 <p>给定模型参数$\lambda$和观测序列$\mathbf x$，如何找到匹配的状态序列</p>
 <script type="math/tex; mode=display">
 \hat s = \arg\max_sP(s|\mathbf x,\lambda)</script></li>
-</ul>
-<ul>
 <li><p>Learning：学习问题</p>
 <p>给定观测序列$\mathbf x$，如何调整参数$\lambda$使得出现$\mathbf x$的概率最大</p>
 <script type="math/tex; mode=display">
 \lambda_{MLE} = \arg\max_{\lambda}p(o|\lambda)</script></li>
 </ul>
-<h3 id="概率计算问题"><a href="#概率计算问题" class="headerlink" title="概率计算问题"></a>概率计算问题</h3><ol>
-<li><p><strong>前向算法</strong></p>
-<p>前向概率：时刻t部分观测序列以及状态$q_i$时的概率</p>
-<script type="math/tex; mode=display">
-\alpha_t = p(o_1,o_2,\dots,o_t,y_t=s_i|\lambda)</script></li>
-</ol>
-
+<h3 id="概率计算问题"><a href="#概率计算问题" class="headerlink" title="概率计算问题"></a>概率计算问题</h3>
       
     </div>
 

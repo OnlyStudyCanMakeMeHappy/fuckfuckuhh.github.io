@@ -30,7 +30,7 @@
 <meta property="og:description" content="SVM 支持向量机算法本身不能够很好地支持非标准化的数据，所以 我们强烈建议您将数据标准化。 举个示例，对于输入向量 X， 规整它的每个数值范围为 [0, 1] 或 [-1, +1] ，或者标准化它的为均值为0方差为1的数据分布。可以通过sklearn预处理库中的StandardScaler函数实现。 底层实现的随机性:SVC的底层实现仅使用随机数生成器来打乱数据顺序进行概率估计(当probabi">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-06T02:56:43.000Z">
-<meta property="article:modified_time" content="2020-12-02T11:36:36.465Z">
+<meta property="article:modified_time" content="2020-12-05T07:05:10.003Z">
 <meta property="article:author" content="ggl">
 <meta property="article:tag" content="sklearn">
 <meta property="article:tag" content="svm">
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM"><span class="nav-number">1.</span> <span class="nav-text">SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">支持向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3"><span class="nav-number">1.2.</span> <span class="nav-text">求解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">广义拉格朗日函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMO%E6%B1%82%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">SMO求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="nav-number">4.1.</span> <span class="nav-text">常用核函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E9%97%B4%E9%9A%94%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">软间隔与正则化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E5%9B%9E%E5%BD%92SVR"><span class="nav-number">6.</span> <span class="nav-text">支持向量回归SVR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sklearn%E4%B8%8B%E4%BD%BF%E7%94%A8SVC%E5%92%8CSVR"><span class="nav-number">7.</span> <span class="nav-text">sklearn下使用SVC和SVR</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SVC"><span class="nav-number">7.1.</span> <span class="nav-text">SVC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVR"><span class="nav-number">7.2.</span> <span class="nav-text">SVR</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SVM"><span class="nav-number">1.</span> <span class="nav-text">SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%B8%E4%BC%98%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">凸优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E5%B9%B3%E9%9D%A2%E4%B8%8E%E5%87%B8%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">超平面与凸函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%B8%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">凸函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.2.</span> <span class="nav-text">优化问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E8%A7%84%E5%88%92"><span class="nav-number">1.1.3.</span> <span class="nav-text">凸规划</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">支持向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">广义拉格朗日函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMO%E6%B1%82%E8%A7%A3"><span class="nav-number">1.5.</span> <span class="nav-text">SMO求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.1.</span> <span class="nav-text">常用核函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E9%97%B4%E9%9A%94%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">1.7.</span> <span class="nav-text">软间隔与正则化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E5%9B%9E%E5%BD%92SVR"><span class="nav-number">1.8.</span> <span class="nav-text">支持向量回归SVR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sklearn%E4%B8%8B%E4%BD%BF%E7%94%A8SVC%E5%92%8CSVR"><span class="nav-number">1.9.</span> <span class="nav-text">sklearn下使用SVC和SVR</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SVC"><span class="nav-number">1.9.1.</span> <span class="nav-text">SVC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVR"><span class="nav-number">1.9.2.</span> <span class="nav-text">SVR</span></a></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -294,7 +294,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-02 19:36:36" itemprop="dateModified" datetime="2020-12-02T19:36:36+08:00">2020-12-02</time>
+        <time title="修改时间：2020-12-05 15:05:10" itemprop="dateModified" datetime="2020-12-05T15:05:10+08:00">2020-12-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -316,12 +316,88 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h2><ul>
+        <h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><ul>
 <li>支持向量机算法本身不能够很好地支持非标准化的数据，所以 <strong>我们强烈建议您将数据标准化</strong>。 举个示例，对于输入向量 X， 规整它的每个数值范围为 [0, 1] 或 [-1, +1] ，或者标准化它的为均值为0方差为1的数据分布。可以通过sklearn预处理库中的StandardScaler函数实现。</li>
 <li>底层实现的随机性:SVC的底层实现仅使用随机数生成器来打乱数据顺序进行概率估计(当probability被设置为True时)。这种随机性可以用random_state参数来控制。</li>
 </ul>
 <a id="more"></a>
-<h3 id="支持向量"><a href="#支持向量" class="headerlink" title="支持向量"></a>支持向量</h3><p>记超平面为$\omega’^T+b=0$，样本空间上一点到超平面的距离$r=\frac{|\mathbf{\omega^T}+b|}{||\mathbf{\omega}||}$</p>
+<h2 id="凸优化"><a href="#凸优化" class="headerlink" title="凸优化"></a>凸优化</h2><h3 id="超平面与凸函数"><a href="#超平面与凸函数" class="headerlink" title="超平面与凸函数"></a>超平面与凸函数</h3><p>超平面是具有下列形式的集合</p>
+<script type="math/tex; mode=display">
+\{x|w^Tx+b\}</script><p>表示法向量为$w$的超平面，由偏移$b$加上所有与法向量正交的向量构成。</p>
+<h4 id="凸函数"><a href="#凸函数" class="headerlink" title="凸函数"></a>凸函数</h4><p>设集合$S\subset R^n$.称$S$为凸集，如果对任意$x_1,x_2\in S$和任意$\lambda\in[0,1]$有</p>
+<script type="math/tex; mode=display">
+\lambda x_1+(1-\lambda)x_2 \in S</script><p><strong>定义</strong>（严格凸函数）</p>
+<script type="math/tex; mode=display">
+f(\lambda x_1+(1-\lambda)x_2) \le \lambda f(x_1)+(1-\lambda)f(x_2)</script><p><strong>定理</strong>（凸函数的充要条件）</p>
+<script type="math/tex; mode=display">
+f(x) \ge f(\bar{x})+\nabla f(\bar{x})^T(x-\bar x)</script><p><strong>推论</strong></p>
+<script type="math/tex; mode=display">
+f(x) = \frac{1}{2}x^THx+r^Tx+\delta</script><p>若$H$半正定，则$f(x)$是$R^n$上的严格凸函数.</p>
+<h3 id="优化问题"><a href="#优化问题" class="headerlink" title="优化问题"></a>优化问题</h3><p>带约束的优化问题</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\min f_0(x) \\
+&s.t. f_i(x)\le0,\ i=1,...,m\\
+&h_i(x) = 0,\ i=1,...,p
+\end{align}</script><p>$f_0(x)$为目标函数，$f_i(x)\le0$为不等式约束，$h_i(x)=0$为等式约束。</p>
+<p><strong>定义</strong>（可行域和可行点） 满足所有约束条件的点为可行点，全体可行点组成的集合$\mathcal D$为可行域</p>
+<script type="math/tex; mode=display">
+\mathcal D=\{x|f_i(x)\le0,i=1,..,m;h_i(x)=0,i=1,...,p;x\in R^n\}</script><p><strong>定义</strong>（最优值）目标函数$f_0(x)$在可行域上的下确界</p>
+<script type="math/tex; mode=display">
+p^* = \inf\{f_0(x)|x\in\mathcal D\}</script><p>可行域如果为空集，定义最优值为无穷</p>
+<script type="math/tex; mode=display">
+p^* = \infty</script><h3 id="凸规划"><a href="#凸规划" class="headerlink" title="凸规划"></a>凸规划</h3><ol>
+<li><p>凸规划问题</p>
+<p><strong>定义</strong>（凸规划问题）</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\min f_0(x) \\
+&s.t. f_i(x)\le0,\ i=1,...,m\\
+&h_i(x) = a_i^Tx-b_i=0,\ i=1,...,p
+\end{align}</script><p>其中$f_0(x)$和$f_i(x)$都是定义在$R^n$上的连续可微的凸函数，$h_i(x)$是线性函数。</p>
+</li>
+<li><p>对偶问题导出</p>
+<p>引进Lagrange函数</p>
+<script type="math/tex; mode=display">
+L(x,\lambda,\beta) = f_0(x) + \sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p\beta_ih_i(x)</script><p>其中$\lambda= (\lambda_1,\dots\,\lambda_m)^T$，$\beta=(\beta_1,\dots,\beta_p)^T$是Lagrange乘子向量，$\lambda\ge0$，有</p>
+<script type="math/tex; mode=display">
+L(x,\lambda,\beta) \le f_0(x)</script><p>定义$g$函数</p>
+<script type="math/tex; mode=display">
+g(\lambda,\beta) = \inf_{x\in\mathcal D}L(x,\lambda,\beta)</script><p>若有$\tilde{x}\in\mathcal D$为可行域中的点，则有</p>
+<script type="math/tex; mode=display">
+g(\lambda,\beta) = \inf_{x\in\mathcal D}L(x,\lambda,\beta)\le L(\tilde{x},\lambda,\beta)\le f_0(\tilde{x})</script><p><strong>通常在推导对偶问题时，常常将拉格朗日乘子对$x$求导来获得对偶函数的表达形式</strong></p>
+<p>对于对偶$g$函数，有</p>
+<script type="math/tex; mode=display">
+g(\lambda,\beta)\le\inf_{x\in\mathcal D}f_0(x)=p^*</script><p>表示$g(\lambda,\beta)$是$p^*$的一个下界，寻找下界中的最好下界，这就有了以下优化问题。即对偶问题</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\max_{\lambda,\beta} \ g(\lambda,\beta) = \inf_{x\in\mathcal D}L(x,\lambda,\beta)\\
+&s.t.\ \lambda\ge0
+\end{align}</script></li>
+<li><p>对偶理论</p>
+<p>对偶问题的最优值</p>
+<script type="math/tex; mode=display">
+d^* = \sup\{g(\lambda,\beta)|\lambda\ge0\}</script><p><strong>定理</strong>（对偶间隙）原始问题最优值与对偶问题最优值之差</p>
+<script type="math/tex; mode=display">
+p^*-d^*</script></li>
+</ol>
+<p>   <strong>定理</strong>（弱对偶定理）</p>
+<script type="math/tex; mode=display">
+   p^*=\inf_{x\in\mathcal D}f_0(x)\ge \sup\{g(\lambda,\beta)|\lambda\ge0\}=d^*</script><p>   <strong>定理</strong>（强对偶定理）</p>
+<p>   若优化问题满足slater条件，则对偶间隙为零，原始问题和对偶问题的最优值都可以达到，使得</p>
+<script type="math/tex; mode=display">
+   p^*=f_0(x^*) = g(\lambda^*,\beta^*) = d^*</script><p>   <strong>定义</strong>（KKT条件）</p>
+<script type="math/tex; mode=display">
+   \begin{align}
+   &f_i(x^*) \le 0,\ i=1,\dots,m\\
+   &h_i(x^*)=0, \ i=1,\dots,p\\
+   &\lambda^*\ge0,\ i=1,...,m\\
+   &\lambda^*f_i(x^*)=0,\ i=1,\dots,m\\
+   &\nabla_xL(x^*,\lambda^*,\beta^*) = 0
+   \end{align}</script><p>   <strong>证明</strong></p>
+<script type="math/tex; mode=display">
+   \inf_x(f_0(x)+\sum_{i=1}^m\lambda^*f_i(x)+\sum_{i=1}^p\beta^*h_i(x))\\
+   =f_0(x^*)+\lambda^*f_i(x)+\sum_{i=1}^p\beta^*h_i(x)=f_0(x^*)</script><h2 id="支持向量"><a href="#支持向量" class="headerlink" title="支持向量"></a>支持向量</h2><p>记超平面为$\omega’^T+b=0$，样本空间上一点到超平面的距离$r=\frac{|\mathbf{\omega^T}+b|}{||\mathbf{\omega}||}$</p>
 <p>通过移动超平面直到与碰到两类样本点，此时得到两个极端超平面$l_1$和$l_2$。分别表示为</p>
 <script type="math/tex; mode=display">
 y_1 : \omega'^Tx+b = k_1\\
@@ -335,46 +411,54 @@ y_2 : \omega'^Tx+b' = -k\\</script><p>令$\omega=\omega’/k,b=b’$,正反例�
 &y^-:\omega^Tx+b \le -1\\
 &l : \omega^Tx+b = 0
 \end{align}</script><p>使等号成立的点称作支持向量，两个异类点到超平面的距离为$\gamma=\frac{2}{||\mathbf{\omega}||}\$</p>
-<h3 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h3><p>最大化$\gamma$等价于</p>
+<h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><p>最大化$\gamma$等价于</p>
 <script type="math/tex; mode=display">
 \begin{align}
 &\min_{\omega,b}\ \frac{1}{2}||\mathbf{\omega}||^2 \\
 &s.t.\ y_i(\mathbf{\omega}^T\boldsymbol{x_i}+b)\ge1, \ i=1,2,...,m \\
-\end{align}</script><script type="math/tex; mode=display">
-拉格朗日函数写作为：L(w,b,\alpha)= \frac{1}{2}||\mathbf{\omega}||^2+\sum_{i=1}^{m}\alpha_i(1-y_i(\mathbf{\omega}^T\boldsymbol{x_i}+b)) \\
-求偏导得：\mathbf{\omega}=\sum_{i=1}^{m}\alpha_iy_i\boldsymbol{x_i},\\
-\sum_{i=1}^{m}\alpha_iy_i=0\\</script><script type="math/tex; mode=display">
-对偶问题：\max_{\alpha}\ \sum_{i=1}^{m}\alpha_i-\frac{1}{2}\sum_{i=1}^{m}\sum_{j=1}^{m}\alpha_i\alpha_jy_iy_j\boldsymbol{x_i}^T\boldsymbol{x_j},\\
+\end{align}</script><p>拉格朗日函数写作为</p>
+<script type="math/tex; mode=display">
+L(w,b,\alpha)= \frac{1}{2}||\mathbf{\omega}||^2+\sum_{i=1}^{m}\alpha_i(1-y_i(\mathbf{\omega}^T\boldsymbol{x_i}+b))</script><p>求偏导得</p>
+<script type="math/tex; mode=display">
+\mathbf{\omega}=\sum_{i=1}^{m}\alpha_iy_i\boldsymbol{x_i},\\
+\sum_{i=1}^{m}\alpha_iy_i=0\\</script><p>对偶问题</p>
+<script type="math/tex; mode=display">
+\max_{\alpha}\ \sum_{i=1}^{m}\alpha_i-\frac{1}{2}\sum_{i=1}^{m}\sum_{j=1}^{m}\alpha_i\alpha_jy_iy_j\boldsymbol{x_i}^T\boldsymbol{x_j},\\
 s.t.\ \sum_{i=1}^{m}\alpha_iy_i=0, 
-\alpha_i\ge0,\ \ i=1,2,....,m. \\
-解出\alpha后，求出\mathbf{\omega}和b得出模型
-f(\boldsymbol{x})=\sum_{i=1}^{m}\alpha_iy_i\boldsymbol{x}^T\boldsymbol{x}+b\\
-上述过程满足KKT条件\left\{
+\alpha_i\ge0,\ \ i=1,2,....,m. \\</script><p>解出$\alpha$后,求出$\mathbf{\omega}$和b后得出模型</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x})=\sum_{i=1}^{m}\alpha_iy_i\boldsymbol{x}^T\boldsymbol{x}+b\\</script><p>上述过程满足KKT条件</p>
+<script type="math/tex; mode=display">
+\left\{
 \begin{array}{rcl}
 \alpha_i\ge0;\\
 y_if(\boldsymbol{x})-1\ge0;\\
 \alpha_i(y_if(\boldsymbol{x})-1)=0.
 \end{array}\right.</script><h2 id="广义拉格朗日函数"><a href="#广义拉格朗日函数" class="headerlink" title="广义拉格朗日函数"></a>广义拉格朗日函数</h2><script type="math/tex; mode=display">
-\min f(x) \\
-s.t. \ c_i(x)\le0,i=1,2,...,k \\
-\ h_j(x)=0,j=1,2,...,l \\
-L(x,\alpha,\beta) = f(x)+\sum_{i=1}^{k}\alpha_ic_i(x)+\sum_{j=1}^{l}\beta_jh_j(x)
-其中\alpha_i\ge0\\</script><p>原问题</p>
+\begin{align}
+&\min f(x) \\
+&s.t. \ c_i(x)\le0,i=1,2,...,k \\
+&\ h_j(x)=0,j=1,2,...,l \\
+&L(x,\alpha,\beta) = f(x)+\sum_{i=1}^{k}\alpha_ic_i(x)+\sum_{j=1}^{l}\beta_jh_j(x),\ \alpha_i\ge0\\
+\end{align}</script><p>原问题</p>
 <script type="math/tex; mode=display">
-\min_{x}\max_{\alpha,\beta}L(x,\alpha,\beta)=\min_x\theta_p(x)\\
-可以发现令所有\alpha=0可以使拉格朗日函数最大即\theta_p(x)，此时\\
-\theta_p(x)=\max_{\alpha,\beta}L(x)=f(x)\\
-则\min_x\theta_p(x)=\min_xf(x)</script><p>对偶问题</p>
+\begin{align}
+&\min_{x}\max_{\alpha,\beta}L(x,\alpha,\beta)=\min_x\theta_p(x)\\
+&可以发现令所有\alpha=0可以使拉格朗日函数最大即\theta_p(x)，此时\\
+&\theta_p(x)=\max_{\alpha,\beta}L(x)=f(x)\\
+&则\min_x\theta_p(x)=\min_xf(x)
+\end{align}</script><p>对偶问题</p>
 <script type="math/tex; mode=display">
-\max_{\alpha,\beta}\min_{x}L(x,\alpha,\beta)=\max_{\alpha,\beta}\theta_D(\alpha,\beta)</script><p>原问题与对偶问题的关系</p>
+\max_{\alpha,\beta}\min_{x}L(x,\alpha,\beta)=\max_{\alpha,\beta}\theta_D(\alpha,\beta)</script><p>原问题与对偶问题的弱对偶性关系</p>
 <script type="math/tex; mode=display">
-弱对偶性\\
 d^* = \max_{\alpha,\beta}\min_{x}L(x,\alpha,\beta)\le\min_x\max_{\alpha,\beta}L(x,\alpha,\beta)=p^*</script><p>KKT条件(强对偶性成立的充分必要条件)</p>
 <script type="math/tex; mode=display">
-1. (原始可行性) c_i(x^*)\le0,i=1,2...,m\ ,h_j(x^*)=0\\
-2. (对偶可行性) alpha_i^*\ge0,i=1,...,m \\
-3. (互补松弛性) \alpha_i^*c_i(x^*)=0,i=1,2...,m \\
-4. (拉格朗日不动性) \nabla_xL(x^*,\alpha^*,\beta^*)</script><h2 id="SMO求解"><a href="#SMO求解" class="headerlink" title="SMO求解"></a>SMO求解</h2><ul>
+\begin{align}
+&1. (原始可行性) c_i(x^*)\le0,i=1,2...,m\ ,h_j(x^*)=0\\
+&2. (对偶可行性) alpha_i^*\ge0,i=1,...,m \\
+&3. (互补松弛性) \alpha_i^*c_i(x^*)=0,i=1,2...,m \\
+&4. (拉格朗日不动性) \nabla_xL(x^*,\alpha^*,\beta^*)
+\end{align}</script><h2 id="SMO求解"><a href="#SMO求解" class="headerlink" title="SMO求解"></a>SMO求解</h2><ul>
 <li>选取一对需更新的变量$\alpha_i,\alpha_j$;</li>
 <li>固定$\alpha_i和\alpha_j$以外的参数，求解更新后的$\alpha_i,\alpha_j$.</li>
 </ul>

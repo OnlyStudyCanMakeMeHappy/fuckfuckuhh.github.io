@@ -22,14 +22,14 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":6},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="xgboost学习对象模型  \hat y_i &#x3D; \phi(\mathbf{x}_i) &#x3D; \sum_{k&#x3D;1}^K f_k(\mathbf{x}_i)待优化项  L(\phi) &#x3D; \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\ where\ \Omega(f) &#x3D; \gamma T+\frac{1}{2}\lambda||w||^2其中T是叶子数，w是">
+  <meta name="description" content="xgboost学习对象模型  \hat y_i &#x3D; \phi(\mathbf{x}_i) &#x3D; \sum_{k&#x3D;1}^K f_k(\mathbf{x}_i)待优化项，优化目标即模型优化方向  obj &#x3D; \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\ where\ \Omega(f) &#x3D; \gamma T+\frac{1}{2}\lambda||w||^2其中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xgboost&amp;lightGBM">
 <meta property="og:url" content="http://example.com/2020/11/23/machine%20learning/xgboost/index.html">
 <meta property="og:site_name" content="Mr.fuck">
-<meta property="og:description" content="xgboost学习对象模型  \hat y_i &#x3D; \phi(\mathbf{x}_i) &#x3D; \sum_{k&#x3D;1}^K f_k(\mathbf{x}_i)待优化项  L(\phi) &#x3D; \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\ where\ \Omega(f) &#x3D; \gamma T+\frac{1}{2}\lambda||w||^2其中T是叶子数，w是">
+<meta property="og:description" content="xgboost学习对象模型  \hat y_i &#x3D; \phi(\mathbf{x}_i) &#x3D; \sum_{k&#x3D;1}^K f_k(\mathbf{x}_i)待优化项，优化目标即模型优化方向  obj &#x3D; \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\ where\ \Omega(f) &#x3D; \gamma T+\frac{1}{2}\lambda||w||^2其中">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/博客/source/_posts/xgboost/4.png">
+<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/4.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/1.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/2.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/3.png">
@@ -40,12 +40,12 @@
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/10.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/11.png">
 <meta property="article:published_time" content="2020-11-23T13:59:04.000Z">
-<meta property="article:modified_time" content="2020-11-29T14:15:21.845Z">
+<meta property="article:modified_time" content="2020-12-05T15:12:40.476Z">
 <meta property="article:author" content="ggl">
 <meta property="article:tag" content="xgboost">
 <meta property="article:tag" content="lightGBM">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/博客/source/_posts/xgboost/4.png">
+<meta name="twitter:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/4.png">
 
 
 <link rel="canonical" href="http://example.com/2020/11/23/machine%20learning/xgboost/">
@@ -305,7 +305,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-29 22:15:21" itemprop="dateModified" datetime="2020-11-29T22:15:21+08:00">2020-11-29</time>
+        <time title="修改时间：2020-12-05 23:12:40" itemprop="dateModified" datetime="2020-12-05T23:12:40+08:00">2020-12-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -329,28 +329,50 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="xgboost"><a href="#xgboost" class="headerlink" title="xgboost"></a>xgboost</h1><h2 id="学习对象"><a href="#学习对象" class="headerlink" title="学习对象"></a>学习对象</h2><p>模型</p>
 <script type="math/tex; mode=display">
-\hat y_i = \phi(\mathbf{x}_i) = \sum_{k=1}^K f_k(\mathbf{x}_i)</script><p>待优化项</p>
+\hat y_i = \phi(\mathbf{x}_i) = \sum_{k=1}^K f_k(\mathbf{x}_i)</script><p>待优化项，优化目标即模型优化方向</p>
 <script type="math/tex; mode=display">
-L(\phi) = \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\
-where\ \Omega(f) = \gamma T+\frac{1}{2}\lambda||w||^2</script><p>其中T是叶子数，w是叶子的均值。</p>
-<h2 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h2><script type="math/tex; mode=display">
+obj = \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\
+where\ \Omega(f) = \gamma T+\frac{1}{2}\lambda||w||^2</script><p>其中T是叶子数，w是叶子的结点的均值。</p>
+<h2 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h2><ul>
+<li>由泰勒展开式可得</li>
+</ul>
+<script type="math/tex; mode=display">
+f(x+\Delta x) \approx f(x)+f'(x)\Delta x+\frac{1}{2}f''(x)\Delta x^2</script><script type="math/tex; mode=display">
 \begin{align}
 L_t &= \sum_{i=1}^nl(y_i,\hat{y}_{t-1}+f_t(\mathbf{x}_i))+\Omega(f_t)\\
 &\approx\sum_{i=1}^n l(y_i,\hat y_{t-1})+\partial_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t(\mathbf{x}_i)+\frac{1}{2}\partial^2_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t^2(\mathbf{x}_i)+\Omega (f_t)\\
 &=\sum_{i=1}^n l(y_i,\hat y_{t-1})+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\Omega (f_t) \\
 &=\sum_{i=1}^n constant+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\Omega (f_t)
-\end{align}</script><p>忽略常数项，改成由叶节点表示的形式，共有T个叶子节点</p>
+\end{align}</script><ul>
+<li>忽略常数项，改成由叶节点表示的形式，共有T个叶子节点</li>
+</ul>
 <script type="math/tex; mode=display">
-L_t = \sum_{j=1}^T[(\sum_{i\in T_j}g_i)w_j+\frac{1}{2}(\sum_{i\in I_j}h_i+\lambda)w_j^2]+\gamma T</script><p>计算出最优的w</p>
+L_t = \sum_{j=1}^T[(\sum_{i\in I_j}g_i)w_j+\frac{1}{2}(\sum_{i\in I_j}h_i+\lambda)w_j^2]+\gamma T\tag{1}</script><ul>
+<li>将(1)式看做关于w的一元二次函数，计算出最优的w</li>
+</ul>
 <script type="math/tex; mode=display">
-w^*_j = -\frac{\sum_{i\in I_j}g_i}{\sum_{i\in I_j}h_i+\lambda}</script><p>对于树结构q，下式作为一棵树好坏的指标</p>
+w^*_j = -\frac{\sum_{i\in I_j}g_i}{\sum_{i\in I_j}h_i+\lambda} \tag{2}</script><ul>
+<li><p><u>由式(2)可以看出，计算出的叶子权重不仅与一阶、二阶统计信息有关还与正则化系数$\lambda$有关。</u></p>
+</li>
+<li><p>对于树结构q，下式作为一棵树好坏的指标</p>
+</li>
+</ul>
 <script type="math/tex; mode=display">
-L_t(q) = -\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_j}g_i)^2}{\sum_{i\in I_j}h_i+\lambda}+\gamma T</script><p><img src="/2020/11/23/machine%20learning/xgboost/博客\source\_posts\xgboost\4.png" alt="score"></p>
-<p>使用贪心算法去分割结点，分割后损失值变化。</p>
-<p><img src="/2020/11/23/machine%20learning/xgboost/1.png" alt="image-20201124132700202"></p>
-<p>令$G=\sum<em>{i \in I_j}g_i$，$H = \sum</em>{i\in I_j}h_i$上式等价于</p>
+L_t(q) = -\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_j}g_i)^2}{\sum_{i\in I_j}h_i+\lambda}+\gamma T</script><p><img src="/2020/11/23/machine%20learning/xgboost/4.png" alt="score"></p>
+<ul>
+<li>使用贪心算法去分割结点，分割后损失值变化。</li>
+</ul>
+<p><img src="/2020/11/23/machine%20learning/xgboost/1.png" alt="image-20201124132700202" style="zoom: 67%;"></p>
+<ul>
+<li>令$G=\sum<em>{i \in I_j}g_i$，$H = \sum</em>{i\in I_j}h_i$上式等价于</li>
+</ul>
 <script type="math/tex; mode=display">
-L_{split} = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}+\frac{G^2}{H+\lambda}]-\gamma</script><p>同时只有当增益大于某个阈值时才进行分裂。这个阈值就是$\lambda$</p>
+L_{split} = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}+\frac{G^2}{H+\lambda}]-\gamma</script><ul>
+<li><p>同时只有当增益大于某个阈值时才进行分裂。这个阈值就是$\lambda$.并且定义一个shrinkage系数$\eta$，控制每棵树对模型的影响。</p>
+<script type="math/tex; mode=display">
+\hat y_i^s = \hat y_i^{s-1}+\eta f_s(x_i)</script></li>
+<li></li>
+</ul>
 <h2 id="分割查找算法"><a href="#分割查找算法" class="headerlink" title="分割查找算法"></a>分割查找算法</h2><h3 id="精确分割贪心算法"><a href="#精确分割贪心算法" class="headerlink" title="精确分割贪心算法"></a>精确分割贪心算法</h3><p>对当前节点，遍历所有样本，对属性所有取值进行排序后计算score的最大值。</p>
 <p>选取属性的取值作为划分依据。</p>
 <p><img src="/2020/11/23/machine%20learning/xgboost/2.png" alt="image-20201124134727385" style="zoom:70%;"></p>

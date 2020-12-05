@@ -289,7 +289,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 15:25:36" itemprop="dateModified" datetime="2020-12-04T15:25:36+08:00">2020-12-04</time>
+        <time title="修改时间：2020-12-04 18:52:04" itemprop="dateModified" datetime="2020-12-04T18:52:04+08:00">2020-12-04</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,7 +311,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="高等数学"><a href="#高等数学" class="headerlink" title="高等数学"></a>高等数学</h1><h1 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h1><h2 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h2><h3 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h3><ul>
+          <h1 id="高等数学"><a href="#高等数学" class="headerlink" title="高等数学"></a>高等数学</h1><h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><h1 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h1><h2 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h2><h3 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h3><ul>
 <li><p>可加性</p>
 <script type="math/tex; mode=display">
 L(\vec v+\vec w) = L(\vec v)+L(\vec w)\\</script></li>
@@ -441,7 +441,30 @@ f(\vec x) = \begin{bmatrix}
 <script type="math/tex; mode=display">
 tr(A^TB) = \sum_i\sum_jA_{ij}B_{ij},即AB对应列向量的内积,求导时只有对应项\ne0\\
 \therefore\frac{tr(A^TB)}{\partial A_{ij}} = B_{ij}\\
-\therefore \frac{tr(A^TB)}{\partial A} = B</script><h1 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h1>
+\therefore \frac{tr(A^TB)}{\partial A} = B</script><h1 id="概率与信息论"><a href="#概率与信息论" class="headerlink" title="概率与信息论"></a>概率与信息论</h1><h2 id="常用分布"><a href="#常用分布" class="headerlink" title="常用分布"></a>常用分布</h2><h3 id="Bernoulli分布"><a href="#Bernoulli分布" class="headerlink" title="Bernoulli分布"></a>Bernoulli分布</h3><p>性质</p>
+<script type="math/tex; mode=display">
+P(x= 1) = \phi\\
+P(x= 0) = 1-\phi\\
+P(X=x) = \phi^x(1-\phi)^x</script><h3 id="Laplace分布"><a href="#Laplace分布" class="headerlink" title="Laplace分布"></a>Laplace分布</h3><p>分布函数</p>
+<script type="math/tex; mode=display">
+Laplace(x;\mu,\gamma) = \frac{1}{2\gamma}\exp(-\frac{|x-\mu|}{\gamma})</script><h2 id="信息论"><a href="#信息论" class="headerlink" title="信息论"></a>信息论</h2><p>量化信息</p>
+<ul>
+<li>非常可能发生的事件信息量要比较少，并且极端情况下，确保能够<br>发生的事件应该没有信息量。</li>
+<li>较不可能发生的事件具有更高的信息量。</li>
+<li>独立事件应具有增量的信息。 例如，投掷的硬币两次正面朝上传递的信息量， 应该是投掷一次硬币正面朝上的信息量的两倍。  </li>
+</ul>
+<p>定义事件$\mathbb x=x$的自信息(self-information)</p>
+<script type="math/tex; mode=display">
+I(x) = -\log P(x)</script><p>I(x)单位为奈特(nats)，一奈特表示以$\frac{1}{e}$的概率观测到一个事件时获得的信息量。</p>
+<h3 id="香农熵-Shannon-entropy"><a href="#香农熵-Shannon-entropy" class="headerlink" title="香农熵(Shannon entropy)"></a>香农熵(Shannon entropy)</h3><p>对整个概率分布的不确定性进行量化</p>
+<script type="math/tex; mode=display">
+H(x) = \mathbb E_{x\sim P}[I(x)] = -\mathbb E_{x\sim P}[\log P(x)]</script><p>一个分布的香农熵是指遵循这个分布的事件所产<br>生的期望信息总量。   </p>
+<h3 id="KL散度"><a href="#KL散度" class="headerlink" title="KL散度"></a>KL散度</h3><p>如果对于一个随机变量x有两个单独的概率分布P(x)和Q(x)，可以使用KL散度来衡量这两个分布的差异：</p>
+<script type="math/tex; mode=display">
+D_{KL}(P||Q) = \mathbb E_{x\sim P}[\log{\frac{P(x)}{Q(x)}}]=\mathbb E_{x\sim P}[\log{P(x)-Q(x)}]</script><p>KL散度为0当且仅当P和Q在离散情况下有相同分布，或者联系情况下处处相等。</p>
+<p>交叉熵与KL散度的关系</p>
+<script type="math/tex; mode=display">
+-\sum_xP(X)\log{Q(x)}= H(P,Q)  = H(P)+D_{KL}(P||Q) = -\sum_xP(x)\log{P(x)}+\sum_xP(x)log\frac{P(x)}{Q(x)}</script>
       
     </div>
 
