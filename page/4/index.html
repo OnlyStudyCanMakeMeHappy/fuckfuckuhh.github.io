@@ -193,14 +193,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/machine%20learning/PCA/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/06/Primer-c/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/25/machine%20learning/PCA/" class="post-title-link" itemprop="url">PCA</a>
+            <a href="/2020/12/06/Primer-c/" class="post-title-link" itemprop="url">Primer c++</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-25 21:08:34" itemprop="dateCreated datePublished" datetime="2020-11-25T21:08:34+08:00">2020-11-25</time>
+      <time title="创建时间：2020-12-06 20:26:18" itemprop="dateCreated datePublished" datetime="2020-12-06T20:26:18+08:00">2020-12-06</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-01 21:33:56" itemprop="dateModified" datetime="2020-12-01T21:33:56+08:00">2020-12-01</time>
+        <time title="修改时间：2020-12-08 23:41:11" itemprop="dateModified" datetime="2020-12-08T23:41:11+08:00">2020-12-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+          <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
         </span>
     </span>
 
@@ -311,76 +311,122 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="principal-component-analysis"><a href="#principal-component-analysis" class="headerlink" title="principal component analysis"></a>principal component analysis</h2><h3 id="正交投影矩阵"><a href="#正交投影矩阵" class="headerlink" title="正交投影矩阵"></a>正交投影矩阵</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>设$A\in\mathbb{R}^{m\times n},x\in\mathbb{R}^m,c\in\mathbb{R}^n$，$x_w$为投影，$x-x_w$正交所有基向量得</p>
-<script type="math/tex; mode=display">
-A^Tx_w=0\Rightarrow A^T(x-Ac) = \vec 0\Rightarrow x_w=Ac=A(A^TA)^{-1}A^Tx</script><p>所以投影矩阵为$P=A(A^TA)^{-1}A^T\in\mathbb{R}^{m\times m}$，rank(P) = k。</p>
-<p>如果A的列向量是正交规范基，那么$P=AIA^T$。</p>
-<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><script type="math/tex; mode=display">
-\begin{align}
-&P = P^T\\
-&P^2 = P\\
-\end{align}</script><ul>
-<li><p>特征值只包含0和1。</p>
-</li>
-<li><p>正交投影矩阵是一个幂等矩阵。</p>
-</li>
-</ul>
-<h3 id="Rayleigh商"><a href="#Rayleigh商" class="headerlink" title="Rayleigh商"></a>Rayleigh商</h3><p><strong>对称矩阵A</strong>的瑞利商，定义R(x)一个标量，待求向量x</p>
-<script type="math/tex; mode=display">
-R(x) = \frac{x^TAx}{x^Tx}</script><h4 id="Rayleigh-Ritz-定理"><a href="#Rayleigh-Ritz-定理" class="headerlink" title="Rayleigh-Ritz 定理"></a>Rayleigh-Ritz 定理</h4><p>令A的特征值递增排列</p>
-<script type="math/tex; mode=display">
-\lambda_{min} = \lambda_1 \le\lambda_2\dots\le\lambda_{n-1}\le\lambda_{n}=\lambda_{max}</script><p>则</p>
-<script type="math/tex; mode=display">
-\max\frac{x^TAx}{x^Tx}=\max_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{max},若Ax=\lambda_{max}x\\
-\min\frac{x^TAx}{x^Tx}=\min_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{min},若Ax=\lambda_{min}x\\</script><h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>A是对称矩阵所以存在一个正交矩阵M和对角矩阵$\Lambda=(\lambda_1,\dots,\lambda_n)$,使得$A=M\Lambda M^T$，所以</p>
-<script type="math/tex; mode=display">
-\frac{x^TAx}{x^Tx} = \frac{x^TM\Lambda M^Tx}{x^Tx} = \frac{p^T\Lambda p}{x^Tx}</script><p>其中$p=M^Tx$，所以</p>
-<script type="math/tex; mode=display">
-R(x) = \frac{p^T\Lambda p}{x^Tx} = \frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>所以有</p>
-<script type="math/tex; mode=display">
-\frac{\lambda_1||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\lambda_n||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>容易求得$p_i^2=x_i^2$。所以</p>
-<script type="math/tex; mode=display">
-R(x)_{min}=\lambda_{min},R(x)_{max}=\lambda_{max}​</script><p>​    </p>
-<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><h4 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h4><h5 id="中心化"><a href="#中心化" class="headerlink" title="中心化"></a>中心化</h5><script type="math/tex; mode=display">
-\begin{align}
-&\mu = \frac{1}{m}\sum_{i=1}^m\mathbf x_i =\frac{1}{m}\mathbf X\mathbf 1\\
-\Sigma &= \frac{1}{m}\sum_{i=1}^m(\mathbf x-\mu)(\mathbf x-\mu)^T \\
-& = \frac{1}{m}[(\mathbf x_1,\dots,\mathbf x_m)-\mu(1,\dots,1)_m][(\mathbf x_1,\dots,\mathbf x_m)-\mu(1,\dots,1)_m]^T\\
-& = \frac{1}{m}(\mathbf X-\frac{1}{m}\mathbf {X1^T})(\mathbf X-\frac{1}{m}\mathbf {X1^T})^T\\
-& = \frac{1}{m}[\mathbf X(\mathbf I-\frac{1}{m}\mathbf {1^T})][\mathbf X(\mathbf I-\frac{1}{m}\mathbf {1^T})]^T\\
-\end{align}</script><p>记矩阵$\mathbf{1-\frac{1}{m}1^T}$为centering matrix，上式等价于</p>
-<script type="math/tex; mode=display">
-\Sigma = \frac{1}{m}\mathbf{XHH^TX}</script><p>让$\large\mathbf x$去均值中心化，$\sum_{i=1}^m\mathbf{x_i=0}$。定义$\mathcal P_k\in\mathbb R^{N\times N}$为N维秩为k的正交投影矩阵。</p>
-<p>将样本降维后，目标要最小化重构错误。</p>
-<script type="math/tex; mode=display">
-\min_{\mathbf P\in\mathcal P_k}||\mathbf{PX-X}||^2_F</script><p>样本的协方差矩阵$\mathrm{C}=\frac{1}{m}\mathrm{XX^T}$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-||\mathbf{PX-X}||^2_F &= Tr[\mathbf{(PX-X)^T(PX-X)}]\\
-&=Tr[\mathbf{X^TP^2X-2X^TPX+X^TX}]\\
-&=-Tr[\mathbf{X^TPX}]+Tr[\mathbf{X^TX}]\\
-&=-Tr[\mathbf{X^TPX}]+costant\\
-\end{align}</script><hr>
-<script type="math/tex; mode=display">
-\underset{\mathrm P\in\mathcal P_k}{\arg\min}||\mathbf{PX-X}||^2_F=\underset{\mathrm P\in\mathcal P_k}{\arg\max}Tr[\mathbf{X^TPX}]</script><hr>
-
-<p>$\mathbf{P=UU^T},U\in\mathbb{R}^{N\times k}$包含正交规范列向量。$\mathbf{U}$由$\mathbf{C}$的最大前K个特征值对应的特征向量组成。</p>
+          <h1 id="C-基础"><a href="#C-基础" class="headerlink" title="C++基础"></a>C++基础</h1><h2 id="变量和基本类型"><a href="#变量和基本类型" class="headerlink" title="变量和基本类型"></a>变量和基本类型</h2><p><strong>类型转换</strong></p>
 <ul>
-<li>$||u_i||=1，u_iu_j=0$。</li>
+<li>赋给一个无符号类型一个超出它表示范围的值时，结果是初始值对无符号类型表示数值总数取模后的余数。例如，对于unsigned char表示范围为[0,255]。当把-1赋给8bits大小的unsigned char时所得结果是255。</li>
+<li>当给一个带符号类型一个超出范围的值时，结果是未定义的。</li>
+<li>不要混用带符号类型和无符号类型。带符号类型会自动地装换成无符号数，会改变有符号负数的取值，有符号数首位作为符号位表示范围在$[-2^{n-1},2^{n-1}-1]$,n表示位数。</li>
 </ul>
-<script type="math/tex; mode=display">
-\begin{align}
-Tr[\mathbf{X^TPX}] &= Tr[\mathbf{X^TUU^TX}]=Tr[\mathbf{U^TXX^TU}] \\
-&= \sum_{i=1}^ku_i^T\mathbf{XX^T}u_i = \sum_{i=1}^k\frac{u_i^T\mathbf{XX^T}u_i}{u_i^Tu_i}
-\end{align}</script><ul>
-<li>因为$\mathbf{XX^T}$与$\mathbf{C}$只相差缩放因子，所以两矩阵有相同的奇异向量。选择最大的前k个奇异值能最大化上式和。</li>
-<li>$\mathbf{Y=U_k^TX}$表示$\mathbf{X}$使用$\mathbf{U_k}$作为基向量，$\mathbf{PX=UU^TX=UY}$表示$\mathbf{Y}$在新空间下的线性组合(坐标)，即在新空间下的投影。</li>
+<p><strong>变量声明和定义</strong></p>
+<ul>
+<li>声明一个变量而不定义它，使用extern关键字标记。</li>
+<li>变量只能被定义一次，但可以有多次声明。</li>
 </ul>
-<p>PCA也可以被视为投射到最大方差子空间。在这种解释下，第一个主成分是从投影到最大方差方向的，由C的上最大奇异值对应的奇异向量决定。同样，对于1≤i≤k，第i个主成分，<br>是从最大方差的第i个方向上的投影得出，服从正交最大方差的前i − 1方向约束。</p>
-<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><p><img src="/2020/11/25/machine%20learning/PCA/1.png" alt="PCA描述"></p>
-<p>对于${d}’$值可以通过通过k近邻分类器和交叉验证选取，还可以通过设置一个重构阈值，例如t=95%，满足</p>
-<script type="math/tex; mode=display">
-\frac{\sum_{i=1}^{d'}\lambda_i}{\sum_{i=1}^{d}\lambda_i}\ge t</script>
+<p><strong>类别别名</strong></p>
+<ul>
+<li><p>使用typedef定义类别的别名</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//typedef别名</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> wages,*p; <span class="comment">//*p是double *的别名</span></span><br><span class="line">wages val = <span class="number">1.234</span>;</span><br><span class="line">p p1 = &amp;val;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>编写自己的头文件</strong></p>
+<ul>
+<li>头文件通常包含那些只能被定义一次的实体，如类、const和constexpr变量。</li>
+<li>头文件也经常包含其他头文件。</li>
+</ul>
+<p><strong>预处理器</strong></p>
+<ul>
+<li>头文件保护符<ul>
+<li><code>#define</code>将一个名字设定为预处理变量</li>
+<li><code>#ifdef</code>当且仅当变量已经定义时为真</li>
+<li><code>#ifndef</code>当且仅当变量未定义时为真</li>
+<li>检查结果为真，执行后续操作知道<code>#endif</code>指令为止</li>
+</ul>
+</li>
+</ul>
+<p><strong>constexpr</strong></p>
+<p>用于声明常量表达式，即在编译过程就得到计算结果的表达式。</p>
+<hr>
+<h2 id="字符串、向量和数组"><a href="#字符串、向量和数组" class="headerlink" title="字符串、向量和数组"></a>字符串、向量和数组</h2><p>命名空间的using声明</p>
+<ul>
+<li><p>命名空间是对标识符名称的本地化，避免命名冲突。</p>
+</li>
+<li><p>使用<code>namespace</code>定义命名空间，通过<code>name::code</code>调用命名空间的函数或变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> namespace_name&#123;</span><br><span class="line">&#125;</span><br><span class="line">name::code</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过<code>using namespace::name</code>指令调用命名空间。</p>
+</li>
+</ul>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p><strong>构造函数</strong></p>
+<ul>
+<li>直接初始化</li>
+<li>拷贝构造化</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(s1)</span></span>; #拷贝构造函数</span><br><span class="line"><span class="built_in">string</span> s2 = s1;    </span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s3</span><span class="params">(n,<span class="string">&#x27;c&#x27;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>string对象的操作</strong></p>
+<ul>
+<li><p>输入输出流</p>
+</li>
+<li><p><code>getline(is,s)</code>从is中读取一行赋给s，返回is。遇见换行符为止。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s4;</span><br><span class="line">getline(<span class="built_in">cin</span>,s4);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>s.empay()</code></p>
+</li>
+<li><p><code>s.size()</code></p>
+</li>
+<li><p>不能通过下标索引添加字符，需要用<code>+</code>运算符等</p>
+</li>
+<li><p><code>string</code>对象转换为字符串数组</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *str  = s.c_str();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>c语言中的<code>name.h</code>头文件在c++中变成<code>cname</code>头文件。</p>
+<p>处理string对象中的字符(cctype.h)</p>
+<ul>
+<li>isalnum：是字母或数字</li>
+<li>isalpha：是字母为真</li>
+<li>isdigit：数字时为真</li>
+<li>islower/isupper：是小写/大写时为真</li>
+<li><p>tolower/toupper：字母变小写/大写</p>
+</li>
+<li><p>isspace：空格</p>
+</li>
+</ul>
+<p><strong>for语句处理string</strong></p>
+<ul>
+<li>通过引用改变原字符串</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> c:s)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isalpha</span>(c))	<span class="built_in">cout</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//通过引用改变原string对象</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> &amp;c:s)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">islower</span>(c))	c = <span class="built_in">toupper</span>(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p>如下声明</p>
+<p><code>#include&lt;vector&gt;</code></p>
+<p><strong>定义和初始化vector对象</strong></p>
+<ul>
+<li><code>vector&lt;T&gt; v1</code></li>
+<li><code>vector&lt;T&gt; v2(v1)</code></li>
+<li><code>vector&lt;T&gt; v1&#123;a,b,c...&#125;</code></li>
+</ul>
+<p><strong>操作</strong></p>
+<ul>
+<li><p><code>push_back()</code>：向尾部添加元素</p>
+</li>
+<li><p><code>empty()</code>：是否为空</p>
+</li>
+<li><code>size()</code>：返回向量元素个数</li>
+</ul>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>通过<strong>begin</strong>和<strong>end</strong>成员，分别返回第一个元素的迭代器和尾后元素迭代器(off-the-end)，最后一个元素的下一个位置。</p>
+<p><strong>运算符</strong></p>
+<ul>
+<li><code>*iter*</code>：获取iter指向的对象</li>
+<li><code>iter-&gt;men</code>：解引用，取该元素men的成员，等价于(*iter).men。</li>
+<li><code>++,--</code>：</li>
+<li><code>==,!=</code></li>
+</ul>
+<p><strong>迭代器类型</strong></p>
+<ul>
+<li>读写迭代器</li>
+<li>只读迭代器</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterarot it;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator it;</span><br><span class="line"><span class="built_in">string</span>::iteartor it;</span><br><span class="line"><span class="built_in">string</span>::const_iteartor it;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -401,7 +447,7 @@ Tr[\mathbf{X^TPX}] &= Tr[\mathbf{X^TUU^TX}]=Tr[\mathbf{U^TXX^TU}] \\
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

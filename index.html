@@ -193,14 +193,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/" class="post-title-link" itemprop="url">概率图</a>
+            <a href="/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">pytroch基础</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,23 +281,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-12-02 14:38:24" itemprop="dateCreated datePublished" datetime="2020-12-02T14:38:24+08:00">2020-12-02</time>
+      <time title="创建时间：2020-12-07 16:45:29 / 修改时间：23:14:58" itemprop="dateCreated datePublished" datetime="2020-12-07T16:45:29+08:00">2020-12-07</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 16:15:34" itemprop="dateModified" datetime="2020-12-04T16:15:34+08:00">2020-12-04</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+          <a href="/categories/DeepLearning/" itemprop="url" rel="index"><span itemprop="name">DeepLearning</span></a>
         </span>
     </span>
 
@@ -311,150 +305,80 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="贝叶斯网"><a href="#贝叶斯网" class="headerlink" title="贝叶斯网"></a>贝叶斯网</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>k个变量的joint distribution</p>
-<script type="math/tex; mode=display">
-P(x_1,\dots,x_K) = P(x_K|x_1,\dots,x_{K-1})\dots P(x_2|x_1)P(x_1)</script><p>例如：三个随机变量的联合分布概率图</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/1.png" alt="三个随机变量的联合分布" style="zoom:67%;"></p>
-<p>由概率图定义联合分布</p>
-<script type="math/tex; mode=display">
-p(\mathbf x) = \prod_{k=1}^Kp(x_k|pa_k)</script><p>其中$pa_k$是$x_k$的父结点集合。</p>
-<h2 id="贝叶斯网模型"><a href="#贝叶斯网模型" class="headerlink" title="贝叶斯网模型"></a>贝叶斯网模型</h2><h3 id="同父结构"><a href="#同父结构" class="headerlink" title="同父结构"></a>同父结构</h3><p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/2.png" alt="image-20201202150343537" style="zoom:67%;"></p>
-<p>简记为</p>
-<script type="math/tex; mode=display">
-a\bot {b}\ | \ c</script><p>表示a和b在给定c的值下，条件独立，此时联合分布</p>
-<script type="math/tex; mode=display">
-p(a,b,c) = p(a|c)p(b|c)p(c)</script><p>如果没有变量被观测到，通过边缘化c。由下式可知，a和b不是独立的</p>
-<script type="math/tex; mode=display">
-p(a,b) = \sum_cp(a|c)p(b|c)p(c)</script><p>suppose在c上设立条件，可以得到a、b是条件独立的，如下所示</p>
-<script type="math/tex; mode=display">
-\begin{align}
-p(a,b|c)&=\frac{p(a,b,c)}{p(c)}\\
-&= p(a|c)p(b|c)
-\end{align}</script><p>将a、b在给定c条件下条件独立记做，a、b边际独立</p>
-<script type="math/tex; mode=display">
-a\perp \!\!\! \perp b\ |\ c</script><h3 id="顺序结构"><a href="#顺序结构" class="headerlink" title="顺序结构"></a>顺序结构</h3><p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/3.png" alt="image-20201202151239125" style="zoom:67%;"></p>
-<p>简记为</p>
-<script type="math/tex; mode=display">
-a\bot b\ |\ c</script><p>联合分布</p>
-<script type="math/tex; mode=display">
-p(a,b,c) = p(a)p(c|a)p(b|c)</script><p>如果没有变量被观测到，通过边缘化c，由下式可知，a和b不是独立的</p>
-<script type="math/tex; mode=display">
-p(a,b) = p(a)\sum_cp(c|a)p(b|c) = p(a)p(b|a)</script><p>假定在c被观察到，则路径被阻塞，表示a、b在c下条件独立</p>
-<script type="math/tex; mode=display">
-\begin{align}
-p(a,b|c) &= \frac{p(a)p(c|a)p(b|c)}{p(c)}\\
-&= p(a|c)p(b|c)
-\end{align}</script><p>记做a、b边缘独立</p>
-<script type="math/tex; mode=display">
-a \bot\!\!\!\bot b \ | \ c</script><h3 id="V型结构"><a href="#V型结构" class="headerlink" title="V型结构"></a>V型结构</h3><p> <img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/4.png" alt="image-20201202161221767" style="zoom:67%;"></p>
-<p>联合分布</p>
-<script type="math/tex; mode=display">
-p(a,b,c) = p(a)p(b)p(c|a,b)</script><p>如果没有结点被观测到路径blocked，对c边缘化发现a、b也独立</p>
-<script type="math/tex; mode=display">
-p(a,b) = \sum_cp(a,b,c) = p(a)p(b)</script><p>假设条件作用于c，路径变成通路则有</p>
-<script type="math/tex; mode=display">
-p(a,b|c) = \frac{p(a,b,c)}{p(c)}=\frac{p(a)p(b)p(c|a,b)}{p(c)}</script><p>a,b在给定c下不满足边际独立性</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/5.png" alt="image-20201202162449393"></p>
-<h3 id="D-separation"><a href="#D-separation" class="headerlink" title="D-separation"></a>D-separation</h3><p>使用有向分离，将一个有向图转变为一个无向图，便于分析图中变量的条件独立性。</p>
-<h4 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h4><ul>
-<li>找出有向图中的所有V型结构，在V型结构的两个父节点中加上一条无向边。</li>
-<li>将所有有向边改为无向边。</li>
+          <p>深度网络框架：前馈神经网络、卷积神经网络和循环神经网络</p>
+<h2 id="Tensor张量"><a href="#Tensor张量" class="headerlink" title="Tensor张量"></a>Tensor张量</h2><h3 id="Tensor类型"><a href="#Tensor类型" class="headerlink" title="Tensor类型"></a>Tensor类型</h3><p><code>torch.Tensor</code>单数据类型多维矩阵，是默认tensor类型<code>torch.FloatTensor</code>的别名</p>
+<p>共有10种张量类型</p>
+<p><img src="/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/image-20201207192512395.png" alt="image-20201207192512395"></p>
+<p><img src="/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/博客\source\_posts\pytroch基础\image-20201207192649237.png" alt="image-20201207192649237"></p>
+<h3 id="创建Tensor"><a href="#创建Tensor" class="headerlink" title="创建Tensor"></a>创建Tensor</h3><p>Tensor类似于Numpy的ndarrays，可以使用CPU运算</p>
+<ul>
+<li><p>生成一个未初始化的张量</p>
+<p><code>empty(*size, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False, pin_memory=False)</code></p>
+<p>参数</p>
+<ul>
+<li>size：一个可变参数，tensor的大小</li>
+<li>out：output tensort</li>
+<li>layout：返回tensor的布局</li>
 </ul>
-<p>由此产生的图叫做道德图(moral graph)，假定道德图中有变量x和y，以及变量集合$\mathbf z$。若变量x和y能在图中被$\mathbf z$分开，即将$\mathbf z$去除后，x和y分属于两个连通分支，则称x和y被$\mathbf z$有向分离。</p>
-<script type="math/tex; mode=display">
-x \perp y\mid \mathbf z</script><h3 id="Markov-blanket"><a href="#Markov-blanket" class="headerlink" title="Markov blanket"></a>Markov blanket</h3><p>考虑D个结点的联合分布和结点$x_i$和作用于于其他结点的条件分布，有</p>
-<script type="math/tex; mode=display">
-\begin{align}
-p(\mathbf x_i|\mathbf x_{j\ne i}) &= \frac{p(\mathbf x_i,\dots,\mathbf x_D)}{\int p(\mathbf x_i,\dots,\mathbf x_D)}\\
-&=\frac{\prod_k p(\mathbf x_k|pa_k)}{\int \prod_kp(\mathbf x_k|pa_k)d\mathbf x_i}
-\end{align}</script><p>在积分项与$\mathbf x_i$无关的项被保留，即$\mathbf x_i$的父结点集合和父结点集合中包括$\mathbf x_i$的结点项。与分子项约分消去，最后得到的项只与$\mathbf x_i$有关，称为Markov blanket。</p>
-<p>markov balnket如图所示</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/6.png" alt="image-20201202213846580" style="zoom:67%;"></p>
-<h1 id="马尔科夫网"><a href="#马尔科夫网" class="headerlink" title="马尔科夫网"></a>马尔科夫网</h1><h2 id="马尔科夫随机场"><a href="#马尔科夫随机场" class="headerlink" title="马尔科夫随机场"></a>马尔科夫随机场</h2><p>对于马尔科夫条件场(Mrakov Random Field)，是一种无向图。每个结点表示一个或一组变量，边表示结点的依赖关系。</p>
-<p>将图中结点的子集，若任意两个结点之间都有边连接，则称该结点集为一个团(clique)。如果在一个团中，加入另外的结点都不再形成团，则称该团为极大团，即极大团不被其他团包围。</p>
-<p>如图所示，极大团${x_1,x_2,x_3}$和${x_2,x_2,x_4}$</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/7.png" alt="image-20201202233603781" style="zoom:67%;"></p>
-<p>定义团为C，团的变量集合为$\mathbf x_C$。图的极大团的联合分布可以写做势函数(potential functions)$\psi(\mathbf x_C)$的乘积形式。</p>
-<script type="math/tex; mode=display">
-p(\mathbf x) = \frac{1}{Z} \prod_C\psi_C(\mathbf x_C)</script><p>量Z是partition函数，规范化因子常数确保分布$p(\mathbf x)$是分布函数的，定义为</p>
-<script type="math/tex; mode=display">
-Z = \sum_{\mathbf x} \prod_C\psi_C(\mathbf x_C)</script><p>因为限制势函数为正，定义势函数为指数函数</p>
-<script type="math/tex; mode=display">
-\psi_C(\mathbf x_C) = \exp\{-E(\mathbf x_C)\}</script><h3 id="条件独立性"><a href="#条件独立性" class="headerlink" title="条件独立性"></a>条件独立性</h3><ul>
-<li><p>全局马尔科夫性：给定一个单独的子集，变量的任何两个子集在条件上都是独立的</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/全局.png" alt="image-20201203211225165" style="zoom:80%;"></p>
-<p>表示A中的结点到B都要经过S，S被称为分离集。</p>
+</li>
+<li><p>基于一个已经存在的tensor</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn_like(x,dtype=torch.float)</span><br><span class="line">x</span><br><span class="line">tensor([[ <span class="number">1.0880</span>,  <span class="number">1.3356</span>],</span><br><span class="line">        [<span class="number">-0.4618</span>, <span class="number">-1.9259</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取维度信息<code>size()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.size()</span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取类型额<code>type()</code></p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">x</span>.<span class="keyword">type</span>()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>与numpy相互转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Tensor转换为numpy数组</span></span><br><span class="line">b = a.numpy()</span><br><span class="line"><span class="comment">#numpy数组转换为Tensor</span></span><br><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><ul>
+<li><p>方式1：+</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + y</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
-<li><p>局部马尔科夫性：给定变量的邻居，该变量在条件上独立于所有其他变量</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/local.png" alt="image-20201203211115195" style="zoom:80%;"></p>
-<p>变量的所有邻居变量也就是马尔科夫随机毯，</p>
+<li><p>方式2：add</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.add(y)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
-<li><p>成对马尔科夫性：给定其他变量，任意两个不相邻的变量在条件上都是独立的。</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/pair.png" alt="image-20201203210936994" style="zoom: 80%;"></p>
+<li><p>out</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = torch.empty(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">torch.add(x,y,out=res)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>in-place</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y.add_(x)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="隐马尔科夫模型"><a href="#隐马尔科夫模型" class="headerlink" title="隐马尔科夫模型"></a>隐马尔科夫模型</h1><p>Hidden Markov Model</p>
+<p><strong>注意 任何使张量会发生变化的操作都有一个前缀 ‘_’</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.copy_(y)</span><br><span class="line">x.t_()</span><br></pre></td></tr></table></figure>
+<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><ul>
+<li><p><code>*</code>：表示对应元素相乘</p>
+</li>
+<li><p><code>torch.mm</code>：只能适用于矩阵乘法</p>
+</li>
+<li><code>torch.bmm</code>：适用于三维张量乘法</li>
+<li><code>torch.matmul</code>：适用于多维</li>
+<li><code>a@B</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="改变形状"><a href="#改变形状" class="headerlink" title="改变形状"></a>改变形状</h4><p><code>view(*shape) -&gt; Tensor</code></p>
+<p>可以用-1省缺最后一个维度的大小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.view(<span class="number">5</span>,<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="获取tensor的值"><a href="#获取tensor的值" class="headerlink" title="获取tensor的值"></a>获取tensor的值</h4><p><code>torch.Tensor.item()</code></p>
+<p>只能将一个元素的tensor转换为标量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">1</span>)</span><br><span class="line">x.item()</span><br></pre></td></tr></table></figure>
+<h3 id="GPU上运算"><a href="#GPU上运算" class="headerlink" title="GPU上运算"></a>GPU上运算</h3><p>通过<code>torch.cuda.is_available()</code>验证GPU正常安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">y = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    x = x.cuda()</span><br><span class="line">    y = y.cuda()</span><br><span class="line">    print(x+y)</span><br><span class="line">&gt;&gt;&gt;tensor([[<span class="number">-1.4013</span>,  <span class="number">1.5702</span>],</span><br><span class="line">        [ <span class="number">1.2808</span>,  <span class="number">0.7981</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>)   </span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>观测状态${x_1,\dots,x_n}$，取值$x\in{o_1,\dots\,o_n}$</p>
-<p>隐含状态${y_1,\dots,y_n}$，取值$y\in{s_1,\dots,s_n}$</p>
+<li><p>通过<code>x.cpu()</code>将存储在GPU上的变量卸载在CPU</p>
 </li>
-<li><p>箭头表示了变量之间的依赖关系。在任一时刻，观测变量的取值仅依赖于状态变量，即$x_t$由$y_t$确定，与其他状态变量及观察变量的取值无关。</p>
-</li>
-<li><p>同时，t时刻的状态$s<em>t$仅依赖于t-1时刻的状态$s</em>{t-1}$，与此前t-2个状态无关。</p>
-</li>
-<li><p>假设隐含状态服从</p>
-<ul>
-<li><p>齐次马尔科夫假设，</p>
-</li>
-<li><p>观测独立性假设</p>
+<li><p>张量使用<code>to</code>方法移动到任何张量，使用<code>torch.device</code>移出移入设备</p>
 </li>
 </ul>
-<script type="math/tex; mode=display">
-p(s_{t+1}|s_t,s_{t-1},\dots,s_1,o_t,\dots,o_1) = p(s_{t+1}|s_t)\\
-p(o_{t}|s_t,s_{t-1},\dots,s_1,o_{t-1},\dots,o_1) = p(o_{t}|s_t)</script></li>
-</ul>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/OIP.jpg" alt="HMM"></p>
-<p>三组参数$\lambda = [\mathbf{A,B,\pi}]$，分别为</p>
-<ul>
-<li><p>状态转移矩阵：状态间转换的概率</p>
-<script type="math/tex; mode=display">
-a_{ij} = P(y_{t+1}=s_j\mid y_t=s_i)</script></li>
-<li><p>发散矩阵：根据当前模型获得各个观测值的概率</p>
-<script type="math/tex; mode=display">
-b_{ij} = P(x_t=o_j\mid y_t=s_i)</script><p>状态为$s_i$，观测值为$o_j$被获取的概率</p>
-</li>
-<li><p>初始概率：模型在初始状态下各状态出现的概率</p>
-<script type="math/tex; mode=display">
-\mathbf{\pi} = {\pi_1,\pi_2,\dots,\pi_n}\\
-\pi_i = P(y_1=s_i)</script></li>
-</ul>
-<p>$\Q\R\O\P\S\H\Z\C\N$</p>
-<p>观测序列生成过程</p>
-<ul>
-<li>根据初始状态分布$\mathbf \pi$，选择状态$s_1$</li>
-<li>令t = 1</li>
-<li>根据状态$y_t$的观测概率分布生成$o_t$</li>
-<li>根据状态$y<em>t$和状态转移分布确定状态$y</em>{t+1}$</li>
-<li>令t=t+1,如果t&lt;T,转到第3步；否则，终止</li>
-</ul>
-<h2 id="三个基本问题"><a href="#三个基本问题" class="headerlink" title="三个基本问题"></a>三个基本问题</h2><ul>
-<li><p>Evaluation：概率计算问题</p>
-<p>给定模型参数$\lambda$，评估模型与观测序列之间的匹配程度$p(o|\lambda)$</p>
-</li>
-<li><p>Decoding：预测问题</p>
-<p>给定模型参数$\lambda$和观测序列$\mathbf x$，如何找到匹配的状态序列</p>
-<script type="math/tex; mode=display">
-\hat s = \arg\max_sP(s|\mathbf x,\lambda)</script></li>
-<li><p>Learning：学习问题</p>
-<p>给定观测序列$\mathbf x$，如何调整参数$\lambda$使得出现$\mathbf x$的概率最大</p>
-<script type="math/tex; mode=display">
-\lambda_{MLE} = \arg\max_{\lambda}p(o|\lambda)</script></li>
-</ul>
-<h3 id="概率计算问题"><a href="#概率计算问题" class="headerlink" title="概率计算问题"></a>概率计算问题</h3>
+<h2 id="自动微分"><a href="#自动微分" class="headerlink" title="自动微分"></a>自动微分</h2>
       
     </div>
 
@@ -475,7 +399,7 @@ b_{ij} = P(x_t=o_j\mid y_t=s_i)</script><p>状态为$s_i$，观测值为$o_j$被
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

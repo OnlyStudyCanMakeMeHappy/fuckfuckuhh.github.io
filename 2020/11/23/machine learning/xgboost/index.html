@@ -33,6 +33,8 @@
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/1.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/2.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/3.png">
+<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/近似算法">
+<meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/image-20201206152725587.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/6.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/7.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/8.png">
@@ -40,7 +42,7 @@
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/10.png">
 <meta property="og:image" content="http://example.com/2020/11/23/machine%20learning/xgboost/11.png">
 <meta property="article:published_time" content="2020-11-23T13:59:04.000Z">
-<meta property="article:modified_time" content="2020-12-05T15:12:40.476Z">
+<meta property="article:modified_time" content="2020-12-06T07:28:01.214Z">
 <meta property="article:author" content="ggl">
 <meta property="article:tag" content="xgboost">
 <meta property="article:tag" content="lightGBM">
@@ -193,7 +195,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#xgboost"><span class="nav-number">1.</span> <span class="nav-text">xgboost</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.</span> <span class="nav-text">学习对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E6%8F%90%E5%8D%87%E6%A0%91"><span class="nav-number">1.2.</span> <span class="nav-text">梯度提升树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">分割查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%BE%E7%A1%AE%E5%88%86%E5%89%B2%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">精确分割贪心算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%91%E4%BC%BC%E5%88%86%E5%89%B2%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">近似分割算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%83%E9%87%8D%E5%88%86%E4%BD%8D%E6%95%B0%E7%B4%A0%E6%8F%8F"><span class="nav-number">1.4.</span> <span class="nav-text">权重分位数素描</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E4%BC%A0%E7%BB%9FGBDT%E5%8C%BA%E5%88%AB"><span class="nav-number">1.5.</span> <span class="nav-text">与传统GBDT区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">python包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">包介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.1.1.</span> <span class="nav-text">数据接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.1.2.</span> <span class="nav-text">参数设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">2.1.3.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%89%8D%E7%BB%88%E6%AD%A2"><span class="nav-number">2.1.4.</span> <span class="nav-text">提前终止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B"><span class="nav-number">2.1.5.</span> <span class="nav-text">预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#plotting"><span class="nav-number">2.1.6.</span> <span class="nav-text">plotting</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">2.2.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9F%A9%E9%98%B5"><span class="nav-number">2.2.1.</span> <span class="nav-text">数据矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Booster-of-xgboost"><span class="nav-number">2.2.2.</span> <span class="nav-text">Booster of xgboost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#training"><span class="nav-number">2.2.3.</span> <span class="nav-text">training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scikit-learn-API"><span class="nav-number">2.2.4.</span> <span class="nav-text">scikit-learn API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#example"><span class="nav-number">2.2.5.</span> <span class="nav-text">example</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LightGBM"><span class="nav-number">3.</span> <span class="nav-text">LightGBM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">算法描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Histogram-optimization%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.1.</span> <span class="nav-text">Histogram optimization直方图优化算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E8%BE%B9%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96GOSS"><span class="nav-number">3.1.2.</span> <span class="nav-text">单边特征提取GOSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%92%E6%96%A5%E7%89%B9%E5%BE%81%E5%90%88%E5%B9%B6EFB"><span class="nav-number">3.1.3.</span> <span class="nav-text">互斥特征合并EFB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E7%89%B9%E5%BE%81%E4%BA%92%E6%96%A5%E7%BE%A4"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">分割特征互斥群</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E5%90%8C%E4%B8%80%E4%B8%AAbundle%E4%B8%AD%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">合并同一个bundle中的特征</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-1"><span class="nav-number">3.2.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scikit-learn-API"><span class="nav-number">3.2.1.</span> <span class="nav-text">Scikit-learn API</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#xgboost"><span class="nav-number">1.</span> <span class="nav-text">xgboost</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.</span> <span class="nav-text">学习对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E6%8F%90%E5%8D%87%E6%A0%91"><span class="nav-number">1.2.</span> <span class="nav-text">梯度提升树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">算法流程总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">分割查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%BE%E7%A1%AE%E5%88%86%E5%89%B2%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.1.</span> <span class="nav-text">精确分割贪心算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%91%E4%BC%BC%E7%9B%B4%E6%96%B9%E5%9B%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">近似直方图算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E7%9B%B4%E6%96%B9%E5%9B%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.3.</span> <span class="nav-text">快速直方图算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E6%9D%83%E5%88%86%E4%BD%8D%E6%95%B0%E6%A6%82%E8%A6%81%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.4.</span> <span class="nav-text">加权分位数概要算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E4%BC%A0%E7%BB%9FGBDT%E5%8C%BA%E5%88%AB"><span class="nav-number">1.5.</span> <span class="nav-text">与传统GBDT区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">python包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">包介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.1.1.</span> <span class="nav-text">数据接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.1.2.</span> <span class="nav-text">参数设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">2.1.3.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%89%8D%E7%BB%88%E6%AD%A2"><span class="nav-number">2.1.4.</span> <span class="nav-text">提前终止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B"><span class="nav-number">2.1.5.</span> <span class="nav-text">预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#plotting"><span class="nav-number">2.1.6.</span> <span class="nav-text">plotting</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">2.2.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9F%A9%E9%98%B5"><span class="nav-number">2.2.1.</span> <span class="nav-text">数据矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Booster-of-xgboost"><span class="nav-number">2.2.2.</span> <span class="nav-text">Booster of xgboost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#training"><span class="nav-number">2.2.3.</span> <span class="nav-text">training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scikit-learn-API"><span class="nav-number">2.2.4.</span> <span class="nav-text">scikit-learn API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#example"><span class="nav-number">2.2.5.</span> <span class="nav-text">example</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LightGBM"><span class="nav-number">3.</span> <span class="nav-text">LightGBM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">算法描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Histogram-optimization%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.1.</span> <span class="nav-text">Histogram optimization直方图优化算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E8%BE%B9%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96GOSS"><span class="nav-number">3.1.2.</span> <span class="nav-text">单边特征提取GOSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%92%E6%96%A5%E7%89%B9%E5%BE%81%E5%90%88%E5%B9%B6EFB"><span class="nav-number">3.1.3.</span> <span class="nav-text">互斥特征合并EFB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E7%89%B9%E5%BE%81%E4%BA%92%E6%96%A5%E7%BE%A4"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">分割特征互斥群</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E5%90%8C%E4%B8%80%E4%B8%AAbundle%E4%B8%AD%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">合并同一个bundle中的特征</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-1"><span class="nav-number">3.2.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scikit-learn-API"><span class="nav-number">3.2.1.</span> <span class="nav-text">Scikit-learn API</span></a></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -209,14 +211,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -305,7 +307,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-05 23:12:40" itemprop="dateModified" datetime="2020-12-05T23:12:40+08:00">2020-12-05</time>
+        <time title="修改时间：2020-12-06 15:28:01" itemprop="dateModified" datetime="2020-12-06T15:28:01+08:00">2020-12-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -333,62 +335,126 @@
 <script type="math/tex; mode=display">
 obj = \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\
 where\ \Omega(f) = \gamma T+\frac{1}{2}\lambda||w||^2</script><p>其中T是叶子数，w是叶子的结点的均值。</p>
+<hr>
 <h2 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h2><ul>
-<li>由泰勒展开式可得</li>
+<li>由泰勒展开式可</li>
 </ul>
 <script type="math/tex; mode=display">
-f(x+\Delta x) \approx f(x)+f'(x)\Delta x+\frac{1}{2}f''(x)\Delta x^2</script><script type="math/tex; mode=display">
+f(x+\Delta x) \approx f(x)+f'(x)\Delta x+\frac{1}{2}f''(x)\Delta x^2</script><ul>
+<li>得到损失函数的泰勒二阶展开式</li>
+</ul>
+<script type="math/tex; mode=display">
 \begin{align}
-L_t &= \sum_{i=1}^nl(y_i,\hat{y}_{t-1}+f_t(\mathbf{x}_i))+\Omega(f_t)\\
-&\approx\sum_{i=1}^n l(y_i,\hat y_{t-1})+\partial_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t(\mathbf{x}_i)+\frac{1}{2}\partial^2_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t^2(\mathbf{x}_i)+\Omega (f_t)\\
-&=\sum_{i=1}^n l(y_i,\hat y_{t-1})+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\Omega (f_t) \\
-&=\sum_{i=1}^n constant+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\Omega (f_t)
+Obj &= \sum_{i=1}^nl(y_i,\hat{y}_{t-1}+f_t(\mathbf{x}_i))+\Omega(f_t)+\sum_i^{t-1}\Omega(f_i)\\
+&\approx\sum_{i=1}^n l(y_i,\hat y_{t-1})+\partial_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t(\mathbf{x}_i)+\frac{1}{2}\partial^2_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t^2(\mathbf{x}_i)+\Omega (f_t)+constant\\
+&=\sum_{i=1}^n l(y_i,\hat y_{t-1})+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\Omega (f_t)+constant \\
+&=\sum_{i=1}^n constant+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\gamma T+\frac{1}{2}\lambda||w||^2
 \end{align}</script><ul>
-<li>忽略常数项，改成由叶节点表示的形式，共有T个叶子节点</li>
+<li>忽略常数项，改成由叶节点权重表示的形式，共有T个叶子节点</li>
 </ul>
 <script type="math/tex; mode=display">
-L_t = \sum_{j=1}^T[(\sum_{i\in I_j}g_i)w_j+\frac{1}{2}(\sum_{i\in I_j}h_i+\lambda)w_j^2]+\gamma T\tag{1}</script><ul>
-<li>将(1)式看做关于w的一元二次函数，计算出最优的w</li>
+Obj^{(s)} = \sum_{j=1}^T[(\sum_{i\in I_j}g_i)w_j+\frac{1}{2}(\sum_{i\in I_j}h_i+\lambda)w_j^2]+\gamma T\tag{1}</script><ul>
+<li>将(1)式看做关于w的一元二次函数，对于固定的树结构，计算出叶子节点j的最优w</li>
 </ul>
 <script type="math/tex; mode=display">
 w^*_j = -\frac{\sum_{i\in I_j}g_i}{\sum_{i\in I_j}h_i+\lambda} \tag{2}</script><ul>
 <li><p><u>由式(2)可以看出，计算出的叶子权重不仅与一阶、二阶统计信息有关还与正则化系数$\lambda$有关。</u></p>
 </li>
-<li><p>对于树结构q，下式作为一棵树好坏的指标</p>
+<li><p>最终的优化函数Obj，可以作为评价一个树模型的评分函数，评分越小树模型越好。</p>
 </li>
 </ul>
 <script type="math/tex; mode=display">
-L_t(q) = -\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_j}g_i)^2}{\sum_{i\in I_j}h_i+\lambda}+\gamma T</script><p><img src="/2020/11/23/machine%20learning/xgboost/4.png" alt="score"></p>
+Obj^{(s)} = -\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_j}g_i)^2}{\sum_{i\in I_j}h_i+\lambda}+\gamma T</script><p><img src="/2020/11/23/machine%20learning/xgboost/4.png" alt="score"></p>
 <ul>
-<li>使用贪心算法去分割结点，分割后损失值变化。</li>
+<li><p><u>在每一轮训练中对所有候选树模型，分别计算评价得分从中选出最优即可。但这是个NP难的问题，所以使用贪心算法，从根结点开始，计算结点分裂后带来的增益，作为分裂依据去分割结点</u>，分裂后两个子节点的目标函数贡献为</p>
+<script type="math/tex; mode=display">
+Obj_s = -\frac{1}{2}[\frac{G_{jL}^2}{H_{jL}+\lambda}+\frac{G_{jR}^2}{H_{jR}+\lambda}]+2\gamma</script></li>
+<li><p>目标函数变化，<u>选取使目标函数变化最大的特征及其取值作为划分点，进行分裂</u></p>
+</li>
 </ul>
 <p><img src="/2020/11/23/machine%20learning/xgboost/1.png" alt="image-20201124132700202" style="zoom: 67%;"></p>
 <ul>
 <li>令$G=\sum<em>{i \in I_j}g_i$，$H = \sum</em>{i\in I_j}h_i$上式等价于</li>
 </ul>
 <script type="math/tex; mode=display">
-L_{split} = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}+\frac{G^2}{H+\lambda}]-\gamma</script><ul>
-<li><p>同时只有当增益大于某个阈值时才进行分裂。这个阈值就是$\lambda$.并且定义一个shrinkage系数$\eta$，控制每棵树对模型的影响。</p>
-<script type="math/tex; mode=display">
+\mathcal L_{split} = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}+\frac{G^2}{H+\lambda}]-\gamma</script><ul>
+<li>进行剪枝操作，<u>只有当增益大于某个阈值时才进行分裂。这个阈值就是$\gamma$.</u>并且定义一个shrinkage系数$\eta$，控制每棵树对模型的影响。<script type="math/tex; mode=display">
 \hat y_i^s = \hat y_i^{s-1}+\eta f_s(x_i)</script></li>
-<li></li>
 </ul>
-<h2 id="分割查找算法"><a href="#分割查找算法" class="headerlink" title="分割查找算法"></a>分割查找算法</h2><h3 id="精确分割贪心算法"><a href="#精确分割贪心算法" class="headerlink" title="精确分割贪心算法"></a>精确分割贪心算法</h3><p>对当前节点，遍历所有样本，对属性所有取值进行排序后计算score的最大值。</p>
-<p>选取属性的取值作为划分依据。</p>
+<hr>
+<h2 id="算法流程总结"><a href="#算法流程总结" class="headerlink" title="算法流程总结"></a>算法流程总结</h2><ol>
+<li><p>每一轮增加一个新的树模型</p>
+</li>
+<li><p>在每一轮开始之前，首先计算梯度统计</p>
+<script type="math/tex; mode=display">
+g_i = \frac{\partial L(y_i,\hat y^{(s-1)})}{\partial\hat y^{(s-1)}}\\
+h_i = \frac{\partial^2 L(y_i,\hat y^{(s-1)})}{\partial\hat y^{(s-1)}}</script></li>
+<li><p>根据贪心算法及梯度统计信息生成一棵完整树$f_s(x)$</p>
+<ul>
+<li><p>结点分裂通过如下公式评估，选择最优划分点</p>
+<script type="math/tex; mode=display">
+\mathcal {Obj}_{split} = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}+\frac{G^2}{H+\lambda}]-\gamma</script></li>
+<li><p>最终树叶子节点的权重</p>
+<script type="math/tex; mode=display">
+w^*_j = -\frac{G_j}{H_j+\lambda}</script></li>
+</ul>
+</li>
+<li><p>将生成的树模型加入模型中</p>
+<script type="math/tex; mode=display">
+\hat y_i^{(s)} = \hat y_i^{(s-1)}+f_t(x)</script></li>
+</ol>
+<hr>
+<h2 id="分割查找算法"><a href="#分割查找算法" class="headerlink" title="分割查找算法"></a>分割查找算法</h2><h3 id="精确分割贪心算法"><a href="#精确分割贪心算法" class="headerlink" title="精确分割贪心算法"></a>精确分割贪心算法</h3><ul>
+<li><p>对当前节点，遍历所有样本，对属性所有取值进行排序后计算score的最大值。</p>
+</li>
+<li><p>选取属性的取值作为划分依据。</p>
+</li>
+</ul>
 <p><img src="/2020/11/23/machine%20learning/xgboost/2.png" alt="image-20201124134727385" style="zoom:70%;"></p>
-<h3 id="近似分割算法"><a href="#近似分割算法" class="headerlink" title="近似分割算法"></a>近似分割算法</h3><p>对于特征k，根据特征分布的分位数找到切割点的候选集合$S<em>k$，根据$S_k$将特征k的值划分到桶中(bucket)，对每个桶内的样本统计值进行累加得到$G</em>{kv},H_{k,v}$。</p>
-<p>有global和local两种方式</p>
+<hr>
+<h3 id="近似直方图算法"><a href="#近似直方图算法" class="headerlink" title="近似直方图算法"></a>近似直方图算法</h3><ul>
+<li>对某一特征寻找最优切分点时，首先<u>对该特征的所有切分点按分位数分桶(bucket)</u>,得到一个候选切分点集。</li>
+<li>特征的每一个切分点都可以分到对应的分桶，然后对每个桶计算特征统计G和H得到直方图。</li>
+<li>最后，选择所有<u>候选特征及候选切分点中对应桶的特征统计收益最大</u>的作为最优特征及最优切分点。</li>
+</ul>
 <p><img src="/2020/11/23/machine%20learning/xgboost/3.png" alt="分割查找近似算法" style="zoom:70%;"></p>
-<h2 id="权重分位数素描"><a href="#权重分位数素描" class="headerlink" title="权重分位数素描"></a>权重分位数素描</h2><p>近似算法分割点时，通常使用特征分布的分位数。定义一个多重集$D<em>k = {(x</em>{ik},h<em>k}</em>{i=1}^n$，分别为样本在k上的特征集和二阶导。</p>
-<p>定义一个rank函数，统计x小于z的样本二阶导的和占总和的比例。</p>
+<p><strong>举例</strong></p>
+<p><img src="/2020/11/23/machine%20learning/xgboost/近似算法" alt="image-20201206143019211" style="zoom: 50%;"></p>
+<p><strong>两种策略</strong></p>
+<ul>
+<li>Global：树构建的初始阶段对每一个特征确定一个候选切分点的集合。需要更细的分桶才能达到Local的精确度。</li>
+<li>Local：每次分裂前重新确定候选切分点。</li>
+</ul>
+<hr>
+<h3 id="快速直方图算法"><a href="#快速直方图算法" class="headerlink" title="快速直方图算法"></a>快速直方图算法</h3><p>在之前多次迭代中重用之前的分桶</p>
+<ul>
+<li><p><strong>数据预处理</strong>：连续型特征一般用浮点数表示，但在树分裂过程中一般仅会用到梯度统计信息，算法仅仅对值进行相互比较，并不会用到值本身。因此，<strong>将浮点数数据均匀映射为整数数据</strong>，直方图索引作为映射值。</p>
+</li>
+<li><p><strong>桶缓存</strong>：将上述数据结构进行缓存，在模型拟合过程中进行复用。</p>
+</li>
+<li><strong>直方图减法技巧</strong>：简化节点直方图的计算，直接取父节点和兄弟节点的差。</li>
+</ul>
+<p>XGBoost使用(depth-wise)方式构建决策树，类似BFS建树，先建第一层节点在建下一场，一次类推。快速直方图则是以损失函数收益变化(loss-guide)作为指导构建树，即每次选择最大收益增益的叶子节点进行分裂。<strong>可以使模型收敛更快</strong>，<strong>但也带来了过拟合风险</strong>。</p>
+<hr>
+<h3 id="加权分位数概要算法"><a href="#加权分位数概要算法" class="headerlink" title="加权分位数概要算法"></a>加权分位数概要算法</h3><p>上述算法的关键在于如何得到候选切分点子集，分位数的方法经常被用于特征数据选择候选切分点的依据。加权分位数概要算法就是用于获得分位数的近似算法。XGBoost不是简单按照样本个数进行分位，而是以二阶导信息作为权重(weight quantile sketch)</p>
+<p>分位数加权素描割点时，通常使用特征分布的分位数。定义一个多重集$D<em>k = {(x</em>{ik},h<em>k}</em>{i=1}^n$，分别为样本在k上的特征集和二阶导。</p>
+<ul>
+<li>定义一个rank函数，统计第k个特征值上取值为小于z的样本二阶导的和占该特征值二阶导总和的比例。</li>
+</ul>
 <script type="math/tex; mode=display">
-r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><p>寻找候选分割点满足如下条件，表示相邻的两个划分点要满足</p>
+r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><ul>
+<li>寻找候选分割点满足如下条件，表示相邻的两个划分点要满足</li>
+</ul>
 <script type="math/tex; mode=display">
-|r_k(s_k,j)-r_k(s_{k，j+1})|<\epsilon</script><p>会产生大约$1/\epsilon$个候选集合，每个数据点的权重为$h_i$。</p>
+|r_k(s_{k,j})-r_k(s_{k，j+1})|<\epsilon</script><ul>
+<li>会产生大约$1/\epsilon$个候选集合，每个数据点的权重为$h_i$。</li>
+</ul>
 <p>$\epsilon$-approximately quantile summary，无论多大数据无需排序只要给定查询的rank值，就可以获得误差$\epsilon N$内的近视分位点。</p>
 <p>原问题配方得</p>
 <script type="math/tex; mode=display">
 \sum_i[1/2h_i(f_t(\mathbf{x}_i)-(-g_i/h_i))^2]+\Omega(f_t)+constant</script><p>将原问题看做关于标签$-g_i/h_i$权重为$h_i$的平方误差形式。</p>
+<p><img src="/2020/11/23/machine%20learning/xgboost/image-20201206152725587.png" alt="image-20201206152725587" style="zoom:50%;"></p>
+<hr>
 <h2 id="与传统GBDT区别"><a href="#与传统GBDT区别" class="headerlink" title="与传统GBDT区别"></a>与传统GBDT区别</h2><ul>
 <li>GBDT使用CART作为基分类器，xgboost支持线性分类器。</li>
 <li>GBDT对loss函数优化时使用一阶导数信息，xgboost扩展到二阶泰勒展开。xgboost支持自定义代价函数。</li>
@@ -396,6 +462,7 @@ r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><p>寻�
 <li>支持并行化，特征粒度上的并行。xgboost在训练之前，预先对数据进行排序然后保存为block结构，后面迭代中反复使用该结构，大大减少了计算量。</li>
 <li>通过枚举所有缺失值是进入左子树还是右子树获得更好的模型。</li>
 </ul>
+<hr>
 <h1 id="python包"><a href="#python包" class="headerlink" title="python包"></a>python包</h1><h2 id="包介绍"><a href="#包介绍" class="headerlink" title="包介绍"></a>包介绍</h2><p><code>import xgboost as xgb</code></p>
 <h3 id="数据接口"><a href="#数据接口" class="headerlink" title="数据接口"></a>数据接口</h3><ul>
 <li>LibSVM text format file</li>

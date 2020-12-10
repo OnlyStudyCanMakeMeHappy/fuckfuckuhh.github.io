@@ -193,14 +193,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/30/EM/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/30/EM/" class="post-title-link" itemprop="url">EM</a>
+            <a href="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">pytroch基础</a>
         </h2>
 
         <div class="post-meta-container">
@@ -283,7 +283,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-11-30 10:21:44 / 修改时间：19:25:56" itemprop="dateCreated datePublished" datetime="2020-11-30T10:21:44+08:00">2020-11-30</time>
+      <time title="创建时间：2020-12-07 16:45:29 / 修改时间：22:24:02" itemprop="dateCreated datePublished" datetime="2020-12-07T16:45:29+08:00">2020-12-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -291,7 +291,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+          <a href="/categories/DeepLearning/" itemprop="url" rel="index"><span itemprop="name">DeepLearning</span></a>
         </span>
     </span>
 
@@ -305,84 +305,80 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><ul>
-<li><p>输入：观测数据Y，隐变量数据Z，联合分布$p(Y,Z|\theta)$，条件分布$p(Z|Y,\theta)$</p>
-</li>
-<li><p>输出：模型参数$\theta$</p>
-</li>
-<li><p>算法流程</p>
+          <p>深度网络框架：前馈神经网络、卷积神经网络和循环神经网络</p>
+<h2 id="Tensor张量"><a href="#Tensor张量" class="headerlink" title="Tensor张量"></a>Tensor张量</h2><h3 id="Tensor类型"><a href="#Tensor类型" class="headerlink" title="Tensor类型"></a>Tensor类型</h3><p><code>torch.Tensor</code>单数据类型多维矩阵，是默认tensor类型<code>torch.FloatTensor</code>的别名</p>
+<p>共有10种张量类型</p>
+<p><img src="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/image-20201207192512395.png" alt="image-20201207192512395"></p>
+<p><img src="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/博客\source\_posts\pytroch基础\image-20201207192649237.png" alt="image-20201207192649237"></p>
+<h3 id="创建Tensor"><a href="#创建Tensor" class="headerlink" title="创建Tensor"></a>创建Tensor</h3><p>Tensor类似于Numpy的ndarrays，可以使用CPU运算</p>
 <ul>
-<li><p>选择参数$\theta^{(0)}$作为初始值</p>
-</li>
-<li><p>E步：记$\theta^{(i)}$为第i次迭代的参数估计值，第i+1次迭代E步，计算完全数据关于当前Y和$\theta^{(i)}$下Z的条件概率分布</p>
-<script type="math/tex; mode=display">
-Q(\theta,\theta^{(i+1)}) = E_z[\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})]=\sum_z\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})</script></li>
-<li><p>M步：求出最大化Q函数的$\theta$，使$\theta^{(i+1)}:=\theta$</p>
-</li>
-<li><p>重复E和M步,直至收敛</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>B函数是对数似然函数的下界，EM算法是通过<strong>不断求解下界的极大化逼近</strong>求解对数似然函数。</p>
-<h2 id="EM算法在高斯混合模型中的应用"><a href="#EM算法在高斯混合模型中的应用" class="headerlink" title="EM算法在高斯混合模型中的应用"></a>EM算法在高斯混合模型中的应用</h2><p>高斯很合模型</p>
-<script type="math/tex; mode=display">
-P(y|\theta) = \sum_{k=1}^K\alpha_k\phi(y|\theta_k),\alpha_k\ge0,\sum\alpha=0</script><h3 id="1-明确隐变量"><a href="#1-明确隐变量" class="headerlink" title="1. 明确隐变量"></a>1. 明确隐变量</h3><p>定义隐变量$\gamma_{jk}$</p>
-<script type="math/tex; mode=display">
-\gamma_{jk}=\left\{\begin{matrix}
-1,& 第j个观测来自第k个模型\\
-0，& 否则
-\end{matrix}\right.</script><p>完全数据</p>
-<script type="math/tex; mode=display">
-(y_j,\gamma_{j1},\dots,\gamma_{jK}),j=1,2,\dots,N</script><p>完全数据的似然函数</p>
-<script type="math/tex; mode=display">
-\begin{align}
-P(y,\gamma|\theta) &= \prod_{j=1}^NP(y_j,\gamma_{j1},\dots,\gamma_{jK}|\theta)\\
-&=\prod_{k=1}^K\prod_{j=1}^N[\alpha_k\phi(y_j|\theta_k)]^{\gamma_{jk}}\\
-&=\prod_{k=1}^K\alpha_k^{n_k}\prod_{j=1}^N[\phi(y_j|\theta_k)]^{\gamma_{jk}}
-\end{align}</script><p>完全数据对数似然函数</p>
-<script type="math/tex; mode=display">
-\log P(y,\gamma|\theta) = \sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\gamma_{jk}\log[\phi(y_j|\mu_k,\Sigma_k)]</script><h3 id="2-E步：确定Q函数"><a href="#2-E步：确定Q函数" class="headerlink" title="2.E步：确定Q函数"></a>2.E步：确定Q函数</h3><script type="math/tex; mode=display">
-\begin{align}
-Q(\theta,\theta^{(i)}) &= E\{\sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\gamma_{jk}\log[\phi(y_j|\mu_k,\Sigma_k)\}\\
-&=\sum_{k=1}^K\{\sum_{j=1}^N(E\gamma_{jk})\log\alpha_k+\sum_{j=1}^N(E\gamma_{jk})\phi(y_j|\theta)\} \tag{1}
-\end{align}</script><p>记$E(\gamma<em>{jk}|y,\theta)$为$\hat{\gamma}</em>{jk}$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\hat{\gamma}_{jk} &= P(\gamma_{jk}=1|y,\theta)\\
-&= \frac{P(y_j|\gamma_{jk}=1,\theta)P(\gamma_{jk}=1|\theta)}{\sum_{k=1}^KP(y_j|\gamma_{jk}=1,\theta)P(\gamma_{jk}=1|\theta)}\\
-&= \frac{\alpha_k\phi(y_j|\theta_k)}{\sum_{k=1}^K\alpha_k\phi(y_j|\theta_k)},j=1,2,...,N;\ k=1,2,...,K
-\end{align}</script><p>(1)式等价于下式</p>
-<script type="math/tex; mode=display">
-\begin{align}
-Q(\theta,\theta^{(i)}) &= \sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\hat{\gamma}_{jk}\log[\phi(y_j|\theta_k)\\
-&=\sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\hat{\gamma}_{jk}[\log(\frac{1}{\sqrt{2\pi}})-\log\sigma_k-\frac{1}{2\sigma_k^2}(y_j-\mu_k)^2]
-\tag{2}
-\end{align}</script><h3 id="3-M步"><a href="#3-M步" class="headerlink" title="3.M步"></a>3.M步</h3><p>(2)式对参数分别对$\mu_k,\sigma_k^2$求偏导的令为0得</p>
-<script type="math/tex; mode=display">
-\hat\mu_k = \frac{\sum_{j=1}^N\hat\gamma_{jk}y_j}{\sum_{j=1}^N\hat\gamma_{jk}},\\
-\sigma^2_k = \frac{\sum_{j=1}^N\hat\gamma_{jk}y_j}{\sum_{j=1}^N\hat\gamma_{jk}}\\
-k = 1,2,...,K</script><p>因为$\sum_{k=1}^K\alpha_k=1$,用拉格朗日乘子法求得</p>
-<script type="math/tex; mode=display">
-\mathcal L(\lambda,\theta)= Q(\theta,\theta^{(i)})+\lambda(1-\sum_{k=1}^K\alpha_k)\\
-对\alpha求导令为0得，
-\hat\alpha_k = \frac{n_k}{N} = \frac{\sum_{j=1}^N\hat\gamma_{jk}}{N}\\</script><h2 id="Scikti-learn"><a href="#Scikti-learn" class="headerlink" title="Scikti-learn"></a>Scikti-learn</h2><p><code>sklearn.mixture.GaussianMixture(n_components=1, *, covariance_type=&#39;full&#39;, tol=0.001, reg_covar=1e-06, max_iter=100, n_init=1, init_params=&#39;kmeans&#39;, weights_init=None, means_init=None, precisions_init=None, random_state=None, warm_start=False, verbose=0, verbose_interval=10)</code><br>参数</p>
+<li><p>生成一个未初始化的张量</p>
+<p><code>empty(*size, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False, pin_memory=False)</code></p>
+<p>参数</p>
 <ul>
-<li>covariance_type：{‘full’ (default), ‘tied’, ‘diag’, ‘spherical’}<ul>
-<li>full：成员都独立的一般协方差矩阵</li>
-<li>tied：成员共享一个协方差矩阵</li>
-<li>diag：每个分量都有自己的对角协方差矩阵</li>
-<li>spherical：每个分量都有自己的单方差</li>
+<li>size：一个可变参数，tensor的大小</li>
+<li>out：output tensort</li>
+<li>layout：返回tensor的布局</li>
 </ul>
 </li>
-<li>tol：EM算法收敛阈值</li>
-<li>reg_cover：非负正则化添加到协方差的对角线上。确保协方差矩阵均为正</li>
-<li>max_iter：default=100，迭代次数</li>
-<li>n_init：要执行的初始化次数</li>
-<li>init_parmas：{‘kmeans’,’random’}，初始化权重的方法、均值和精度的方法</li>
-<li></li>
+<li><p>基于一个已经存在的tensor</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn_like(x,dtype=torch.float)</span><br><span class="line">x</span><br><span class="line">tensor([[ <span class="number">1.0880</span>,  <span class="number">1.3356</span>],</span><br><span class="line">        [<span class="number">-0.4618</span>, <span class="number">-1.9259</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取维度信息<code>size()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.size()</span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取类型额<code>type()</code></p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">x</span>.<span class="keyword">type</span>()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>与numpy相互转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Tensor转换为numpy数组</span></span><br><span class="line">b = a.numpy()</span><br><span class="line"><span class="comment">#numpy数组转换为Tensor</span></span><br><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><ul>
+<li><p>方式1：+</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + y</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>方式2：add</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.add(y)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>out</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = torch.empty(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">torch.add(x,y,out=res)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>in-place</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y.add_(x)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注意 任何使张量会发生变化的操作都有一个前缀 ‘_’</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.copy_(y)</span><br><span class="line">x.t_()</span><br></pre></td></tr></table></figure>
+<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><ul>
+<li><p><code>*</code>：表示对应元素相乘</p>
+</li>
+<li><p><code>torch.mm</code>：只能适用于矩阵乘法</p>
+</li>
+<li><code>torch.bmm</code>：适用于三维张量乘法</li>
+<li><code>torch.matmul</code>：适用于多维</li>
+<li><code>a@B</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="改变形状"><a href="#改变形状" class="headerlink" title="改变形状"></a>改变形状</h4><p><code>view(*shape) -&gt; Tensor</code></p>
+<p>可以用-1省缺最后一个维度的大小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.view(<span class="number">5</span>,<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="获取tensor的值"><a href="#获取tensor的值" class="headerlink" title="获取tensor的值"></a>获取tensor的值</h4><p><code>torch.Tensor.item()</code></p>
+<p>只能将一个元素的tensor转换为标量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">1</span>)</span><br><span class="line">x.item()</span><br></pre></td></tr></table></figure>
+<h3 id="GPU上运算"><a href="#GPU上运算" class="headerlink" title="GPU上运算"></a>GPU上运算</h3><p>通过<code>torch.cuda.is_available()</code>验证GPU正常安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">y = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    x = x.cuda()</span><br><span class="line">    y = y.cuda()</span><br><span class="line">    print(x+y)</span><br><span class="line">&gt;&gt;&gt;tensor([[<span class="number">-1.4013</span>,  <span class="number">1.5702</span>],</span><br><span class="line">        [ <span class="number">1.2808</span>,  <span class="number">0.7981</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>)   </span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>通过<code>x.cpu()</code>将存储在GPU上的变量卸载在CPU</p>
+</li>
+<li><p>张量使用<code>to</code>方法移动到任何张量，使用<code>torch.device</code>移出移入设备</p>
+</li>
+</ul>
+<h2 id="自动微分"><a href="#自动微分" class="headerlink" title="自动微分"></a>自动微分</h2>
       
     </div>
 
@@ -403,7 +399,7 @@ k = 1,2,...,K</script><p>因为$\sum_{k=1}^K\alpha_k=1$,用拉格朗日乘子法
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

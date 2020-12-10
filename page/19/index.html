@@ -193,14 +193,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/machine%20learning/SVM/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/12/Flask/flask/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/06/machine%20learning/SVM/" class="post-title-link" itemprop="url">SVM</a>
+            <a href="/2020/11/12/Flask/flask/" class="post-title-link" itemprop="url">flask</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-06 10:56:43" itemprop="dateCreated datePublished" datetime="2020-11-06T10:56:43+08:00">2020-11-06</time>
+      <time title="创建时间：2020-11-12 19:43:03" itemprop="dateCreated datePublished" datetime="2020-11-12T19:43:03+08:00">2020-11-12</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-05 15:05:10" itemprop="dateModified" datetime="2020-12-05T15:05:10+08:00">2020-12-05</time>
+        <time title="修改时间：2020-11-20 18:53:37" itemprop="dateModified" datetime="2020-11-20T18:53:37+08:00">2020-11-20</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
         </span>
     </span>
 
@@ -311,18 +311,78 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><ul>
-<li>支持向量机算法本身不能够很好地支持非标准化的数据，所以 <strong>我们强烈建议您将数据标准化</strong>。 举个示例，对于输入向量 X， 规整它的每个数值范围为 [0, 1] 或 [-1, +1] ，或者标准化它的为均值为0方差为1的数据分布。可以通过sklearn预处理库中的StandardScaler函数实现。</li>
-<li>底层实现的随机性:SVC的底层实现仅使用随机数生成器来打乱数据顺序进行概率估计(当probability被设置为True时)。这种随机性可以用random_state参数来控制。</li>
+          <h2 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h2><h3 id="使用pycharm创建虚拟环境"><a href="#使用pycharm创建虚拟环境" class="headerlink" title="使用pycharm创建虚拟环境"></a>使用pycharm创建虚拟环境</h3><p>很多个项目可能要同时使用同一个库，并且多个项目可能会使用不同版本的库。为每个python工程单独创建虚拟环境。</p>
+<ol>
+<li>File$\to$New Project。</li>
+<li>在弹出的对话框中，选择New environment using。选择Virtualenv。其他默认</li>
+<li>File$\to$Settingts，弹出的对话框中单击Project Interperter，Project$\to$Project Interpreter，点击+弹出的对话框中搜索Flask点击Install Package。<br><img src="/2020/11/12/Flask/flask/image-20201118233649700.png" alt="image-20201118233649700"><br><img src="/2020/11/12/Flask/flask/image-20201118233837222.png" alt="image-20201118233837222"></li>
+</ol>
+<h2 id="初步认识Flask"><a href="#初步认识Flask" class="headerlink" title="初步认识Flask"></a>初步认识Flask</h2><h3 id="简单举例"><a href="#简单举例" class="headerlink" title="简单举例"></a>简单举例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(&#x27;/&#x27;) #调用hello_world函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Hello, World!&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h3><p>启用调试支持<code>app.debug=True</code>，则服务器将在代码更改时自动重启并重新运行Flask程序，如果出现问题，它还将提供有用的调试器。</p>
+<h3 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h3><h4 id="1-路由方法route"><a href="#1-路由方法route" class="headerlink" title="1.路由方法route()"></a>1.路由方法route()</h4><p><code>route(rule,**options)</code></p>
+<p>route装饰器，用于URL注册，绑定url。通过route()方法会调用route()关联的函数，返回响应内容。</p>
+<p><code>run（*host = None*，*port = None*，*debug = None*，*** options* ）</code></p>
+<p>在本地部署服务，运行应用程序。</p>
+<h4 id="2-路由方法add-url-rule"><a href="#2-路由方法add-url-rule" class="headerlink" title="2.路由方法add_url_rule()"></a>2.路由方法add_url_rule()</h4><p><code>add_url_rule(self, rule, endpoint=None, view_func=None,provide_automatic_options=None, **options)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">helo</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello world&quot;</span></span><br><span class="line">app.add_url_rule(<span class="string">&#x27;/&#x27;</span>,<span class="string">&#x27;helo&#x27;</span>,helo)</span><br></pre></td></tr></table></figure>
+<h4 id="3-将多个URL映射到同一函数"><a href="#3-将多个URL映射到同一函数" class="headerlink" title="3.将多个URL映射到同一函数"></a>3.将多个URL映射到同一函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(&#x27;/&#x27;)</span></span><br><span class="line"><span class="meta">@app.route(&#x27;/aaa&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;WTF&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="变量规则"><a href="#变量规则" class="headerlink" title="变量规则"></a>变量规则</h3><p><code>&lt;variable_name&gt;</code>，作为关键字参数传递给函数。</p>
+<p><code>&lt;converter:variable_name&gt;</code>，指定转换器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.route(<span class="string">&#x27;/user/&lt;username&gt;&#x27;</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_user_profile</span>(<span class="params">username</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;User %s&#x27;</span>%username</span><br><span class="line"><span class="meta">@app.route(&#x27;/post/&lt;int:post_id&gt;&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_post</span>(<span class="params">post_id</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Post %d&quot;</span>%post_id</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>转换器</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string</td>
+<td>接收不带斜杆的任何文本(默认)</td>
+</tr>
+<tr>
+<td>int</td>
+<td>接受整数</td>
+</tr>
+<tr>
+<td>float</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>path</td>
+<td>表示使用斜杠</td>
+</tr>
+<tr>
+<td>any</td>
+<td>匹配提供的任意项</td>
+</tr>
+<tr>
+<td>uuid</td>
+<td>UUID字符串</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="传递HTTP请求"><a href="#传递HTTP请求" class="headerlink" title="传递HTTP请求"></a>传递HTTP请求</h3><p>url_for()进行网页重定向跳转到指定的URL。</p>
+<p><code>url_for(endpoint,**valuse)</code></p>
+<ul>
+<li>endpoint：要传递的函数名。</li>
+<li>valuse：以key=value接受endpoint的函数参数。</li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/06/machine%20learning/SVM/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<p>redirect进行重定向</p>
+<p><code>redirect(location,
+             code: int = 302,
+             Response)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(&#x27;/admin&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_admin</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;你好管理员！&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(&#x27;/guest/&lt;guest&gt;&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_guest</span>(<span class="params">guest</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Hello %s&#x27;</span>%guest</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(&#x27;/user/&lt;name&gt;&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_user</span>(<span class="params">name</span>):</span></span><br><span class="line">    <span class="keyword">if</span> name==<span class="string">&#x27;admin&#x27;</span>:</span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;hello_admin&#x27;</span>))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;hello_guest&#x27;</span>,guest=name))</span><br></pre></td></tr></table></figure>
+<h3 id="使用session和cookie"><a href="#使用session和cookie" class="headerlink" title="使用session和cookie"></a>使用session和cookie</h3><h4 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h4><p><code>flask.request.cookies.get(&#39;name&#39;)</code>获取key=name的value。</p>
+<p><code>make_response(html_txt).set_cookies(&#39;username&#39;,values)</code>创建response对象然后设置cookies。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> flask</span><br><span class="line">html_txt = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">&lt;html&gt;</span></span><br><span class="line"><span class="string">    &lt;body&gt;</span></span><br><span class="line"><span class="string">        &lt;h2&gt;可以收到GET请求&lt;/h2&gt;</span></span><br><span class="line"><span class="string">        &lt;a href=&#x27;/get_xinxi&#x27;&gt;点我获取Cookie&lt;/a&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">app = flask.Flask(__name__)</span><br><span class="line"><span class="meta">@app.route(&#x27;/set_xinxi/&lt;name&gt;&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_cks</span>(<span class="params">name</span>):</span></span><br><span class="line">    name = name <span class="keyword">if</span> name <span class="keyword">else</span> <span class="string">&quot;anonymous&quot;</span></span><br><span class="line">    resp = flask.make_response(html_txt) <span class="comment">#构造响应对象</span></span><br><span class="line">    resp.set_cookie(<span class="string">&#x27;name&#x27;</span>,name)</span><br><span class="line">    <span class="keyword">return</span>  resp</span><br><span class="line"><span class="meta">@app.route(&#x27;/get_xinxi&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_cks</span>():</span></span><br><span class="line">    name = flask.request.cookies.get(<span class="string">&#x27;name&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Cookies:&quot;</span>+name</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<h4 id="session"><a href="#session" class="headerlink" title="session"></a>session</h4><p>http无状态性，设置session可以在服务器开辟一块内存保存Session对象存储特定用户会话所需的属性及配置信息。</p>
+<p>在flask框架中，session被加密放到了cookie中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,session</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">&#x27;SECRET_KEY&#x27;</span>] = os.urandom(<span class="number">24</span>) <span class="comment">#生成24位的密钥</span></span><br><span class="line"><span class="meta">@app.route(&#x27;/&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set</span>():</span></span><br><span class="line">    session[<span class="string">&#x27;username&#x27;</span>] = <span class="string">&#x27;wuliGiaoGiao&#x27;</span> <span class="comment">#设置一个session值，是一个键值对</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;success&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(&#x27;/get&#x27;)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span>():</span></span><br><span class="line">    <span class="keyword">return</span> session.get(<span class="string">&#x27;username&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -343,7 +403,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
