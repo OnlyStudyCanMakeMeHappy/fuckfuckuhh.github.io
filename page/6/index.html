@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/30/machine%20learning/EM/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/06/Primer-c/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/30/machine%20learning/EM/" class="post-title-link" itemprop="url">EM</a>
+            <a href="/2020/12/06/Primer-c/" class="post-title-link" itemprop="url">Primer c++</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,17 +281,23 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-30 10:21:44 / 修改时间：19:25:56" itemprop="dateCreated datePublished" datetime="2020-11-30T10:21:44+08:00">2020-11-30</time>
+      <time title="创建时间：2020-12-06 20:26:18" itemprop="dateCreated datePublished" datetime="2020-12-06T20:26:18+08:00">2020-12-06</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 21:07:20" itemprop="dateModified" datetime="2020-12-24T21:07:20+08:00">2020-12-24</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+          <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
         </span>
     </span>
 
@@ -305,83 +311,506 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><ul>
-<li><p>输入：观测数据Y，隐变量数据Z，联合分布$p(Y,Z|\theta)$，条件分布$p(Z|Y,\theta)$</p>
-</li>
-<li><p>输出：模型参数$\theta$</p>
-</li>
-<li><p>算法流程</p>
+          <h1 id="C-基础"><a href="#C-基础" class="headerlink" title="C++基础"></a>C++基础</h1><h2 id="变量和基本类型"><a href="#变量和基本类型" class="headerlink" title="变量和基本类型"></a>变量和基本类型</h2><p><strong>类型转换</strong></p>
 <ul>
-<li><p>选择参数$\theta^{(0)}$作为初始值</p>
-</li>
-<li><p>E步：记$\theta^{(i)}$为第i次迭代的参数估计值，第i+1次迭代E步，计算完全数据关于当前Y和$\theta^{(i)}$下Z的条件概率分布</p>
-<script type="math/tex; mode=display">
-Q(\theta,\theta^{(i+1)}) = E_z[\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})]=\sum_z\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})</script></li>
-<li><p>M步：求出最大化Q函数的$\theta$，使$\theta^{(i+1)}:=\theta$</p>
-</li>
-<li><p>重复E和M步,直至收敛</p>
-</li>
+<li>赋给一个无符号类型一个超出它表示范围的值时，结果是初始值对无符号类型表示数值总数取模后的余数。例如，对于unsigned char表示范围为[0,255]。当把-1赋给8bits大小的unsigned char时所得结果是255。</li>
+<li>当给一个带符号类型一个超出范围的值时，结果是未定义的。</li>
+<li>不要混用带符号类型和无符号类型。带符号类型会自动地装换成无符号数，会改变有符号负数的取值，有符号数首位作为符号位表示范围在$[-2^{n-1},2^{n-1}-1]$,n表示位数。</li>
 </ul>
-</li>
-</ul>
-<p>B函数是对数似然函数的下界，EM算法是通过<strong>不断求解下界的极大化逼近</strong>求解对数似然函数。</p>
-<h2 id="EM算法在高斯混合模型中的应用"><a href="#EM算法在高斯混合模型中的应用" class="headerlink" title="EM算法在高斯混合模型中的应用"></a>EM算法在高斯混合模型中的应用</h2><p>高斯很合模型</p>
-<script type="math/tex; mode=display">
-P(y|\theta) = \sum_{k=1}^K\alpha_k\phi(y|\theta_k),\alpha_k\ge0,\sum\alpha=0</script><h3 id="1-明确隐变量"><a href="#1-明确隐变量" class="headerlink" title="1. 明确隐变量"></a>1. 明确隐变量</h3><p>定义隐变量$\gamma_{jk}$</p>
-<script type="math/tex; mode=display">
-\gamma_{jk}=\left\{\begin{matrix}
-1,& 第j个观测来自第k个模型\\
-0，& 否则
-\end{matrix}\right.</script><p>完全数据</p>
-<script type="math/tex; mode=display">
-(y_j,\gamma_{j1},\dots,\gamma_{jK}),j=1,2,\dots,N</script><p>完全数据的似然函数</p>
-<script type="math/tex; mode=display">
-\begin{align}
-P(y,\gamma|\theta) &= \prod_{j=1}^NP(y_j,\gamma_{j1},\dots,\gamma_{jK}|\theta)\\
-&=\prod_{k=1}^K\prod_{j=1}^N[\alpha_k\phi(y_j|\theta_k)]^{\gamma_{jk}}\\
-&=\prod_{k=1}^K\alpha_k^{n_k}\prod_{j=1}^N[\phi(y_j|\theta_k)]^{\gamma_{jk}}
-\end{align}</script><p>完全数据对数似然函数</p>
-<script type="math/tex; mode=display">
-\log P(y,\gamma|\theta) = \sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\gamma_{jk}\log[\phi(y_j|\mu_k,\Sigma_k)]</script><h3 id="2-E步：确定Q函数"><a href="#2-E步：确定Q函数" class="headerlink" title="2.E步：确定Q函数"></a>2.E步：确定Q函数</h3><script type="math/tex; mode=display">
-\begin{align}
-Q(\theta,\theta^{(i)}) &= E\{\sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\gamma_{jk}\log[\phi(y_j|\mu_k,\Sigma_k)\}\\
-&=\sum_{k=1}^K\{\sum_{j=1}^N(E\gamma_{jk})\log\alpha_k+\sum_{j=1}^N(E\gamma_{jk})\phi(y_j|\theta)\} \tag{1}
-\end{align}</script><p>记$E(\gamma<em>{jk}|y,\theta)$为$\hat{\gamma}</em>{jk}$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\hat{\gamma}_{jk} &= P(\gamma_{jk}=1|y,\theta)\\
-&= \frac{P(y_j|\gamma_{jk}=1,\theta)P(\gamma_{jk}=1|\theta)}{\sum_{k=1}^KP(y_j|\gamma_{jk}=1,\theta)P(\gamma_{jk}=1|\theta)}\\
-&= \frac{\alpha_k\phi(y_j|\theta_k)}{\sum_{k=1}^K\alpha_k\phi(y_j|\theta_k)},j=1,2,...,N;\ k=1,2,...,K
-\end{align}</script><p>(1)式等价于下式</p>
-<script type="math/tex; mode=display">
-\begin{align}
-Q(\theta,\theta^{(i)}) &= \sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\hat{\gamma}_{jk}\log[\phi(y_j|\theta_k)\\
-&=\sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\hat{\gamma}_{jk}[\log(\frac{1}{\sqrt{2\pi}})-\log\sigma_k-\frac{1}{2\sigma_k^2}(y_j-\mu_k)^2]
-\tag{2}
-\end{align}</script><h3 id="3-M步"><a href="#3-M步" class="headerlink" title="3.M步"></a>3.M步</h3><p>(2)式对参数分别对$\mu_k,\sigma_k^2$求偏导的令为0得</p>
-<script type="math/tex; mode=display">
-\hat\mu_k = \frac{\sum_{j=1}^N\hat\gamma_{jk}y_j}{\sum_{j=1}^N\hat\gamma_{jk}},\\
-\sigma^2_k = \frac{\sum_{j=1}^N\hat\gamma_{jk}y_j}{\sum_{j=1}^N\hat\gamma_{jk}}\\
-k = 1,2,...,K</script><p>因为$\sum_{k=1}^K\alpha_k=1$,用拉格朗日乘子法求得</p>
-<script type="math/tex; mode=display">
-\mathcal L(\lambda,\theta)= Q(\theta,\theta^{(i)})+\lambda(1-\sum_{k=1}^K\alpha_k)\\
-对\alpha求导令为0得，
-\hat\alpha_k = \frac{n_k}{N} = \frac{\sum_{j=1}^N\hat\gamma_{jk}}{N}\\</script><h2 id="Scikti-learn"><a href="#Scikti-learn" class="headerlink" title="Scikti-learn"></a>Scikti-learn</h2><p><code>sklearn.mixture.GaussianMixture(n_components=1, *, covariance_type=&#39;full&#39;, tol=0.001, reg_covar=1e-06, max_iter=100, n_init=1, init_params=&#39;kmeans&#39;, weights_init=None, means_init=None, precisions_init=None, random_state=None, warm_start=False, verbose=0, verbose_interval=10)</code><br>参数</p>
+<p><strong>变量声明和定义</strong></p>
 <ul>
-<li>covariance_type：{‘full’ (default), ‘tied’, ‘diag’, ‘spherical’}<ul>
-<li>full：成员都独立的一般协方差矩阵</li>
-<li>tied：成员共享一个协方差矩阵</li>
-<li>diag：每个分量都有自己的对角协方差矩阵</li>
-<li>spherical：每个分量都有自己的单方差</li>
+<li>声明一个变量而不定义它，使用extern关键字标记。</li>
+<li>变量只能被定义一次，但可以有多次声明。</li>
+</ul>
+<p><strong>类别别名</strong></p>
+<ul>
+<li><p>使用typedef定义类别的别名</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//typedef别名</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> wages,*p; <span class="comment">//*p是double *的别名</span></span><br><span class="line">wages val = <span class="number">1.234</span>;</span><br><span class="line">p p1 = &amp;val;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>编写自己的头文件</strong></p>
+<ul>
+<li>头文件通常包含那些只能被定义一次的实体，如类、const和constexpr变量。</li>
+<li>头文件也经常包含其他头文件。</li>
+</ul>
+<p><strong>预处理器</strong></p>
+<ul>
+<li>头文件保护符<ul>
+<li><code>#define</code>将一个名字设定为预处理变量</li>
+<li><code>#ifdef</code>当且仅当变量已经定义时为真</li>
+<li><code>#ifndef</code>当且仅当变量未定义时为真</li>
+<li>检查结果为真，执行后续操作知道<code>#endif</code>指令为止</li>
 </ul>
 </li>
-<li>tol：EM算法收敛阈值</li>
-<li>reg_cover：非负正则化添加到协方差的对角线上。确保协方差矩阵均为正</li>
-<li>max_iter：default=100，迭代次数</li>
-<li>n_init：要执行的初始化次数</li>
-<li>init_parmas：{‘kmeans’,’random’}，初始化权重的方法、均值和精度的方法</li>
-<li></li>
 </ul>
+<p><strong>constexpr</strong></p>
+<p>用于声明常量表达式，即在编译过程就得到计算结果的表达式。</p>
+<h4 id="指针和const"><a href="#指针和const" class="headerlink" title="指针和const"></a><strong>指针和const</strong></h4><ul>
+<li>指向常量的指针(pointer to const)：<code>const int *cptr</code>，<code>cptr</code>是一个指针，指向int型常量。不能用于改变其所指对象的值，也叫底层const。</li>
+<li><p>常量指针(const pointer)：<code>int *const cptr</code>，<code>cptr</code>是一个指向int型变量的cosnt指针。一旦确定指针就不能指向其他对象，叫做顶层const。</p>
+</li>
+<li><p>判断const是在 <em> 的左边还是右边即可。左边则是修饰被指物，即被指物是常量，不可以修改它的值；右边则是修饰指针，即指针是常量，不可以修改它的指向；在左右两边，则被指物和指针都是常量，都不可以修改，`int const </em> const cptr`</p>
+</li>
+</ul>
+<hr>
+<h2 id="字符串、向量和数组"><a href="#字符串、向量和数组" class="headerlink" title="字符串、向量和数组"></a>字符串、向量和数组</h2><p>命名空间的using声明</p>
+<ul>
+<li><p>命名空间是对标识符名称的本地化，避免命名冲突。</p>
+</li>
+<li><p>使用<code>namespace</code>定义命名空间，通过<code>name::code</code>调用命名空间的函数或变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> namespace_name&#123;</span><br><span class="line">&#125;</span><br><span class="line">name::code</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过<code>using namespace::name</code>指令调用命名空间。</p>
+</li>
+</ul>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p><strong>构造函数</strong></p>
+<ul>
+<li>直接初始化</li>
+<li>拷贝构造化</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(s1)</span></span>; #拷贝构造函数</span><br><span class="line"><span class="built_in">string</span> s2 = s1;    </span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s3</span><span class="params">(n,<span class="string">&#x27;c&#x27;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>string对象的操作</strong></p>
+<ul>
+<li><p>输入输出流</p>
+</li>
+<li><p><code>getline(is,s)</code>从is中读取一行赋给s，返回is。遇见换行符为止。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s4;</span><br><span class="line">getline(<span class="built_in">cin</span>,s4);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>s.empay()</code></p>
+</li>
+<li><p><code>s.size()</code></p>
+</li>
+<li><p>不能通过下标索引添加字符，需要用<code>+</code>运算符等</p>
+</li>
+<li><p><code>string</code>对象转换为字符串数组</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *str  = s.c_str();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>c语言中的<code>name.h</code>头文件在c++中变成<code>cname</code>头文件。</p>
+<p>处理string对象中的字符(cctype.h)</p>
+<ul>
+<li>isalnum：是字母或数字</li>
+<li>isalpha：是字母为真</li>
+<li>isdigit：数字时为真</li>
+<li>islower/isupper：是小写/大写时为真</li>
+<li><p>tolower/toupper：字母变小写/大写</p>
+</li>
+<li><p>isspace：空格</p>
+</li>
+</ul>
+<p><strong>for语句处理string</strong></p>
+<ul>
+<li>通过引用改变原字符串</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> c:s)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isalpha</span>(c))	<span class="built_in">cout</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//通过引用改变原string对象</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> &amp;c:s)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">islower</span>(c))	c = <span class="built_in">toupper</span>(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p>如下声明</p>
+<p><code>#include&lt;vector&gt;</code></p>
+<p><strong>定义和初始化vector对象</strong></p>
+<ul>
+<li><code>vector&lt;T&gt; v1</code></li>
+<li><code>vector&lt;T&gt; v2(v1)</code></li>
+<li><code>vector&lt;T&gt; v1&#123;a,b,c...&#125;</code></li>
+</ul>
+<p><strong>操作</strong></p>
+<ul>
+<li><p><code>push_back()</code>：向尾部添加元素</p>
+</li>
+<li><p><code>empty()</code>：是否为空</p>
+</li>
+<li><code>size()</code>：返回向量元素个数</li>
+</ul>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>通过<strong>begin</strong>和<strong>end</strong>成员，分别返回第一个元素的迭代器和尾后元素迭代器(off-the-end)，最后一个元素的下一个位置。</p>
+<p><strong>运算符</strong></p>
+<ul>
+<li><code>*iter*</code>：获取iter指向的对象</li>
+<li><code>iter-&gt;men</code>：解引用，取该元素men的成员，等价于(*iter).men。</li>
+<li><code>++,--</code>：</li>
+<li><code>==,!=</code></li>
+</ul>
+<p><strong>迭代器类型</strong></p>
+<ul>
+<li>读写迭代器</li>
+<li>只读迭代器</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterarot it;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator it;</span><br><span class="line"><span class="built_in">string</span>::iteartor it;</span><br><span class="line"><span class="built_in">string</span>::const_iteartor it;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><p>三种参数传递方式</p>
+<ul>
+<li>值传递</li>
+<li>指针传递</li>
+<li>引用传递</li>
+</ul>
+<p>实际上，形参是对实参的拷贝。<strong>函数对形参做的所有操作都不会影响实参</strong></p>
+<h3 id="指针传递"><a href="#指针传递" class="headerlink" title="指针传递"></a>指针传递</h3><p>当执行指针拷贝时，拷贝的是指针的值。拷贝之后，两个指针是不同的指针。所以通过修改形参可以修改它指向对象的值，但不能修改实参的值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">(<span class="keyword">int</span> *ip)</span></span>&#123;</span><br><span class="line">    *ip = <span class="number">0</span>;</span><br><span class="line">    ip = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>,*p = &amp;i;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %x\n&quot;</span>,*p,p);</span><br><span class="line">reset(p);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %x&quot;</span>,*p,p);</span><br><span class="line"><span class="number">1</span> <span class="number">61f</span>e1c</span><br><span class="line"><span class="number">0</span> <span class="number">61f</span>e1c</span><br></pre></td></tr></table></figure>
+<h3 id="引用形参"><a href="#引用形参" class="headerlink" title="引用形参"></a>引用形参</h3><ul>
+<li>当使用引用形参，但不改变形参的内容时最好声明为常量引用，用const修饰。</li>
+<li>使用引用形参，还可以为函数返回额外信息。</li>
+</ul>
+<h3 id="const形参和实参"><a href="#const形参和实参" class="headerlink" title="const形参和实参"></a>const形参和实参</h3><ul>
+<li><p>当形参有顶层const时，顶层const会被忽略，传给它常量对象或者非常量对象都可以。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> i)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义const引用，不能通过引用修改被引用对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r = i;</span><br><span class="line">r = <span class="number">10</span>; </span><br><span class="line">error: assignment of read-only reference <span class="string">&#x27;r&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把函数不会改变的形参定义为普通引用是一种常见的错误，这样做带给函数调用者一种误导，认为函数可以修改它的实参值。</p>
+</li>
+</ul>
+<h3 id="数组形参"><a href="#数组形参" class="headerlink" title="数组形参"></a>数组形参</h3><ul>
+<li><p>三种常用技术管理数组形参</p>
+<ul>
+<li><strong>使用标记指定数组长度</strong>，要求数组本身包含一个结束标记。例如C风格字符串遇到空字符停止。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(*p)	<span class="built_in">cout</span>&lt;&lt;*p++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>使用标准库规范</strong>，传递数组<strong>首元素</strong>和<strong>尾后元素</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> *beg,<span class="keyword">const</span> <span class="keyword">int</span> *end)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(beg!=end)	<span class="built_in">cout</span>&lt;&lt;*beg++&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>显示传递数组大小形参</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> ia[],<span class="keyword">size_t</span> size)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">size_t</span> i=<span class="number">0</span>; i!=size; ++i)	<span class="built_in">cout</span>&lt;&lt;ia[i]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>数组引用形参</strong>，<code>(&amp;arr)[10]</code>表示具有10个元素的数组的引用，两端括号必不可少。这一做法会限定数组的大小，必须传入10个元素的数组。</p>
+</li>
+<li><p><strong>传递多维数组</strong></p>
+<ul>
+<li>理解指针和二维数组。例如对于一个数组<code>int zippo[4][2]</code><ul>
+<li><code>zippo</code>占用的是两个int大小对象的地址，<code>*zippo</code>代表<code>zippo[0]</code>的地址，<code>zippo</code>是地址的地址。</li>
+<li><code>zippo[0]</code>是一个占用一个int大小对象的地址，<code>zippo[1]</code>等价于<code>*(zippo+1)</code>。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> zippo[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">2</span>,<span class="number">4</span>&#125;,&#123;<span class="number">6</span>,<span class="number">8</span>&#125;,&#123;<span class="number">5</span>,<span class="number">7</span>&#125;,&#123;<span class="number">3</span>,<span class="number">9</span>&#125;&#125;;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;*zippo=%p,zippo[0]=%p\n&quot;</span>,*zippo,&amp;zippo[<span class="number">0</span>]); <span class="comment">//p[0]的首地址</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;**zippo=%p\n&quot;</span>,**zippo); <span class="comment">//p[0][0]的值</span></span><br><span class="line">输出：</span><br><span class="line">*zippo=<span class="number">006</span>afea8,zippo[<span class="number">0</span>]=<span class="number">006</span>afea8</span><br><span class="line">**zippo=<span class="number">00000002</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><code>*matrix[10]</code>：表示10个指针构成的数组。</li>
+<li><code>(*matrix)[10]</code>：表示指向含有10个整数的数组指针</li>
+</ul>
+<h3 id="含有可变形参的函数"><a href="#含有可变形参的函数" class="headerlink" title="含有可变形参的函数"></a>含有可变形参的函数</h3><ul>
+<li><code>initializer_list</code>形参：模板类型，元素永远是常量值</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">error_msg</span><span class="params">(<span class="built_in">initializer_list</span>&lt;<span class="built_in">string</span>&gt; il)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> beg = il.begin(); beg!=il.end(); ++beg)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;*beg&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">error_msg(&#123;<span class="string">&quot;hello world&quot;</span>,<span class="string">&quot;what a fuck!&quot;</span>&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>提供的操作<ul>
+<li><code>initalizer_list&lt;T&gt; lst</code>：默认初始化</li>
+<li><code>initalizer_list&lt;T&gt; lst&#123;a,b,c&#125;</code>：lst是对应元素的初始值列表</li>
+<li><code>lst2(lst),lst2 = lst</code></li>
+<li><code>lst.size()</code></li>
+<li><code>lst.begin()</code></li>
+<li><code>lst.end()</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="返回类型"><a href="#返回类型" class="headerlink" title="返回类型"></a>返回类型</h2><h3 id="有返回值函数"><a href="#有返回值函数" class="headerlink" title="有返回值函数"></a>有返回值函数</h3><ul>
+<li>列表初始化返回值：c++11新标准规定，函数可以返回花括号包围的值的列表。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">process</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> x:process())&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数返回引用，普通函数会产生一个临时变量作为函数返回值的副本，==使用返回引用的函数会直接返回引用对象==。<u>但是不要返回局部对象的引用或指针</u>，因为局部对象在函数执行完毕后，存储空间也被释放掉，此时局部变量的引用不再是有效的内存空间。</li>
+</ul>
+<h3 id="返回数组指针"><a href="#返回数组指针" class="headerlink" title="返回数组指针"></a>返回数组指针</h3><p><u>因为数组不能被拷贝，所以函数不能返回数组。</u></p>
+<h3 id="特殊用途语言特性"><a href="#特殊用途语言特性" class="headerlink" title="特殊用途语言特性"></a>特殊用途语言特性</h3><h4 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h4><p>内联函数(inline)，他会在调用点内联地展开，使用内联函数避免函数调用的开销。适用于规模小、流程直接、频繁调用的函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">const</span> <span class="built_in">string</span> &amp;<span class="title">shorterString</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1,<span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s1.size()&lt;=s2.size()?s1:s2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="assert预处理宏"><a href="#assert预处理宏" class="headerlink" title="assert预处理宏"></a>assert预处理宏</h4><p>由预处理器而非编译器管理，在<code>&lt;cassert&gt;</code>头文件中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert(exprt);</span><br></pre></td></tr></table></figure>
+<p>当expr表达式为真时，assert什么也不做；当expr表达式为假时，assert输出信息并终止程序的运行。</p>
+<hr>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><h3 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h3><h4 id="成员变量和成员函数"><a href="#成员变量和成员函数" class="headerlink" title="成员变量和成员函数"></a>成员变量和成员函数</h4><ul>
+<li><p>类的所有成员都要在类的内部声明，但是成员函数体可以定义在类外。必须在函数名前面加上类名予以限定，<code>::</code>被称为域解析符。</p>
+</li>
+<li><p><u><strong>在类内部定义的成员函数是隐式的内联函数</strong></u>，在类体外定义的不是。</p>
+</li>
+</ul>
+<h5 id="引入this"><a href="#引入this" class="headerlink" title="引入this"></a>引入this</h5><ul>
+<li>成员函数会通过<code>this</code>这个隐式参数来访问调用它的对象。在调用成员函数时，会将函数的对象地址初始化<code>this</code>。它指向当前对象，通过它可以访问当前对象的所有成员。</li>
+</ul>
+<h5 id="const成员函数"><a href="#const成员函数" class="headerlink" title="const成员函数"></a>const成员函数</h5><p>这样的函数被称为<u>常成员函数</u></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="title">ClassName::func</span><span class="params">()</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="title">ClassName::func</span><span class="params">(<span class="keyword">const</span> ClassName *<span class="keyword">const</span> <span class="keyword">this</span>)</span></span>&#123;	<span class="comment">//指向常量对象的常量指针</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>const的作用是修改隐式this指针的类型，将this设置为指向常量的指针。</li>
+<li>因为this是指向常量的指针，所以常量成员函数不能改变调用它的对象的内容。</li>
+</ul>
+<p><strong>Note</strong></p>
+<ul>
+<li>常量对象，以及常量对象的引用或指针都只能调用常量成员函数。</li>
+</ul>
+<h3 id="访问控制与封装"><a href="#访问控制与封装" class="headerlink" title="访问控制与封装"></a>访问控制与封装</h3><p><strong>访问说明符</strong></p>
+<ul>
+<li>定义在<code>public</code>说明符之后的成员可以在整个程序内被访问，<code>public</code>成员定义类的接口。</li>
+<li>定义在<code>private</code>说明符后的成员可以被类的成员函数访问，但是不可以被使用该类的代码访问。</li>
+</ul>
+<p><strong>class和struct</strong></p>
+<ul>
+<li>class默认的访问权限是<code>private</code>的。</li>
+<li>struct默认的访问权限是<code>public</code>的。</li>
+</ul>
+<h4 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h4><p>类允许其他类或者函数访问它的非公有成员，方式是令其他类或者函数成为他的==友元==。有元类</p>
+<p>只要增加一条<code>friend</code>关键字开始的函数声明即可。</p>
+<ul>
+<li>友元声明只能出现在<u>类定义的内部</u>。</li>
+<li>友元不是类的成员，也不受它所在区域访问控制级别的约束。</li>
+</ul>
+<h3 id="类的其他特性"><a href="#类的其他特性" class="headerlink" title="类的其他特性"></a>类的其他特性</h3><p><strong>可变数据成员</strong></p>
+<ul>
+<li>对变量声明使用<code>mutable</code>关键字可以在<code>const</code>成员函数中修改变量。</li>
+</ul>
+<h4 id="返回-this的成员函数"><a href="#返回-this的成员函数" class="headerlink" title="返回*this的成员函数"></a>返回*this的成员函数</h4><p>当对类进行修改时，返回对象的引用而非类的副本。这样做能够保证链式调用的正确性。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> myClass&amp; <span class="title">seta</span><span class="params">(<span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;a = t;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><ul>
+<li><p>当类的成员没有在构造函数初始值列表中显式初始化时候调用默认构造函数。</p>
+</li>
+<li><p>默认行为，c++11。</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myClass() = <span class="keyword">default</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>构造函数初始值列表</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myClass(<span class="built_in">string</span> a,<span class="keyword">int</span> b,...,):my_a(a),my_b(b)&#123; &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果成员时const、引用或者某种没有提供默认构造函数的类类型，必须使用构造函数初始化列表为这些成员提供初始值。</li>
+</ul>
+<h4 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h4><ul>
+<li>将职责委托给其他构造函数。委托构造函数有一个成员初始值列表和一个函数体。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myClass(<span class="keyword">int</span> a,<span class="built_in">string</span> b):a(a),b(b)&#123;&#125;</span><br><span class="line">    <span class="comment">//委托构造函数</span></span><br><span class="line">myClass():  myClass(<span class="number">0</span>,<span class="string">&quot;&quot;</span>)&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="聚合类"><a href="#聚合类" class="headerlink" title="聚合类"></a>聚合类</h4><p>满足如下条件的类</p>
+<ul>
+<li>所有成员都是public的</li>
+<li>没有定义构造函数</li>
+<li>没有类内初始值</li>
+<li>没有基类也没有虚类</li>
+</ul>
+<p>可以使用花括号括起来的成员初始值列表，初始化聚合类</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">className xxx = &#123;&#x27;first&#x27;,1,...,&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h4><p><strong>声明静态成员</strong></p>
+<ul>
+<li>在成员声明前加上关键字<code>static</code>使得其与类关联。静态成员可以是<code>public</code>或者<code>private</code>的。</li>
+<li>静态成员函数不与任何对象绑定，也不包含<code>this</code>指针。静态成员函数不能声明为const的。也不能在static函数体内使用<code>this</code>指针。</li>
+</ul>
+<p><strong>使用类的静态成员</strong></p>
+<ul>
+<li>使用作用域运算符访问静态成员。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myClass::staticC;</span><br><span class="line">myClass mc;</span><br><span class="line">my.staticC;</span><br></pre></td></tr></table></figure>
+<p><strong>定义静态成员</strong></p>
+<ul>
+<li>静态成员不是在创建类时被定义的，我们不能在类的内部初始化静态成员。必须在<u>类的外部定义和初始化</u>每个静态成员。</li>
+</ul>
+<p><strong>静态成员的初始化</strong></p>
+<ul>
+<li>类外部初始化语法格式<code>type class index = init;</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> myClass priod = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>类的静态成员不应该在类的内部初始化，但我们可以为静态成员提供<code>const</code>整数类型的类内初始值。不过要求静态成员必须是<u>constexpr</u>类型。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> priod = <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>作用场景</strong></p>
+<ul>
+<li>在类的内部只允许包含==指向自身类型的引用或指针==</li>
+<li>但静态成员类型可以是它所属的类型。</li>
+</ul>
+<p>所以</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">static</span> Bar mem1;	<span class="comment">//正确</span></span><br><span class="line">  Bar mem2;	<span class="comment">//错误</span></span><br><span class="line">  Bar &amp;mem3,*mem4;	<span class="comment">//正确</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="C-标准库"><a href="#C-标准库" class="headerlink" title="C++标准库"></a>C++标准库</h1><h2 id="IO库"><a href="#IO库" class="headerlink" title="IO库"></a>IO库</h2><p>IO库类型</p>
+<ul>
+<li><code>istream</code>：输入流，提供输入操作。</li>
+<li><code>ostream</code>：输出流，提供输出操作。</li>
+<li><code>cin</code>：标准输入流</li>
+<li><code>cout</code>：标准输出流</li>
+<li><code>cerr</code>：标准错误流</li>
+<li><code>&gt;&gt;</code>：输入流运算符</li>
+<li><code>&lt;&lt;</code>：输出流运算符</li>
+<li><code>getline</code>：从输入流中读取一行数据</li>
+</ul>
+<h3 id="IO类"><a href="#IO类" class="headerlink" title="IO类"></a>IO类</h3><p><strong>三个头文件</strong></p>
+<ul>
+<li><code>iostream</code>：读写流基本类型</li>
+<li><code>fstream</code>：读写命名文件的类型</li>
+<li><code>sstream</code>：读写内存string对象类型</li>
+</ul>
+<p><strong>IO对象无拷贝或赋值</strong></p>
+<ul>
+<li><p>不能拷贝或对IO对象赋值</p>
+</li>
+<li><p>由于不能拷贝IO对象，所以我们不能将形参或返回类型设置为流类型。进行IO操作的函数通常<u><strong>以引用方式传递或返回流</strong></u>。读写一个IO对象会改变状态，所以传递和返回引用不能是const的。</p>
+</li>
+</ul>
+<h3 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h3><h4 id="使用文件流对象"><a href="#使用文件流对象" class="headerlink" title="使用文件流对象"></a>使用文件流对象</h4><ul>
+<li><code>ifstream in(ifile)</code>：提供一个文件名，构建一个ifstream并打开给定文件。</li>
+<li><code>ofstream out</code>：输出文件流未关联到任何文件</li>
+</ul>
+<h4 id="文件模式"><a href="#文件模式" class="headerlink" title="文件模式"></a>文件模式</h4><ul>
+<li><code>in</code>：读方式打开</li>
+<li><code>out</code>：写方式打开</li>
+<li><code>app</code>：写操作前定位到文件末尾</li>
+<li><code>ate</code>：打开文件后立即定位到文件末尾</li>
+<li><code>trunc</code>：截断文件</li>
+<li><code>binary</code>：以二进制方式进行IO</li>
+</ul>
+<hr>
+<h2 id="顺序容器"><a href="#顺序容器" class="headerlink" title="顺序容器"></a>顺序容器</h2><p><strong>顺序容器类型</strong></p>
+<ul>
+<li><code>vector</code>：可变数组，在非尾部插入删除元素可能很慢。</li>
+<li><code>deque</code>：双端队列，在两头操作元素很快。</li>
+<li><code>list</code>：双向链表。只支持双向顺序访问</li>
+<li><code>forward_list</code>：单向列表，只支持单向列表访问。为了达到手写的单向链表的性能，所以没有<code>size</code>操作。</li>
+<li><code>array</code>：固定大小数组，支持随机访问。</li>
+<li><code>string</code>：专门由于保存字符，在尾部插入/删除很快。</li>
+</ul>
+<p><strong>容器操作</strong></p>
+<p><strong>类型别名</strong></p>
+<ul>
+<li><code>iterator</code>：迭代器</li>
+<li><code>const_iterator</code>：只读迭代器</li>
+<li><code>value_type</code>：元素类型</li>
+</ul>
+<p><strong>构造函数</strong></p>
+<ul>
+<li><code>C c</code>：默认构造函数</li>
+<li><code>C c1(c2)</code>：拷贝构造函数</li>
+<li><code>C c(b,e)</code>：将迭代器b和e之间的元素拷贝到c</li>
+<li><code>C c&#123;a,b,c...&#125;</code>：列表初始化</li>
+</ul>
+<p><strong>赋值与swap</strong></p>
+<ul>
+<li><code>c1 = c2</code></li>
+<li><code>c1=&#123;a,b,,c...&#125;</code></li>
+<li><code>a.swap(b)</code>：交换a与b的元素</li>
+<li><code>swap(a,b)</code></li>
+</ul>
+<p><strong>大小</strong></p>
+<ul>
+<li><code>c.size()</code></li>
+<li><code>c.max_size()</code></li>
+<li><code>c.empty()</code></li>
+</ul>
+<p><strong>添加/删除元素</strong></p>
+<ul>
+<li><code>c.insert(args)</code>：将args的元素拷贝进c</li>
+<li><code>c.emplace(inits)</code>：使用inits构造c中的一个元素</li>
+<li><code>c.erase(args)</code>：删除args指定的元素</li>
+<li><code>c.clear()</code>：删除c中的所有元素</li>
+</ul>
+<h3 id="顺序容器操作"><a href="#顺序容器操作" class="headerlink" title="顺序容器操作"></a>顺序容器操作</h3><p><strong>添加元素</strong></p>
+<ul>
+<li><code>push_back(t)</code></li>
+<li><code>emplace_back(args)\emplace_front(args)\emplace</code></li>
+</ul>
+<blockquote>
+<p>push_back() 向容器尾部添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中（如果是拷贝的话，事后会自行销毁先前创建的这个元素）；而 emplace_back() 在实现时，则是直接在容器尾部创建这个元素，省去了拷贝或移动元素的过程。</p>
+</blockquote>
+<ul>
+<li><code>insert(p,args)\insert(p,n,args)</code>：在迭代器p指向的元素之前插入args元素</li>
+</ul>
+<p><strong>访问元素</strong></p>
+<ul>
+<li><code>c.back()</code></li>
+<li><p><code>c.front()</code></p>
+</li>
+<li><p><code>c[n]</code>：下标越界则函数行为未定义</p>
+</li>
+<li><code>c.at(n)</code>：只能用在string、vector、deque和array</li>
+</ul>
+<blockquote>
+<p>在容器中访问元素返回的都是引用</p>
+</blockquote>
+<h3 id="额外的string操作"><a href="#额外的string操作" class="headerlink" title="额外的string操作"></a>额外的string操作</h3><p><strong>构造函数</strong></p>
+<ul>
+<li><code>string s(cp,n)</code>：cp指向数组的前n个字符的拷贝</li>
+<li><code>string s(s2,pos2)</code>：是s2指向从下标pos2开始的拷贝</li>
+<li><code>string s(s2,pos2,len2)</code>：从下标pos2开始长度len2的拷贝</li>
+</ul>
+<p><strong>搜索操作</strong></p>
+<blockquote>
+<p>每次搜索返回一个string:size_type值(unsigned类型)，表示匹配发生位置的下标。搜索失败，则返回一个名为string:npos的静态成员。标准库将npos定义为一个const string:size_type类型，并初始化为-1。</p>
+</blockquote>
+<ul>
+<li><code>find(args)</code>：第一次出现的位置，<code>args=&gt;c,pos</code></li>
+<li><code>rfind(args)</code>：最后一次出现的位置</li>
+<li><code>find_first_of(args)</code>：s中查找args中任意一个字符第一次出现的位置</li>
+<li><code>find_last_of(args)</code>：s中查找args中<u>任意一个字符</u>最后一次出现的位置</li>
+<li><code>find_first_not_of(args)</code>：s中查找第一个不在args中的字符</li>
+<li><code>find_last_not_of(args)</code>：s中查找最后一个不在args中的字符</li>
+</ul>
+<p><strong>数值转换</strong></p>
+<ul>
+<li><code>to_string(val)</code>：返回数值val的string表示。</li>
+<li><code>stoi(s,p,b)</code>：b表示转换用的基数默认为10，p为起始位置。</li>
+<li><code>stol\ul\oll\ull\f\d\ld</code></li>
+</ul>
+<h3 id="容器适配器"><a href="#容器适配器" class="headerlink" title="容器适配器"></a>容器适配器</h3><blockquote>
+<p>三个容器适配器：<code>stack</code>、<code>queue</code>和<code>prioriy_queue</code></p>
+<p>所有适配器都要求容器具有添加、删除以及访问尾元素的能力。</p>
+</blockquote>
+<h2 id="泛型算法"><a href="#泛型算法" class="headerlink" title="泛型算法"></a>泛型算法</h2><p>大多数算法定义在头文件<code>algorithm</code>中，标准库还在头文件<code>numeric</code>中定义了一组数值泛型算法。</p>
+<blockquote>
+<p>泛型算法本身不会执行容器的操作，他们只会运行在迭代器之上，执行迭代器的操作。</p>
+</blockquote>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p><strong>只读算法</strong></p>
+<ul>
+<li><code>accumulate(c.begin(),c.end(),0)</code>：只读算法，计算累加和。第三个参数决定了初始值，决定函数中使用哪个加法运算符和返回值得类型。</li>
+</ul>
+<p><strong>写容器算法</strong></p>
+<ul>
+<li><p><code>fill(c.begin(),c.end(),0)</code>：将给定的值填入输入序列中的每一个元素。</p>
+</li>
+<li><p><code>fill_n(dest,n,val)</code>：dest指向一个元素，从dest开始的序列至少包含n个元素。</p>
+</li>
+<li><code>copy(begin(a1),end(a1),a2)</code>：将a1的内容拷贝给a2。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a1[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> a2[<span class="keyword">sizeof</span>(a1)/<span class="keyword">sizeof</span>(*a1)];</span><br><span class="line">copy(begin(a1),end(a1),a2);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>replace(list.begin(),list.end(),0,42)</code>：接受四个参数，前两个是迭代器表示序列，后两个一个是要是搜索的值，一个是新值。</li>
+</ul>
+<p><strong>重排容器元素的算法</strong></p>
+<ul>
+<li><p><code>unique(words.begin(),words.end())</code>：覆盖相邻的重复元素，使得不重复元素出现在序列开始部分。返回的迭代器指向最后一个不重复元素之后的位置。此位置之后元素任然存在。</p>
+<blockquote>
+<p>使用unique函数之前，通常会排序。</p>
+</blockquote>
+</li>
+<li><p><code>erase()</code>：删除从pos位置开始的n个元素，或者删除指定两个迭代器之间的元素。</p>
+</li>
+</ul>
+<h3 id="定制操作"><a href="#定制操作" class="headerlink" title="定制操作"></a>定制操作</h3><p><strong>lambda表达式</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[capture <span class="built_in">list</span>] (parameter <span class="built_in">list</span>) -&gt; <span class="keyword">return</span> type &#123;function body&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>capture list</code>：函数中定义的局部变量的列表</li>
+<li><code>patameter list</code>：参数列表</li>
+<li><code>return type</code>：返回类型</li>
+<li><code>function body</code>：函数体</li>
+</ul>
+<p><strong>find_if和for_each</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sz = <span class="number">3</span>;</span><br><span class="line"><span class="comment">//查找words中字长大于sz的字符串</span></span><br><span class="line"><span class="keyword">auto</span> wc = find_if(words.begin(),words.end(),</span><br><span class="line">                  [sz] (<span class="keyword">const</span> <span class="built_in">string</span> &amp;a)</span><br><span class="line">                  &#123;<span class="keyword">return</span> a.size()&gt;=sz;&#125;);</span><br><span class="line"><span class="comment">//打印每个字符串并加空格</span></span><br><span class="line">for_each(wc,words.end(),</span><br><span class="line">         [] (<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)&#123;<span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="string">&quot; &quot;</span>;&#125;);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>捕获列表</strong></p>
+<ul>
+<li><code>[names]</code></li>
+<li><code>[&amp;]</code>：隐式捕获列表，采用引用捕获方式。</li>
+<li><code>[=]</code>：采用值捕获方式</li>
+<li><code>[&amp;,identifier_list]</code>：逗号分隔的列表，均采用引用捕获方式。</li>
+<li><code>[=,indentifier_list]</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find_if(words.begin(),words.end(),</span><br><span class="line">       [=] (<span class="keyword">const</span> <span class="built_in">string</span> &amp;s)</span><br><span class="line">        &#123;<span class="keyword">return</span> s.size()&gt;=sz;&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>可变lambda</strong></p>
+<blockquote>
+<p>默认情况下lambda不会改变拷贝变量的值。要想改变一个被不捕获变量的值，在参数列表首上加上关键字mutable。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span> v1 = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">auto</span> f = [v1]() <span class="keyword">mutable</span>&#123;<span class="keyword">return</span> ++v1;&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>指定返回类型</strong></p>
+<blockquote>
+<p>默认返回void，通过添加尾置返回类型指定返回类型。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">transform(v1.begin(),v1.end(),v1.begin(),</span><br><span class="line">              [](<span class="keyword">int</span> i) -&gt;<span class="keyword">int</span></span><br><span class="line">              &#123;<span class="keyword">if</span>(i&lt;<span class="number">0</span>)   <span class="keyword">return</span> -i;  <span class="keyword">else</span>  <span class="keyword">return</span> i;&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>参数绑定</strong></p>
+<blockquote>
+<p>标准库bind函数</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> newCallable = bind(callable,arg_list)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -403,7 +832,7 @@ k = 1,2,...,K</script><p>因为$\sum_{k=1}^K\alpha_k=1$,用拉格朗日乘子法
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

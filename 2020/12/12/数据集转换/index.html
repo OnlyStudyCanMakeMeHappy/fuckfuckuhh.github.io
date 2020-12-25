@@ -22,23 +22,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":6},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="深度网络框架：前馈神经网络、卷积神经网络和循环神经网络 Tensor张量Tensor类型torch.Tensor单数据类型多维矩阵，是默认tensor类型torch.FloatTensor的别名 共有10种张量类型   创建TensorTensor类似于Numpy的ndarrays，可以使用CPU运算  生成一个未初始化的张量 empty(*size, out&#x3D;None, dtype&#x3D;None,">
+  <meta name="description" content="Pipeline和FeatureUnionPipelinePipeline可以把多个评估器链接在一起，因为数据处理的步骤一般是固定的，例如特征选择、标准化和分类。这样做的用途有  便捷性和封装性：只要对数据调用 fit和 predict 一次就可以适配所有的一系列评估器。 联合的参数选择：使用一次grid search管道中所有评估器的参数。 安全性：训练转换器和预测器使用的是相同样本，管道有助于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pytroch基础">
-<meta property="og:url" content="http://example.com/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="数据集转换">
+<meta property="og:url" content="http://example.com/2020/12/12/%E6%95%B0%E6%8D%AE%E9%9B%86%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Mr.fuck">
-<meta property="og:description" content="深度网络框架：前馈神经网络、卷积神经网络和循环神经网络 Tensor张量Tensor类型torch.Tensor单数据类型多维矩阵，是默认tensor类型torch.FloatTensor的别名 共有10种张量类型   创建TensorTensor类似于Numpy的ndarrays，可以使用CPU运算  生成一个未初始化的张量 empty(*size, out&#x3D;None, dtype&#x3D;None,">
+<meta property="og:description" content="Pipeline和FeatureUnionPipelinePipeline可以把多个评估器链接在一起，因为数据处理的步骤一般是固定的，例如特征选择、标准化和分类。这样做的用途有  便捷性和封装性：只要对数据调用 fit和 predict 一次就可以适配所有的一系列评估器。 联合的参数选择：使用一次grid search管道中所有评估器的参数。 安全性：训练转换器和预测器使用的是相同样本，管道有助于">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/image-20201207192512395.png">
-<meta property="og:image" content="http://example.com/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/博客/source/_posts/pytroch基础/image-20201207192649237.png">
-<meta property="article:published_time" content="2020-12-07T08:45:29.000Z">
-<meta property="article:modified_time" content="2020-12-07T15:14:58.377Z">
+<meta property="article:published_time" content="2020-12-12T13:38:04.000Z">
+<meta property="article:modified_time" content="2020-12-21T15:11:27.540Z">
 <meta property="article:author" content="ggl">
+<meta property="article:tag" content="sklearn">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/image-20201207192512395.png">
 
 
-<link rel="canonical" href="http://example.com/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/">
+<link rel="canonical" href="http://example.com/2020/12/12/%E6%95%B0%E6%8D%AE%E9%9B%86%E8%BD%AC%E6%8D%A2/">
 
 
 <script class="page-configurations">
@@ -51,7 +49,7 @@
   };
 </script>
 
-  <title>pytroch基础 | Mr.fuck</title>
+  <title>数据集转换 | Mr.fuck</title>
   
 
 
@@ -183,7 +181,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensor%E5%BC%A0%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">Tensor张量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tensor%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Tensor类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BATensor"><span class="nav-number">1.2.</span> <span class="nav-text">创建Tensor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%B9%E5%8F%98%E5%BD%A2%E7%8A%B6"><span class="nav-number">1.3.3.</span> <span class="nav-text">改变形状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96tensor%E7%9A%84%E5%80%BC"><span class="nav-number">1.3.4.</span> <span class="nav-text">获取tensor的值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPU%E4%B8%8A%E8%BF%90%E7%AE%97"><span class="nav-number">1.4.</span> <span class="nav-text">GPU上运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%BE%AE%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">自动微分</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline%E5%92%8CFeatureUnion"><span class="nav-number">1.</span> <span class="nav-text">Pipeline和FeatureUnion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pipeline"><span class="nav-number">1.1.</span> <span class="nav-text">Pipeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E4%B8%AD%E7%9A%84%E7%9B%AE%E6%A0%87%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">回归中的目标转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="nav-number">2.</span> <span class="nav-text">特征提取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E5%85%B8%E5%8A%A0%E8%BD%BD%E7%89%B9%E5%BE%81"><span class="nav-number">2.0.1.</span> <span class="nav-text">字典加载特征</span></a></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -199,20 +197,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -264,7 +262,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/12/%E6%95%B0%E6%8D%AE%E9%9B%86%E8%BD%AC%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -277,7 +275,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          pytroch基础
+          数据集转换
         </h1>
 
         <div class="post-meta-container">
@@ -287,17 +285,23 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-12-07 16:45:29 / 修改时间：23:14:58" itemprop="dateCreated datePublished" datetime="2020-12-07T16:45:29+08:00">2020-12-07</time>
+      <time title="创建时间：2020-12-12 21:38:04" itemprop="dateCreated datePublished" datetime="2020-12-12T21:38:04+08:00">2020-12-12</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-21 23:11:27" itemprop="dateModified" datetime="2020-12-21T23:11:27+08:00">2020-12-21</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/DeepLearning/" itemprop="url" rel="index"><span itemprop="name">DeepLearning</span></a>
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
         </span>
     </span>
 
@@ -311,80 +315,49 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>深度网络框架：前馈神经网络、卷积神经网络和循环神经网络</p>
-<h2 id="Tensor张量"><a href="#Tensor张量" class="headerlink" title="Tensor张量"></a>Tensor张量</h2><h3 id="Tensor类型"><a href="#Tensor类型" class="headerlink" title="Tensor类型"></a>Tensor类型</h3><p><code>torch.Tensor</code>单数据类型多维矩阵，是默认tensor类型<code>torch.FloatTensor</code>的别名</p>
-<p>共有10种张量类型</p>
-<p><img src="/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/image-20201207192512395.png" alt="image-20201207192512395"></p>
-<p><img src="/2020/12/07/pytroch%E5%9F%BA%E7%A1%80/博客\source\_posts\pytroch基础\image-20201207192649237.png" alt="image-20201207192649237"></p>
-<h3 id="创建Tensor"><a href="#创建Tensor" class="headerlink" title="创建Tensor"></a>创建Tensor</h3><p>Tensor类似于Numpy的ndarrays，可以使用CPU运算</p>
+        <h2 id="Pipeline和FeatureUnion"><a href="#Pipeline和FeatureUnion" class="headerlink" title="Pipeline和FeatureUnion"></a>Pipeline和FeatureUnion</h2><h3 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h3><p>Pipeline可以把多个评估器链接在一起，因为数据处理的步骤一般是固定的，例如特征选择、标准化和分类。这样做的用途有</p>
 <ul>
-<li><p>生成一个未初始化的张量</p>
-<p><code>empty(*size, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False, pin_memory=False)</code></p>
+<li><strong>便捷性和封装性</strong>：只要对数据调用 <code>fit</code>和 <code>predict</code> 一次就可以适配所有的一系列评估器。</li>
+<li><strong>联合的参数选择</strong>：使用一次<code>grid search</code>管道中所有评估器的参数。</li>
+<li><strong>安全性</strong>：训练转换器和预测器使用的是相同样本，管道有助于防止来自测试数据的统计数据泄露到交叉验证的训练模型中。</li>
+</ul>
+<p><strong>使用方式</strong></p>
+<ul>
+<li>使用一系列<code>(key,value)</code>键值对来构建，key是自定义名字，value是一个评估器。</li>
+<li>使用<code>pipeline.make_pipeline(*step,**kwargs)</code>构建管道，接受多个评估器并返回一个管道，自动填充评估器名。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#pipeline</span></span><br><span class="line">estimators = [(<span class="string">&#x27;reduce_dim&#x27;</span>, PCA()), (<span class="string">&#x27;clf&#x27;</span>, SVC())]</span><br><span class="line">pipe = Pipeline(estimators)</span><br><span class="line"><span class="comment">#make_pipeline</span></span><br><span class="line">make_pipeline(Binarizer(), MultinomialNB())</span><br></pre></td></tr></table></figure>
+<p><strong>访问步骤</strong></p>
+<ul>
+<li>管道中的评估器作为一个列表保存在 <code>steps</code> 属性内,可以通过索引或名称([idx])访问管道</li>
+</ul>
+<p><strong>嵌套参数</strong></p>
+<ul>
+<li>管道中的评估器的参数可以通过<code>&lt;estimator&gt;_&lt;parameter&gt;</code>访问。</li>
+</ul>
+<h3 id="回归中的目标转换"><a href="#回归中的目标转换" class="headerlink" title="回归中的目标转换"></a>回归中的目标转换</h3><ul>
+<li>在拟合回归问题之前将非线性变换应用于目标y。通过一个逆变换映射回原始空间。</li>
+</ul>
+<p><code>sklearn.compose.TransformedTargetRegressor(regressor=None, *, transformer=None, func=None, inverse_func=None, check_inverse=True)</code></p>
+<ul>
+<li><code>func</code>为变换函数，<code>check_inverse</code>是逆映射。</li>
+</ul>
+<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><h4 id="字典加载特征"><a href="#字典加载特征" class="headerlink" title="字典加载特征"></a>字典加载特征</h4><p><code>feature_extraction.DictVectorizer(*, dtype=&lt;class &#39;numpy.float64&#39;&gt;, separator=&#39;=&#39;, sparse=True, sort=True)</code></p>
+<ul>
+<li>将特征值映射列表转换为矢量。</li>
+</ul>
 <p>参数</p>
 <ul>
-<li>size：一个可变参数，tensor的大小</li>
-<li>out：output tensort</li>
-<li>layout：返回tensor的布局</li>
+<li><code>separator</code>：转换为独热编码时的分隔符。</li>
 </ul>
-</li>
-<li><p>基于一个已经存在的tensor</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn_like(x,dtype=torch.float)</span><br><span class="line">x</span><br><span class="line">tensor([[ <span class="number">1.0880</span>,  <span class="number">1.3356</span>],</span><br><span class="line">        [<span class="number">-0.4618</span>, <span class="number">-1.9259</span>]])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取维度信息<code>size()</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.size()</span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取类型额<code>type()</code></p>
-<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">x</span>.<span class="keyword">type</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>与numpy相互转换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Tensor转换为numpy数组</span></span><br><span class="line">b = a.numpy()</span><br><span class="line"><span class="comment">#numpy数组转换为Tensor</span></span><br><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><ul>
-<li><p>方式1：+</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + y</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>方法</p>
 <ul>
-<li><p>方式2：add</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.add(y)</span><br></pre></td></tr></table></figure>
-</li>
+<li><code>fit_transfrom(X,[,y])</code>：索引映射并转换X</li>
+<li><code>inverse_transfrom(X)</code>：将数组或稀疏矩阵X转换回特征映射。</li>
+<li><code>get_feature_names()</code>：返回特征名称列表，按其索引排序</li>
 </ul>
-<ul>
-<li><p>out</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = torch.empty(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">torch.add(x,y,out=res)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>in-place</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y.add_(x)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>注意 任何使张量会发生变化的操作都有一个前缀 ‘_’</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.copy_(y)</span><br><span class="line">x.t_()</span><br></pre></td></tr></table></figure>
-<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><ul>
-<li><p><code>*</code>：表示对应元素相乘</p>
-</li>
-<li><p><code>torch.mm</code>：只能适用于矩阵乘法</p>
-</li>
-<li><code>torch.bmm</code>：适用于三维张量乘法</li>
-<li><code>torch.matmul</code>：适用于多维</li>
-<li><code>a@B</code></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="改变形状"><a href="#改变形状" class="headerlink" title="改变形状"></a>改变形状</h4><p><code>view(*shape) -&gt; Tensor</code></p>
-<p>可以用-1省缺最后一个维度的大小</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.view(<span class="number">5</span>,<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="获取tensor的值"><a href="#获取tensor的值" class="headerlink" title="获取tensor的值"></a>获取tensor的值</h4><p><code>torch.Tensor.item()</code></p>
-<p>只能将一个元素的tensor转换为标量</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">1</span>)</span><br><span class="line">x.item()</span><br></pre></td></tr></table></figure>
-<h3 id="GPU上运算"><a href="#GPU上运算" class="headerlink" title="GPU上运算"></a>GPU上运算</h3><p>通过<code>torch.cuda.is_available()</code>验证GPU正常安装</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">y = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    x = x.cuda()</span><br><span class="line">    y = y.cuda()</span><br><span class="line">    print(x+y)</span><br><span class="line">&gt;&gt;&gt;tensor([[<span class="number">-1.4013</span>,  <span class="number">1.5702</span>],</span><br><span class="line">        [ <span class="number">1.2808</span>,  <span class="number">0.7981</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>)   </span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>通过<code>x.cpu()</code>将存储在GPU上的变量卸载在CPU</p>
-</li>
-<li><p>张量使用<code>to</code>方法移动到任何张量，使用<code>torch.device</code>移出移入设备</p>
-</li>
-</ul>
-<h2 id="自动微分"><a href="#自动微分" class="headerlink" title="自动微分"></a>自动微分</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">3</span>]: measurements</span><br><span class="line">Out[<span class="number">3</span>]:</span><br><span class="line">[&#123;<span class="string">&#x27;city&#x27;</span>: <span class="string">&#x27;Dubai&#x27;</span>, <span class="string">&#x27;temperature&#x27;</span>: <span class="number">33.0</span>&#125;,</span><br><span class="line"> &#123;<span class="string">&#x27;city&#x27;</span>: <span class="string">&#x27;London&#x27;</span>, <span class="string">&#x27;temperature&#x27;</span>: <span class="number">12.0</span>&#125;,</span><br><span class="line"> &#123;<span class="string">&#x27;city&#x27;</span>: <span class="string">&#x27;San Francisco&#x27;</span>, <span class="string">&#x27;temperature&#x27;</span>: <span class="number">18.0</span>&#125;]</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: <span class="keyword">from</span> sklearn.feature_extraction <span class="keyword">import</span> DictVectorizer</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: vec = DictVectorizer()</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: vec.fit_transform(measurements)</span><br><span class="line">Out[<span class="number">6</span>]:</span><br><span class="line">&lt;<span class="number">3</span>x4 sparse matrix of type <span class="string">&#x27;&lt;class &#x27;</span>numpy.float64<span class="string">&#x27;&gt;&#x27;</span></span><br><span class="line">        <span class="keyword">with</span> <span class="number">6</span> stored elements <span class="keyword">in</span> Compressed Sparse Row format&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: vec.fit_transform(measurements).toarray()</span><br><span class="line">Out[<span class="number">7</span>]:</span><br><span class="line">array([[ <span class="number">1.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>, <span class="number">33.</span>],</span><br><span class="line">       [ <span class="number">0.</span>,  <span class="number">1.</span>,  <span class="number">0.</span>, <span class="number">12.</span>],</span><br><span class="line">       [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">1.</span>, <span class="number">18.</span>]])</span><br><span class="line">In [<span class="number">10</span>]: vec.inverse_transform(res)</span><br><span class="line">Out[<span class="number">10</span>]:</span><br><span class="line">[&#123;<span class="string">&#x27;city=Dubai&#x27;</span>: <span class="number">1.0</span>, <span class="string">&#x27;temperature&#x27;</span>: <span class="number">33.0</span>&#125;,</span><br><span class="line"> &#123;<span class="string">&#x27;city=London&#x27;</span>: <span class="number">1.0</span>, <span class="string">&#x27;temperature&#x27;</span>: <span class="number">12.0</span>&#125;,</span><br><span class="line"> &#123;<span class="string">&#x27;city=San Francisco&#x27;</span>: <span class="number">1.0</span>, <span class="string">&#x27;temperature&#x27;</span>: <span class="number">18.0</span>&#125;]</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -406,13 +379,16 @@
   </div>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/sklearn/" rel="tag"># sklearn</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/" rel="prev" title="pytroch基础">
-                  <i class="fa fa-chevron-left"></i> pytroch基础
+                <a href="/2020/12/11/DeepLearning/CNN/" rel="prev" title="CNN">
+                  <i class="fa fa-chevron-left"></i> CNN
                 </a>
             </div>
             <div class="post-nav-item">

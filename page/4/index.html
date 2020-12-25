@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/06/Primer-c/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/06/Primer-c/" class="post-title-link" itemprop="url">Primer c++</a>
+            <a href="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">pytroch基础</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-06 20:26:18" itemprop="dateCreated datePublished" datetime="2020-12-06T20:26:18+08:00">2020-12-06</time>
+      <time title="创建时间：2020-12-07 16:45:29" itemprop="dateCreated datePublished" datetime="2020-12-07T16:45:29+08:00">2020-12-07</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-08 23:41:11" itemprop="dateModified" datetime="2020-12-08T23:41:11+08:00">2020-12-08</time>
+        <time title="修改时间：2020-12-10 15:01:19" itemprop="dateModified" datetime="2020-12-10T15:01:19+08:00">2020-12-10</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+          <a href="/categories/DeepLearning/" itemprop="url" rel="index"><span itemprop="name">DeepLearning</span></a>
         </span>
     </span>
 
@@ -311,122 +311,80 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="C-基础"><a href="#C-基础" class="headerlink" title="C++基础"></a>C++基础</h1><h2 id="变量和基本类型"><a href="#变量和基本类型" class="headerlink" title="变量和基本类型"></a>变量和基本类型</h2><p><strong>类型转换</strong></p>
+          <p>深度网络框架：前馈神经网络、卷积神经网络和循环神经网络</p>
+<h2 id="Tensor张量"><a href="#Tensor张量" class="headerlink" title="Tensor张量"></a>Tensor张量</h2><h3 id="Tensor类型"><a href="#Tensor类型" class="headerlink" title="Tensor类型"></a>Tensor类型</h3><p><code>torch.Tensor</code>单数据类型多维矩阵，是默认tensor类型<code>torch.FloatTensor</code>的别名</p>
+<p>共有10种张量类型</p>
+<p><img src="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/image-20201207192512395.png" alt="image-20201207192512395"></p>
+<p><img src="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/image-20201207192649237.png" alt="image-20201207192649237"></p>
+<h3 id="创建Tensor"><a href="#创建Tensor" class="headerlink" title="创建Tensor"></a>创建Tensor</h3><p>Tensor类似于Numpy的ndarrays，可以使用CPU运算</p>
 <ul>
-<li>赋给一个无符号类型一个超出它表示范围的值时，结果是初始值对无符号类型表示数值总数取模后的余数。例如，对于unsigned char表示范围为[0,255]。当把-1赋给8bits大小的unsigned char时所得结果是255。</li>
-<li>当给一个带符号类型一个超出范围的值时，结果是未定义的。</li>
-<li>不要混用带符号类型和无符号类型。带符号类型会自动地装换成无符号数，会改变有符号负数的取值，有符号数首位作为符号位表示范围在$[-2^{n-1},2^{n-1}-1]$,n表示位数。</li>
-</ul>
-<p><strong>变量声明和定义</strong></p>
+<li><p>生成一个未初始化的张量</p>
+<p><code>empty(*size, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False, pin_memory=False)</code></p>
+<p>参数</p>
 <ul>
-<li>声明一个变量而不定义它，使用extern关键字标记。</li>
-<li>变量只能被定义一次，但可以有多次声明。</li>
+<li>size：一个可变参数，tensor的大小</li>
+<li>out：output tensort</li>
+<li>layout：返回tensor的布局</li>
 </ul>
-<p><strong>类别别名</strong></p>
+</li>
+<li><p>基于一个已经存在的tensor</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn_like(x,dtype=torch.float)</span><br><span class="line">x</span><br><span class="line">tensor([[ <span class="number">1.0880</span>,  <span class="number">1.3356</span>],</span><br><span class="line">        [<span class="number">-0.4618</span>, <span class="number">-1.9259</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取维度信息<code>size()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.size()</span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取类型额<code>type()</code></p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">x</span>.<span class="keyword">type</span>()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>与numpy相互转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Tensor转换为numpy数组</span></span><br><span class="line">b = a.numpy()</span><br><span class="line"><span class="comment">#numpy数组转换为Tensor</span></span><br><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><ul>
+<li><p>方式1：+</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + y</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <ul>
-<li><p>使用typedef定义类别的别名</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//typedef别名</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> wages,*p; <span class="comment">//*p是double *的别名</span></span><br><span class="line">wages val = <span class="number">1.234</span>;</span><br><span class="line">p p1 = &amp;val;</span><br></pre></td></tr></table></figure>
+<li><p>方式2：add</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.add(y)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><strong>编写自己的头文件</strong></p>
 <ul>
-<li>头文件通常包含那些只能被定义一次的实体，如类、const和constexpr变量。</li>
-<li>头文件也经常包含其他头文件。</li>
+<li><p>out</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = torch.empty(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">torch.add(x,y,out=res)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>in-place</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y.add_(x)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p><strong>预处理器</strong></p>
+<p><strong>注意 任何使张量会发生变化的操作都有一个前缀 ‘_’</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.copy_(y)</span><br><span class="line">x.t_()</span><br></pre></td></tr></table></figure>
+<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><ul>
+<li><p><code>*</code>：表示对应元素相乘</p>
+</li>
+<li><p><code>torch.mm</code>：只能适用于矩阵乘法</p>
+</li>
+<li><code>torch.bmm</code>：适用于三维张量乘法</li>
+<li><code>torch.matmul</code>：适用于多维</li>
+<li><code>a@B</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="改变形状"><a href="#改变形状" class="headerlink" title="改变形状"></a>改变形状</h4><p><code>view(*shape) -&gt; Tensor</code></p>
+<p>可以用-1省缺最后一个维度的大小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.view(<span class="number">5</span>,<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="获取tensor的值"><a href="#获取tensor的值" class="headerlink" title="获取tensor的值"></a>获取tensor的值</h4><p><code>torch.Tensor.item()</code></p>
+<p>只能将一个元素的tensor转换为标量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">1</span>)</span><br><span class="line">x.item()</span><br></pre></td></tr></table></figure>
+<h3 id="GPU上运算"><a href="#GPU上运算" class="headerlink" title="GPU上运算"></a>GPU上运算</h3><p>通过<code>torch.cuda.is_available()</code>验证GPU正常安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">y = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    x = x.cuda()</span><br><span class="line">    y = y.cuda()</span><br><span class="line">    print(x+y)</span><br><span class="line">&gt;&gt;&gt;tensor([[<span class="number">-1.4013</span>,  <span class="number">1.5702</span>],</span><br><span class="line">        [ <span class="number">1.2808</span>,  <span class="number">0.7981</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>)   </span><br></pre></td></tr></table></figure>
 <ul>
-<li>头文件保护符<ul>
-<li><code>#define</code>将一个名字设定为预处理变量</li>
-<li><code>#ifdef</code>当且仅当变量已经定义时为真</li>
-<li><code>#ifndef</code>当且仅当变量未定义时为真</li>
-<li>检查结果为真，执行后续操作知道<code>#endif</code>指令为止</li>
-</ul>
+<li><p>通过<code>x.cpu()</code>将存储在GPU上的变量卸载在CPU</p>
+</li>
+<li><p>张量使用<code>to</code>方法移动到任何张量，使用<code>torch.device</code>移出移入设备</p>
 </li>
 </ul>
-<p><strong>constexpr</strong></p>
-<p>用于声明常量表达式，即在编译过程就得到计算结果的表达式。</p>
-<hr>
-<h2 id="字符串、向量和数组"><a href="#字符串、向量和数组" class="headerlink" title="字符串、向量和数组"></a>字符串、向量和数组</h2><p>命名空间的using声明</p>
-<ul>
-<li><p>命名空间是对标识符名称的本地化，避免命名冲突。</p>
-</li>
-<li><p>使用<code>namespace</code>定义命名空间，通过<code>name::code</code>调用命名空间的函数或变量。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> namespace_name&#123;</span><br><span class="line">&#125;</span><br><span class="line">name::code</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通过<code>using namespace::name</code>指令调用命名空间。</p>
-</li>
-</ul>
-<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p><strong>构造函数</strong></p>
-<ul>
-<li>直接初始化</li>
-<li>拷贝构造化</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(s1)</span></span>; #拷贝构造函数</span><br><span class="line"><span class="built_in">string</span> s2 = s1;    </span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s3</span><span class="params">(n,<span class="string">&#x27;c&#x27;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p><strong>string对象的操作</strong></p>
-<ul>
-<li><p>输入输出流</p>
-</li>
-<li><p><code>getline(is,s)</code>从is中读取一行赋给s，返回is。遇见换行符为止。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s4;</span><br><span class="line">getline(<span class="built_in">cin</span>,s4);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>s.empay()</code></p>
-</li>
-<li><p><code>s.size()</code></p>
-</li>
-<li><p>不能通过下标索引添加字符，需要用<code>+</code>运算符等</p>
-</li>
-<li><p><code>string</code>对象转换为字符串数组</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *str  = s.c_str();</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>c语言中的<code>name.h</code>头文件在c++中变成<code>cname</code>头文件。</p>
-<p>处理string对象中的字符(cctype.h)</p>
-<ul>
-<li>isalnum：是字母或数字</li>
-<li>isalpha：是字母为真</li>
-<li>isdigit：数字时为真</li>
-<li>islower/isupper：是小写/大写时为真</li>
-<li><p>tolower/toupper：字母变小写/大写</p>
-</li>
-<li><p>isspace：空格</p>
-</li>
-</ul>
-<p><strong>for语句处理string</strong></p>
-<ul>
-<li>通过引用改变原字符串</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> c:s)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isalpha</span>(c))	<span class="built_in">cout</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//通过引用改变原string对象</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> &amp;c:s)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">islower</span>(c))	c = <span class="built_in">toupper</span>(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p>如下声明</p>
-<p><code>#include&lt;vector&gt;</code></p>
-<p><strong>定义和初始化vector对象</strong></p>
-<ul>
-<li><code>vector&lt;T&gt; v1</code></li>
-<li><code>vector&lt;T&gt; v2(v1)</code></li>
-<li><code>vector&lt;T&gt; v1&#123;a,b,c...&#125;</code></li>
-</ul>
-<p><strong>操作</strong></p>
-<ul>
-<li><p><code>push_back()</code>：向尾部添加元素</p>
-</li>
-<li><p><code>empty()</code>：是否为空</p>
-</li>
-<li><code>size()</code>：返回向量元素个数</li>
-</ul>
-<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>通过<strong>begin</strong>和<strong>end</strong>成员，分别返回第一个元素的迭代器和尾后元素迭代器(off-the-end)，最后一个元素的下一个位置。</p>
-<p><strong>运算符</strong></p>
-<ul>
-<li><code>*iter*</code>：获取iter指向的对象</li>
-<li><code>iter-&gt;men</code>：解引用，取该元素men的成员，等价于(*iter).men。</li>
-<li><code>++,--</code>：</li>
-<li><code>==,!=</code></li>
-</ul>
-<p><strong>迭代器类型</strong></p>
-<ul>
-<li>读写迭代器</li>
-<li>只读迭代器</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterarot it;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator it;</span><br><span class="line"><span class="built_in">string</span>::iteartor it;</span><br><span class="line"><span class="built_in">string</span>::const_iteartor it;</span><br></pre></td></tr></table></figure>
-
+<h2 id="自动微分"><a href="#自动微分" class="headerlink" title="自动微分"></a>自动微分</h2>
       
     </div>
 
@@ -447,7 +405,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

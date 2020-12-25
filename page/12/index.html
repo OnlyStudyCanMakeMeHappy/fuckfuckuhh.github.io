@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/19/html/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/machine%20learning/xgboost/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/19/html/" class="post-title-link" itemprop="url">html</a>
+            <a href="/2020/11/23/machine%20learning/xgboost/" class="post-title-link" itemprop="url">xgboost&lightGBM</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,17 +281,23 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-19 12:59:44 / 修改时间：21:45:23" itemprop="dateCreated datePublished" datetime="2020-11-19T12:59:44+08:00">2020-11-19</time>
+      <time title="创建时间：2020-11-23 21:59:04" itemprop="dateCreated datePublished" datetime="2020-11-23T21:59:04+08:00">2020-11-23</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-10 18:35:02" itemprop="dateModified" datetime="2020-12-10T18:35:02+08:00">2020-12-10</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
         </span>
     </span>
 
@@ -305,233 +311,344 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="HTML基础"><a href="#HTML基础" class="headerlink" title="HTML基础"></a>HTML基础</h2><h3 id="HTML元素"><a href="#HTML元素" class="headerlink" title="HTML元素"></a>HTML元素</h3><p><code>&lt;p&gt;</code>定义段落。</p>
-<p><code>&lt;body&gt;</code>定义HTML文档的主体。</p>
-<p><code>&lt;html&gt;</code>定义整个HTML文档。</p>
-<h3 id="HTML属性"><a href="#HTML属性" class="headerlink" title="HTML属性"></a>HTML属性</h3><p>name=value</p>
-<p>通用</p>
-<ul>
-<li>class：元素的类名</li>
-<li>id：元素的唯一id</li>
-<li>style：行内样式</li>
-<li>title：元素的额外信息</li>
+          <p>先贴一张重要的图</p>
+<p><img src="/2020/11/23/machine%20learning/xgboost/params.png" alt="重要参数"></p>
+<h1 id="xgboost"><a href="#xgboost" class="headerlink" title="xgboost"></a>xgboost</h1><h2 id="学习对象"><a href="#学习对象" class="headerlink" title="学习对象"></a>学习对象</h2><p>模型</p>
+<script type="math/tex; mode=display">
+\hat y_i = \phi(\mathbf{x}_i) = \sum_{k=1}^K f_k(\mathbf{x}_i)</script><p>待优化项，优化目标即模型优化方向</p>
+<script type="math/tex; mode=display">
+obj = \sum_il(\hat y_i,y_i) +\sum_k \Omega(f_k)\\
+where\ \Omega(f) = \gamma T+\frac{1}{2}\lambda||w||^2</script><p>其中T是叶子数，w是叶子的结点的均值。</p>
+<hr>
+<h2 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h2><ul>
+<li>由泰勒展开式可</li>
 </ul>
-<h3 id="HTML标题"><a href="#HTML标题" class="headerlink" title="HTML标题"></a>HTML标题</h3><p>支持h1-h6标题</p>
-<p>水平线<code>&lt;hr /&gt;</code></p>
-<p>换行<code>&lt;br /&gt;</code></p>
-<p><code>&lt;!--注释--&gt;</code>注释</p>
-<h3 id="HTML段落"><a href="#HTML段落" class="headerlink" title="HTML段落"></a>HTML段落</h3><p>浏览器会自动在段落前后添加空行。<code>&lt;p&gt;</code>是块级元素</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">To break<span class="tag">&lt;<span class="name">br</span> /&gt;</span>lines<span class="tag">&lt;<span class="name">br</span> /&gt;</span>in a<span class="tag">&lt;<span class="name">br</span> /&gt;</span>paragraph,<span class="tag">&lt;<span class="name">br</span> /&gt;</span>use the br tag.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="HTML样式"><a href="#HTML样式" class="headerlink" title="HTML样式"></a>HTML样式</h3><p><strong>style</strong></p>
-<p>样式之间用;隔开</p>
-<ul>
-<li><p>背景颜色：<code>style=&quot;background-color:yellow&quot;</code></p>
-</li>
-<li><p>字体、颜色和尺寸：font-family、color、font-size</p>
-</li>
-<li>文本对齐方式：text-align</li>
+<script type="math/tex; mode=display">
+f(x+\Delta x) \approx f(x)+f'(x)\Delta x+\frac{1}{2}f''(x)\Delta x^2</script><ul>
+<li>得到损失函数的泰勒二阶展开式</li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">sytle</span>=<span class="string">&#x27;font-family:verdana&#x27;</span>&gt;</span>This is heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&#x27;text-align:center;font-size:160px;color:red&#x27;</span>&gt;</span>wocao<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="HTML文本格式化"><a href="#HTML文本格式化" class="headerlink" title="HTML文本格式化"></a>HTML文本格式化</h3><p>文本格式化标签<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>  <span class="tag">&lt;<span class="name">big</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>:着重  </span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span>:斜体 <span class="tag">&lt;<span class="name">small</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">sub</span>&gt;</span>:下标字  <span class="tag">&lt;<span class="name">sup</span>&gt;</span>:上标字 </span><br><span class="line"><span class="tag">&lt;<span class="name">ins</span>&gt;</span>:插入字 <span class="tag">&lt;<span class="name">del</span>&gt;</span>:删除字 </span><br></pre></td></tr></table></figure></p>
-<p>计算机输出标签</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">code</span>&gt;</span>:计算机代码</span><br><span class="line"><span class="tag">&lt;<span class="name">kbd</span>&gt;</span>: 键盘码</span><br><span class="line"><span class="tag">&lt;<span class="name">samp</span>&gt;</span>: 定义计算机代码样本</span><br><span class="line"><span class="tag">&lt;<span class="name">tt</span>&gt;</span>:定义打字机代码,teletype text</span><br><span class="line"><span class="tag">&lt;<span class="name">var</span>&gt;</span>:定义变量,</span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span>:定义预格式文本,保留了空格和换行</span><br></pre></td></tr></table></figure>
-<h3 id="HTML引用"><a href="#HTML引用" class="headerlink" title="HTML引用"></a>HTML引用</h3><p><code>&lt;q&gt;</code>短引用,<code>&lt;blockquote&gt;</code>短引用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">q</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span></span><br><span class="line">    xxx</span><br><span class="line">    YYY</span><br><span class="line"><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>缩略词<code>&lt;abbr&gt;</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">&quot;World Health Organization&quot;</span>&gt;</span>WHO<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>定义词<code>&lt;dfn&gt;</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dfn</span> <span class="attr">title</span>=<span class="string">&quot;World Health Organization&quot;</span>&gt;</span>WHO<span class="tag">&lt;/<span class="name">dfn</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>著作标题<code>&lt;cite&gt;</code></p>
-<p>双向重写的<code>&lt;bdo&gt;</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bdo</span> <span class="attr">dir</span>=<span class="string">&quot;rtl&quot;</span>&gt;</span></span><br><span class="line">This line will be written from right to left</span><br><span class="line"><span class="tag">&lt;/<span class="name">bdo</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="HTML链接"><a href="#HTML链接" class="headerlink" title="HTML链接"></a>HTML链接</h3><p>超级链接<code>&lt;a&gt;</code></p>
-<ul>
-<li><p>target属性，链接文档在何处显示。<code>_blank</code>，新建空白页。</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.nba.com.cn/&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>Visit NBA!<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{align}
+Obj &= \sum_{i=1}^nl(y_i,\hat{y}_{t-1}+f_t(\mathbf{x}_i))+\Omega(f_t)+\sum_i^{t-1}\Omega(f_i)\\
+&\approx\sum_{i=1}^n l(y_i,\hat y_{t-1})+\partial_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t(\mathbf{x}_i)+\frac{1}{2}\partial^2_{\hat y_{t-1}l(y_i,\hat{y}_{t-1})}f_t^2(\mathbf{x}_i)+\Omega (f_t)+constant\\
+&=\sum_{i=1}^n l(y_i,\hat y_{t-1})+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\Omega (f_t)+constant \\
+&=\sum_{i=1}^n constant+g_if_t(\mathbf{x}_i)+\frac{1}{2}h_if^2_t(\mathbf{x}_i)+\gamma T+\frac{1}{2}\lambda||w||^2
+\end{align}</script><ul>
+<li>忽略常数项，改成由叶节点权重表示的形式，共有T个叶子节点</li>
+</ul>
+<script type="math/tex; mode=display">
+Obj^{(s)} = \sum_{j=1}^T[(\sum_{i\in I_j}g_i)w_j+\frac{1}{2}(\sum_{i\in I_j}h_i+\lambda)w_j^2]+\gamma T\tag{1}</script><ul>
+<li>将(1)式看做关于w的一元二次函数，对于固定的树结构，计算出叶子节点j的最优w</li>
+</ul>
+<script type="math/tex; mode=display">
+w^*_j = -\frac{\sum_{i\in I_j}g_i}{\sum_{i\in I_j}h_i+\lambda} \tag{2}</script><ul>
+<li><p><u>由式(2)可以看出，计算出的叶子权重不仅与一阶、二阶统计信息有关还与正则化系数$\lambda$有关。</u></p>
+</li>
+<li><p>最终的优化函数Obj，可以作为评价一个树模型的评分函数，评分越小树模型越好。</p>
 </li>
 </ul>
-<h3 id="HTML图像"><a href="#HTML图像" class="headerlink" title="HTML图像"></a>HTML图像</h3><p><code>&lt;img src=&#39;xxx&#39;&gt;</code></p>
+<script type="math/tex; mode=display">
+Obj^{(s)} = -\frac{1}{2}\sum_{j=1}^T\frac{(\sum_{i\in I_j}g_i)^2}{\sum_{i\in I_j}h_i+\lambda}+\gamma T</script><p><img src="/2020/11/23/machine%20learning/xgboost/4.png" alt="score"></p>
 <ul>
-<li>alt属性：替换图像的文本，如果图片不能加载就显示文本信息。</li>
-</ul>
-<h3 id="HTML表格"><a href="#HTML表格" class="headerlink" title="HTML表格"></a>HTML表格</h3><p><code>&lt;table&gt;</code>表格，每个表格有若干个行<code>&lt;tr&gt;</code>，每行有若干个单元格<code>&lt;td&gt;</code>(table data)</p>
-<p>如果不定义边框属性<code>border</code>，表格不显示边框。</p>
-<p><code>&lt;th&gt;</code>表格表头，粗体居中。</p>
-<p><code>&lt;caption&gt;</code>标题，<code>&lt;cellpadding&gt;</code>单元格内容与边框的距离。</p>
-<p>某一项没有内容使用占位符<code>&amp;nbsp;</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">6</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">td</span>&gt;</span>name<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>age<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">td</span>&gt;</span>cjx<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">td</span>&gt;</span>10<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<table border="6">
-<caption>效果图</caption>
-    <tr>
-        <td>name</td>
-        <td>age</td>
-    </tr>
-    <tr>
-        <td>cjx</td>
-        <td>10</td>
-    </tr>
-</table>
-
-<h3 id="HTML列表"><a href="#HTML列表" class="headerlink" title="HTML列表"></a>HTML列表</h3><ul>
-<li>有序列表：<code>&lt;ol&gt;</code>,每个列表项<code>&lt;li&gt;</code></li>
-<li>无序列表：<code>&lt;ul&gt;</code>,每个列表项<code>&lt;li&gt;</code></li>
-<li>定义列表：<code>&lt;dl&gt;</code>，每一项数据<code>&lt;dd&gt;</code></li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>iphone<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>xiaomi<span class="tag">&lt;/<span class="name">li?</span></span></span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>iphone<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>huawei<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>iphone<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>huawei<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>效果3</p>
-<dl>
-    <dd>iphone</dd>
-    <dd>huawei</dd>
-</dl>
-
-
-
-<h3 id="HTML块"><a href="#HTML块" class="headerlink" title="HTML块"></a>HTML块</h3><p>块级元素block level element和内联元素inline elment。</p>
-<ul>
-<li>块元素：<code>&lt;h1&gt;,&lt;p&gt;,&lt;ul&gt;,&lt;table&gt;</code></li>
-<li>内联元素：<code>&lt;b&gt;,&lt;td&gt;,&lt;a&gt;,&lt;img&gt;</code></li>
-</ul>
-<ol>
-<li><p><code>&lt;div&gt;</code>元素</p>
-<p>块级元素用于组合其他HTML元素的容器。</p>
-<p>浏览器的在前后折行。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color:#00FF00&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>This is a header<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p><u>在每一轮训练中对所有候选树模型，分别计算评价得分从中选出最优即可。但这是个NP难的问题，所以使用贪心算法，从根结点开始，计算结点分裂后带来的增益，作为分裂依据去分割结点</u>，分裂后两个子节点的目标函数贡献为</p>
+<script type="math/tex; mode=display">
+Obj_s = -\frac{1}{2}[\frac{G_{jL}^2}{H_{jL}+\lambda}+\frac{G_{jR}^2}{H_{jR}+\lambda}]+2\gamma</script></li>
+<li><p>目标函数变化，<u>选取使目标函数变化最大的特征及其取值作为划分点，进行分裂</u></p>
 </li>
+</ul>
+<p><img src="/2020/11/23/machine%20learning/xgboost/1.png" alt="image-20201124132700202" style="zoom: 67%;"></p>
+<ul>
+<li>令$G=\sum<em>{i \in I_j}g_i$，$H = \sum</em>{i\in I_j}h_i$上式等价于</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathcal L_{split} = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}+\frac{G^2}{H+\lambda}]-\gamma</script><ul>
+<li>进行剪枝操作，<u>只有当增益大于某个阈值时才进行分裂。这个阈值就是$\gamma$.</u>并且定义一个shrinkage系数$\eta$，控制每棵树对模型的影响。<script type="math/tex; mode=display">
+\hat y_i^s = \hat y_i^{s-1}+\eta f_s(x_i)</script></li>
+</ul>
+<hr>
+<h2 id="算法流程总结"><a href="#算法流程总结" class="headerlink" title="算法流程总结"></a>算法流程总结</h2><ol>
+<li><p>每一轮增加一个新的树模型</p>
+</li>
+<li><p>在每一轮开始之前，首先计算梯度统计</p>
+<script type="math/tex; mode=display">
+g_i = \frac{\partial L(y_i,\hat y^{(s-1)})}{\partial\hat y^{(s-1)}}\\
+h_i = \frac{\partial^2 L(y_i,\hat y^{(s-1)})}{\partial\hat y^{(s-1)}}</script></li>
+<li><p>根据贪心算法及梯度统计信息生成一棵完整树$f_s(x)$</p>
+<ul>
+<li><p>结点分裂通过如下公式评估，选择最优划分点</p>
+<script type="math/tex; mode=display">
+\mathcal {Obj}_{split} = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}+\frac{G^2}{H+\lambda}]-\gamma</script></li>
+<li><p>最终树叶子节点的权重</p>
+<script type="math/tex; mode=display">
+w^*_j = -\frac{G_j}{H_j+\lambda}</script></li>
+</ul>
+</li>
+<li><p>将生成的树模型加入模型中</p>
+<script type="math/tex; mode=display">
+\hat y_i^{(s)} = \hat y_i^{(s-1)}+f_t(x)</script></li>
 </ol>
-<ol>
-<li><p><code>&lt;span&gt;</code>元素</p>
-<p>内联元素，可用作文本的容器。</p>
+<hr>
+<h2 id="分割查找算法"><a href="#分割查找算法" class="headerlink" title="分割查找算法"></a>分割查找算法</h2><h3 id="精确分割贪心算法"><a href="#精确分割贪心算法" class="headerlink" title="精确分割贪心算法"></a>精确分割贪心算法</h3><ul>
+<li><p>对当前节点，遍历所有样本，对属性所有取值进行排序后计算score的最大值。</p>
 </li>
-</ol>
-<h3 id="HTML布局"><a href="#HTML布局" class="headerlink" title="HTML布局"></a>HTML布局</h3><ul>
-<li>header：文档页眉</li>
-<li>nav：导航链接的容器</li>
-<li>section：文档中的节</li>
-<li>article：自包含文章</li>
-<li>aside：内容之外的内容（侧边栏等）</li>
-<li>footer：页脚</li>
-<li>details：额外的细节</li>
-<li>summary：details元素的标题</li>
-</ul>
-<h2 id="HTML表单"><a href="#HTML表单" class="headerlink" title="HTML表单"></a>HTML表单</h2><h3 id="HTML表单元素"><a href="#HTML表单元素" class="headerlink" title="HTML表单元素"></a>HTML表单元素</h3><p><code>&lt;form&gt;</code>元素定义表单</p>
-<h4 id="lt-input-gt-元素"><a href="#lt-input-gt-元素" class="headerlink" title="&lt;input&gt;元素"></a><code>&lt;input&gt;</code>元素</h4><ul>
-<li><p>text：文本输入，默认宽度20字符</p>
-</li>
-<li><p>radio：单选按钮输入</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;radio&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;sex&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;male&#x27;</span>&gt;</span>Male</span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;female&quot;</span>&gt;</span>Female</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br></pre></td></tr></table></figure>
-<form>
-  <input type="radio" name="sex" value="male">Male
-  <input type="radio" name="sex" value="female">Female
-</form> 
-
-
+<li><p>选取属性的取值作为划分依据。</p>
 </li>
 </ul>
+<p><img src="/2020/11/23/machine%20learning/xgboost/2.png" alt="image-20201124134727385" style="zoom:70%;"></p>
+<hr>
+<h3 id="近似直方图算法"><a href="#近似直方图算法" class="headerlink" title="近似直方图算法"></a>近似直方图算法</h3><ul>
+<li>对某一特征寻找最优切分点时，首先<u>对该特征的所有切分点按分位数分桶(bucket)</u>,得到一个候选切分点集。</li>
+<li>特征的每一个切分点都可以分到对应的分桶，然后对每个桶计算特征统计G和H得到直方图。</li>
+<li>最后，选择所有<u>候选特征及候选切分点中对应桶的特征统计收益最大</u>的作为最优特征及最优切分点。</li>
+</ul>
+<p><img src="/2020/11/23/machine%20learning/xgboost/3.png" alt="分割查找近似算法" style="zoom:70%;"></p>
+<p><strong>举例</strong></p>
+<p><img src="/2020/11/23/machine%20learning/xgboost/近似算法" alt="image-20201206143019211" style="zoom: 50%;"></p>
+<p><strong>两种策略</strong></p>
 <ul>
-<li>submit：提交按钮</li>
+<li>Global：树构建的初始阶段对每一个特征确定一个候选切分点的集合。需要更细的分桶才能达到Local的精确度。</li>
+<li>Local：每次分裂前重新确定候选切分点。</li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  First name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;firstname&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  Last name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;lastname&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br></pre></td></tr></table></figure>
-<form>
-  First name:<br>
-  <input type="text" name="firstname">
-  <br>
-  Last name:<br>
-  <input type="text" name="lastname">
-  <br><br>
-  <input type="submit" value="Submit">
-</form> 
-
-<p><code>action</code>属性定义在提交表单时执行的动作。省略这个属性则会设置为当前页面。</p>
-<p><code>method</code>属性提交表单时所用的HTTP方法</p>
-<p><code>name</code>属性，要被正确提交需要这个属性</p>
-<h4 id="使用field元素"><a href="#使用field元素" class="headerlink" title="使用field元素"></a>使用field元素</h4><p><code>&lt;fieldset&gt;</code>元素组合表单中的相关数据</p>
-<p><code>&lt;legend&gt;</code>元素为 <code>&lt;fieldset&gt;</code> 元素定义标题。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">legend</span>&gt;</span>Personal information:<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    First name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;firstname&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    Last name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;lastname&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<form>
-  <fieldset>
-      <legend>Personal information:</legend>
-    First name:<br>
-    <input type="text" name="firstname">
-    <br>
-    Last name:<br>
-    <input type="text" name="lastname">
-    <br>
-    <input type="submit" value="Submit">
-  </fieldset>
-</form>
-
-<h4 id="lt-select-gt-元素下拉列表选择"><a href="#lt-select-gt-元素下拉列表选择" class="headerlink" title="&lt;select&gt;元素下拉列表选择"></a><code>&lt;select&gt;</code>元素下拉列表选择</h4><p><code>&lt;select&gt;</code>下拉列表</p>
-<p><code>&lt;option&gt;</code>待选项</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;players&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;Paul&quot;</span>&gt;</span>Paul<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;Curry&quot;</span>&gt;</span>Curry<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<form>
-    <select name="players">
-      <option value="Paul">Paul</option>
-      <option value="Curry">Curry</option>
-    </select>
-    <br>
-    <input type="submit">
-</form>
-
-<h4 id="lt-textarea-gt-元素"><a href="#lt-textarea-gt-元素" class="headerlink" title="&lt;textarea&gt;元素"></a><code>&lt;textarea&gt;</code>元素</h4><p>多行输入字段</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">cols</span>=<span class="string">&quot;10&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;2&quot;</span> <span class="attr">disable</span>&gt;</span></span><br><span class="line">220年度MVP</span><br><span class="line">    最佳1号床 </span><br><span class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<textarea cols="10" rows="2" disable>
-220年度MVP
-    最佳1号床 
-</textarea>
-
-<h4 id="lt-button-gt-元素"><a href="#lt-button-gt-元素" class="headerlink" title="&lt;button&gt;元素"></a><code>&lt;button&gt;</code>元素</h4><p>可点击的按钮</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;Hello World!&#x27;)&quot;</span>&gt;</span>Click！<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<button type="button" onclick="alert('Hello World!')">Click！</button>
-
-<h3 id="HTML输入类型"><a href="#HTML输入类型" class="headerlink" title="HTML输入类型"></a>HTML输入类型</h3><ul>
-<li><p>text</p>
+<hr>
+<h3 id="快速直方图算法"><a href="#快速直方图算法" class="headerlink" title="快速直方图算法"></a>快速直方图算法</h3><p>在之前多次迭代中重用之前的分桶</p>
+<ul>
+<li><p><strong>数据预处理</strong>：连续型特征一般用浮点数表示，但在树分裂过程中一般仅会用到梯度统计信息，算法仅仅对值进行相互比较，并不会用到值本身。因此，<strong>将浮点数数据均匀映射为整数数据</strong>，直方图索引作为映射值。</p>
 </li>
-<li><p>password</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">User name:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;userid&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">User password:<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;psw&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<form>
-User name:<br>
-<input type="text" name="userid">
-<br>
-User password:<br>
-<input type="password" name="psw">
-</form>
+<li><p><strong>桶缓存</strong>：将上述数据结构进行缓存，在模型拟合过程中进行复用。</p>
 </li>
-<li><p>submit</p>
-</li>
-<li><p>radio</p>
-</li>
-<li><p>checkbox：复选框</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;vehicle&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Bike&quot;</span>&gt;</span>I have a bike</span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;vehicle&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Car&quot;</span>&gt;</span>I have a car </span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br></pre></td></tr></table></figure>
-<form>
-  <input type="checkbox" name="vehicle" value="Bike">I have a bike
-  <br>
-  <input type="checkbox" name="vehicle" value="Car">I have a car 
-  <br><br>
-</form> 
-</li>
-<li><p>button</p>
-</li>
-<li><p>number</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  数量（1 到 5 之间）：</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;number&quot;</span> <span class="attr">min</span>=<span class="string">&quot;1&quot;</span> <span class="attr">max</span>=<span class="string">&quot;5&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<form>
-  数量（1 到 5 之间）：
-  <input type="number" min="1" max="5">
-  <input type="submit">
-</form>
-</li>
-<li><p>date</p>
-</li>
-<li>color</li>
-<li>month</li>
+<li><strong>直方图减法技巧</strong>：简化节点直方图的计算，直接取父节点和兄弟节点的差。</li>
 </ul>
-<h3 id="HTML输入属性"><a href="#HTML输入属性" class="headerlink" title="HTML输入属性"></a>HTML输入属性</h3><ul>
-<li>value：输入字段的初始值</li>
-<li>readonly：规定字段为只读</li>
-<li>disabled：字段禁用，不可点击</li>
-<li>size：输入字段的尺寸</li>
-<li>maxlength：输入字段允许的最大字段</li>
-<li>min、max</li>
-<li>height、width</li>
+<p>XGBoost使用(depth-wise)方式构建决策树，类似BFS建树，先建第一层节点在建下一场，一次类推。快速直方图则是以损失函数收益变化(loss-guide)作为指导构建树，即每次选择最大收益增益的叶子节点进行分裂。<strong>可以使模型收敛更快</strong>，<strong>但也带来了过拟合风险</strong>。</p>
+<hr>
+<h3 id="加权分位数概要算法"><a href="#加权分位数概要算法" class="headerlink" title="加权分位数概要算法"></a>加权分位数概要算法</h3><p>上述算法的关键在于如何得到候选切分点子集，分位数的方法经常被用于特征数据选择候选切分点的依据。加权分位数概要算法就是用于获得分位数的近似算法。XGBoost不是简单按照样本个数进行分位，而是以二阶导信息作为权重(weight quantile sketch)</p>
+<p>分位数加权素描割点时，通常使用特征分布的分位数。定义一个多重集$D<em>k = {(x</em>{ik},h<em>k}</em>{i=1}^n$，分别为样本在k上的特征集和二阶导。</p>
+<ul>
+<li>定义一个rank函数，统计第k个特征值上取值为小于z的样本二阶导的和占该特征值二阶导总和的比例。</li>
+</ul>
+<script type="math/tex; mode=display">
+r_k(z) = \frac{1}{\sum_{(x,h)\in D_k}h}\sum_{(x,h)\in D_k,x<z}h</script><ul>
+<li>寻找候选分割点满足如下条件，表示相邻的两个划分点要满足</li>
+</ul>
+<script type="math/tex; mode=display">
+|r_k(s_{k,j})-r_k(s_{k，j+1})|<\epsilon</script><ul>
+<li>会产生大约$1/\epsilon$个候选集合，每个数据点的权重为$h_i$。</li>
+</ul>
+<p>$\epsilon$-approximately quantile summary，无论多大数据无需排序只要给定查询的rank值，就可以获得误差$\epsilon N$内的近视分位点。</p>
+<p>原问题配方得</p>
+<script type="math/tex; mode=display">
+\sum_i[1/2h_i(f_t(\mathbf{x}_i)-(-g_i/h_i))^2]+\Omega(f_t)+constant</script><p>将原问题看做关于标签$-g_i/h_i$权重为$h_i$的平方误差形式。</p>
+<p><img src="/2020/11/23/machine%20learning/xgboost/image-20201206152725587.png" alt="image-20201206152725587" style="zoom:50%;"></p>
+<hr>
+<h2 id="与传统GBDT区别"><a href="#与传统GBDT区别" class="headerlink" title="与传统GBDT区别"></a>与传统GBDT区别</h2><ul>
+<li>GBDT使用CART作为基分类器，xgboost支持线性分类器。</li>
+<li>GBDT对loss函数优化时使用一阶导数信息，xgboost扩展到二阶泰勒展开。xgboost支持自定义代价函数。</li>
+<li>shrinkage和column subsampling，缩减和列抽样。能防止过拟合。类似随机森林的特征采样。</li>
+<li>支持并行化，特征粒度上的并行。xgboost在训练之前，预先对数据进行排序然后保存为block结构，后面迭代中反复使用该结构，大大减少了计算量。</li>
+<li>通过枚举所有缺失值是进入左子树还是右子树获得更好的模型。</li>
+</ul>
+<hr>
+<h1 id="python包"><a href="#python包" class="headerlink" title="python包"></a>python包</h1><h2 id="包介绍"><a href="#包介绍" class="headerlink" title="包介绍"></a>包介绍</h2><p><code>import xgboost as xgb</code></p>
+<h3 id="数据接口"><a href="#数据接口" class="headerlink" title="数据接口"></a>数据接口</h3><ul>
+<li>LibSVM text format file</li>
+<li>csv file</li>
+<li>NumPy 2D array</li>
+<li>Scipy 2D sparse array</li>
+<li>cuDF DataFrame</li>
+<li>Pandas data frame</li>
+<li><p>XGBoost binary buffer file</p>
+</li>
+<li><p>不支持分类特征处理所以数据包含分类特征使用<code>sklearn.preprocessing.OneHotEncoder</code>预处理。</p>
+</li>
+<li><p>使用<code>DMatrix</code>方法接受文件url或者数据和标签生成数据。</p>
+</li>
+<li><p>缺失值使用missing参数，权重使用weight参数</p>
+</li>
+</ul>
+<h3 id="参数设置"><a href="#参数设置" class="headerlink" title="参数设置"></a>参数设置</h3><p>XGBoost可以使用列表对或者字典来设置参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#booster parameters</span></span><br><span class="line">param = &#123;<span class="string">&#x27;max_depth&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;eta&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;objective&#x27;</span>: <span class="string">&#x27;binary:logistic&#x27;</span>&#125;</span><br><span class="line">param[<span class="string">&#x27;nthread&#x27;</span>] = <span class="number">4</span></span><br><span class="line">param[<span class="string">&#x27;eval_metric&#x27;</span>] = <span class="string">&#x27;auc&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#eval metrics 评估指标</span></span><br><span class="line">param[<span class="string">&#x27;eval_metric&#x27;</span>] = [<span class="string">&#x27;auc&#x27;</span>, <span class="string">&#x27;ams@0&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#指定验证以观察性能</span></span><br><span class="line">evallist = [(dtest, <span class="string">&#x27;eval&#x27;</span>), (dtrain, <span class="string">&#x27;train&#x27;</span>)]</span><br></pre></td></tr></table></figure>
+<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>训练一个模型需要参数列表和数据集<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num_round = <span class="number">10</span></span><br><span class="line">bst = xgb.train(param,dtrain,num_round,evallist)</span><br></pre></td></tr></table></figure></p>
+<p>保存模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bst.save_model(<span class="string">&#x27;0001.model&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>模型可特征图转储为文本文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bst.dump_model(<span class="string">&#x27;dump.raw.txt&#x27;</span>,<span class="string">&#x27;fetamap.txt&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>保存模型的加载</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bst = xgb.Boost(&#123;<span class="string">&#x27;nthread&#x27;</span>:<span class="number">4</span>&#125;)</span><br><span class="line">bst.load_model(<span class="string">&#x27;model.bin&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="提前终止"><a href="#提前终止" class="headerlink" title="提前终止"></a>提前终止</h3><p>使用验证集提前终止来寻找最佳增强回合。至少需要一个评估</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train(...,evals=evals,early_stopping_rounds=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果提前停止发生，模型将具有三个附加字段：bst.best_score，bst.best_iteration和bst.best_ntree_limit。xgboost.train将返回上一次迭代的模型，而不是最佳迭代的模型。</li>
+<li>如果指定了多个评估指标，则param [‘eval_metric’]中的最后一个将用于提前停止。</li>
+</ul>
+<h3 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h3><p>经过训练或加载的模型对数据进行预测</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dtest = xgb.DMatrix(data)</span><br><span class="line">bst.predict(dtest)</span><br></pre></td></tr></table></figure>
+<p>如果在训练期间启用了提前停止，则可以使用bst.best_ntree_limit从最佳迭代中获得预测</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ypred = bst.predict(dtest, ntree_limit=bst.best_ntree_limit)</span><br></pre></td></tr></table></figure>
+<h3 id="plotting"><a href="#plotting" class="headerlink" title="plotting"></a>plotting</h3><p>plot importance</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xgb.plot_importance(bst)</span><br></pre></td></tr></table></figure>
+<p>plot output tree </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xgb.plot(bst,num_trees=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>graphviz instance</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xgb.to_graphviz(bst,num_trees=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="数据矩阵"><a href="#数据矩阵" class="headerlink" title="数据矩阵"></a>数据矩阵</h3><p><code>xgboost.DMatrix(data, label=None, weight=None, base_margin=None, missing=None, silent=False, feature_names=None, feature_types=None, nthread=None, enable_categorical=False)</code></p>
+<p>参数</p>
+<ul>
+<li>data(os.PathLike/string/numpy.array/scipy.sparse/pd.DataFrame/)</li>
+<li>label：training data label</li>
+<li>missing：缺失值</li>
+<li>weight：每个实例的权重，ranking中是每个组的权重</li>
+<li>slient：构建期间是否打印消息</li>
+<li>feature_names</li>
+<li>feature_types</li>
+<li>nthread：并行化加载数据的线程数</li>
+</ul>
+<p>方法</p>
+<ul>
+<li>num_row()、num_col()</li>
+</ul>
+<h3 id="Booster-of-xgboost"><a href="#Booster-of-xgboost" class="headerlink" title="Booster of xgboost"></a>Booster of xgboost</h3><p>xgboost的模型</p>
+<p><code>xgboost.Booster(params=None, cache=(), model_file=None)</code></p>
+<h3 id="training"><a href="#training" class="headerlink" title="training"></a>training</h3><p><code>xgboost.train(params, dtrain, num_boost_round=10, evals=(), obj=None, feval=None, maximize=None, early_stopping_rounds=None, evals_result=None, verbose_eval=True, xgb_model=None, callbacks=None)</code></p>
+<p>参数</p>
+<ul>
+<li>params：booster参数</li>
+<li>dtrain：训练数据</li>
+<li>num_boost_round：boosting迭代次数</li>
+<li>evals：验证指标用于跟踪模型的性能。</li>
+<li>boj：定制目标函数</li>
+<li>feval：定制评估指标</li>
+<li>maximize：是否最大化feval</li>
+<li>callbacks：每次迭代结束调用的回调函数</li>
+</ul>
+<h3 id="scikit-learn-API"><a href="#scikit-learn-API" class="headerlink" title="scikit-learn API"></a>scikit-learn API</h3><p><code>xgboost.XGBRegressor(**kwargs)</code></p>
+<p>参数</p>
+<ul>
+<li>n_estimators：梯度提升树的数量。相当于提升轮数</li>
+<li>max_depth ：基学习器的最大深度</li>
+<li>learning_rate ：学习率</li>
+<li>verbosity ：详细程度，从0(slient)1(warning)2(info)3(debug)</li>
+<li>objective：自定义目标函数</li>
+<li>booster：指定要使用的提升器</li>
+<li>tree_method ：默认auto，指定使用的树方法。<ul>
+<li>auto：启发式寻找最快的方法</li>
+<li>exact：Enumerates枚举所有分割点</li>
+<li>approx：使用分位数草图和梯度直方图的近似贪婪算法。</li>
+<li>hist：更快的直方图优化的近似贪心算法</li>
+<li>gpu_hist：GPU实现hist算法</li>
+</ul>
+</li>
+<li>sketch_eps：$\epsilon$，tree_method=approx时使用，大致形成o(1/sketch_eps)个bins。</li>
+<li>n_jobs：运行xgboost使用的线程数</li>
+<li>gamma：$\gamma$,在树的叶节点上进行分割所需的最小损失减少阈值。</li>
+<li>min_child_weight：子实例中实例重量（hessian）的最小总和，如果划分导致叶结点的实例总和小于该值则将停止进一步的划分。</li>
+<li>max_delta_step：允许每棵树的权重估算的最大步长增量,每个叶子的输出。为0表示没有约束。</li>
+<li><p>subsample ：子样本比例-</p>
+<ul>
+<li>colsample_bytree ：每棵树的列子采样率</li>
+<li><p>colsample_bylevel ：每个级别的列子采样率</p>
+</li>
+<li><p>colsample_bynode ：每次分割的列子采样率</p>
+</li>
+</ul>
+</li>
+<li>reg_alpha：L1正则化参数$\alpha$</li>
+<li>reg_lambda ：L2正则化参数$\lambda$</li>
+<li>scale_pos_weight：平衡正负权重</li>
+<li>base_score ：初始所有实例的预测得分</li>
+<li>random_state ：随机种子</li>
+<li>missing：缺失值填充</li>
+<li>num_parallel_tree：并行化提升树的数量</li>
+</ul>
+<p>方法</p>
+<ul>
+<li><code>apply(x,ntree_limit=0)</code>:返回每个样本每棵树的预测叶子，默认为0代表所有树。</li>
+<li><code>evals_result()</code>：返回评估的结果</li>
+<li><p><code>fit(X, y, *, sample_weight=None, base_margin=None, eval_set=None, eval_metric=None, early_stopping_rounds=None, verbose=True, xgb_model=None, sample_weight_eval_set=None, feature_weights=None, callbacks=None)</code></p>
+<ul>
+<li>base_margin：每个实例的全局偏差</li>
+<li>eval_set：用于验证集的(X,y)元组对,将其视为计算指标。跟踪模型的性能</li>
+<li>eval_metric：评价指标</li>
+<li>early_stopping_rounds：验证指标eval_set至少要在<strong>early_stopping_rounds</strong>回合中提升一次才会继续训练。</li>
+<li>sample_weight、feature_weight</li>
+</ul>
+</li>
+<li><code>predict(data, output_margin=False, ntree_limit=None, validate_features=True, base_margin=None)</code></li>
+</ul>
+<p>最重要的三个参数booster，n_estimators和objectve</p>
+<p>eval_metric</p>
+<p>详见：<a target="_blank" rel="noopener" href="https://xgboost.readthedocs.io/en/latest/parameter.html">https://xgboost.readthedocs.io/en/latest/parameter.html</a></p>
+<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost  <span class="keyword">as</span> xgb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets.samples_generator <span class="keyword">import</span> make_classification</span><br><span class="line"></span><br><span class="line"><span class="comment">#redundant冗余特征0,每个类别一个簇</span></span><br><span class="line">X,y = make_classification(n_samples=<span class="number">10000</span>,n_features=<span class="number">20</span>,n_redundant=<span class="number">0</span>,n_clusters_per_class=<span class="number">1</span>,n_classes=<span class="number">2</span>,flip_y=<span class="number">0.1</span>)</span><br><span class="line">X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=<span class="number">1</span>)</span><br><span class="line">dtrain = xgb.DMatrix(X_train,y_train)</span><br><span class="line">dtest = xgb.DMatrix(X_test,y_test)</span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;max_depth&#x27;</span>:<span class="number">5</span>,</span><br><span class="line">    <span class="string">&#x27;eta&#x27;</span>:<span class="number">0.5</span>,</span><br><span class="line">    <span class="string">&#x27;verbosity&#x27;</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="string">&#x27;objective&#x27;</span>:<span class="string">&#x27;binary:logistic&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">clf = xgb.XGBClassifier(**params)</span><br><span class="line">clf.fit(X_train,y_train,early_stopping_rounds=<span class="number">10</span>,eval_metric=<span class="string">&#x27;error&#x27;</span>,eval_set=[(X_test,y_test)])</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/23/machine%20learning/xgboost/6.png" alt="image-20201124194922807"></p>
+<p>网格调参</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">gscv = GridSearchCV(clf,&#123;<span class="string">&#x27;max_depth&#x27;</span>:[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],<span class="string">&#x27;n_estimators&#x27;</span>:[<span class="number">5</span>,<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">gscv.fit(X_train,y_train)</span><br><span class="line">print(gscv.best_score_)</span><br><span class="line">print(gscv.best_params_)</span><br><span class="line">clf2 = xgb.XGBClassifier(max_depth=<span class="number">4</span>,n_estimators=<span class="number">5</span>,verbosity=<span class="number">1</span>,objective=<span class="string">&#x27;binary:logistic&#x27;</span>,random_state=<span class="number">1</span>)</span><br><span class="line">gscv2=GridSearchCV(clf2,&#123;<span class="string">&#x27;learning_rate&#x27;</span>:[<span class="number">0.3</span>,<span class="number">0.5</span>,<span class="number">0.7</span>]&#125;)</span><br><span class="line">gscv2.fit(X_train,y_train)</span><br><span class="line">print(gscv2.best_score_)</span><br><span class="line">print(gscv2.best_params_)</span><br><span class="line">clf2 = xgb.XGBClassifier(max_depth=<span class="number">4</span>,learning_rate= <span class="number">0.5</span>, verbosity=<span class="number">1</span>, objective=<span class="string">&#x27;binary:logistic&#x27;</span>,n_estimators=<span class="number">5</span>)</span><br><span class="line">clf2.fit(X_train, y_train, early_stopping_rounds=<span class="number">10</span>, eval_metric=<span class="string">&quot;error&quot;</span>,eval_set=[(X_test, y_test)])</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/23/machine%20learning/xgboost/7.png" alt="image-20201124195901508"></p>
+<p>更多示例：<a target="_blank" rel="noopener" href="https://github.com/dmlc/xgboost/tree/master/demo/guide-python">https://github.com/dmlc/xgboost/tree/master/demo/guide-python</a></p>
+<h1 id="LightGBM"><a href="#LightGBM" class="headerlink" title="LightGBM"></a>LightGBM</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><h3 id="Histogram-optimization直方图优化算法"><a href="#Histogram-optimization直方图优化算法" class="headerlink" title="Histogram optimization直方图优化算法"></a>Histogram optimization直方图优化算法</h3><p><img src="/2020/11/23/machine%20learning/xgboost/8.png" alt="image-20201129143913501"></p>
+<ul>
+<li><p>遍历当前模型的叶子节点</p>
+</li>
+<li><p>遍历样本的所有特征，为每个特征生成一个直方图</p>
+</li>
+<li><p>遍历所有样本，根据特征值分配到对应的bin。将对应的bin梯度累加，bin的样本数量加一</p>
+</li>
+<li><p>遍历所有的直方图，枚举分割的bin，选取损失值减小最大的划分。划分依据</p>
+<script type="math/tex; mode=display">
+\Delta loss = \frac{S_L^2}{n_L}+\frac{S_R^2}{n_R}-\frac{S_2}{n}</script></li>
+</ul>
+<h3 id="单边特征提取GOSS"><a href="#单边特征提取GOSS" class="headerlink" title="单边特征提取GOSS"></a>单边特征提取GOSS</h3><p><img src="/2020/11/23/machine%20learning/xgboost/9.png" alt="image-20201129151622919" style="zoom:67%;"></p>
+<ul>
+<li><p>丢弃梯度小的数据实例，但是会改变数据分布。GOSS保持所有较大的梯度样本实例，并对小梯度样本实例进行随机采样。</p>
+</li>
+<li><p>为了补偿对数据分布的影响，GOSS为具有小梯度的数据实例引入了一个常数乘法器。具体来说，GOSS首先根据实例梯度绝对值排序并且选择最大的前啊$a\times 100%$个样本。然后随机得从剩余样本中随机采样$100\times b$个样本。然后在计算信息增益时，对小梯度样本乘以一个常数$\frac{1-a}{b}$。</p>
+</li>
+</ul>
+<h3 id="互斥特征合并EFB"><a href="#互斥特征合并EFB" class="headerlink" title="互斥特征合并EFB"></a>互斥特征合并EFB</h3><h4 id="分割特征互斥群"><a href="#分割特征互斥群" class="headerlink" title="分割特征互斥群"></a>分割特征互斥群</h4><p><img src="/2020/11/23/machine%20learning/xgboost/10.png" alt="image-20201129204151334" style="zoom:67%;"></p>
+<ul>
+<li>构造一个加权边图，权重对应于特征之间的总冲突数。</li>
+<li>其次，按照特征的度对他们进行降序排序。</li>
+<li>最后在有序列表中检查每个特征，把它分配给一个最小冲突的互斥群或者创建一个新的互斥群。</li>
+</ul>
+<h4 id="合并同一个bundle中的特征"><a href="#合并同一个bundle中的特征" class="headerlink" title="合并同一个bundle中的特征"></a>合并同一个bundle中的特征</h4><p><img src="/2020/11/23/machine%20learning/xgboost/11.png" alt="image-20201129204545618" style="zoom:67%;"></p>
+<ul>
+<li>通过偏置量合并两个特征</li>
+<li>例如两个特征A和B，A的取值范围为[0,10)，B的取值范围为[0,20)，特征B加上一个offset10得到范围为[10,30)这样就可以合并特征A和B了。</li>
+</ul>
+<h2 id="API-1"><a href="#API-1" class="headerlink" title="API"></a>API</h2><p><a target="_blank" rel="noopener" href="https://lightgbm.readthedocs.io/en/latest/Python-API.html">https://lightgbm.readthedocs.io/en/latest/Python-API.html</a></p>
+<h3 id="Scikit-learn-API"><a href="#Scikit-learn-API" class="headerlink" title="Scikit-learn API"></a>Scikit-learn API</h3><p><code>lightgbm.LGBMModel(boosting_type=&#39;gbdt&#39;, num_leaves=31, max_depth=- 1, learning_rate=0.1, n_estimators=100, subsample_for_bin=200000, objective=None, class_weight=None, min_split_gain=0.0, min_child_weight=0.001, min_child_samples=20, subsample=1.0, subsample_freq=0, colsample_bytree=1.0, reg_alpha=0.0, reg_lambda=0.0, random_state=None, n_jobs=- 1, silent=True, importance_type=&#39;split&#39;, **kwargs)</code></p>
+<p>参数</p>
+<ul>
+<li>boosting_type ：default=’gbdt’ <ul>
+<li>‘gbdt’, traditional Gradient Boosting Decision Tree. </li>
+<li>‘dart’, Dropouts meet Multiple Additive Regression Trees. </li>
+<li>‘goss’, Gradient-based One-Side Sampling. </li>
+<li>‘rf’, Random Forest.</li>
+</ul>
+</li>
+<li>num_leaves：default=31，基学习器最大叶子数</li>
+<li>max_depth：default=-1，基学习器的最大深度，&lt;=0表示没有限制</li>
+<li>learning_rate：学习率</li>
+<li>n_estimators：default=100，提升树的个数</li>
+<li>subsample_for_bin：default=200000，用于构造bins的样本</li>
+<li>objective：default=None<ul>
+<li>Default: ‘regression’ for LGBMRegressor,</li>
+<li>‘binary’ or ‘multiclass’ for LGBMClassifier</li>
+<li>‘lambdarank’ for LGBMRanker.</li>
+</ul>
+</li>
+<li>mini_split_gain：在叶子节点进行划分需要最小损失减少。</li>
+<li>mini_child_weight：叶子节点需要的最小实例权重和</li>
+<li>mini_child_samples：子节点需要的最小样本数据集</li>
+<li>subsample：训练集的采样率，default=1.</li>
+<li>subsample_frep：子样本的频率，&lt;=0表示没有启用</li>
+<li>colsample_bytree：构造每棵树时的列子采样率</li>
+</ul>
+<p>方法</p>
+<ul>
+<li>fit(X,y)</li>
+<li>get_params</li>
+<li>predict</li>
+<li>set_params</li>
 </ul>
 
       
@@ -554,7 +671,7 @@ User password:<br>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/11/DeepLearning/CNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">pytroch基础</a>
+            <a href="/2020/12/11/DeepLearning/CNN/" class="post-title-link" itemprop="url">CNN</a>
         </h2>
 
         <div class="post-meta-container">
@@ -283,7 +283,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-12-07 16:45:29 / 修改时间：22:24:02" itemprop="dateCreated datePublished" datetime="2020-12-07T16:45:29+08:00">2020-12-07</time>
+      <time title="创建时间：2020-12-11 13:01:25 / 修改时间：16:56:02" itemprop="dateCreated datePublished" datetime="2020-12-11T13:01:25+08:00">2020-12-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -291,7 +291,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/DeepLearning/" itemprop="url" rel="index"><span itemprop="name">DeepLearning</span></a>
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
         </span>
     </span>
 
@@ -305,80 +305,89 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>深度网络框架：前馈神经网络、卷积神经网络和循环神经网络</p>
-<h2 id="Tensor张量"><a href="#Tensor张量" class="headerlink" title="Tensor张量"></a>Tensor张量</h2><h3 id="Tensor类型"><a href="#Tensor类型" class="headerlink" title="Tensor类型"></a>Tensor类型</h3><p><code>torch.Tensor</code>单数据类型多维矩阵，是默认tensor类型<code>torch.FloatTensor</code>的别名</p>
-<p>共有10种张量类型</p>
-<p><img src="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/image-20201207192512395.png" alt="image-20201207192512395"></p>
-<p><img src="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/博客\source\_posts\pytroch基础\image-20201207192649237.png" alt="image-20201207192649237"></p>
-<h3 id="创建Tensor"><a href="#创建Tensor" class="headerlink" title="创建Tensor"></a>创建Tensor</h3><p>Tensor类似于Numpy的ndarrays，可以使用CPU运算</p>
+          <h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><h2 id="层级结构"><a href="#层级结构" class="headerlink" title="层级结构"></a>层级结构</h2><ul>
+<li>数据输入层/Input layer</li>
+<li>卷积计算层/Conv layer</li>
+<li>ReLu层</li>
+<li>池化层/Pooling layer</li>
+<li>全连接层/FC  layer</li>
+</ul>
+<h2 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h2><p><img src="/2020/12/11/DeepLearning/CNN/1.png" alt="RGB图像"></p>
+<p>如图所示输入数据是一个Input[4x4x3]的RGB图像。</p>
+<p>对原始图像做预处理</p>
 <ul>
-<li><p>生成一个未初始化的张量</p>
-<p><code>empty(*size, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False, pin_memory=False)</code></p>
-<p>参数</p>
+<li>去均值化：输入数据各个维度中心化为0</li>
+<li>归一化：$\frac{x-min}{max-min}$，将数据范围映射到[0,1]区间。</li>
+<li>PCA/白化：PCA降维后，对新坐标每一维的特征做一个标准差归一化处理。$\frac{X’}{std(X)}$</li>
+</ul>
+<h2 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h2><p>卷积运算的目的是从输入图像中<strong>提取</strong>诸如边缘之<strong>类的高级特征</strong>。</p>
+<p>卷积层的三个超参数</p>
 <ul>
-<li>size：一个可变参数，tensor的大小</li>
-<li>out：output tensort</li>
-<li>layout：返回tensor的布局</li>
+<li>深度/depth：对应于过滤器的数量</li>
+<li>步长/stride：滑动过滤器的步幅</li>
+<li>零填充/zero-padding：过滤器无法完全拟合所有像素，这个时候有两种方式处理。<ul>
+<li>用零填充，使图像拟合过滤器filter</li>
+<li>删除图像多余部分。</li>
 </ul>
 </li>
-<li><p>基于一个已经存在的tensor</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn_like(x,dtype=torch.float)</span><br><span class="line">x</span><br><span class="line">tensor([[ <span class="number">1.0880</span>,  <span class="number">1.3356</span>],</span><br><span class="line">        [<span class="number">-0.4618</span>, <span class="number">-1.9259</span>]])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取维度信息<code>size()</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.size()</span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取类型额<code>type()</code></p>
-<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">x</span>.<span class="keyword">type</span>()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>与numpy相互转换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Tensor转换为numpy数组</span></span><br><span class="line">b = a.numpy()</span><br><span class="line"><span class="comment">#numpy数组转换为Tensor</span></span><br><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
-</li>
 </ul>
-<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><ul>
-<li><p>方式1：+</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + y</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>关于原图像在经过卷积运算后的图像尺寸公式</p>
+<script type="math/tex; mode=display">
+\frac{\text{原尺寸-过滤器尺寸}}{步长}+1</script><p>实现了<strong>局部感受野</strong>和<strong>权值共享</strong></p>
+<h3 id="卷积运算"><a href="#卷积运算" class="headerlink" title="卷积运算"></a>卷积运算</h3><p>卷积运算的动图</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/博客\source\_posts\DeepLearning\CNN\1_ciDgQEjViWLnCbmX-EeSrA.gif" alt="卷积运算"></p>
+<p>将三个卷积核分别与每个通道channel的输入做完卷积运算，加上偏置bias=1，后得到一张特征图。</p>
+<h2 id="ReLu激励层"><a href="#ReLu激励层" class="headerlink" title="ReLu激励层"></a>ReLu激励层</h2><p>将卷积层的输出做非线性映射，CNN采用激励函数为ReLu(Rectified Linear Unit)修正线性单元，数学形式为</p>
+<script type="math/tex; mode=display">
+R(z) = \max(0,z)</script><p>函数图像</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/2.png" alt></p>
+<p>由于sigmod函数容易饱和，在输入非常大或非常小时神经元的梯度接近于0。</p>
+<p>还可以使用双曲正切函数$\tanh(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}}$，关于原点对称</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/3.png" alt="tanh"></p>
+<h2 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h2><p>池化层负责减小卷积特征的空间大小。这是为了通过降维来减少<strong>处理数据所需的计算能力</strong>。此外，它对于<strong>提取</strong>旋转和位置不变的<strong>主要特征</strong>很有用，从而保持有效训练模型的过程。</p>
+<p>池化分为两种类型</p>
 <ul>
-<li><p>方式2：add</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.add(y)</span><br></pre></td></tr></table></figure>
-</li>
+<li>最大池化Max Pooling：从核覆盖的范围取最大值</li>
+<li>平均池化Average Pooling：从核覆盖的范围取最平均值</li>
 </ul>
+<p><img src="/2020/12/11/DeepLearning/CNN/4.png" alt="pooling"></p>
+<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2><p>Fully Connected Layer</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/5.png" alt="FC" style="zoom:70%;"></p>
+<p>将输入图像转换为适合多层感知器的形式，将把图像展平为列向量，列向量被送到前馈神经网络，反向传播应用于训练的每次迭代。在一系列时期中，该模型能够区分图像中的主要特征和某些低级特征，并使用<strong>Softmax分类</strong>技术对其进行<strong>分类</strong>。</p>
+<h1 id="Lenet-5"><a href="#Lenet-5" class="headerlink" title="Lenet-5"></a>Lenet-5</h1><p><img src="/2020/12/11/DeepLearning/CNN/Lenet-5.png" alt="Lenet-5架构"></p>
+<p>总体分为五层</p>
 <ul>
-<li><p>out</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = torch.empty(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">torch.add(x,y,out=res)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>in-place</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y.add_(x)</span><br></pre></td></tr></table></figure>
-</li>
+<li>卷积层C1</li>
+<li>池化层S2</li>
+<li>卷积层C3</li>
+<li>池化层S4</li>
+<li>卷积层C5</li>
+<li>全连接层</li>
 </ul>
-<p><strong>注意 任何使张量会发生变化的操作都有一个前缀 ‘_’</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.copy_(y)</span><br><span class="line">x.t_()</span><br></pre></td></tr></table></figure>
-<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><ul>
-<li><p><code>*</code>：表示对应元素相乘</p>
+<p>介绍</p>
+<ol>
+<li><p>C1层，有5x5的卷积核6个。输入的单通道32x32图像通过卷积层后变成，6@28x28的6张特征图。</p>
 </li>
-<li><p><code>torch.mm</code>：只能适用于矩阵乘法</p>
+<li><p>在池化层也叫下采样层S2中，采用最大池化或平均池化，<u>将输出乘以权值加上偏置作为激活函数sigmod的输入</u>。采样过滤器的尺寸为2x2，经过采样，每张28x28的特征图压缩为14x14。</p>
 </li>
-<li><code>torch.bmm</code>：适用于三维张量乘法</li>
-<li><code>torch.matmul</code>：适用于多维</li>
-<li><code>a@B</code></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="改变形状"><a href="#改变形状" class="headerlink" title="改变形状"></a>改变形状</h4><p><code>view(*shape) -&gt; Tensor</code></p>
-<p>可以用-1省缺最后一个维度的大小</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.view(<span class="number">5</span>,<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="获取tensor的值"><a href="#获取tensor的值" class="headerlink" title="获取tensor的值"></a>获取tensor的值</h4><p><code>torch.Tensor.item()</code></p>
-<p>只能将一个元素的tensor转换为标量</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">1</span>)</span><br><span class="line">x.item()</span><br></pre></td></tr></table></figure>
-<h3 id="GPU上运算"><a href="#GPU上运算" class="headerlink" title="GPU上运算"></a>GPU上运算</h3><p>通过<code>torch.cuda.is_available()</code>验证GPU正常安装</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">y = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    x = x.cuda()</span><br><span class="line">    y = y.cuda()</span><br><span class="line">    print(x+y)</span><br><span class="line">&gt;&gt;&gt;tensor([[<span class="number">-1.4013</span>,  <span class="number">1.5702</span>],</span><br><span class="line">        [ <span class="number">1.2808</span>,  <span class="number">0.7981</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>)   </span><br></pre></td></tr></table></figure>
+<li><p>在C3层中，卷积核大小5x5，卷积核个数16个，输出特征图大小为16@10x10。输入图像为6@14x14，<u>每个特征图是由S2层的多个个特征图组合而成</u><u>。这样做的目的是为了打破对称性，提取深层特征</u>。</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/6.png" alt="6.png"></p>
+</li>
+<li><p>在S4池化层中，卷积核大小2x2，卷积后，图像变为16@5x5。</p>
+</li>
+<li><p>卷积层C5，有120个特征图，每个单元与S4层的全部16个单元的5x5领域连接，构成了S4与C5的全连接。</p>
+</li>
+<li><p>全连接层F6，类似普通神经网络,激活函数tanh。</p>
+</li>
+</ol>
+<h1 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h1><p><img src="/2020/12/11/DeepLearning/CNN/AlenNet" alt="AlexNet"></p>
+<p>要点</p>
 <ul>
-<li><p>通过<code>x.cpu()</code>将存储在GPU上的变量卸载在CPU</p>
-</li>
-<li><p>张量使用<code>to</code>方法移动到任何张量，使用<code>torch.device</code>移出移入设备</p>
-</li>
+<li>使用了ReLu激活函数，梯度计算快，一定程度上减小了梯度消失。</li>
+<li>数据增强：平移、镜像、缩放等。</li>
+<li>过拟合：dropout，将输入层和中间层的一些神经元随机置零，使得训练过程收敛的更慢。</li>
 </ul>
-<h2 id="自动微分"><a href="#自动微分" class="headerlink" title="自动微分"></a>自动微分</h2>
+
       
     </div>
 
@@ -399,7 +408,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

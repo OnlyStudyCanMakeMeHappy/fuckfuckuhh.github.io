@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon-money.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon-money.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"8.0.1","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":6},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="卷积神经网络层级结构 数据输入层&#x2F;Input layer 卷积计算层&#x2F;Conv layer ReLu层 池化层&#x2F;Pooling layer 全连接层&#x2F;FC  layer  输入层 如图所示输入数据是一个Input[4x4x3]的RGB图像。 对原始图像做预处理  去均值化：输入数据各个维度中心化为0 归一化：$\frac{x-min}{max-min}$，将数据范围映射到[0,1]区间。 PCA&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CNN">
+<meta property="og:url" content="http://example.com/2020/12/11/DeepLearning/CNN/index.html">
+<meta property="og:site_name" content="Mr.fuck">
+<meta property="og:description" content="卷积神经网络层级结构 数据输入层&#x2F;Input layer 卷积计算层&#x2F;Conv layer ReLu层 池化层&#x2F;Pooling layer 全连接层&#x2F;FC  layer  输入层 如图所示输入数据是一个Input[4x4x3]的RGB图像。 对原始图像做预处理  去均值化：输入数据各个维度中心化为0 归一化：$\frac{x-min}{max-min}$，将数据范围映射到[0,1]区间。 PCA&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/12/11/DeepLearning/CNN/1.png">
+<meta property="og:image" content="http://example.com/2020/12/11/DeepLearning/CNN/博客/source/_posts/DeepLearning/CNN/1_ciDgQEjViWLnCbmX-EeSrA.gif">
+<meta property="og:image" content="http://example.com/2020/12/11/DeepLearning/CNN/2.png">
+<meta property="og:image" content="http://example.com/2020/12/11/DeepLearning/CNN/3.png">
+<meta property="og:image" content="http://example.com/2020/12/11/DeepLearning/CNN/4.png">
+<meta property="og:image" content="http://example.com/2020/12/11/DeepLearning/CNN/5.png">
+<meta property="og:image" content="http://example.com/2020/12/11/DeepLearning/CNN/Lenet-5.png">
+<meta property="og:image" content="http://example.com/2020/12/11/DeepLearning/CNN/6.png">
+<meta property="og:image" content="http://example.com/2020/12/11/DeepLearning/CNN/AlenNet">
+<meta property="article:published_time" content="2020-12-11T05:01:25.000Z">
+<meta property="article:modified_time" content="2020-12-11T08:56:02.936Z">
+<meta property="article:author" content="ggl">
+<meta property="article:tag" content="卷积神经网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/12/11/DeepLearning/CNN/1.png">
+
+
+<link rel="canonical" href="http://example.com/2020/12/11/DeepLearning/CNN/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CNN | Mr.fuck</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Mr.fuck</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">层级结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E5%B1%82"><span class="nav-number">1.2.</span> <span class="nav-text">输入层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82"><span class="nav-number">1.3.</span> <span class="nav-text">卷积层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.1.</span> <span class="nav-text">卷积运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReLu%E6%BF%80%E5%8A%B1%E5%B1%82"><span class="nav-number">1.4.</span> <span class="nav-text">ReLu激励层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%A0%E5%8C%96%E5%B1%82"><span class="nav-number">1.5.</span> <span class="nav-text">池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82"><span class="nav-number">1.6.</span> <span class="nav-text">全连接层</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lenet-5"><span class="nav-number">2.</span> <span class="nav-text">Lenet-5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AlexNet"><span class="nav-number">3.</span> <span class="nav-text">AlexNet</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ggl"
+      src="/images/Kobe.jpg">
+  <p class="site-author-name" itemprop="name">ggl</p>
+  <div class="site-description" itemprop="description">wdnmd</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button site-overview-item animated"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fuckfuckuhh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fuckfuckuhh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenxiaoxiang0102@gmail.com" title="E-Mail → mailto:chenxiaoxiang0102@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/11/DeepLearning/CNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Kobe.jpg">
+      <meta itemprop="name" content="ggl">
+      <meta itemprop="description" content="wdnmd">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.fuck">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CNN
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-11 13:01:25 / 修改时间：16:56:02" itemprop="dateCreated datePublished" datetime="2020-12-11T13:01:25+08:00">2020-12-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><h2 id="层级结构"><a href="#层级结构" class="headerlink" title="层级结构"></a>层级结构</h2><ul>
+<li>数据输入层/Input layer</li>
+<li>卷积计算层/Conv layer</li>
+<li>ReLu层</li>
+<li>池化层/Pooling layer</li>
+<li>全连接层/FC  layer</li>
+</ul>
+<h2 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h2><p><img src="/2020/12/11/DeepLearning/CNN/1.png" alt="RGB图像"></p>
+<p>如图所示输入数据是一个Input[4x4x3]的RGB图像。</p>
+<p>对原始图像做预处理</p>
+<ul>
+<li>去均值化：输入数据各个维度中心化为0</li>
+<li>归一化：$\frac{x-min}{max-min}$，将数据范围映射到[0,1]区间。</li>
+<li>PCA/白化：PCA降维后，对新坐标每一维的特征做一个标准差归一化处理。$\frac{X’}{std(X)}$</li>
+</ul>
+<h2 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h2><p>卷积运算的目的是从输入图像中<strong>提取</strong>诸如边缘之<strong>类的高级特征</strong>。</p>
+<p>卷积层的三个超参数</p>
+<ul>
+<li>深度/depth：对应于过滤器的数量</li>
+<li>步长/stride：滑动过滤器的步幅</li>
+<li>零填充/zero-padding：过滤器无法完全拟合所有像素，这个时候有两种方式处理。<ul>
+<li>用零填充，使图像拟合过滤器filter</li>
+<li>删除图像多余部分。</li>
+</ul>
+</li>
+</ul>
+<p>关于原图像在经过卷积运算后的图像尺寸公式</p>
+<script type="math/tex; mode=display">
+\frac{\text{原尺寸-过滤器尺寸}}{步长}+1</script><p>实现了<strong>局部感受野</strong>和<strong>权值共享</strong></p>
+<h3 id="卷积运算"><a href="#卷积运算" class="headerlink" title="卷积运算"></a>卷积运算</h3><p>卷积运算的动图</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/博客\source\_posts\DeepLearning\CNN\1_ciDgQEjViWLnCbmX-EeSrA.gif" alt="卷积运算"></p>
+<p>将三个卷积核分别与每个通道channel的输入做完卷积运算，加上偏置bias=1，后得到一张特征图。</p>
+<h2 id="ReLu激励层"><a href="#ReLu激励层" class="headerlink" title="ReLu激励层"></a>ReLu激励层</h2><p>将卷积层的输出做非线性映射，CNN采用激励函数为ReLu(Rectified Linear Unit)修正线性单元，数学形式为</p>
+<script type="math/tex; mode=display">
+R(z) = \max(0,z)</script><p>函数图像</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/2.png" alt></p>
+<p>由于sigmod函数容易饱和，在输入非常大或非常小时神经元的梯度接近于0。</p>
+<p>还可以使用双曲正切函数$\tanh(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}}$，关于原点对称</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/3.png" alt="tanh"></p>
+<h2 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h2><p>池化层负责减小卷积特征的空间大小。这是为了通过降维来减少<strong>处理数据所需的计算能力</strong>。此外，它对于<strong>提取</strong>旋转和位置不变的<strong>主要特征</strong>很有用，从而保持有效训练模型的过程。</p>
+<p>池化分为两种类型</p>
+<ul>
+<li>最大池化Max Pooling：从核覆盖的范围取最大值</li>
+<li>平均池化Average Pooling：从核覆盖的范围取最平均值</li>
+</ul>
+<p><img src="/2020/12/11/DeepLearning/CNN/4.png" alt="pooling"></p>
+<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2><p>Fully Connected Layer</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/5.png" alt="FC" style="zoom:70%;"></p>
+<p>将输入图像转换为适合多层感知器的形式，将把图像展平为列向量，列向量被送到前馈神经网络，反向传播应用于训练的每次迭代。在一系列时期中，该模型能够区分图像中的主要特征和某些低级特征，并使用<strong>Softmax分类</strong>技术对其进行<strong>分类</strong>。</p>
+<h1 id="Lenet-5"><a href="#Lenet-5" class="headerlink" title="Lenet-5"></a>Lenet-5</h1><p><img src="/2020/12/11/DeepLearning/CNN/Lenet-5.png" alt="Lenet-5架构"></p>
+<p>总体分为五层</p>
+<ul>
+<li>卷积层C1</li>
+<li>池化层S2</li>
+<li>卷积层C3</li>
+<li>池化层S4</li>
+<li>卷积层C5</li>
+<li>全连接层</li>
+</ul>
+<p>介绍</p>
+<ol>
+<li><p>C1层，有5x5的卷积核6个。输入的单通道32x32图像通过卷积层后变成，6@28x28的6张特征图。</p>
+</li>
+<li><p>在池化层也叫下采样层S2中，采用最大池化或平均池化，<u>将输出乘以权值加上偏置作为激活函数sigmod的输入</u>。采样过滤器的尺寸为2x2，经过采样，每张28x28的特征图压缩为14x14。</p>
+</li>
+<li><p>在C3层中，卷积核大小5x5，卷积核个数16个，输出特征图大小为16@10x10。输入图像为6@14x14，<u>每个特征图是由S2层的多个个特征图组合而成</u><u>。这样做的目的是为了打破对称性，提取深层特征</u>。</p>
+<p><img src="/2020/12/11/DeepLearning/CNN/6.png" alt="6.png"></p>
+</li>
+<li><p>在S4池化层中，卷积核大小2x2，卷积后，图像变为16@5x5。</p>
+</li>
+<li><p>卷积层C5，有120个特征图，每个单元与S4层的全部16个单元的5x5领域连接，构成了S4与C5的全连接。</p>
+</li>
+<li><p>全连接层F6，类似普通神经网络,激活函数tanh。</p>
+</li>
+</ol>
+<h1 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h1><p><img src="/2020/12/11/DeepLearning/CNN/AlenNet" alt="AlexNet"></p>
+<p>要点</p>
+<ul>
+<li>使用了ReLu激活函数，梯度计算快，一定程度上减小了梯度消失。</li>
+<li>数据增强：平移、镜像、缩放等。</li>
+<li>过拟合：dropout，将输入层和中间层的一些神经元随机置零，使得训练过程收敛的更慢。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/alipay.png" alt="ggl 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag"># 卷积神经网络</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/10/post%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AF%84%E4%BC%B0/" rel="prev" title="模型选择和评估">
+                  <i class="fa fa-chevron-left"></i> 模型选择和评估
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/12/%E6%95%B0%E6%8D%AE%E9%9B%86%E8%BD%AC%E6%8D%A2/" rel="next" title="数据集转换">
+                  数据集转换 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ggl</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    // window.MathJax = {
+    //   loader: {
+    //
+    //     source: {
+    //       '[tex]/amsCd': '[tex]/amscd',
+    //       '[tex]/AMScd': '[tex]/amscd'
+    //     }
+    //   },
+    //   tex: {
+    //     inlineMath: {'[+]': [['$', '$']]},
+    //
+    //     tags: 'ams'
+    //   },
+    //   options: {
+    //     renderActions: {
+    //       findScript: [10, doc => {
+    //         document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+    //           const display = !!node.type.match(/; *mode=display/);
+    //           const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+    //           const text = document.createTextNode('');
+    //           node.parentNode.replaceChild(text, node);
+    //           math.start = {node: text, delim: '', n: 0};
+    //           math.end = {node: text, delim: '', n: 0};
+    //           doc.math.push(math);
+    //         });
+    //       }, '', false],
+    //       insertedScript: [200, () => {
+    //         document.querySelectorAll('mjx-container').forEach(node => {
+    //           let target = node.parentNode;
+    //           if (target.nodeName.toLowerCase() === 'li') {
+    //             target.parentNode.classList.add('has-jax');
+    //           }
+    //         });
+    //       }, '', false]
+    //     }
+    //   }
+    // };
+    window.MathJax = {
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
