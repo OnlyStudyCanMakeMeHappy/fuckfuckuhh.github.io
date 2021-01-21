@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="post-title-link" itemprop="url">计算机</a>
+            <a href="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-title-link" itemprop="url">决策树</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-15 16:31:41" itemprop="dateCreated datePublished" datetime="2020-11-15T16:31:41+08:00">2020-11-15</time>
+      <time title="创建时间：2020-11-14 20:19:47" itemprop="dateCreated datePublished" datetime="2020-11-14T20:19:47+08:00">2020-11-14</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-28 23:03:34" itemprop="dateModified" datetime="2020-12-28T23:03:34+08:00">2020-12-28</time>
+        <time title="修改时间：2020-12-05 21:55:21" itemprop="dateModified" datetime="2020-12-05T21:55:21+08:00">2020-12-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机知识</span></a>
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
         </span>
     </span>
 
@@ -311,357 +311,81 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <a id="more"></a>
-<h2 id="冯·洛依曼体系"><a href="#冯·洛依曼体系" class="headerlink" title="冯·洛依曼体系"></a>冯·洛依曼体系</h2><p>主要特点</p>
-<ul>
-<li><p>计算机由存储器、运算器、控制器、输入输出设备组成。运算器和控制器称为CPU。</p>
-</li>
-<li><p>存储器是按地址访问的线性编址的一维结构，每个单元的位数固定。</p>
-</li>
-<li><p>采用存储程序方式，指令和数据不加区别混合存储在同一个存储器。</p>
-</li>
-<li><p>控制器通过执行指令发出控制信号控制计算机的操作。指令在存储器中按顺序存放，由指令计数器指明要执行的指令的单元地址。</p>
-</li>
-<li><p>输入输出设备与存储器之间的数据存放都要经过运算器。</p>
-</li>
+          <h2 id="回归树"><a href="#回归树" class="headerlink" title="回归树"></a>回归树</h2><p><img src="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/1.png" alt="image-20201123133034055" style="zoom:50%;"></p>
+<p>每个结点用样本的平均值作为当前结点的值。</p>
+<p><img src="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/3.jpg" alt="img2"></p>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="结点划分停止依据"><a href="#结点划分停止依据" class="headerlink" title="结点划分停止依据"></a>结点划分停止依据</h3><ul>
+<li>当前样本同属于一个类别</li>
+<li>所有属性取值为空或取值相等</li>
+<li>样本集合为空</li>
 </ul>
-<h2 id="计算机组成部件"><a href="#计算机组成部件" class="headerlink" title="计算机组成部件"></a>计算机组成部件</h2><h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><ol>
-<li><p>磁性存储介质。硬盘、磁带等，特点是存储密度高、成本低、具有非易失性，但访存速度慢。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>训练树模型的时间复杂度和数据成对数分布</li>
+<li>白盒模型，模型可观察。</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>容易生成过于复杂的模型。</li>
+<li><p>不稳定，微小变化都会导致树的的不同。</p>
 </li>
-<li><p>闪存。非易失性存储介质，与磁盘比访问速度快，成本高，容量小。</p>
+<li><p>实际的决策树学习算法是基于启发式算法，例如在每个节点进 行局部最优决策的贪心算法。这样的算法不能保证返回全局最优决策树。</p>
 </li>
-<li><p>DRAM。易失性存储器，存储密度高，周期性刷新，访问速度快。SDRAM构建主存</p>
-</li>
-<li>SRAM。易失性存储器，存储密度不如SDRAM，不同周期性刷新，访问速度快。构建cache</li>
-</ol>
-<p>高速缓冲Cache：现代多核处理器通常有多级Cache，一级指令Cache和数据Cache各为几十KB，二级Cache为几百KB，三级Cache为多核共享几MB到几十MB不等。</p>
-<p><strong>缓存</strong></p>
-<ul>
-<li>一级缓存L1：内核旁边，解决CPU与内存读写速度不匹配的问题。缓存数据和缓存指令</li>
-<li>二级缓存L2：通常内建于MMX微处理器内</li>
-<li>三级缓存L3：读取L2未命中数据</li>
+<li>如果某些类在问题中占主导地位会使得创建的决策树有偏差</li>
 </ul>
-<blockquote>
-<p>每一级缓存中存储的全部数据都是下一级缓存的一部分。容量通常是相对递增的。</p>
-</blockquote>
-<h3 id="输入输出设备"><a href="#输入输出设备" class="headerlink" title="输入输出设备"></a>输入输出设备</h3><ol>
-<li>GPU图像处理单元。与CPU有大量数据传输，通过DMA方式读取数据，通过解析和运算写至显存。</li>
-<li>硬盘。存放操作系统内核代码、文件系统、应用程序和用户文件数据等。</li>
-<li>闪存Flash。半导体存储器，SD卡、U盘和SSD固态硬盘等。</li>
-</ol>
-<p>DDR(Double Data Rate)SDRAM：双倍速率同步静态随机存储器。</p>
-<h2 id="计算机硬件结构发展"><a href="#计算机硬件结构发展" class="headerlink" title="计算机硬件结构发展"></a>计算机硬件结构发展</h2><ul>
-<li>中央处理器</li>
-<li>图形处理器</li>
-<li>北桥：离CPU最近的芯片，负责控制显卡、内存与CPU之间数据交换。向上连接CPU，向下连接南桥。</li>
-<li>南桥：负责硬盘、键盘以及各种带宽要求较低的IO接口于内存、CPU之间的数据交换。</li>
-</ul>
-<h3 id="CPU-GPU-北桥-南桥"><a href="#CPU-GPU-北桥-南桥" class="headerlink" title="CPU-GPU-北桥-南桥"></a>CPU-GPU-北桥-南桥</h3><p>CPU、北桥和南桥芯片直接以芯片形式安装在主板，GPU则以显卡形式安装在计算机主板插槽上，通过系统总线和北桥直接相连。</p>
-<p>内存控制器集成在北桥芯片，硬盘接口、USB接口、网络接口、音频接口、鼠标和键盘等接口放在南桥芯片。</p>
-<h3 id="CPU-北桥-南桥"><a href="#CPU-北桥-南桥" class="headerlink" title="CPU-北桥-南桥"></a>CPU-北桥-南桥</h3><p>与四片结构最大的不同是GPU功能被集成到北桥，也就是集成显卡。内存控制器、显示功能集成在北桥芯片。在北桥集成的IO接口速率也不断提高。</p>
-<h3 id="CPU-弱北桥-南桥"><a href="#CPU-弱北桥-南桥" class="headerlink" title="CPU-弱北桥-南桥"></a>CPU-弱北桥-南桥</h3><p>内存控制器集成到CPU芯片，缓解存储墙问题。</p>
-<p>北桥功能被弱化，主要集成GPU、显示接口、高速IO接口（PCIE接口）。</p>
-<h3 id="CPU-南桥"><a href="#CPU-南桥" class="headerlink" title="CPU-南桥"></a>CPU-南桥</h3><p>CPU芯片集成处理器核、内存控制器、GPU。对外提供显示接口、内存接口等。</p>
-<p>南桥芯片则包含硬盘、USB、网络控制器以及PCIE/PCI、LPC等总线接口。</p>
-<p>还有一些两片结构把GPU集成在南桥芯片。</p>
-<h3 id="SoC单片结构"><a href="#SoC单片结构" class="headerlink" title="SoC单片结构"></a>SoC单片结构</h3><p>&lt;<strong>System on Chip</strong>&gt;</p>
-<p>单个芯片集成处理器、内存控制器、GPU以及硬盘、USB、网络等IO接口。</p>
-<p>主要应用在移动处理器和工业控制领域。</p>
-<h2 id="计算机系统启动过程"><a href="#计算机系统启动过程" class="headerlink" title="计算机系统启动过程"></a>计算机系统启动过程</h2><p>处理器的启动过程，实际上就是一个特定程序的执行过程。这个程序叫做固件，也称为BIOS(Basis Input Output System)。</p>
-<p>UEFI(Unified Extensible Firmware Interface)统一可扩展固件接口。</p>
-<h3 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h3><p>BIOS被存放在ROM中，系统通电后，处理器第一条指令的地址会被定位到BIOS存储器。在X86系统，这个地址是0xFFFF0。</p>
-<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>POST(Power-On Self-Test)，硬件自检。硬件出现问题，主板就会出现不同含义的蜂鸣。硬件设备、ROM、主板、CMOS存储器、串口、并口、显卡等设备。</p>
-<p>显卡初始化，BIOS查找显卡的BIOS，调用显卡BIOS的代码。由显卡BIOS的代码去初始化显卡。</p>
-<h4 id="Bost-Sequence"><a href="#Bost-Sequence" class="headerlink" title="Bost Sequence"></a>Bost Sequence</h4><p>硬件自检完成后，BIOS按照CMOS设置中的启动顺序搜寻有效的驱动器，读入操作系统引导记录。CMOS一般被集成在南北桥芯片。</p>
-<h3 id="主引导记录"><a href="#主引导记录" class="headerlink" title="主引导记录"></a>主引导记录</h3><h4 id="MBR"><a href="#MBR" class="headerlink" title="MBR"></a>MBR</h4><p>MBR(Master Boot Record)，主引导扇区是计算机访问硬盘要读取的第一个扇区512字节。如果最后两个字节是0x55和0xAA表明这个设备可以用于启动。如果不是，BIOS会把控制权交给“启动顺序”的下一个设备。</p>
-<h4 id="MBR的结构"><a href="#MBR的结构" class="headerlink" title="MBR的结构"></a>MBR的结构</h4><p>MBR主要由三部分组成</p>
-<ul>
-<li>1-466bytes：调用操作系统的程序。boot loader</li>
-<li>447-510bytes：分区表。</li>
-<li>511-512：签名。magic number</li>
-</ul>
-<h4 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h4><p>分区表共64字节，每个分区16字节，所以最多只能有4个主分区。</p>
-<ul>
-<li><p>第1字节：0x80-激活。四个分区只能有一个是激活的。</p>
-</li>
-<li><p>第2-4字节：主分区第一个扇区的物理位置。</p>
-</li>
-<li><p>第5字节：主分区类型。</p>
-<ul>
-<li>00H：未指定</li>
-</ul>
-</li>
-<li><p>06H：FAT16</p>
-<ul>
-<li>0BH：FAT32</li>
-<li>05H：扩展分区</li>
-<li>07H：NTFS分区 new technology file system</li>
-<li>0FH：（LBA模式）扩展分区</li>
-<li>83H：Linux分区</li>
-</ul>
-</li>
-<li><p>第6-8字节：主分区最后一个扇区的物理位置。</p>
-</li>
-<li><p>第9-12字节：该主分区第一个扇区的逻辑地址。</p>
-</li>
-<li><p>第13-16字节：主分区的扇区数。</p>
-</li>
-</ul>
-<h3 id="硬盘启动"><a href="#硬盘启动" class="headerlink" title="硬盘启动"></a>硬盘启动</h3><h4 id="卷引导记录"><a href="#卷引导记录" class="headerlink" title="卷引导记录"></a>卷引导记录</h4><p>四个分区里面有一个是激活的，计算机开始读取激活的第一个扇区，叫做“卷引导记录”(Volume Boot Record)VBR。然后计算机开始加载操作系统。</p>
-<h4 id="扩展分区和逻辑分区"><a href="#扩展分区和逻辑分区" class="headerlink" title="扩展分区和逻辑分区"></a>扩展分区和逻辑分区</h4><ul>
-<li>扩展分区：在四个分区中选定一个分区进行继续分区，这个分区被称为扩展分区。</li>
-<li>逻辑分区：扩展分区中又分为多个区每个区都叫做逻辑分区。</li>
-</ul>
-<p>计算机先读取扩展分区的第一个扇区叫做“扩展引导记录”(Extended Boot Record)EBR。期内有一个64字节分区表，最多有两项。</p>
-<p>计算机读取一个逻辑分区的第一个扇区，从中找到下一个分区的位置。以此类推，直到某个逻辑分区的分区表只包含自身为止。</p>
-<h4 id="启动管理器"><a href="#启动管理器" class="headerlink" title="启动管理器"></a>启动管理器</h4><p>计算机在读取前面446字节的机器码后，运行事先安装的启动管理器，由用户选择操作系统。 Linux下使用grub引导。</p>
-<p>启动管理器boot loader：在操作系统内核运行之前运行。可以初始化硬件设备、建立内存空间映射图，从而将系统的软硬件环境带到一个合适状态，以便为最终调用操作系统内核准备好正确的环境。</p>
-<p>然后是操作系统内核加载到内存中。</p>
-<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><h4 id="UEFI"><a href="#UEFI" class="headerlink" title="UEFI"></a>UEFI</h4><p>UEFI(Unified Extensible Firmware Interface)统一可扩展固件接口。</p>
-<p>uefi启动是一种新的主板引导项，uefi最主要的特点是图形界面，更利于用户对象图形化的操作选择。</p>
-<p>UEFI和BIOS的主要功能都是：<strong>初始化硬件</strong>和<strong>提供硬件的软件抽象</strong>。</p>
-<h5 id="UEFI启动过程"><a href="#UEFI启动过程" class="headerlink" title="UEFI启动过程"></a>UEFI启动过程</h5><ul>
-<li>上电自检-POST</li>
-<li>加载UEFI固件，初始化启动需要的硬件。</li>
-<li>固件读取引导管理器的数据确定从何处加载UEFI应用。</li>
-<li>固件按照引导管理器的启动项目，加载UEFI应用。</li>
-<li>加载的UEFI应用可能加载其他应用或者启动内核及initramfs（对应于GRUB之类引导器的情况）。</li>
-</ul>
-<h4 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h4><p>GUID分区表是源自EFI标准的一种新型磁盘分区结构标准。与MBR相比提供了更灵活的磁盘分区机制。</p>
-<p>与普通MBR分区标准相比有以下特点：</p>
-<ul>
-<li>GPT支持大于2.2T的硬盘</li>
-<li>GPT可以无限分区，但windows支持128个</li>
-<li>分区表自带备份。</li>
-</ul>
-<p>windows下<code>win+R</code>键入msinfo32.exe查看BIOS的值，如果值为UEFI，则Windows在UEFI / GPT模式下启动。如果值为Legacy，则Windows将以BIOS / MBR模式启动。</p>
-<h4 id="UEFI系统"><a href="#UEFI系统" class="headerlink" title="UEFI系统"></a>UEFI系统</h4><p>windows系统，GPT格式的磁盘上创建的一些分区，这四个分区是必不可少的。</p>
-<ul>
-<li>一个windows恢复环境分区，通常大小499MB。包好windows文件，相当于linux的/boot。</li>
-<li>具有FAT32文件系统的EFI系统分区。</li>
-<li>一个Microsoft保留分区，通常128MB大小。</li>
-<li>NTFS文件系统的Microsoft基本数据分区。</li>
-</ul>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/分区.png" alt="image-20201116212108070"></p>
-<h3 id="Linux系统启动过程"><a href="#Linux系统启动过程" class="headerlink" title="Linux系统启动过程"></a>Linux系统启动过程</h3><p>Linux系统的启动过程可以分为5个阶段：</p>
-<ul>
-<li><p>内核的引导</p>
-<blockquote>
-<p>当计算机打开电源后，首先是BIOS开机自检，按照BIOS中设置的启动设备（通常是硬盘）来启动。</p>
-<p>操作系统接管硬件以后，<u>首先读入 /boot 目录下的内核文件。</u> </p>
-</blockquote>
-</li>
-<li><p>运行 init</p>
-<blockquote>
-<p>init 进程是系统所有进程的父进程。</p>
-<p>init 程序首先是需要读取配置文件 /etc/inittab。</p>
-<p>许多程序需要开机启动。它们在Windows叫做”服务”（service），在Linux就叫做”<u>守护进程</u>“（daemon）。</p>
-<p>init进程的一大任务，就是去运行这些开机启动的程序。启动时根据”运行级别”，确定要运行哪些程序。</p>
-</blockquote>
-</li>
-<li><p>系统初始化</p>
-<blockquote>
-<p>它主要完成的工作有：激活交换分区，检查磁盘，加载硬件模块以及其它一些需要优先执行任务。 </p>
-</blockquote>
-</li>
-<li><p>建立终端 </p>
-<blockquote>
-<p>init接下来会打开6个终端，以便用户登录系统。<strong>tty</strong></p>
-</blockquote>
-</li>
-<li><p>用户登录系统</p>
-<blockquote>
-<p>一般来说，用户的登录方式有三种</p>
-<p>   （1）命令行登录<br>   （2）ssh登录<br>   （3）图形界面登录</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="指令集结构"><a href="#指令集结构" class="headerlink" title="指令集结构"></a>指令集结构</h3><p><strong>指令集分类</strong></p>
-<ul>
-<li><p>根据指令长度不同，指令集划分为复杂指令集(CISC)、精简指令集(RISC)、超长指令字(VLIW)。</p>
-</li>
-<li><p>根据功能分类，分为运算指令、转移指令、访存指令和特殊指令。</p>
-</li>
-<li>根据使用数据方式，分为堆栈型、累加型、寄存器-存储器型和寄存器-寄存器型指令。<ul>
-<li>堆栈型：零地址指令，操作数都在栈顶，运算不需要指定操作数。</li>
-<li>累加器型：单地址指令，包含一个<u>隐含操作数-累加器</u>，结果写回累加器。</li>
-<li>寄存器指令：多地址指令，单今的指令系统主要是寄存器型<ul>
-<li>寄存器-寄存器型</li>
-<li>寄存器-存储器型</li>
-<li>存储器-存储器型</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h4><ul>
-<li>立即数寻址：<code>#imm</code></li>
-<li>寄存器寻址：操作数在寄存器中，<code>regs[R]</code></li>
-<li>直接寻址：操作数在内存，直接有效地址<code>EA</code></li>
-<li>寄存器间接寻址：操作数在内存中，地址由寄存器指定<code>mem[regs[R]]</code></li>
-</ul>
-<p><strong>偏移寻址</strong></p>
-<blockquote>
-<p>有效地址计算公式$EA = A+(R)$</p>
-</blockquote>
-<ul>
-<li>相对寻址：由程序计数器PC地址加上偏移量得到内存地址。<code>EA = A+(PC)</code></li>
-<li>基址变址寻址：基址寄存器加偏移量得到有效地址。</li>
-<li>相对基址变址寻址：地址域引用一个主存地址，引用一个专用寄存器存储偏移量。<code>EA=A+(R)</code></li>
-</ul>
-<p><strong>CISC</strong></p>
-<ul>
-<li>X86：应用在PC、服务器端</li>
-<li>IBM的8080和8086系列</li>
-</ul>
-<p><strong>RISC</strong></p>
-<ul>
-<li>ARM：移动设备端</li>
-<li><u>MIPS(Million Instructions Per Second)</u>：传统市场如数字电视、打印机、网络等。</li>
-</ul>
-<h3 id="地址空间"><a href="#地址空间" class="headerlink" title="地址空间"></a>地址空间</h3><p>处理器可以访问的地址空间包括寄存器地址空间和系统内存地址控件。</p>
-<p><strong>寄存器地址空间</strong></p>
-<ul>
-<li>通用寄存器</li>
-<li>特殊寄存器</li>
-<li>控制寄存器</li>
-</ul>
-<p><strong>系统内存空间</strong></p>
-<p>RISC：MIPS、ARM</p>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/risc.png" alt="image-20201120214445858"></p>
-<p>CISC-8086：<u>IO空间</u>和<u>内存空间</u></p>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/x86.png" alt="image-20201120214351377"></p>
-<h3 id="特权指令"><a href="#特权指令" class="headerlink" title="特权指令"></a>特权指令</h3><h4 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h4><p>32位CPU的寄存器</p>
-<p><strong>数据寄存器</strong></p>
-<ul>
-<li>EAX：累加寄存器</li>
-<li>EBX：基址寄存器</li>
-<li>ECX：计数寄存器</li>
-<li>EDX：数据寄存器</li>
-</ul>
-<p><strong>指针</strong>、<strong>变址寄存器</strong></p>
-<ul>
-<li>ESI(soure index)</li>
-<li>EDI(destination index)</li>
-<li>ESP(stack pointer)：栈顶指针寄存器</li>
-<li>EBP(base pointer)：基址指针寄存器</li>
-</ul>
-<p>以上8个为通用寄存器</p>
-<p><strong>指令指针寄存器</strong></p>
-<ul>
-<li>EIP：指令指针</li>
-</ul>
-<p><strong>段寄存器</strong></p>
-<ul>
-<li>CS：代码段</li>
-<li>DS：数据段</li>
-<li>SS：堆栈段</li>
-<li>ES：扩展段</li>
-<li>FS：标志段</li>
-<li>GS：全局段</li>
-</ul>
-<p><strong>标志寄存器</strong></p>
-<ul>
-<li>EFLAGS<ul>
-<li>CF、ZF、SF、OF、PF、AF、IF、DF</li>
-</ul>
-</li>
-</ul>
-<h4 id="中断执行过程"><a href="#中断执行过程" class="headerlink" title="中断执行过程"></a>中断执行过程</h4><ol>
-<li><p>保存现场，将flags和IP和CS的值压入堆栈，栈顶的值SP-6。</p>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/保存现场.png" alt="image-20201120225529239"></p>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/flags" alt="image-20201121104017600"></p>
-</li>
-<li><p>响应中断，查找中断向量表（X86实地址0），中断向量表中存放中断的入口地址的段地址和偏移量。CS和IP变化。CS+IP-&gt;地址</p>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/中断向量表.png" alt="image-20201120230510146"></p>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/中断向量.png" alt="image-20201120225751465"></p>
-</li>
-<li><p>中断返回，恢复寄存器。</p>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/中断返回.png" alt="image-20201120230645623"></p>
-</li>
-</ol>
-<h4 id="系统调用过程"><a href="#系统调用过程" class="headerlink" title="系统调用过程"></a>系统调用过程</h4><blockquote>
-<p>系统调用是操作系统内核为用户态程序实现的子程序。在MIPS指令系统中，系统调用作为一种异常进行处理，在协处理寄存器<strong>Cause的ExCode域</strong>反映为特定的值。</p>
-</blockquote>
-<p><strong>Linux操作系统部分系统调用</strong></p>
-<ul>
-<li>进程控制：fork、nice(改变进程优先级)</li>
-<li>文件读写：open、write</li>
-<li>文件系统：mkdir、mount</li>
-<li>系统控制：time、reboot</li>
-<li>内存管理：mmap(映射虚拟内存)</li>
-<li>信号量：semctl</li>
-</ul>
-<hr>
-<h2 id="运算器"><a href="#运算器" class="headerlink" title="运算器"></a>运算器</h2><h3 id="计算机中的数表示"><a href="#计算机中的数表示" class="headerlink" title="计算机中的数表示"></a>计算机中的数表示</h3><p>1）原码：$A=a_{n-1}\dots a_0$</p>
-<ul>
-<li>存在两个0，+0和-0，给使用中带来了不便。</li>
-<li>加减运算规则复杂。</li>
-</ul>
-<p>2）补码</p>
-<ul>
-<li><p>现代计算机中基本都是采用补码来表示整数。</p>
-</li>
-<li><p>对于正数其补码与原码相同，对于负数值为$-2^{n-1}a_{n-1}+…+a_0$</p>
-</li>
-<li><p>补码表达式为</p>
+<h3 id="划分选择"><a href="#划分选择" class="headerlink" title="划分选择"></a>划分选择</h3><h4 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h4><p>信息熵是度量样本纯度的最常用指标，信息熵越小说明样本纯度越高。记$p_k$是样本集合$D$中第$k$类的比例,Y为类别总数。</p>
 <script type="math/tex; mode=display">
-[X]_{\text{补}} = 2^n+X(\mathrm{mod}\ 2^n)</script><p>例如$[-128]_{补} = 10000000$</p>
+Ent(D) = -\sum_{i=1}^Yp_k\log_2p_k\\
+当样本集合只有一类时取得最小值0\\
+当样本集合所有类比例相同时时取最大值-Y·\frac{1}{Y}\log_2\frac{1}{Y}=\log_2Y</script><p>离散属性a有V个取值，取值为$a^v$的样本数记为$D^v$。计算每个属性的信息增益。</p>
+<script type="math/tex; mode=display">
+Gain(D,a) = Ent(D)-\sum_{i=1}^V\frac{|D^v|}{|D|}Ent(D^v)\\</script><p>ID3决策树就是以信息增益作为准则作为划分属性。</p>
+<script type="math/tex; mode=display">
+a_* = \arg\max_{a\in A}Gain(D,a)</script><h4 id="增益率"><a href="#增益率" class="headerlink" title="增益率"></a>增益率</h4><p>信息增益准则对取值数目较多的属性有所偏好。</p>
+<p>C4.5决策树算法选择增益率作为划分属性的标准</p>
+<script type="math/tex; mode=display">
+Gain\_ratio = \frac{Gain(D,a)}{IV(a)}\\
+IV(a) = -\sum_{v=1}^{V}\frac{|D^v|}{|D|}\log_2\frac{|D^v|}{|D|}</script><p>IV(a)称为属性a的固定值，a的取值数目越多，IV(a)就越大。增益率对取值数目较少的属性有所偏好，所以采用启发式：先从候选划分属性中找出信息增益高于平均水平的属性，再从中选择增益率最高的。</p>
+<h4 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h4><p>CART决策树使用基尼指数来划分属性。基尼指数反映从数据集D中随机抽取两个样本，类别标记不一致的概率。基尼指数越小表示数据集D的纯度越高。</p>
+<p>基尼值</p>
+<script type="math/tex; mode=display">
+Gini(D) = \sum_{i=1}^{Y}\sum_{j\ne i}p_ip_j
+=1-\sum_{i=1}^Yp_i^2</script><p>基尼指数</p>
+<script type="math/tex; mode=display">
+Gini\_index(D,a)=\sum_{v=1}^V\frac{D^v}{D}Gini(D^v)</script><p>划分准则</p>
+<script type="math/tex; mode=display">
+a_* = \arg\min_{a\in A}Gini\_index(D,a)</script><h2 id="sklearn-DecisionTree"><a href="#sklearn-DecisionTree" class="headerlink" title="sklearn-DecisionTree"></a>sklearn-DecisionTree</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p><code>sklearn.tree.DecisionTreeClassifier(*, criterion=&#39;gini&#39;, splitter=&#39;best&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, class_weight=None, presort=&#39;deprecated&#39;, ccp_alpha=0.0)</code></p>
+<p>参数</p>
+<ul>
+<li>criterion：{“gini”, “entropy”}, default=”gini”。基尼和信息增益</li>
+<li>splitter{“best”, “random”}, default=”best”<br>在每个节点选择拆分的策略。</li>
+<li>min_samples_splitint： default=2，拆分内部节点所需的最少样本数。</li>
+<li>min_samples_leaf：default=1，在任何深度的分割点在左分支和右分支中的每个分支上至少留下min_samples_leaf个训练样本时，才考虑该点。</li>
+<li>max_featuresint： float or {“auto”, “sqrt”, “log2”}, default=None<br>  寻找最佳分割需要考虑的特征数。auto=sqrt=sqrt(n_features),log2=log2(n_features)</li>
+</ul>
+<p>属性</p>
+<ul>
+<li>feature_importances_：返回特征的重要性</li>
+<li>n_features_：fit执行用到的特征数</li>
+</ul>
+<p>方法</p>
+<ul>
+<li>apply：返回每个样本被预测为叶子的概率</li>
+<li>get_depth：返回决策树的深度</li>
+<li>get_n_leaves：返回决策树的叶子数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clf = DecisionTreeClassifier()</span><br><span class="line">iris = load_iris()</span><br><span class="line">cross_val_score(clf,iris.data,iris.target,cv=<span class="number">10</span>)</span><br><span class="line">&gt;&gt;&gt;array([<span class="number">1.</span>        , <span class="number">0.93333333</span>, <span class="number">1.</span>        , <span class="number">0.93333333</span>, <span class="number">0.93333333</span>,</span><br><span class="line">       <span class="number">0.86666667</span>, <span class="number">0.93333333</span>, <span class="number">1.</span>        , <span class="number">1.</span>        , <span class="number">1.</span>        ])</span><br></pre></td></tr></table></figure>
+<h3 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h3><p><code>class sklearn.tree.DecisionTreeRegressor(*, criterion=&#39;mse&#39;, splitter=&#39;best&#39;, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, presort=&#39;deprecated&#39;, ccp_alpha=0.0)</code></p>
+<p>实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_diabetes</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line">X, y = load_diabetes(return_X_y=<span class="literal">True</span>)</span><br><span class="line">regressor = DecisionTreeRegressor(random_state=<span class="number">0</span>)</span><br><span class="line">cross_val_score(regressor, X, y, cv=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">array([<span class="number">-0.39</span>..., <span class="number">-0.46</span>...,  <span class="number">0.02</span>...,  <span class="number">0.06</span>..., <span class="number">-0.50</span>...,</span><br><span class="line">       <span class="number">0.16</span>...,  <span class="number">0.11</span>..., <span class="number">-0.73</span>..., <span class="number">-0.30</span>..., <span class="number">-0.00</span>...])</span><br></pre></td></tr></table></figure>
+<h2 id="graphviz"><a href="#graphviz" class="headerlink" title="graphviz"></a>graphviz</h2><h3 id="安装、配置环境变量"><a href="#安装、配置环境变量" class="headerlink" title="安装、配置环境变量"></a>安装、配置环境变量</h3><ul>
+<li><p>下载：<a target="_blank" rel="noopener" href="https://www2.graphviz.org/Packages/stable/windows/10/cmake/Release/x64/graphviz-install-2.44.1-win64.exe">https://www2.graphviz.org/Packages/stable/windows/10/cmake/Release/x64/graphviz-install-2.44.1-win64.exe</a></p>
 </li>
+<li><p>配置到环境变量 </p>
+</li>
+<li>pip install graphviz</li>
 </ul>
-<p>3）溢出</p>
-<ul>
-<li><p>对于原码表示范围为</p>
-<script type="math/tex; mode=display">
-[-2^{n-1}+1,2^{n-1}-1]</script></li>
-<li><p>对于补码表示范围为</p>
-<script type="math/tex; mode=display">
-[-2^{n-1},2^{n-1}-1]</script></li>
-</ul>
-<p>4）浮点数</p>
-<ul>
-<li>浮点数的一般表示形式为</li>
-</ul>
-<script type="math/tex; mode=display">
-(-1)^s\times f\times 2^e</script><ul>
-<li>IEEE 754标准浮点数格式</li>
-</ul>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/IEEE754.jpg" alt="浮点数格式" style="zoom:67%;"></p>
-<blockquote>
-<p>IEEE754标准中规则化尾数的统一为1.xxxx的形式，尾数规格化后的第一位总为1，<u>因而可以在尾数中省略这一位1</u>。</p>
-<p><u>阶码是通过减去偏置常量</u>表示，偏置常量为$2^{n-1}-1$。单浮点数和双浮点数的偏置常量分别为127和1023。</p>
-</blockquote>
-<p><strong>表达通式</strong></p>
-<script type="math/tex; mode=display">
-x = (-1)^S\times(1.M)\times2^{E-127}</script><p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/浮点数范围.png" alt="image-20201225222603430" style="zoom:67%;"></p>
-<ul>
-<li>float能表示的最大和最小浮点数为</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{align}
-\text{最大正数} &= [1+(1-2^{-23})]\times 2^{254-127} = (2-2^{-23})\times 2^{127}\\
-\text{最小正数} &= 1.0\times2^{1-127} = 1\times2^{-126}\\
-\text{最大负数} &= -1\times2^{-126}\\
-\text{最小正数} &= -(2-2^{-23})\times 2^{127}\\
-\end{align}</script><h3 id="运算器设计"><a href="#运算器设计" class="headerlink" title="运算器设计"></a>运算器设计</h3><p><strong>定理证明</strong></p>
-<blockquote>
-<p>$[-X]<em>补$可以通过$[X]</em>补$按位取反，末位加1得到。</p>
-</blockquote>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/减法器.jpg" alt="image-20201228103911259" style="zoom:67%;"></p>
-<p><strong>补码乘法原理</strong></p>
-<p><img src="/2020/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA/博客\source\_posts\计算机\补码乘法.jpg" alt="image-20201228131557633"></p>
-<hr>
-<h2 id="指令流水线"><a href="#指令流水线" class="headerlink" title="指令流水线"></a>指令流水线</h2><p><strong>指令按照功能可以划分为</strong>：<u>运算指令</u>、<u>访存指令</u>、<u>转移指令和特殊指令</u></p>
-<p>CPU数据通路的组成要素</p>
-<ul>
-<li>程序计数器：PC</li>
-<li>指令存储器</li>
-<li>译码部件</li>
-<li>通用寄存器堆</li>
-<li>运算器</li>
-<li>数据存储器</li>
-</ul>
-<p>取指、译码、执行、访存、写回</p>
+<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dot_data = tree.export_graphviz(clf, out_file=<span class="literal">None</span>,                 feature_names=iris.feature_names,  </span><br><span class="line">class_names=iris.target_names,  </span><br><span class="line">filled=<span class="literal">True</span>, rounded=<span class="literal">True</span>,  </span><br><span class="line">special_characters=<span class="literal">True</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>graph = graphviz.Source(dot_data)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>graph.render(<span class="string">&#x27;iris&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出保存为一个’iris.pdf’文件</p>
+<p><img src="/2020/11/14/machine%20learning/%E5%86%B3%E7%AD%96%E6%A0%91/iris.png" alt="&quot;iris.pdf&quot;"></p>
 
       
     </div>
@@ -683,7 +407,7 @@ x = (-1)^S\times(1.M)\times2^{E-127}</script><p><img src="/2020/11/15/%E8%AE%A1%
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

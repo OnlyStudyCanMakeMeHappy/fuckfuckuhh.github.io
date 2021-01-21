@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/30/machine%20learning/EM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/" class="post-title-link" itemprop="url">概率图</a>
+            <a href="/2020/11/30/machine%20learning/EM/" class="post-title-link" itemprop="url">EM</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,16 +281,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-12-02 14:38:24" itemprop="dateCreated datePublished" datetime="2020-12-02T14:38:24+08:00">2020-12-02</time>
+      <time title="创建时间：2020-11-30 10:21:44 / 修改时间：19:25:56" itemprop="dateCreated datePublished" datetime="2020-11-30T10:21:44+08:00">2020-11-30</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 16:15:34" itemprop="dateModified" datetime="2020-12-04T16:15:34+08:00">2020-12-04</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -311,150 +305,84 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="贝叶斯网"><a href="#贝叶斯网" class="headerlink" title="贝叶斯网"></a>贝叶斯网</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>k个变量的joint distribution</p>
+          <h1 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h1><h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><ul>
+<li><p>输入：观测数据Y，隐变量数据Z，联合分布$p(Y,Z|\theta)$，条件分布$p(Z|Y,\theta)$</p>
+</li>
+<li><p>输出：模型参数$\theta$</p>
+</li>
+<li><p>算法流程</p>
+<ul>
+<li><p>选择参数$\theta^{(0)}$作为初始值</p>
+</li>
+<li><p>E步：记$\theta^{(i)}$为第i次迭代的参数估计值，第i+1次迭代E步，计算完全数据关于当前Y和$\theta^{(i)}$下Z的条件概率分布</p>
 <script type="math/tex; mode=display">
-P(x_1,\dots,x_K) = P(x_K|x_1,\dots,x_{K-1})\dots P(x_2|x_1)P(x_1)</script><p>例如：三个随机变量的联合分布概率图</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/1.png" alt="三个随机变量的联合分布" style="zoom:67%;"></p>
-<p>由概率图定义联合分布</p>
+Q(\theta,\theta^{(i+1)}) = E_z[\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})]=\sum_z\log P(Y,Z|\theta)P(Z|Y,\theta^{(i)})</script></li>
+<li><p>M步：求出最大化Q函数的$\theta$，使$\theta^{(i+1)}:=\theta$</p>
+</li>
+<li><p>重复E和M步,直至收敛</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>B函数是对数似然函数的下界，EM算法是通过<strong>不断求解下界的极大化逼近</strong>求解对数似然函数。</p>
+<h2 id="EM算法在高斯混合模型中的应用"><a href="#EM算法在高斯混合模型中的应用" class="headerlink" title="EM算法在高斯混合模型中的应用"></a>EM算法在高斯混合模型中的应用</h2><p>高斯很合模型</p>
 <script type="math/tex; mode=display">
-p(\mathbf x) = \prod_{k=1}^Kp(x_k|pa_k)</script><p>其中$pa_k$是$x_k$的父结点集合。</p>
-<h2 id="贝叶斯网模型"><a href="#贝叶斯网模型" class="headerlink" title="贝叶斯网模型"></a>贝叶斯网模型</h2><h3 id="同父结构"><a href="#同父结构" class="headerlink" title="同父结构"></a>同父结构</h3><p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/2.png" alt="image-20201202150343537" style="zoom:67%;"></p>
-<p>简记为</p>
+P(y|\theta) = \sum_{k=1}^K\alpha_k\phi(y|\theta_k),\alpha_k\ge0,\sum\alpha=0</script><h3 id="1-明确隐变量"><a href="#1-明确隐变量" class="headerlink" title="1. 明确隐变量"></a>1. 明确隐变量</h3><p>定义隐变量$\gamma_{jk}$</p>
 <script type="math/tex; mode=display">
-a\bot {b}\ | \ c</script><p>表示a和b在给定c的值下，条件独立，此时联合分布</p>
+\gamma_{jk}=\left\{\begin{matrix}
+1,& 第j个观测来自第k个模型\\
+0，& 否则
+\end{matrix}\right.</script><p>完全数据</p>
 <script type="math/tex; mode=display">
-p(a,b,c) = p(a|c)p(b|c)p(c)</script><p>如果没有变量被观测到，通过边缘化c。由下式可知，a和b不是独立的</p>
-<script type="math/tex; mode=display">
-p(a,b) = \sum_cp(a|c)p(b|c)p(c)</script><p>suppose在c上设立条件，可以得到a、b是条件独立的，如下所示</p>
+(y_j,\gamma_{j1},\dots,\gamma_{jK}),j=1,2,\dots,N</script><p>完全数据的似然函数</p>
 <script type="math/tex; mode=display">
 \begin{align}
-p(a,b|c)&=\frac{p(a,b,c)}{p(c)}\\
-&= p(a|c)p(b|c)
-\end{align}</script><p>将a、b在给定c条件下条件独立记做，a、b边际独立</p>
+P(y,\gamma|\theta) &= \prod_{j=1}^NP(y_j,\gamma_{j1},\dots,\gamma_{jK}|\theta)\\
+&=\prod_{k=1}^K\prod_{j=1}^N[\alpha_k\phi(y_j|\theta_k)]^{\gamma_{jk}}\\
+&=\prod_{k=1}^K\alpha_k^{n_k}\prod_{j=1}^N[\phi(y_j|\theta_k)]^{\gamma_{jk}}
+\end{align}</script><p>完全数据对数似然函数</p>
 <script type="math/tex; mode=display">
-a\perp \!\!\! \perp b\ |\ c</script><h3 id="顺序结构"><a href="#顺序结构" class="headerlink" title="顺序结构"></a>顺序结构</h3><p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/3.png" alt="image-20201202151239125" style="zoom:67%;"></p>
-<p>简记为</p>
-<script type="math/tex; mode=display">
-a\bot b\ |\ c</script><p>联合分布</p>
-<script type="math/tex; mode=display">
-p(a,b,c) = p(a)p(c|a)p(b|c)</script><p>如果没有变量被观测到，通过边缘化c，由下式可知，a和b不是独立的</p>
-<script type="math/tex; mode=display">
-p(a,b) = p(a)\sum_cp(c|a)p(b|c) = p(a)p(b|a)</script><p>假定在c被观察到，则路径被阻塞，表示a、b在c下条件独立</p>
+\log P(y,\gamma|\theta) = \sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\gamma_{jk}\log[\phi(y_j|\mu_k,\Sigma_k)]</script><h3 id="2-E步：确定Q函数"><a href="#2-E步：确定Q函数" class="headerlink" title="2.E步：确定Q函数"></a>2.E步：确定Q函数</h3><script type="math/tex; mode=display">
+\begin{align}
+Q(\theta,\theta^{(i)}) &= E\{\sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\gamma_{jk}\log[\phi(y_j|\mu_k,\Sigma_k)\}\\
+&=\sum_{k=1}^K\{\sum_{j=1}^N(E\gamma_{jk})\log\alpha_k+\sum_{j=1}^N(E\gamma_{jk})\phi(y_j|\theta)\} \tag{1}
+\end{align}</script><p>记$E(\gamma<em>{jk}|y,\theta)$为$\hat{\gamma}</em>{jk}$</p>
 <script type="math/tex; mode=display">
 \begin{align}
-p(a,b|c) &= \frac{p(a)p(c|a)p(b|c)}{p(c)}\\
-&= p(a|c)p(b|c)
-\end{align}</script><p>记做a、b边缘独立</p>
-<script type="math/tex; mode=display">
-a \bot\!\!\!\bot b \ | \ c</script><h3 id="V型结构"><a href="#V型结构" class="headerlink" title="V型结构"></a>V型结构</h3><p> <img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/4.png" alt="image-20201202161221767" style="zoom:67%;"></p>
-<p>联合分布</p>
-<script type="math/tex; mode=display">
-p(a,b,c) = p(a)p(b)p(c|a,b)</script><p>如果没有结点被观测到路径blocked，对c边缘化发现a、b也独立</p>
-<script type="math/tex; mode=display">
-p(a,b) = \sum_cp(a,b,c) = p(a)p(b)</script><p>假设条件作用于c，路径变成通路则有</p>
-<script type="math/tex; mode=display">
-p(a,b|c) = \frac{p(a,b,c)}{p(c)}=\frac{p(a)p(b)p(c|a,b)}{p(c)}</script><p>a,b在给定c下不满足边际独立性</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/5.png" alt="image-20201202162449393"></p>
-<h3 id="D-separation"><a href="#D-separation" class="headerlink" title="D-separation"></a>D-separation</h3><p>使用有向分离，将一个有向图转变为一个无向图，便于分析图中变量的条件独立性。</p>
-<h4 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h4><ul>
-<li>找出有向图中的所有V型结构，在V型结构的两个父节点中加上一条无向边。</li>
-<li>将所有有向边改为无向边。</li>
-</ul>
-<p>由此产生的图叫做道德图(moral graph)，假定道德图中有变量x和y，以及变量集合$\mathbf z$。若变量x和y能在图中被$\mathbf z$分开，即将$\mathbf z$去除后，x和y分属于两个连通分支，则称x和y被$\mathbf z$有向分离。</p>
-<script type="math/tex; mode=display">
-x \perp y\mid \mathbf z</script><h3 id="Markov-blanket"><a href="#Markov-blanket" class="headerlink" title="Markov blanket"></a>Markov blanket</h3><p>考虑D个结点的联合分布和结点$x_i$和作用于于其他结点的条件分布，有</p>
+\hat{\gamma}_{jk} &= P(\gamma_{jk}=1|y,\theta)\\
+&= \frac{P(y_j|\gamma_{jk}=1,\theta)P(\gamma_{jk}=1|\theta)}{\sum_{k=1}^KP(y_j|\gamma_{jk}=1,\theta)P(\gamma_{jk}=1|\theta)}\\
+&= \frac{\alpha_k\phi(y_j|\theta_k)}{\sum_{k=1}^K\alpha_k\phi(y_j|\theta_k)},j=1,2,...,N;\ k=1,2,...,K
+\end{align}</script><p>(1)式等价于下式</p>
 <script type="math/tex; mode=display">
 \begin{align}
-p(\mathbf x_i|\mathbf x_{j\ne i}) &= \frac{p(\mathbf x_i,\dots,\mathbf x_D)}{\int p(\mathbf x_i,\dots,\mathbf x_D)}\\
-&=\frac{\prod_k p(\mathbf x_k|pa_k)}{\int \prod_kp(\mathbf x_k|pa_k)d\mathbf x_i}
-\end{align}</script><p>在积分项与$\mathbf x_i$无关的项被保留，即$\mathbf x_i$的父结点集合和父结点集合中包括$\mathbf x_i$的结点项。与分子项约分消去，最后得到的项只与$\mathbf x_i$有关，称为Markov blanket。</p>
-<p>markov balnket如图所示</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/6.png" alt="image-20201202213846580" style="zoom:67%;"></p>
-<h1 id="马尔科夫网"><a href="#马尔科夫网" class="headerlink" title="马尔科夫网"></a>马尔科夫网</h1><h2 id="马尔科夫随机场"><a href="#马尔科夫随机场" class="headerlink" title="马尔科夫随机场"></a>马尔科夫随机场</h2><p>对于马尔科夫条件场(Mrakov Random Field)，是一种无向图。每个结点表示一个或一组变量，边表示结点的依赖关系。</p>
-<p>将图中结点的子集，若任意两个结点之间都有边连接，则称该结点集为一个团(clique)。如果在一个团中，加入另外的结点都不再形成团，则称该团为极大团，即极大团不被其他团包围。</p>
-<p>如图所示，极大团${x_1,x_2,x_3}$和${x_2,x_2,x_4}$</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/7.png" alt="image-20201202233603781" style="zoom:67%;"></p>
-<p>定义团为C，团的变量集合为$\mathbf x_C$。图的极大团的联合分布可以写做势函数(potential functions)$\psi(\mathbf x_C)$的乘积形式。</p>
+Q(\theta,\theta^{(i)}) &= \sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\hat{\gamma}_{jk}\log[\phi(y_j|\theta_k)\\
+&=\sum_{k=1}^Kn_k\log\alpha_k+\sum_{j=1}^N\hat{\gamma}_{jk}[\log(\frac{1}{\sqrt{2\pi}})-\log\sigma_k-\frac{1}{2\sigma_k^2}(y_j-\mu_k)^2]
+\tag{2}
+\end{align}</script><h3 id="3-M步"><a href="#3-M步" class="headerlink" title="3.M步"></a>3.M步</h3><p>(2)式对参数分别对$\mu_k,\sigma_k^2$求偏导的令为0得</p>
 <script type="math/tex; mode=display">
-p(\mathbf x) = \frac{1}{Z} \prod_C\psi_C(\mathbf x_C)</script><p>量Z是partition函数，规范化因子常数确保分布$p(\mathbf x)$是分布函数的，定义为</p>
+\hat\mu_k = \frac{\sum_{j=1}^N\hat\gamma_{jk}y_j}{\sum_{j=1}^N\hat\gamma_{jk}},\\
+\sigma^2_k = \frac{\sum_{j=1}^N\hat\gamma_{jk}y_j}{\sum_{j=1}^N\hat\gamma_{jk}}\\
+k = 1,2,...,K</script><p>因为$\sum_{k=1}^K\alpha_k=1$,用拉格朗日乘子法求得</p>
 <script type="math/tex; mode=display">
-Z = \sum_{\mathbf x} \prod_C\psi_C(\mathbf x_C)</script><p>因为限制势函数为正，定义势函数为指数函数</p>
-<script type="math/tex; mode=display">
-\psi_C(\mathbf x_C) = \exp\{-E(\mathbf x_C)\}</script><h3 id="条件独立性"><a href="#条件独立性" class="headerlink" title="条件独立性"></a>条件独立性</h3><ul>
-<li><p>全局马尔科夫性：给定一个单独的子集，变量的任何两个子集在条件上都是独立的</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/全局.png" alt="image-20201203211225165" style="zoom:80%;"></p>
-<p>表示A中的结点到B都要经过S，S被称为分离集。</p>
-</li>
-</ul>
+\mathcal L(\lambda,\theta)= Q(\theta,\theta^{(i)})+\lambda(1-\sum_{k=1}^K\alpha_k)\\
+对\alpha求导令为0得，
+\hat\alpha_k = \frac{n_k}{N} = \frac{\sum_{j=1}^N\hat\gamma_{jk}}{N}\\</script><h2 id="Scikti-learn"><a href="#Scikti-learn" class="headerlink" title="Scikti-learn"></a>Scikti-learn</h2><p><code>sklearn.mixture.GaussianMixture(n_components=1, *, covariance_type=&#39;full&#39;, tol=0.001, reg_covar=1e-06, max_iter=100, n_init=1, init_params=&#39;kmeans&#39;, weights_init=None, means_init=None, precisions_init=None, random_state=None, warm_start=False, verbose=0, verbose_interval=10)</code><br>参数</p>
 <ul>
-<li><p>局部马尔科夫性：给定变量的邻居，该变量在条件上独立于所有其他变量</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/local.png" alt="image-20201203211115195" style="zoom:80%;"></p>
-<p>变量的所有邻居变量也就是马尔科夫随机毯，</p>
-</li>
+<li>covariance_type：{‘full’ (default), ‘tied’, ‘diag’, ‘spherical’}<ul>
+<li>full：成员都独立的一般协方差矩阵</li>
+<li>tied：成员共享一个协方差矩阵</li>
+<li>diag：每个分量都有自己的对角协方差矩阵</li>
+<li>spherical：每个分量都有自己的单方差</li>
 </ul>
-<ul>
-<li><p>成对马尔科夫性：给定其他变量，任意两个不相邻的变量在条件上都是独立的。</p>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/pair.png" alt="image-20201203210936994" style="zoom: 80%;"></p>
 </li>
+<li>tol：EM算法收敛阈值</li>
+<li>reg_cover：非负正则化添加到协方差的对角线上。确保协方差矩阵均为正</li>
+<li>max_iter：default=100，迭代次数</li>
+<li>n_init：要执行的初始化次数</li>
+<li>init_parmas：{‘kmeans’,’random’}，初始化权重的方法、均值和精度的方法</li>
+<li></li>
 </ul>
-<h1 id="隐马尔科夫模型"><a href="#隐马尔科夫模型" class="headerlink" title="隐马尔科夫模型"></a>隐马尔科夫模型</h1><p>Hidden Markov Model</p>
-<ul>
-<li><p>观测状态${x_1,\dots,x_n}$，取值$x\in{o_1,\dots\,o_n}$</p>
-<p>隐含状态${y_1,\dots,y_n}$，取值$y\in{s_1,\dots,s_n}$</p>
-</li>
-<li><p>箭头表示了变量之间的依赖关系。在任一时刻，观测变量的取值仅依赖于状态变量，即$x_t$由$y_t$确定，与其他状态变量及观察变量的取值无关。</p>
-</li>
-<li><p>同时，t时刻的状态$s<em>t$仅依赖于t-1时刻的状态$s</em>{t-1}$，与此前t-2个状态无关。</p>
-</li>
-<li><p>假设隐含状态服从</p>
-<ul>
-<li><p>齐次马尔科夫假设，</p>
-</li>
-<li><p>观测独立性假设</p>
-</li>
-</ul>
-<script type="math/tex; mode=display">
-p(s_{t+1}|s_t,s_{t-1},\dots,s_1,o_t,\dots,o_1) = p(s_{t+1}|s_t)\\
-p(o_{t}|s_t,s_{t-1},\dots,s_1,o_{t-1},\dots,o_1) = p(o_{t}|s_t)</script></li>
-</ul>
-<p><img src="/2020/12/02/machine%20learning/%E6%A6%82%E7%8E%87%E5%9B%BE/OIP.jpg" alt="HMM"></p>
-<p>三组参数$\lambda = [\mathbf{A,B,\pi}]$，分别为</p>
-<ul>
-<li><p>状态转移矩阵：状态间转换的概率</p>
-<script type="math/tex; mode=display">
-a_{ij} = P(y_{t+1}=s_j\mid y_t=s_i)</script></li>
-<li><p>发散矩阵：根据当前模型获得各个观测值的概率</p>
-<script type="math/tex; mode=display">
-b_{ij} = P(x_t=o_j\mid y_t=s_i)</script><p>状态为$s_i$，观测值为$o_j$被获取的概率</p>
-</li>
-<li><p>初始概率：模型在初始状态下各状态出现的概率</p>
-<script type="math/tex; mode=display">
-\mathbf{\pi} = {\pi_1,\pi_2,\dots,\pi_n}\\
-\pi_i = P(y_1=s_i)</script></li>
-</ul>
-<p>$\Q\R\O\P\S\H\Z\C\N$</p>
-<p>观测序列生成过程</p>
-<ul>
-<li>根据初始状态分布$\mathbf \pi$，选择状态$s_1$</li>
-<li>令t = 1</li>
-<li>根据状态$y_t$的观测概率分布生成$o_t$</li>
-<li>根据状态$y<em>t$和状态转移分布确定状态$y</em>{t+1}$</li>
-<li>令t=t+1,如果t&lt;T,转到第3步；否则，终止</li>
-</ul>
-<h2 id="三个基本问题"><a href="#三个基本问题" class="headerlink" title="三个基本问题"></a>三个基本问题</h2><ul>
-<li><p>Evaluation：概率计算问题</p>
-<p>给定模型参数$\lambda$，评估模型与观测序列之间的匹配程度$p(o|\lambda)$</p>
-</li>
-<li><p>Decoding：预测问题</p>
-<p>给定模型参数$\lambda$和观测序列$\mathbf x$，如何找到匹配的状态序列</p>
-<script type="math/tex; mode=display">
-\hat s = \arg\max_sP(s|\mathbf x,\lambda)</script></li>
-<li><p>Learning：学习问题</p>
-<p>给定观测序列$\mathbf x$，如何调整参数$\lambda$使得出现$\mathbf x$的概率最大</p>
-<script type="math/tex; mode=display">
-\lambda_{MLE} = \arg\max_{\lambda}p(o|\lambda)</script></li>
-</ul>
-<h3 id="概率计算问题"><a href="#概率计算问题" class="headerlink" title="概率计算问题"></a>概率计算问题</h3>
+
       
     </div>
 
@@ -475,7 +403,7 @@ b_{ij} = P(x_t=o_j\mid y_t=s_i)</script><p>状态为$s_i$，观测值为$o_j$被
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

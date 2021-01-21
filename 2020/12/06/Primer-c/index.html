@@ -29,10 +29,13 @@
 <meta property="og:site_name" content="Mr.fuck">
 <meta property="og:description" content="C++基础变量和基本类型类型转换  赋给一个无符号类型一个超出它表示范围的值时，结果是初始值对无符号类型表示数值总数取模后的余数。例如，对于unsigned char表示范围为[0,255]。当把-1赋给8bits大小的unsigned char时所得结果是255。 当给一个带符号类型一个超出范围的值时，结果是未定义的。 不要混用带符号类型和无符号类型。带符号类型会自动地装换成无符号数，会改变有符">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/12/06/Primer-c/map-insert">
+<meta property="og:image" content="http://example.com/2020/12/06/Primer-c/无序容器管理操作.jpg">
 <meta property="article:published_time" content="2020-12-06T12:26:18.000Z">
-<meta property="article:modified_time" content="2021-01-03T08:56:02.075Z">
+<meta property="article:modified_time" content="2021-01-21T13:03:00.994Z">
 <meta property="article:author" content="ggl">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/12/06/Primer-c/map-insert">
 
 
 <link rel="canonical" href="http://example.com/2020/12/06/Primer-c/">
@@ -180,7 +183,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">C++基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">变量和基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%92%8Cconst"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">指针和const</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84"><span class="nav-number">1.2.</span> <span class="nav-text">字符串、向量和数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-number">1.2.1.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector"><span class="nav-number">1.2.2.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">迭代器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-number">1.3.1.</span> <span class="nav-text">参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%BC%A0%E9%80%92"><span class="nav-number">1.3.2.</span> <span class="nav-text">指针传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%BD%A2%E5%8F%82"><span class="nav-number">1.3.3.</span> <span class="nav-text">引用形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82"><span class="nav-number">1.3.4.</span> <span class="nav-text">const形参和实参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%BD%A2%E5%8F%82"><span class="nav-number">1.3.5.</span> <span class="nav-text">数组形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E6%9C%89%E5%8F%AF%E5%8F%98%E5%BD%A2%E5%8F%82%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.6.</span> <span class="nav-text">含有可变形参的函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.4.</span> <span class="nav-text">返回类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E8%BF%94%E5%9B%9E%E5%80%BC%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.1.</span> <span class="nav-text">有返回值函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88"><span class="nav-number">1.4.2.</span> <span class="nav-text">返回数组指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%94%A8%E9%80%94%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7"><span class="nav-number">1.4.3.</span> <span class="nav-text">特殊用途语言特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">内联函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#assert%E9%A2%84%E5%A4%84%E7%90%86%E5%AE%8F"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">assert预处理宏</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text">抽象数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">成员变量和成员函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%95%E5%85%A5this"><span class="nav-number">1.5.1.1.1.</span> <span class="nav-text">引入this</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#const%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.1.1.2.</span> <span class="nav-text">const成员函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E5%B0%81%E8%A3%85"><span class="nav-number">1.5.2.</span> <span class="nav-text">访问控制与封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8B%E5%85%83"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">友元</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%85%B6%E4%BB%96%E7%89%B9%E6%80%A7"><span class="nav-number">1.5.3.</span> <span class="nav-text">类的其他特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E-this%E7%9A%84%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">返回*this的成员函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.4.</span> <span class="nav-text">构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A7%94%E6%89%98%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">委托构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E7%B1%BB"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">聚合类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">1.5.4.3.</span> <span class="nav-text">静态变量</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E6%A0%87%E5%87%86%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">C++标准库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO%E5%BA%93"><span class="nav-number">2.1.</span> <span class="nav-text">IO库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IO%E7%B1%BB"><span class="nav-number">2.1.1.</span> <span class="nav-text">IO类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-number">2.1.2.</span> <span class="nav-text">文件输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%87%E4%BB%B6%E6%B5%81%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">使用文件流对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">文件模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">顺序容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.1.</span> <span class="nav-text">顺序容器操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E7%9A%84string%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.2.</span> <span class="nav-text">额外的string操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8"><span class="nav-number">2.2.3.</span> <span class="nav-text">容器适配器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">泛型算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.1.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.2.</span> <span class="nav-text">定制操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8"><span class="nav-number">2.4.</span> <span class="nav-text">关联容器</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">C++基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">变量和基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%92%8Cconst"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">指针和const</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84"><span class="nav-number">1.2.</span> <span class="nav-text">字符串、向量和数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-number">1.2.1.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector"><span class="nav-number">1.2.2.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">迭代器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-number">1.3.1.</span> <span class="nav-text">参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%BC%A0%E9%80%92"><span class="nav-number">1.3.2.</span> <span class="nav-text">指针传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%BD%A2%E5%8F%82"><span class="nav-number">1.3.3.</span> <span class="nav-text">引用形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82"><span class="nav-number">1.3.4.</span> <span class="nav-text">const形参和实参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%BD%A2%E5%8F%82"><span class="nav-number">1.3.5.</span> <span class="nav-text">数组形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E6%9C%89%E5%8F%AF%E5%8F%98%E5%BD%A2%E5%8F%82%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.6.</span> <span class="nav-text">含有可变形参的函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.4.</span> <span class="nav-text">返回类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E8%BF%94%E5%9B%9E%E5%80%BC%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.1.</span> <span class="nav-text">有返回值函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88"><span class="nav-number">1.4.2.</span> <span class="nav-text">返回数组指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%94%A8%E9%80%94%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7"><span class="nav-number">1.4.3.</span> <span class="nav-text">特殊用途语言特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">内联函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#assert%E9%A2%84%E5%A4%84%E7%90%86%E5%AE%8F"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">assert预处理宏</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text">抽象数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">成员变量和成员函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%95%E5%85%A5this"><span class="nav-number">1.5.1.1.1.</span> <span class="nav-text">引入this</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#const%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.1.1.2.</span> <span class="nav-text">const成员函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E5%B0%81%E8%A3%85"><span class="nav-number">1.5.2.</span> <span class="nav-text">访问控制与封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8B%E5%85%83"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">友元</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%85%B6%E4%BB%96%E7%89%B9%E6%80%A7"><span class="nav-number">1.5.3.</span> <span class="nav-text">类的其他特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E-this%E7%9A%84%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">返回*this的成员函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.4.</span> <span class="nav-text">构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A7%94%E6%89%98%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">委托构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E7%9A%84%E7%B1%BB%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">隐式的类类型转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E7%B1%BB"><span class="nav-number">1.5.4.3.</span> <span class="nav-text">聚合类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">1.5.4.4.</span> <span class="nav-text">静态变量</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E6%A0%87%E5%87%86%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">C++标准库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO%E5%BA%93"><span class="nav-number">2.1.</span> <span class="nav-text">IO库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IO%E7%B1%BB"><span class="nav-number">2.1.1.</span> <span class="nav-text">IO类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-number">2.1.2.</span> <span class="nav-text">文件输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%87%E4%BB%B6%E6%B5%81%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">使用文件流对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">文件模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">顺序容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.1.</span> <span class="nav-text">顺序容器操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E7%9A%84string%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.2.</span> <span class="nav-text">额外的string操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8"><span class="nav-number">2.2.3.</span> <span class="nav-text">容器适配器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">泛型算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.1.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.2.</span> <span class="nav-text">定制操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8"><span class="nav-number">2.4.</span> <span class="nav-text">关联容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="nav-number">2.4.1.</span> <span class="nav-text">关联容器概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">2.4.2.</span> <span class="nav-text">关联容器操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%BA%8F%E5%AE%B9%E5%99%A8"><span class="nav-number">2.4.3.</span> <span class="nav-text">无序容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98"><span class="nav-number">2.5.</span> <span class="nav-text">动态内存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">类设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6"><span class="nav-number">3.1.</span> <span class="nav-text">拷贝控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E3%80%81%E8%B5%8B%E5%80%BC%E5%92%8C%E9%94%80%E6%AF%81"><span class="nav-number">3.1.1.</span> <span class="nav-text">拷贝、赋值和销毁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%A7%BB%E5%8A%A8"><span class="nav-number">3.1.2.</span> <span class="nav-text">对象移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.3.</span> <span class="nav-text">右值引用和成员函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E9%87%8D%E8%BD%BD%E4%B8%8E%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.2.</span> <span class="nav-text">操作重载与类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">3.2.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.2.2.</span> <span class="nav-text">输入和输出运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E5%92%8C%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.2.3.</span> <span class="nav-text">算术和关系运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%A2%9E%E9%80%92%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.2.4.</span> <span class="nav-text">递增递减运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.2.5.</span> <span class="nav-text">函数调用运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%B1%BB%E5%9E%8B%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.2.6.</span> <span class="nav-text">类类型重载运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.3.</span> <span class="nav-text">面向对象程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%B1%BB%E5%92%8C%E6%B4%BE%E7%94%9F%E7%B1%BB"><span class="nav-number">3.3.1.</span> <span class="nav-text">基类和派生类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.2.</span> <span class="nav-text">虚函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E5%9F%BA%E7%B1%BB"><span class="nav-number">3.3.3.</span> <span class="nav-text">抽象基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%92%8C%E7%BB%A7%E6%89%BF"><span class="nav-number">3.3.4.</span> <span class="nav-text">访问控制和继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E6%8B%B7%E8%B4%9D%E6%8E%A7%E5%88%B6"><span class="nav-number">3.3.5.</span> <span class="nav-text">构造函数和拷贝控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.5.1.</span> <span class="nav-text">虚析构函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">3.3.5.2.</span> <span class="nav-text">继承的构造函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B"><span class="nav-number">3.4.</span> <span class="nav-text">模板和泛型编程</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -196,20 +199,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -292,7 +295,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-03 16:56:02" itemprop="dateModified" datetime="2021-01-03T16:56:02+08:00">2021-01-03</time>
+        <time title="修改时间：2021-01-21 21:03:00" itemprop="dateModified" datetime="2021-01-21T21:03:00+08:00">2021-01-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -538,7 +541,7 @@
 </ul>
 <p><strong>Note</strong></p>
 <ul>
-<li>常量对象，以及常量对象的引用或指针都只能调用常量成员函数。</li>
+<li><u>常量对象，以及常量对象的引用或指针都只能调用常量成员函数</u>。</li>
 </ul>
 <h3 id="访问控制与封装"><a href="#访问控制与封装" class="headerlink" title="访问控制与封装"></a>访问控制与封装</h3><p><strong>访问说明符</strong></p>
 <ul>
@@ -555,6 +558,7 @@
 <ul>
 <li>友元声明只能出现在<u>类定义的内部</u>。</li>
 <li>友元不是类的成员，也不受它所在区域访问控制级别的约束。</li>
+<li>一般来说，在类的开始位置或者结束位置集中声明友元。</li>
 </ul>
 <h3 id="类的其他特性"><a href="#类的其他特性" class="headerlink" title="类的其他特性"></a>类的其他特性</h3><p><strong>可变数据成员</strong></p>
 <ul>
@@ -580,6 +584,12 @@
 <li>将职责委托给其他构造函数。委托构造函数有一个成员初始值列表和一个函数体。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myClass(<span class="keyword">int</span> a,<span class="built_in">string</span> b):a(a),b(b)&#123;&#125;</span><br><span class="line">    <span class="comment">//委托构造函数</span></span><br><span class="line">myClass():  myClass(<span class="number">0</span>,<span class="string">&quot;&quot;</span>)&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="隐式的类类型转换"><a href="#隐式的类类型转换" class="headerlink" title="隐式的类类型转换"></a>隐式的类类型转换</h4><blockquote>
+<p>如果构造函数只接受一个实参，则它实际上定义了转换为此类类型的隐式转换机制。</p>
+</blockquote>
+<ul>
+<li>对于构造函数的隐式转换可以通过声明<strong>explicit</strong>关键字阻止。</li>
+</ul>
 <h4 id="聚合类"><a href="#聚合类" class="headerlink" title="聚合类"></a>聚合类</h4><p>满足如下条件的类</p>
 <ul>
 <li>所有成员都是public的</li>
@@ -814,7 +824,7 @@
 <p>标准库bind函数</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> newCallable = bind(callable,arg_list)</span><br></pre></td></tr></table></figure>
-<h2 id="关联容器"><a href="#关联容器" class="headerlink" title="关联容器"></a>关联容器</h2><p><strong>有序容器</strong></p>
+<h2 id="关联容器"><a href="#关联容器" class="headerlink" title="关联容器"></a>关联容器</h2><h3 id="关联容器概述"><a href="#关联容器概述" class="headerlink" title="关联容器概述"></a>关联容器概述</h3><p><strong>有序容器</strong></p>
 <ul>
 <li><code>map</code></li>
 <li><code>set</code></li>
@@ -828,7 +838,216 @@
 <li><code>unordered_multimap</code></li>
 <li><code>unordered_multiset</code></li>
 </ul>
-
+<p><strong>pair类型</strong></p>
+<p>定义在<code>utility</code>头文件中，一个<code>pair</code>保存两个数据成员，<code>pair</code>的数据成员是public的，分别命名为<code>first</code>和<code>seconde</code>。</p>
+<ul>
+<li><code>pair&lt;T1,T2&gt; p(v1,v2)</code></li>
+<li><code>pair&lt;T1,T2&gt; p=&#123;v1,v2&#125;</code></li>
+<li><code>make_pair(v1,v2)</code></li>
+<li><code>p.first,p.second</code></li>
+<li><code>p1 relop p2</code>:</li>
+</ul>
+<h3 id="关联容器操作"><a href="#关联容器操作" class="headerlink" title="关联容器操作"></a>关联容器操作</h3><p><strong>类型</strong></p>
+<ul>
+<li><code>key_type</code></li>
+<li><code>mapped_type</code></li>
+<li><code>value_type</code></li>
+</ul>
+<blockquote>
+<p>map的value_type是pair，我们可以改变pair的值，但不能改变关键字成员的值</p>
+<p>set类型的元素是const的</p>
+</blockquote>
+<p><strong>向map插入元素</strong></p>
+<p><img src="/2020/12/06/Primer-c/map-insert" alt="image-20210112184839860"></p>
+<p>使用<code>insert</code>插入，返回一个<code>pair</code>，<code>first</code>成员是一个迭代器，<code>seconde</code>成员是一个<code>bool</code>值。存在则返回false</p>
+<p><strong>删除元素</strong></p>
+<ul>
+<li><code>c.earse(k)</code>：关键字为k的元素</li>
+<li><code>c.earse(p)</code>：删除迭代器p指定的元素</li>
+<li><code>c.earse(b,e)</code>：删除指定范围内的元素</li>
+</ul>
+<p><strong>关键字元素范围</strong></p>
+<ul>
+<li><code>lower_bound</code>：返回一个迭代器指向第一个匹配元素的位置</li>
+<li><code>upper_bound</code>：返回一个迭代器指向最后一个匹配元素的位置</li>
+</ul>
+<blockquote>
+<p>得到一个具有该关键字的元素的范围</p>
+</blockquote>
+<h3 id="无序容器"><a href="#无序容器" class="headerlink" title="无序容器"></a>无序容器</h3><ul>
+<li>无序容器使用<strong>哈希函数</strong>和关键字类型的==运算符。</li>
+<li>无序容器在存储上组织为一组桶，每个桶保存零个或多个元素。首先计算元素哈希值，指出搜索那个桶。</li>
+</ul>
+<p><strong>无序容器管理操作</strong></p>
+<p><img src="/2020/12/06/Primer-c/无序容器管理操作.jpg" alt="image-20210112231402475"></p>
+<h2 id="动态内存"><a href="#动态内存" class="headerlink" title="动态内存"></a>动态内存</h2><h1 id="类设计"><a href="#类设计" class="headerlink" title="类设计"></a>类设计</h1><h2 id="拷贝控制"><a href="#拷贝控制" class="headerlink" title="拷贝控制"></a>拷贝控制</h2><h3 id="拷贝、赋值和销毁"><a href="#拷贝、赋值和销毁" class="headerlink" title="拷贝、赋值和销毁"></a>拷贝、赋值和销毁</h3><blockquote>
+<p>在函数调用时，具有非引用的返回类型要进行拷贝初始化。拷贝构造函数被用于初始化非引用类类型参数。所以拷贝构造函数参数必须时引用类型。并且设计为const类型，可以用于给非const变量和const变量赋值初始化。</p>
+</blockquote>
+<ul>
+<li>==拷贝构造函数的额外参数都必须有默认参数==</li>
+</ul>
+<p><strong>析构函数</strong></p>
+<blockquote>
+<p>析构函数执行与构造函数相反的操作，释放对象使用的资源，销毁对象的非static数据成员。</p>
+<p>析构函数是类的一个成员函数，名字有波浪号接类名组成，没有返回值也不接受参数</p>
+</blockquote>
+<p><strong>使用=default</strong></p>
+<blockquote>
+<p>显式地要求编译器生成合成的版本，由编译器生成默认行为</p>
+<p>只对默认构造函数或者拷贝控制成员有效</p>
+</blockquote>
+<p><strong>使用=delete</strong></p>
+<blockquote>
+<p>通过将拷贝函数和拷贝赋值运算符定义为删除的函数来阻止拷贝。=delete</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NoCopy</span>&#123;</span></span><br><span class="line">    NoCopy() = <span class="keyword">default</span>;</span><br><span class="line">    NoCopy(<span class="keyword">const</span> NoCopy&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">    NoCopy &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> NoCopy&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">    ~NoCopy() = <span class="keyword">default</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>析构函数不能是删除的成员</li>
+</ul>
+<h3 id="对象移动"><a href="#对象移动" class="headerlink" title="对象移动"></a>对象移动</h3><p><strong>右值引用</strong></p>
+<blockquote>
+<p>绑定到一个将要销毁的对象，通过&amp;&amp;来获取右值引用。</p>
+</blockquote>
+<ul>
+<li>赋值、下标、解引用和前置递增/递减运算符，都是返回左值的表达式的例子。</li>
+<li><p>算术、关系、位以及后置递增/递减运算符，都生成右值。不能把左值引用绑定到这类表达式。但是可以将<u>const引用</u>或<u>右值引用</u>绑定到这类表达式</p>
+</li>
+<li><p>左值有持久状态，右值是字面常量或者表达式求值时创建的临时对象</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;r = i;</span><br><span class="line"><span class="keyword">int</span> &amp;&amp;r1 = i*<span class="number">32</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;&amp;r2 = i*i;  </span><br><span class="line"><span class="keyword">int</span> &amp;&amp;r3 = <span class="built_in">std</span>::move(r1);</span><br></pre></td></tr></table></figure>
+<p><strong>标准库move函数</strong></p>
+<blockquote>
+<p>move函数调用告诉编译器：我们有一个左值，但我们希望像一个右值一样处理它。除了对左值进行赋值或者销毁外将不再使用它。</p>
+</blockquote>
+<p><strong>移动构造函数和移动赋值运算</strong></p>
+<ul>
+<li><p>移动构造函数的第一个参数是该类类型的一个右值引用，移动构造函数不分配任何新内存而是接管源对象内存，最后源对象会被销毁。</p>
+</li>
+<li><p>如果操作不抛出任何异常，标记为<code>noexcept</code></p>
+</li>
+</ul>
+<h3 id="右值引用和成员函数"><a href="#右值引用和成员函数" class="headerlink" title="右值引用和成员函数"></a>右值引用和成员函数</h3><p><strong>引用限定符</strong></p>
+<ul>
+<li><code>&amp;</code>限定的函数，只能用于左值；<code>&amp;&amp;</code>限定的函数只能用于右值。用于指出<code>this</code>可以指向一个左值或右值。</li>
+<li>一个函数可以同时用<code>const</code>和引用限定，引用限定必须跟随在<code>const</code>限定符之后</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Foo &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> FOO&amp;) &amp;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="操作重载与类型转换"><a href="#操作重载与类型转换" class="headerlink" title="操作重载与类型转换"></a>操作重载与类型转换</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><strong>某些运算符不应该被重载</strong></p>
+<ul>
+<li>逻辑与、逻辑或和逗号运算符的运算求值顺序无法保留。&amp;&amp;和||短路属性无法保留。</li>
+</ul>
+<p><strong>成员函数或非成员函数</strong></p>
+<ul>
+<li>赋值（=）、下标（[ ]）、调用（( )）和成员访问箭头（-&gt;）必须是成员。</li>
+<li>复合赋值运算符一般来说应该是成员。</li>
+<li>改变对象状态或者与给定类型密切相关的运算符，如递增、递减和解引用运算符通常都是成员。</li>
+<li>算术、相等性、关系和位运算等，通常都是普通非成员函数。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s = <span class="string">&quot;world&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> t = s+<span class="string">&quot;!&quot;</span>;</span><br><span class="line">+s;<span class="built_in">string</span> u = <span class="string">&quot;hi&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>因为<code>string</code>将<code>+</code>定义为了普通的非成员函数，所以实参能被转换为形参类型。</li>
+</ul>
+<h3 id="输入和输出运算符"><a href="#输入和输出运算符" class="headerlink" title="输入和输出运算符"></a>输入和输出运算符</h3><ul>
+<li>必须是非成员函数，通常定义为友元非成员函数，返回<code>ostream</code>的引用。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;os,<span class="keyword">const</span> Salary &amp;item)&#123;</span><br><span class="line">    os&lt;&lt;item.days&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;item.sum;</span><br><span class="line">    <span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输入运算符第一个形参是将要读取的流的引用，第二个形参是将要读入到的非常量对象的引用。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">istream &amp;<span class="keyword">operator</span>&gt;&gt;(istream &amp;is,Salary &amp;item)&#123;</span><br><span class="line">    is &gt;&gt; item.days  &gt;&gt;item.sum;</span><br><span class="line">    <span class="keyword">if</span>(is)</span><br><span class="line">        item.ave = item.sum/item.days;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        item = Salary();</span><br><span class="line">    <span class="keyword">return</span> is;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算术和关系运算符"><a href="#算术和关系运算符" class="headerlink" title="算术和关系运算符"></a>算术和关系运算符</h3><blockquote>
+<p>通常我们把算术和关系运算符定义为非成员函数以允许对左侧和右侧的运算对象进行转换。</p>
+</blockquote>
+<h3 id="递增递减运算符"><a href="#递增递减运算符" class="headerlink" title="递增递减运算符"></a>递增递减运算符</h3><blockquote>
+<p>前置和后置运算符，普通的重载无法区分这两种情况。所以后置版本接受一个额外的(不被使用)int类型的形参，其值为0。</p>
+</blockquote>
+<ul>
+<li>因为我们不会用到int形参，所以无须为其命名</li>
+</ul>
+<h3 id="函数调用运算符"><a href="#函数调用运算符" class="headerlink" title="函数调用运算符"></a>函数调用运算符</h3><blockquote>
+<p>如果类重载了函数调用运算符，则我们可以像使用函数一样使用该类的对象。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">absInt</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> val)</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> val&lt;<span class="number">0</span>?-val:val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="类类型重载运算符"><a href="#类类型重载运算符" class="headerlink" title="类类型重载运算符"></a>类类型重载运算符</h3><blockquote>
+<p>类型转换运算符是类的一种特殊成员函数，负责将一个类类型的值转换为其他类型。</p>
+<p>既没有显式的返回类型，也没有形参，而且必须定义为类的成员函数。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">operator</span> <span class="title">type</span><span class="params">()</span>	<span class="keyword">const</span></span>;</span><br></pre></td></tr></table></figure>
+<h2 id="面向对象程序设计"><a href="#面向对象程序设计" class="headerlink" title="面向对象程序设计"></a>面向对象程序设计</h2><p>oop(object-oriented programming)</p>
+<ul>
+<li>基类</li>
+<li>虚函数</li>
+<li>类派生列表</li>
+<li>当我们使用基类的引用或者指针时调用一个虚函数时将发生动态绑定</li>
+</ul>
+<h3 id="基类和派生类"><a href="#基类和派生类" class="headerlink" title="基类和派生类"></a>基类和派生类</h3><ul>
+<li>基类通常都定义一个虚析构函数。</li>
+<li>基类有两种成员函数，一种是希望派生类进行覆盖的函数，一种是直接继承而不要改变的函数。</li>
+<li>虚函数可以是构造函数之外的非静态函数，<code>virtual</code>只能出现在类的内部声明语句之前而不能用于定义类外部的函数定义。</li>
+</ul>
+<p><strong>访问控制与继承</strong></p>
+<ul>
+<li>派生类能够访问公有成员，而不能访问私有成员。<code>protected</code>访问运算符说明派生类有权访问基类该成员，而禁止其他用户访问。</li>
+</ul>
+<p><strong>继承与静态成员</strong></p>
+<ul>
+<li>如果基类定义了一个静态成员，则在整个继承体系中只存在该成员的唯一定义。不了从基类中派生出来多少个派生类，对于每个静态成员来说都只存在唯一的实例。</li>
+</ul>
+<p><strong>防止继承的发生</strong></p>
+<ul>
+<li>在类名后加上 <code>final</code>关键字，防止继承。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Last</span> <span class="title">final</span>&#123;</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h3><ul>
+<li>当我们使用基类的引用或者指针调用一个虚成员函数时会执行动态绑定</li>
+<li>如果基类把一个函数声明为虚函数，则该函数在派生类中隐式地也是虚函数</li>
+<li><p>对虚函数的调用可能在运行时才被解析</p>
+</li>
+<li><p>派生类如果定义了一个函数与基类中虚函数的名字相同但是形参不同，这仍然是合法的。使用<code>override</code>标记派生类中的虚函数了某个函数，但没有覆盖已存在的虚函数，此时编译器将报错。</p>
+</li>
+<li><p>如果函数被指定为<code>final</code>，则之后任何尝试覆盖该函数的操作都将引发错误。</p>
+</li>
+</ul>
+<h3 id="抽象基类"><a href="#抽象基类" class="headerlink" title="抽象基类"></a>抽象基类</h3><p><strong>纯虚函数</strong></p>
+<ul>
+<li><p>通过在函数体的位置书写=0就可以将一个虚函数说明未纯虚函数。<u>=0只能出现在类内部的虚函数声明语句处</u></p>
+</li>
+<li><p>含有纯虚函数的类是抽象基类。抽象基类负责定义接口，而后续其他类负责覆盖该接口。</p>
+</li>
+<li>不能创建抽象基类的对象。</li>
+</ul>
+<h3 id="访问控制和继承"><a href="#访问控制和继承" class="headerlink" title="访问控制和继承"></a>访问控制和继承</h3><p><strong>受保护成员</strong></p>
+<ul>
+<li>受保护的成员对于类的用户来说是不可访问的。</li>
+<li>受保护的成员对于派生类的成员和友元来说是可访问的。</li>
+<li>派生类的成员或友元只能通过==派生类对象==来访问基类的受保护成员。派生类对于一个基类对象的受保护成员没有任何访问特权。</li>
+</ul>
+<p><strong>公用、私有和受保护继承</strong></p>
+<ul>
+<li>派生类访问说明符对于派生类的成员能否访问其直接基类的成员没什么影响。对基类成员的访问权限只与基类的访问说明符有关。</li>
+<li>派生说明符的目的是控制==派生类用户==对于基类成员的访问权限。</li>
+</ul>
+<p><strong>改变成员可访问性</strong></p>
+<ul>
+<li>通过在类的内部使用<code>using</code>声明语句，我们可以将该类的直接或间接基类中的任何可访问成员标记出来。<code>using</code>访问权限由声明语句前的访问说明符决定。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span>:</span><br><span class="line"><span class="keyword">using</span> Base::n;</span><br></pre></td></tr></table></figure>
+<p><strong>默认继承权限</strong></p>
+<ul>
+<li>使用<code>class</code>关键字定义的派生类是<strong>私有继承</strong>的，使用<code>struct</code>关键字定义的派生类是<strong>公有继承</strong>的。</li>
+</ul>
+<h3 id="构造函数和拷贝控制"><a href="#构造函数和拷贝控制" class="headerlink" title="构造函数和拷贝控制"></a>构造函数和拷贝控制</h3><h4 id="虚析构函数"><a href="#虚析构函数" class="headerlink" title="虚析构函数"></a>虚析构函数</h4><ul>
+<li>析构函数的虚属性也会被继承，无论派生类使用合成的析构函数还是定义自己的析构函数，都将是虚析构函数。</li>
+</ul>
+<blockquote>
+<p>创建派生类对象时，构造函数的执行顺序和继承顺序相同，即先执行基类构造函数，再执行派生类构造函数。</p>
+<p>而销毁派生类对象时，析构函数的执行顺序和继承顺序相反，即先执行派生类析构函数，再执行基类析构函数。</p>
+</blockquote>
+<h4 id="继承的构造函数"><a href="#继承的构造函数" class="headerlink" title="继承的构造函数"></a>继承的构造函数</h4><blockquote>
+<p>在c++11标准中，派生类能够重用其<u>直接基类</u>定义的构造函数。构造函数并非以常规的方式继承而来，一个类只直接初始化它的直接基类，一个类也只继承其直接基类的构造函数。</p>
+</blockquote>
+<h2 id="模板和泛型编程"><a href="#模板和泛型编程" class="headerlink" title="模板和泛型编程"></a>模板和泛型编程</h2>
     </div>
 
     

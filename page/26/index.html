@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/05/Scrapy/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/21/python%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/05/Scrapy/" class="post-title-link" itemprop="url">Scrapy</a>
+            <a href="/2020/10/21/python%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">python基础</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,17 +281,23 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-05 11:20:03 / 修改时间：14:53:12" itemprop="dateCreated datePublished" datetime="2020-11-05T11:20:03+08:00">2020-11-05</time>
+      <time title="创建时间：2020-10-21 13:26:43" itemprop="dateCreated datePublished" datetime="2020-10-21T13:26:43+08:00">2020-10-21</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-20 21:28:07" itemprop="dateModified" datetime="2020-12-20T21:28:07+08:00">2020-12-20</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" itemprop="url" rel="index"><span itemprop="name">数据挖掘</span></a>
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
         </span>
     </span>
 
@@ -305,241 +311,376 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="1、编写Spider"><a href="#1、编写Spider" class="headerlink" title="1、编写Spider"></a>1、编写Spider</h2><h3 id="初始Scrapy"><a href="#初始Scrapy" class="headerlink" title="初始Scrapy"></a>初始Scrapy</h3><ul>
-<li>scrapy是一个为了爬取网站数、提取结构性数据而编写的应用框架。  </li>
-<li>scrapy使用Twisted异步网络框架，可以加快下载速度。</li>
-</ul>
-<h3 id="Scrapy架构"><a href="#Scrapy架构" class="headerlink" title="Scrapy架构"></a>Scrapy架构</h3><ul>
-<li>scrapy engine(引擎)：负责数据、信号在模块之间的传递。</li>
-<li>Scheduler(调度器)：接受引擎发送的Request请求。</li>
-<li>Downloader(下载器)：下载引擎的Requests请求，获取Responses交还给引擎并交给Spider处理。</li>
-<li>Spider(爬虫)：处理Responses，分析提取数据，获取Item字段所需数据。<strong><u>必须返回Request，BaseItem，dict或者None。</u></strong></li>
-<li>Item Pipeline(管道)：负责Spider中获取的Item。</li>
-<li>Downloader Middlewares(下载中间件)：自定义扩展下载功能。</li>
-<li>Spider Middlewares(Spider中间件)：自定义Requests请求和进行Responses过滤。</li>
-</ul>
-<p><img src="/2020/11/05/Scrapy/webp.jpg" alt="&quot;架构图&quot;">  </p>
-<center>Scrapy架构图</center>
-
-
-<h3 id="Request和Response对象"><a href="#Request和Response对象" class="headerlink" title="Request和Response对象"></a>Request和Response对象</h3><p>Request.meta属性可以包括任意数据，但是有一些特殊的键被Scrapy和内建扩展所使用。</p>
+          <h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><h3 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h3><p>构造方法</p>
 <ul>
-<li>dont_redirect</li>
-<li>dont_retry</li>
-<li>dont_merge_cookies</li>
-<li>cookiejar</li>
+<li>mapping</li>
+<li>iterable</li>
+<li>关键字参数**kwargs</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Request(url[,callback,method=<span class="string">&#x27;GRT&#x27;</span>,headers,body,cookies,meta,enconding=<span class="string">&#x27;utf-8&#x27;</span>,priority=<span class="number">0</span>,dont_filter=<span class="literal">False</span>,errback])</span><br><span class="line">meta元字典，为组件传递信息。例如：cookie，也可以给响应处理函数传递信息</span><br><span class="line">dont_filter：是否对同一个url多次提交重复下载，对于内容随时间变化的页面时，可以将参数置为<span class="literal">True</span></span><br><span class="line"></span><br><span class="line">Response根据响应内容有：TextResponse、HtmlResponse、XmlResponse</span><br><span class="line">Response.urljoin()</span><br><span class="line">- text</span><br><span class="line">- body</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="spider开发流程"><a href="#spider开发流程" class="headerlink" title="spider开发流程"></a>spider开发流程</h3><ol>
-<li>继承scrapy.Spider<br>Spider基类实现的内容</li>
-</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#kwargs</span></span><br><span class="line">In [<span class="number">30</span>]: dict(one=<span class="number">1</span>,two=<span class="number">2</span>,three=<span class="number">3</span>)</span><br><span class="line">Out[<span class="number">30</span>]: &#123;<span class="string">&#x27;one&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;two&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;three&#x27;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="comment">#iterable</span></span><br><span class="line">In [<span class="number">31</span>]: dict([(<span class="number">1</span>,<span class="number">1</span>),[<span class="number">2</span>,<span class="number">2</span>]])</span><br><span class="line">Out[<span class="number">31</span>]: &#123;<span class="number">1</span>: <span class="number">1</span>, <span class="number">2</span>: <span class="number">2</span>&#125;    </span><br></pre></td></tr></table></figure>
+<p>方法</p>
 <ul>
-<li>Scrapy引擎调用的接口</li>
-<li>供用户使用的使用工具函数，log</li>
-<li>供用户访问的属性，settings</li>
+<li>fromkeys：传入一个iterable和value。其中每一个iterable中的元素都作为键值，value的值作为每一个键的value值。</li>
+<li>setdefault：插入一个key，并且将value值赋给key如果key值不在字典中。如果key在字典则返回value，否则插入的value。</li>
 </ul>
-<ol>
-<li><p>为Spider命名</p>
-<p> 类属性name标识</p>
-</li>
-<li><p>设定爬取起点   </p>
-</li>
-</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">41</span>]: d</span><br><span class="line">Out[<span class="number">41</span>]: &#123;<span class="number">1</span>: <span class="string">&#x27;a&#x27;</span>, <span class="number">2</span>: <span class="string">&#x27;b&#x27;</span>, <span class="number">3</span>: <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line">In [<span class="number">44</span>]: dict.fromkeys([<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>],[<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line">Out[<span class="number">44</span>]: &#123;<span class="string">&#x27;a&#x27;</span>: [<span class="number">1</span>, <span class="number">2</span>], <span class="string">&#x27;b&#x27;</span>: [<span class="number">1</span>, <span class="number">2</span>]&#125;</span><br><span class="line"><span class="comment">#setdefault</span></span><br><span class="line">In [<span class="number">52</span>]: d.setdefault(<span class="string">&#x27;b&#x27;</span>,<span class="number">2</span>)</span><br><span class="line">Out[<span class="number">52</span>]: <span class="number">2</span></span><br><span class="line">In [<span class="number">53</span>]: d</span><br><span class="line">Out[<span class="number">53</span>]: &#123;<span class="number">1</span>: <span class="string">&#x27;a&#x27;</span>, <span class="number">2</span>: <span class="string">&#x27;b&#x27;</span>, <span class="number">3</span>: <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;a&#x27;</span>: <span class="literal">None</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>&#125;    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>查找最大或最小N个元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line">heapq.nlargest()</span><br><span class="line">heapq.nsmallest()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="collections模块-容器类型"><a href="#collections模块-容器类型" class="headerlink" title="collections模块-容器类型"></a>collections模块-容器类型</h3><h4 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a>Counter</h4><p>计数可hash对象。</p>
+<p>方法</p>
 <ul>
-<li>类属性start_urls设定爬取起点，url列表。</li>
-<li>由Spider基类的start_requests方法帮助我们构造提交Request对象。</li>
+<li>element:返回一个迭代器，其中每个元素将重复出现计数值所指定次。 元素会按首次出现的顺序返回。 </li>
+<li>most_common(n)：返回n个最常见元素</li>
 </ul>
-<h2 id="2、使用Selector-提取数据"><a href="#2、使用Selector-提取数据" class="headerlink" title="2、使用Selector 提取数据"></a>2、使用Selector 提取数据</h2><h3 id="selector对象"><a href="#selector对象" class="headerlink" title="selector对象"></a>selector对象</h3><p>Selector类实现位于scrapy.selector模块<br>xpath、css方法返回一个SelectorList对象<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> sel <span class="keyword">in</span> selector_list:</span><br><span class="line">	print(sel.xpath(<span class="string">&#x27;/.text()&#x27;</span>))</span><br></pre></td></tr></table></figure><br><strong>提取数据</strong></p>
-<pre><code>- extract()
-    - re()
-    - extract_first()
-    - re_first()
-</code></pre><h3 id="Xpath"><a href="#Xpath" class="headerlink" title="Xpath"></a>Xpath</h3><p>xpath教程<a target="_blank" rel="noopener" href="http://www.zvon.org/comp/r/tut-XPath_1.html#intro">http://www.zvon.org/comp/r/tut-XPath_1.html#intro</a></p>
-<p>XML Path Langugae</p>
-<ol>
-<li><p>节点分类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">43</span>]: c = Counter(a=<span class="number">4</span>,b=<span class="number">2</span>,c=<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">44</span>]: sorted(c.elements())</span><br><span class="line">Out[<span class="number">44</span>]: [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">45</span>]: c.most_common(<span class="number">2</span>)</span><br><span class="line">Out[<span class="number">45</span>]: [(<span class="string">&#x27;a&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>)]</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<h4 id="nametuple"><a href="#nametuple" class="headerlink" title="nametuple"></a>nametuple</h4><p><code>namedtuple(
+    typename,
+    field_names,
+    *,
+    rename=False,
+    defaults=None,
+    module=None,)</code></p>
 <ul>
-<li>根节点：文档树的根</li>
-<li>元素节点：html、body、div、p、a</li>
-<li>属性节点：href</li>
-<li>文本节点</li>
+<li><p>返回一个新的元组类型名为typename。</p>
+</li>
+<li><p>field_names可以是字符串序列，也可以是以’,’分割的字符串。</p>
+</li>
+<li>default为field_names设置默认值。</li>
 </ul>
-</li>
-<li><p>基础语法</p>
-<p> | 表达式    | 描述               |<br> | ————- | ————————— |<br> | /         | 根                 |<br> | .         | 当前节点           |<br> | ..        | 父节点             |<br> | ELEMENT   | 子节点所有元素     |<br> | //ELEMENT | 后代节点中所有元素 |<br> | <em>         | 选中所有元素子节点 |<br> | text()    | 文本子节点         |<br> | @ATTR     | ATTR属性节点       |<br> | @</em>        | 选中所有属性节点   |<br> | []        | 指定一个元素       |</p>
-<p> //选中所有无论在什么位置</p>
-<p> [@ATTR=” xxx”]</p>
-</li>
-<li><p>函数</p>
+<p>方法</p>
 <ul>
-<li>string</li>
-<li>contains：如果第一个参数字符串包含第二个参数字符串，contains函数返回True</li>
+<li>_make(iterable)：从一个迭代序列创建一个新实例。</li>
+<li>_asdict()：将字段名称映射到他们对应的值。</li>
 </ul>
-</li>
-</ol>
-<h3 id="css选择器"><a href="#css选择器" class="headerlink" title="css选择器"></a>css选择器</h3><ol>
-<li><p>语法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">7</span>]: Point = namedtuple(<span class="string">&#x27;Point&#x27;</span>,[<span class="string">&#x27;x&#x27;</span>,<span class="string">&#x27;y&#x27;</span>])</span><br><span class="line">In [<span class="number">8</span>]: p = Point(<span class="number">11</span>,y=<span class="number">22</span>)</span><br><span class="line">In [<span class="number">9</span>]: p[<span class="number">0</span>]+p[<span class="number">1</span>]</span><br><span class="line">Out[<span class="number">9</span>]: <span class="number">33</span></span><br><span class="line">In [<span class="number">11</span>]: Point._make(t)</span><br><span class="line">Out[<span class="number">11</span>]: Point(x=<span class="number">11</span>, y=<span class="number">22</span>)</span><br><span class="line">In [<span class="number">12</span>]: p._asdict()</span><br><span class="line">Out[<span class="number">12</span>]: OrderedDict([(<span class="string">&#x27;x&#x27;</span>, <span class="number">11</span>), (<span class="string">&#x27;y&#x27;</span>, <span class="number">22</span>)])</span><br></pre></td></tr></table></figure>
+<h4 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h4><p>当每个键第一次遇见时，它还没有在字典里面，所以自动创建该条目，即调用 default_factory 方法，将默认值写给这个键值，否则正常操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">62</span>]: d = defaultdict(int)</span><br><span class="line">In [<span class="number">63</span>]: l = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;d&#x27;</span>]</span><br><span class="line">In [<span class="number">64</span>]: <span class="keyword">for</span> k <span class="keyword">in</span> l:</span><br><span class="line">    ...:     d[k] += <span class="number">1</span></span><br><span class="line">In [<span class="number">65</span>]: d</span><br><span class="line">Out[<span class="number">65</span>]: defaultdict(int, &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">2</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h4><p>方法</p>
 <ul>
-<li>*  选中所有元素</li>
-<li>E    选中E元素</li>
-<li>E1,E2</li>
-<li>E1&gt;E2    E1后代元素中的E2元素</li>
-<li>E1+E2    E1的兄弟元素中的E2</li>
-<li>.CLASS     CLASS属性包含CLASS的元素</li>
-<li><h1 id="ID-id属性包含ID的元素"><a href="#ID-id属性包含ID的元素" class="headerlink" title="ID    id属性包含ID的元素"></a>ID    id属性包含ID的元素</h1></li>
-<li>[ATTR=VALUE]    包含ATTR属性的元素</li>
-<li>[ATTR~=VALUE]    不包含ATTR属性的元素</li>
-<li>[ATTR^=VALUE]    以VALUE开头的属性</li>
-<li>[ATTR$=VALUE]    以VALUE结尾的属性</li>
-<li>[ATTR*=VALUE]    包含VALUE子串的的属性</li>
-<li>E:nth-(last)-child(n)    选中E元素，且该元素是父元素的第n个元素</li>
-<li>E:first(last)-child</li>
-<li>E:empty    选中没有子元素的E元素</li>
-<li>E::text     选中E元素的文本节点</li>
-<li><p>attr::(attr)    选中元素的attr属性</p>
-<p><strong>类名如果带空格，可以用.代替</strong></p>
-</li>
+<li>append&amp;appendleft</li>
+<li>clear</li>
+<li>count：计算x的个数</li>
+<li>copy：创建一份浅拷贝</li>
+<li>extend&amp;extendleft([iterable])</li>
+<li>index：返回x在deque的位置，返回第一个匹配项。</li>
+<li>insert(i,x)：在i上插入x</li>
+<li>remove(value)：删除找到的第一个value</li>
+<li>rotate：正数向循环右移n步，负数循环左移n步。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">85</span>]: l</span><br><span class="line">Out[<span class="number">85</span>]: deque([<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">In [<span class="number">86</span>]: l.extend([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">In [<span class="number">87</span>]: l</span><br><span class="line">Out[<span class="number">87</span>]: deque([<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">    </span><br><span class="line">In [<span class="number">89</span>]: l.rotate(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">90</span>]: l</span><br><span class="line">Out[<span class="number">90</span>]: deque([<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>])    </span><br></pre></td></tr></table></figure>
+<h3 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h3><h4 id="可变对象和不可变对象"><a href="#可变对象和不可变对象" class="headerlink" title="可变对象和不可变对象"></a>可变对象和不可变对象</h4><ul>
+<li>不可变对象：int，string，float，tuple。</li>
+<li>可变对象：list，dictionary</li>
+</ul>
+<p>在python中变量存放的是对象引用，对于不可变对象，对象本身不可变改变的只是变量的对象引用。</p>
+<p>对于可变对象，对象内容可以改变，变量的引用不变。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#不可变对象</span></span><br><span class="line">In [<span class="number">91</span>]: i = <span class="number">2</span></span><br><span class="line">In [<span class="number">92</span>]: id(i)</span><br><span class="line">Out[<span class="number">92</span>]: <span class="number">140730090824112</span></span><br><span class="line">In [<span class="number">93</span>]: i += <span class="number">2</span></span><br><span class="line">In [<span class="number">94</span>]: id(i)</span><br><span class="line">Out[<span class="number">94</span>]: <span class="number">140730090824176</span></span><br><span class="line"><span class="comment">#可变对象</span></span><br><span class="line">In [<span class="number">98</span>]: l = [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">In [<span class="number">99</span>]: id(l)</span><br><span class="line">Out[<span class="number">99</span>]: <span class="number">2261284720008</span></span><br><span class="line">In [<span class="number">100</span>]: l.append(<span class="number">3</span>)</span><br><span class="line">In [<span class="number">101</span>]: id(l)</span><br><span class="line">Out[<span class="number">101</span>]: <span class="number">2261284720008</span></span><br></pre></td></tr></table></figure>
+<h4 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h4><ul>
+<li>深拷贝：原对象和新对象之间的改变互不影响。原对象和新对象指向不同地址，但是对象的可变元素指向相同地址。副本不共享内部对象的引用。deepcopy</li>
+<li>浅拷贝：原对象和新对象之间的改变相互影响。copy</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bus</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,passengers=None</span>):</span></span><br><span class="line">        <span class="keyword">if</span> passengers <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            self.passengers = []</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.passengers = list(passengers)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pick</span>(<span class="params">self,name</span>):</span></span><br><span class="line">        self.passengers.append(name)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">drop</span>(<span class="params">self,name</span>):</span></span><br><span class="line">        self.passengers.remove(name)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    bus = Bus([<span class="string">&#x27;Alice&#x27;</span>,<span class="string">&#x27;Bob&#x27;</span>])</span><br><span class="line">    bus1 = copy.copy(bus)</span><br><span class="line">    bus2 = copy.deepcopy(bus)</span><br><span class="line">    print(id(bus),id(bus1),id(bus2))</span><br><span class="line">    print(id(bus.passengers),id(bus1.passengers),id(bus2.passengers))</span><br><span class="line">    bus.pick(<span class="string">&#x27;Bob&#x27;</span>)</span><br><span class="line">    printf(bus.passengers,bus1.passengers,bus2.passengers)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line"><span class="number">2503424186824</span> <span class="number">2503424187272</span> <span class="number">2503424187208</span></span><br><span class="line"><span class="number">2503424187016</span> <span class="number">2503424187016</span> <span class="number">2503424085896</span></span><br><span class="line">[<span class="string">&#x27;Alice&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;Alice&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>]</span><br><span class="line">[<span class="string">&#x27;Alice&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="字符串和文本"><a href="#字符串和文本" class="headerlink" title="字符串和文本"></a>字符串和文本</h3><h4 id="字符串编码"><a href="#字符串编码" class="headerlink" title="字符串编码"></a>字符串编码</h4><ul>
+<li>ASCLL编码：1字节，127个字符。</li>
+<li>latin1：iso8859_1是Unicode和cp1252基础。</li>
+<li>cp1252：Microsoft制定的latin1的超集。</li>
+<li>GBK：中国国家标准总局制定。gb2312</li>
+<li>Unicode：ISO国际标准化组织提出，UCS-4每个字符代码4个字节。常用汉字字符代码集中在4E00-9FA5</li>
+<li>UTF-8、UTF-16：针对不同范围的字符代码转化为不同长度的字符编码，编码方式以字节为单位，并且完全兼容ASCII编码。</li>
+</ul>
+<h4 id="字符串编码与解码"><a href="#字符串编码与解码" class="headerlink" title="字符串编码与解码"></a>字符串编码与解码</h4><h5 id="decode-amp-encode"><a href="#decode-amp-encode" class="headerlink" title="decode&amp;encode"></a>decode&amp;encode</h5><p>string通过编码称为bytes，bytes通过解码称为string。</p>
+<p><code>str.encode(self, /, encoding=&#39;utf-8&#39;, errors=&#39;strict&#39;)</code></p>
+<p><code>bytes.decode(self, /, encoding=&#39;utf-8&#39;, errors=&#39;strict&#39;)</code></p>
+<p>errors:</p>
+<ul>
+<li>ignore：忽略</li>
+<li>replace：将不能处理的用?(U+FFFD)替换</li>
+<li>xmlcharrefreplace：将无法编码的字符串替换成xml</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">15</span>]: <span class="string">&#x27;你好&#x27;</span>.encode()</span><br><span class="line">Out[<span class="number">15</span>]: <span class="string">b&#x27;\xe4\xbd\xa0\xe5\xa5\xbd&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: <span class="string">&#x27;你好&#x27;</span>.encode().decode()</span><br><span class="line">Out[<span class="number">16</span>]: <span class="string">&#x27;你好&#x27;</span></span><br></pre></td></tr></table></figure>
+<h5 id="ord-amp-char"><a href="#ord-amp-char" class="headerlink" title="ord&amp;char"></a>ord&amp;char</h5><p>对于单个字符，通过ord获得字符的整数形式，chr将编码转换为字符。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">19</span>]: ord(<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">Out[<span class="number">19</span>]: <span class="number">98</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">20</span>]: chr(<span class="number">88</span>)</span><br><span class="line">Out[<span class="number">20</span>]: <span class="string">&#x27;X&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="使用界定符分割字符串"><a href="#使用界定符分割字符串" class="headerlink" title="使用界定符分割字符串"></a>使用界定符分割字符串</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">line = <span class="string">&#x27;asdf fjdk; afed, fjek,asdf, foo&#x27;</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">re.split(<span class="string">r&#x27;[;,\s]\s*&#x27;</span>, line)</span><br><span class="line">[<span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;fjdk&#x27;</span>, <span class="string">&#x27;afed&#x27;</span>, <span class="string">&#x27;fjek&#x27;</span>, <span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;foo&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>字符串开头和结尾匹配</p>
+<ul>
+<li>startswith() </li>
+<li>endswith()</li>
+<li>两者都只接受tuple，</li>
+</ul>
+<h4 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h4><h5 id><a href="#" class="headerlink" title="%"></a>%</h5><ul>
+<li>格式化输出：%f,%n.f,%o,%d,%x,%e</li>
+<li>字符串输出<ul>
+<li>%ns：右对齐，占位符n位。</li>
+<li>%-ns：左对齐，占位符n位。</li>
+<li>%m.ns：占位符m位，截取n位字符。</li>
 </ul>
 </li>
-</ol>
-<h2 id="3、使用Item封装数据"><a href="#3、使用Item封装数据" class="headerlink" title="3、使用Item封装数据"></a>3、使用Item封装数据</h2><blockquote>
-<p>便利程序员了解包含哪些字段，增加对字段名字的检测，便于携带元数据。</p>
+</ul>
+<h5 id="format"><a href="#format" class="headerlink" title="format"></a>format</h5><h6 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h6><p>基本语法使用{}和:</p>
+<p>可以指定顺序和使用关键字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">52</span>]: <span class="string">&quot;&#123;1&#125; &#123;1&#125; &#123;0&#125;&quot;</span>.format(<span class="string">&quot;world&quot;</span>,<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">Out[<span class="number">52</span>]: <span class="string">&#x27;hello hello world&#x27;</span></span><br><span class="line"><span class="comment">#传递参数    </span></span><br><span class="line">In [<span class="number">53</span>]: <span class="string">&quot;name:&#123;name&#125;,age:&#123;age&#125;&quot;</span>.format(name=<span class="string">&#x27;xiaoming&#x27;</span>,age=<span class="number">10</span>)</span><br><span class="line">Out[<span class="number">53</span>]: <span class="string">&#x27;name:xiaoming,age:10&#x27;</span> </span><br><span class="line"><span class="comment">#---------</span></span><br><span class="line">In [<span class="number">54</span>]: x = &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;xiaoming&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:<span class="number">10</span>&#125;</span><br><span class="line">In [<span class="number">56</span>]: <span class="string">&quot;name:&#123;name&#125;,age:&#123;age&#125;&quot;</span>.format(**x)</span><br><span class="line">Out[<span class="number">56</span>]: <span class="string">&#x27;name:xiaoming,age:10&#x27;</span></span><br><span class="line"><span class="comment">#--------    </span></span><br></pre></td></tr></table></figure>
+<h6 id="传递对象"><a href="#传递对象" class="headerlink" title="传递对象"></a>传递对象</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myclass</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,value</span>):</span></span><br><span class="line">        self.value = value</span><br><span class="line">o = myclass(<span class="number">6</span>)</span><br><span class="line">print(<span class="string">&#x27;value=&#123;0.value&#125;&#x27;</span>.format(o))</span><br></pre></td></tr></table></figure>
+<h6 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h6><ul>
+<li>^,&lt;,&gt;居中、左对齐、右对齐，左边带填充字符，右边带宽度。</li>
+<li>+表示正数前显示+，负数显示-；空格表示正数前加空格。</li>
+<li>b、d、o、x表示二进制、十进制、八进制和十六进制。前加#，以完整格式输出</li>
+<li>大括号使用{}进行转义，{:,}以逗号分隔正数。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">57</span>]: a =  <span class="number">17</span></span><br><span class="line">In [<span class="number">59</span>]: print(<span class="string">&#x27;&#123;:#x&#125;&#x27;</span>.format(a))</span><br><span class="line"><span class="number">0x11</span> </span><br><span class="line">In [<span class="number">61</span>]: print(<span class="string">&#x27;&#123;:#&lt;10x&#125;&#x27;</span>.format(a))</span><br><span class="line"><span class="number">11</span><span class="comment">########</span></span><br><span class="line">In [<span class="number">67</span>]: print(<span class="string">&#x27;&#123;:,&#125;&#x27;</span>.format(<span class="number">1000000000000</span>))</span><br><span class="line"><span class="number">1</span>,<span class="number">000</span>,<span class="number">000</span>,<span class="number">000</span>,<span class="number">000</span></span><br><span class="line">In [<span class="number">74</span>]: print(<span class="string">&#x27;&#123;&#123;0&#125;&#125;&#x27;</span>.format())</span><br><span class="line">&#123;<span class="number">0</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="日期与时间"><a href="#日期与时间" class="headerlink" title="日期与时间"></a>日期与时间</h3><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
+<li><p>变量搜索顺序</p>
+<p>局部变量-&gt;嵌套变量-&gt;全局变量-&gt;内置变量</p>
+<p><code>global</code>：声明或定义全局变量</p>
+<p><code>nonlocal</code>：声明使用嵌套作用域的变量</p>
+</li>
+<li><p>函数参数</p>
+<ul>
+<li><p>位置参数（必选参数）：</p>
+</li>
+<li><p>默认参数：指定不变的对象，<strong>对于可修改容器默认值指定为None。</strong></p>
+</li>
+<li><p>可变参数：*args</p>
+</li>
+<li><p>关键字参数：**kw</p>
+</li>
+<li><p>命名关键字参数：以<em>分割，\</em>后都是命名关键字参数，必须以参数名=参数值形式传递。每个命名关键字参数都可以指定默认值。</p>
+<blockquote>
+<p>如果函数中已经有可变参数，则其后的命名关键字参数不再需要分隔符*</p>
+<p>定义默认参数的函数</p>
 </blockquote>
-<h3 id="Item和Field"><a href="#Item和Field" class="headerlink" title="Item和Field"></a>Item和Field</h3><p>Item：自定义数据类的基类，与访问字典的方式相同<br>Field：数据类包含的字段</p>
-<h3 id="Field元数据"><a href="#Field元数据" class="headerlink" title="Field元数据"></a>Field元数据</h3><p>传递额外信息该组件，使用Field元数据。</p>
-<h2 id="4、使用Item-Pipeline处理数据"><a href="#4、使用Item-Pipeline处理数据" class="headerlink" title="4、使用Item Pipeline处理数据"></a>4、使用Item Pipeline处理数据</h2><h3 id="Item-Pipeline"><a href="#Item-Pipeline" class="headerlink" title="Item Pipeline"></a>Item Pipeline</h3><p><strong>典型应用</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>实现可选参数的函数方法：在函数定义中给参数指定一个默认值，并放到参数列表最后。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">spam</span>(<span class="params">a, b=None</span>):</span></span><br><span class="line"><span class="comment">#if not b:  NO! Use &#x27;b is None&#x27; instead</span></span><br><span class="line"><span class="keyword">if</span> b <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">	b = []</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>清洗数据</li>
-<li>验证数据的有效性</li>
-<li>过滤重复的数据</li>
-<li>将数据存入数据库  </li>
+<li>减少参数个数</li>
 </ul>
-<p><strong>实现</strong></p>
+<p>使用partial()函数给参数绑定固定的值，减少调用时参数的个数。</p>
+<p>partial()函数常用来当做其他函数的回调函数参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line">points = [(<span class="number">1</span>,<span class="number">2</span>),(<span class="number">3</span>,<span class="number">4</span>),(<span class="number">5</span>,<span class="number">6</span>),(<span class="number">7</span>,<span class="number">8</span>)]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distance</span>(<span class="params">p1,p2</span>):</span></span><br><span class="line">    x1, y1 = p1</span><br><span class="line">    x2,y2 = p2</span><br><span class="line">    <span class="keyword">return</span> math.hypot(x2-x1,y2-y1)</span><br><span class="line">pt = (<span class="number">4</span>,<span class="number">3</span>)</span><br><span class="line">points.sort(key=partial(distance,pt)) <span class="comment">#按照离pt点的距离排序</span></span><br><span class="line">points</span><br><span class="line">&gt;&gt;&gt;[(<span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">2</span>), (<span class="number">5</span>, <span class="number">6</span>), (<span class="number">7</span>, <span class="number">8</span>)]</span><br></pre></td></tr></table></figure>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h3><ul>
+<li>改变字符串显示</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">__str__()	<span class="comment">#print()函数输出</span></span><br><span class="line">__repr__()	<span class="comment">#交互输出</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>Item Pipeline不需要继承基类，只需要实现process_item、open_spider、close_spider。</li>
-<li>必须实现process_item(item,spider)方法</li>
-<li>三个常用方法<ul>
-<li>open_spider(self,spider)：初始化工作例如连接数据库</li>
-<li>close_spider(self,spider)：关闭数据库</li>
-<li>from_crawler(self,crawler)：创建Item Pipeline对象时回调该方法，crawler是核心对象，通过crawler的settings属性访问配置文件。</li>
-</ul>
+<li><p>自定义字符串格式化方法</p>
+<figure class="highlight plain"><figcaption><span>```方法</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 让对象支持上下文管理协议（with语句）</span><br><span class="line">&#96;&#96;&#96;python</span><br><span class="line">#让对象兼容with语句，实现__enter__()和__exit__()方法</span><br><span class="line">def __enter__(self)</span><br><span class="line">def __exit__(self)</span><br></pre></td></tr></table></figure></li>
+<li>创建大量对象时节省内存方法，限制用户给实例添加新属性<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#给类添加__slots__属性减少实例所占的内存</span></span><br><span class="line">__slots__ = []</span><br></pre></td></tr></table></figure></li>
+<li>封装属性名<blockquote>
+<p>以_单下划线开头的变量，是内部实现。外部可以访问，但不要随意访问。子类可以继承  </p>
+</blockquote>
 </li>
-<li>process_item处理某项item时返回一项数据会递送给下一级Item Pipeline处理。</li>
 </ul>
-<p><strong>启用Item Pipeline</strong></p>
+<blockquote>
+<p>双下划线__开头的 变量被定义为外部变量，私有属性会被分别重命名为 _class__private 和 _class__private_method。这样做子类继承父类，不会覆盖变量。</p>
+</blockquote>
+<h3 id="classmethod和staticmethod"><a href="#classmethod和staticmethod" class="headerlink" title="classmethod和staticmethod"></a>classmethod和staticmethod</h3><h4 id="classmethod"><a href="#classmethod" class="headerlink" title="classmethod"></a>classmethod</h4><ul>
+<li>定义操作类，类方法的第一个参数时类本身。</li>
+<li>最常见用途是，定义备选构造方法。对应于高级编程语言有多个构造函数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@classmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">cls,**args</span>):</span></span><br><span class="line">    returnr cls(**args)</span><br></pre></td></tr></table></figure>
+<h4 id="staticmethod"><a href="#staticmethod" class="headerlink" title="staticmethod"></a>staticmethod</h4><ul>
+<li>普通函数在类的定义体中而不是模块层定义。</li>
+</ul>
+<h3 id="序列的修改、散列和切片"><a href="#序列的修改、散列和切片" class="headerlink" title="序列的修改、散列和切片"></a>序列的修改、散列和切片</h3><h4 id="序列协议"><a href="#序列协议" class="headerlink" title="序列协议"></a>序列协议</h4><ul>
+<li><code>__getitem__</code>：返回索引的元素，现在版本既可以实现切片也可以实现索引。</li>
+<li><code>__len__</code>：返回序列长度</li>
+</ul>
+<h4 id="哈希化"><a href="#哈希化" class="headerlink" title="哈希化"></a>哈希化</h4><ul>
+<li><code>__hash__</code>：通过实现该方法和<code>__eq__</code>方法，能够将对象实例变为可散列对象</li>
+</ul>
+<h2 id="Python应用"><a href="#Python应用" class="headerlink" title="Python应用"></a>Python应用</h2><h3 id="多进程和多线程"><a href="#多进程和多线程" class="headerlink" title="多进程和多线程"></a>多进程和多线程</h3><p>廖雪峰教程<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017627212385376">https://www.liaoxuefeng.com/wiki/1016959663602400/1017627212385376</a></p>
+<p>multiprocessing模块</p>
 <ul>
-<li>在settings.py中进行配置，ITEM_PIPELINE(字典)</li>
-<li>将要启用的Item Pipeline 添加到这个字典，每一项的key都是Item Pipeline导入路径，value在0~1000，当有多个时数值小的在前。</li>
+<li>创建进程：调用multiprocessing.Process类构造方法，传入target和args参数分别为目标函数和函数所带的参数以元组形式传入。</li>
+<li>进程启动：p.start()自动会调用run方法启动一个进程。</li>
+<li>join：类似C语言中的wait，主进程等待子进程结束实现进程间的同步。</li>
 </ul>
-<p><strong>更多使用</strong></p>
+<p>threading模块</p>
 <ul>
-<li>过滤重复数据，从scripy.exceptions导入DropItem。raise DropItem()</li>
-<li>将数据存入MongoDB：安装教程<a target="_blank" rel="noopener" href="https://blog.csdn.net/Time_xiaoxia/article/details/108760031，删除教程：https://blog.csdn.net/qq_42442369/article/details/84403964。MongoDB">https://blog.csdn.net/Time_xiaoxia/article/details/108760031，删除教程：https://blog.csdn.net/qq_42442369/article/details/84403964。MongoDB</a> compass停留在初始化界面，将C:\Windows\System32\wbem添加到环境变量。</li>
-<li>保存在数据库教程<ol>
-<li>创建一个数据库Pipeline</li>
-<li>在settings文件中设置相关参数</li>
-<li>定义from_crawler方法，返回一个初始化类</li>
-<li>实现open_spider、close_spider、process_item方法</li>
-</ol>
-</li>
+<li>Thread类，同样需要target和args</li>
+<li>start开始线程，join阻塞等待</li>
+<li>通过继承Thread类来创建线程，重载run方法。</li>
 </ul>
-<h2 id="5、使用LinkExtractor提取数据"><a href="#5、使用LinkExtractor提取数据" class="headerlink" title="5、使用LinkExtractor提取数据"></a>5、使用LinkExtractor提取数据</h2><h3 id="使用举例"><a href="#使用举例" class="headerlink" title="使用举例"></a>使用举例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">le = LinkExtractor(restrict_css=<span class="string">&#x27;ul.pager li.next&#x27;</span>) <span class="comment">#创建LinkExtractor对象</span></span><br><span class="line">        links = le.extract_links(response) <span class="comment">#传入response对象，得到Link对象列表</span></span><br><span class="line">        <span class="keyword">if</span> links:</span><br><span class="line">            next_url = links[<span class="number">0</span>].url <span class="comment">#得到的url是一个绝对路径</span></span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(next_url,callback=self.parse)</span><br></pre></td></tr></table></figure>
-<h3 id="LinkExtractor构造器各个参数"><a href="#LinkExtractor构造器各个参数" class="headerlink" title="LinkExtractor构造器各个参数"></a>LinkExtractor构造器各个参数</h3><ul>
-<li><p>allow</p>
-<p>接收一个正则表达式，提取<u>绝对url</u>与正则表达式匹配的链接</p>
-</li>
-<li><p>deny</p>
-<p>与allow相反，排除匹配的链接</p>
-</li>
-<li><p>allow_domains</p>
-<p>接收一个域名或域名列表提取指定域的链接。</p>
-</li>
-<li><p>deny_domains</p>
-<p>与allow_domains想法，排除指定域链接</p>
-</li>
-<li><p>restrict_xpaths&amp;restrict_css</p>
-<p>提取选中区域链接</p>
-</li>
-<li><p>tags&amp;attrs</p>
-<p>接收标签和属性列表，提取指定链接</p>
-</li>
-</ul>
-<h2 id="6、使用Exporter导出数据"><a href="#6、使用Exporter导出数据" class="headerlink" title="6、使用Exporter导出数据"></a>6、使用Exporter导出数据</h2><h3 id="支持格式"><a href="#支持格式" class="headerlink" title="支持格式"></a>支持格式</h3><pre><code>(1) JSON  
-(2) JSON lines  
-(3) CSV  
-(4) XML  
-(5) Pickle  
-(6) Marshal   
-</code></pre><h3 id="导出数据"><a href="#导出数据" class="headerlink" title="导出数据"></a>导出数据</h3><ul>
-<li><p>导出文件路径 -o</p>
-</li>
-<li><p>导出数据格式 -t:books -t csv</p>
-<p>自定义提取出为excel格式， -t excel </p>
-</li>
-</ul>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
-<li><p>FEED_URL</p>
-<p>导出文件路径<br><code>FEED_URL = &#39;export_data/%(name)s.data&#39;</code></p>
-</li>
-<li><p>FEED_FORMAT</p>
-<p>导出数据格式</p>
-<p><code>FEED_FORMAT = &#39;csv&#39;</code></p>
-</li>
-<li><p>FEED_EXPROT_ENCODING </p>
-<p>默认下json使用数据编码，其他使用utf-8编码</p>
-<p><code>FEED_EXPROT_ENCODING=&#39;gbk&#39;</code></p>
-</li>
-<li><p>FEED_EXPORT_FIELDS</p>
-<p>导出数据字段，指定次序</p>
-<p><code>FEED_EXPORT_FIELDS=[&#39;names&#39;,&#39;author&#39;,&#39;price]</code></p>
-</li>
-<li><p>FEED_EXPORTERS</p>
-<p>用户自定义Exporter字典，添加新导出数据格式时使用</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  FEED_EXPORTERS=&#123;<span class="string">&#x27;excel&#x27;</span>:<span class="string">&#x27;my_project.my_exporters.ExcelItemExporter&#x27;</span>&#125;</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">继承BaseItemExporter，实现自定义Exporter</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">from</span> scrapy.exporters <span class="keyword">import</span> BaseItemExporter</span><br><span class="line"><span class="keyword">import</span> xlwt</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExcelItemExporter</span>(<span class="params">BaseItemExporter</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,file,**kwargs</span>):</span></span><br><span class="line">        self._configure(kwargs)</span><br><span class="line">        self.file = file</span><br><span class="line">        self.row = <span class="number">0</span></span><br><span class="line">        self.wbook = xlwt.Workbook()</span><br><span class="line">        self.wsheet = self.wbook.add_sheet(<span class="string">&#x27;NbaStats&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">finish_exporting</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.wbook.save(self.file)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">export_item</span>(<span class="params">self, item</span>):</span></span><br><span class="line">        fields = self._get_serialized_fields(item)</span><br><span class="line">        <span class="keyword">for</span> col,v <span class="keyword">in</span> enumerate(x <span class="keyword">for</span> _,x <span class="keyword">in</span> fields):</span><br><span class="line">            self.wsheet.write(self.row,col,v) <span class="comment">#行、列、value</span></span><br><span class="line">        self.row += <span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="7、下载文件和图片"><a href="#7、下载文件和图片" class="headerlink" title="7、下载文件和图片"></a>7、下载文件和图片</h2><h3 id="FilesPipeline和ImagesPipeline"><a href="#FilesPipeline和ImagesPipeline" class="headerlink" title="FilesPipeline和ImagesPipeline"></a>FilesPipeline和ImagesPipeline</h3><p>Scrapy框架内部提供了两个Item Pipeline</p>
+<p>进程池Pool</p>
 <ul>
-<li>FilesPipeline</li>
-<li>ImagesPipeline<br>下载流程：下载完item[‘file_urls’]中的所有文件后将结果赋给item[‘files’]</li>
+<li>通过Pool创建进程池</li>
+<li>通过apply_async实现非阻塞异步，即不等待子进程执行完毕，主进程会继续执行。</li>
+<li>将所有进程添加到进程池后，调用close方法关闭进程池不允许添加新进程。之后再调用join方法等待所有进程执行完毕。</li>
 </ul>
-<h4 id="FilesPipeline使用说明"><a href="#FilesPipeline使用说明" class="headerlink" title="FilesPipeline使用说明"></a>FilesPipeline使用说明</h4><ol>
-<li>启用FilesPipeline：ITEM_PIPELINES{‘scrapy.pipelines.files.FilesPipeline’:1}   </li>
-<li>指定文件下载目录：FILES_STORE = ‘dir’  </li>
-<li>Item字段：file_urls,files</li>
-</ol>
-<h4 id="ImagesPipeline使用说明"><a href="#ImagesPipeline使用说明" class="headerlink" title="ImagesPipeline使用说明"></a>ImagesPipeline使用说明</h4><ol>
-<li>启用scarpy.pipelines.images.ImagesPipeline</li>
-<li>下载目录：IMAGES_STORE</li>
-<li>Item字段：image、images</li>
-</ol>
-<p>urljoin方法：域名+路径</p>
-<h4 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#实现管道时,使用Item类</span></span><br><span class="line"><span class="comment">#这两个字段名可以被覆盖</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyItem</span>(<span class="params">scrapy.Item</span>):</span></span><br><span class="line">	file_urls = scrapy.Field()</span><br><span class="line">	file = scrapy.Field()</span><br><span class="line"><span class="comment">#获取的url放入一个列表</span></span><br><span class="line">MyItem[<span class="string">&#x27;file_urls&#x27;</span>] = [url]</span><br><span class="line"><span class="comment">#FilePipeline中的file_path方法决定了文件的命名</span></span><br><span class="line"><span class="comment">#ImagePipeline中image_url传入str或者Unicode</span></span><br><span class="line">item[<span class="string">&#x27;image_url&#x27;</span>] = str</span><br></pre></td></tr></table></figure>
-<h2 id="8、模拟登陆"><a href="#8、模拟登陆" class="headerlink" title="8、模拟登陆"></a>8、模拟登陆</h2><h4 id="登陆实质"><a href="#登陆实质" class="headerlink" title="登陆实质"></a>登陆实质</h4><p>HTML中的<form>元素</form></p>
+<h3 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h3><p>​    当代码需要执行一个耗时的IO操作时，它只发出IO指令，并不等待IO结果，然后就去执行其他代码了。一段时间后，当IO返回结果时，再通知CPU进行处理。所以一波IO需要一个消息循环，在消息循环中不断重复“等待消息-处理消息”。</p>
+<p>asyncio</p>
 <ul>
-<li>method属性决定HTTP请求的方法</li>
-<li>action属性决定HTTP请求的url</li>
-<li>enctype属性决定了表单数据的编码类型</li>
-<li>\<input\>元素决定了表单数据的内容</input\></li>
+<li>event_loop：开启一个无限循环，将函数注册到时间循环上，当满足某条件时调用相应协程函数。</li>
+<li>coroutine：协程对象，用async定义的的函数，他的调用不会立即执行函数而是返回一个协程对象。</li>
+<li>task：对协程对象的封装，包含了任务的各种状态。</li>
+<li>async/await：关键字，async定义一个协程，await挂起阻塞的异步调用接口。</li>
 </ul>
-<h3 id="Cookie登陆"><a href="#Cookie登陆" class="headerlink" title="Cookie登陆"></a>Cookie登陆</h3><p>使用browsercookie库获取Chrome和Firefox浏览器中的cookie。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> browsercookie</span><br><span class="line">chrome_cookiejar = browsercookie.chrome() </span><br><span class="line">chrome_cookiejar = browsercookie.firefox()</span><br></pre></td></tr></table></figure>
-<p>scrapy使用的Cookie由内置下载中间件CookiesMiddleware自动处理。<br>配置文件中启用COOKIES_ENABLED，启用该中间件。<br>利用browser_cookie3对CookiesMiddleware进行改良，实现一个能使用浏览器的中间件。  </p>
-<p>browser_cookie3.chrome()返回的是一个http.cookiejar.CookieJar对象。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> browser_cookie3</span><br><span class="line"><span class="keyword">from</span> scrapy.downloadermiddlewares.cookies <span class="keyword">import</span> CookiesMiddleware</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BrowserCookiesMiddleware</span>(<span class="params">CookiesMiddleware</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,debug=False</span>):</span></span><br><span class="line">		super().__init__()</span><br><span class="line">		self.load_browser_cookies()</span><br><span class="line"><span class="comment">#    jars是个CookieJar对象的defaultdict</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">load_browser_cookies</span>(<span class="params">self</span>):</span></span><br><span class="line">		jar = self.jars[<span class="string">&#x27;chrome&#x27;</span>]</span><br><span class="line">		chrome_cookiejar = browser_cookie3.chrome()</span><br><span class="line">		<span class="keyword">for</span> cookie <span class="keyword">in</span> chrome_cookiejar:</span><br><span class="line">			jar.set_cookie(cookie)</span><br><span class="line">            </span><br><span class="line">		jar = self.jars[<span class="string">&#x27;firefox&#x27;</span>]</span><br><span class="line">		firefox_cookiejar = browser_cookie3.firefox()</span><br><span class="line">		<span class="keyword">for</span> cookie <span class="keyword">in</span> firefox_cookiejar:</span><br><span class="line">			jar.set_cookie(cookie)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用方法</span></span><br><span class="line">scrapy.Request(url.meta=&#123;<span class="string">&#x27;cookiejar&#x27;</span>:<span class="string">&#x27;chrome&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<p>在settings.py中加入USER_AGENT伪装成常规浏览器<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#scrapy使用cookies</span></span><br><span class="line">cookies = [i.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">0</span>]:i.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> cookies.split(<span class="string">&#x27;;&#x27;</span>)]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span>(<span class="params">self</span>):</span></span><br><span class="line">	<span class="keyword">yield</span> scrapy.Request(self.url,callback=self.parse,cookies=cookies)</span><br></pre></td></tr></table></figure></p>
-<h2 id="9、爬取动态页面"><a href="#9、爬取动态页面" class="headerlink" title="9、爬取动态页面"></a>9、爬取动态页面</h2><p>数据被编码与JavaScript代码中，JavaScript通过HTTP请求动态跟网站交互数据（AJAX），动态网页需要执行JavaScript动态渲染再爬取。</p>
-<p>安装Chromewebdrive，解压放在Anaconda目录下。</p>
-<h3 id="selenium使用"><a href="#selenium使用" class="headerlink" title="selenium使用"></a>selenium使用</h3><p>教程一篇：<a target="_blank" rel="noopener" href="https://my.oschina.net/pansy0425/blog/3000598">https://my.oschina.net/pansy0425/blog/3000598</a></p>
-<p>实现一个selenium下载</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#实现一个selenium下载中间件</span></span><br><span class="line"><span class="comment">#实现一个process_request()方法，得到页面源代码，返回一个HtmlResonse对象</span></span><br><span class="line"><span class="keyword">return</span> scrapy.http.HtmlResponse(url=request.url,body=html,encoding=<span class="string">&#x27;utf-8&#x27;</span>,request=request)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.option <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">参数设置</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--headless&#x27;</span>) <span class="comment">#无头浏览器</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--disable-gpu&#x27;</span>) <span class="comment">#规避bug</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--no-sandbox&#x27;</span>)<span class="comment">#取消沙盒模式</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;blink-settings=imagesEnabled=false&#x27;</span>) <span class="comment">#不加载图片, 提升速度</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;lang=zh_CN.UTF-8&#x27;</span>) <span class="comment">#设置编码格式</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;user-agent&#x27;</span>+user-agent)<span class="comment">#加上请求头</span></span><br><span class="line">chrome_options.add_argument(<span class="string">&#x27;--proxy-server=http://&#x27;</span>+proxy)  <span class="comment">#设置代理</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">等待页面元素加载出来</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">driver = Chrome(chrome_options = chrome_options)</span><br><span class="line">wait = WebDriverWair(driver,<span class="number">10</span>)</span><br><span class="line">wait.until(EC.presence_of_element_located((By.XPATH,xxx)))<span class="comment">#传入元组</span></span><br><span class="line">driver.add_cookie(&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;pansy_nuist&#x27;</span>,<span class="string">&#x27;domain&#x27;</span>:<span class="string">&#x27;www.taobao.com&#x27;</span>,<span class="string">&#x27;value&#x27;</span>:<span class="string">&#x27;nuist&#x27;</span>&#125;)<span class="comment">#增加cookies</span></span><br><span class="line">cookies = driver.get_cookies()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="10、使用HTTP代理"><a href="#10、使用HTTP代理" class="headerlink" title="10、使用HTTP代理"></a>10、使用HTTP代理</h2><p>return和yield区别：yield不立即返回结果，节省内存空间。通过next()函数迭代。</p>
-<p>阿布云代理1小时套餐：<a target="_blank" rel="noopener" href="https://www.abuyun.com/http-proxy/products.html">https://www.abuyun.com/http-proxy/products.html</a></p>
-<h3 id="proxy-pool代理池"><a href="#proxy-pool代理池" class="headerlink" title="proxy_pool代理池"></a>proxy_pool代理池</h3><p>代理池：<a target="_blank" rel="noopener" href="https://github.com/jhao104/proxy_pool">https://github.com/jhao104/proxy_pool</a></p>
-<p>启动服务：python proxyPool.py server</p>
-<p>端口<a target="_blank" rel="noopener" href="http://127.0.0.1:5010/">http://127.0.0.1:5010</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">url = <span class="string">&#x27;http://127.0.0.1:5010/get&#x27;</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = requests.get(url)</span><br><span class="line">    proxy_ip = json.loads(response.content)[<span class="string">&#x27;proxy&#x27;</span>]</span><br><span class="line">    print(proxy_ip)</span><br><span class="line"><span class="keyword">except</span> Exception:</span><br><span class="line">    print(<span class="string">&#x27;connect error&#x27;</span>)</span><br><span class="line">proxies = &#123;</span><br><span class="line">    <span class="string">&#x27;https&#x27;</span>:<span class="string">&#x27;http://&#x27;</span>+</span><br><span class="line">    proxy_ip</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Logging模块使用"><a href="#Logging模块使用" class="headerlink" title="Logging模块使用"></a>Logging模块使用</h3>
+<h3 id="urllib"><a href="#urllib" class="headerlink" title="urllib"></a>urllib</h3><p>1、request模块</p>
+<ul>
+<li><p>`urllib.request.urlopen(</p>
+<pre><code>url,
+data=None,
+timeout=&lt;object object at 0x000001CB6D47FEF0&gt;,
+*,
+cafile=None,
+capath=None,
+cadefault=False,
+context=None,)`
+</code></pre><ul>
+<li><p>cafile、capath：指定CA证书和路径，在对HTTPS链接请求时用到。</p>
+</li>
+<li><p>返回一个HTTPResponse对象。</p>
+</li>
+<li>read：读取响应对象内容。</li>
+<li>geturl、getheaders、getcode、info：相关信息</li>
+</ul>
+</li>
+<li><p>`urllib.request.Request(</p>
+<pre><code>url,
+data=None,
+headers=&#123;&#125;,
+origin_req_host=None,
+unverifiable=False,
+method=None,)`
+</code></pre><ul>
+<li>用于添加一些请求头的信息</li>
+</ul>
+</li>
+</ul>
+<p>2、error模块</p>
+<ul>
+<li>URLError<ul>
+<li>reason</li>
+</ul>
+</li>
+<li>HTTPError<ul>
+<li>code：状态码</li>
+<li>reason：原因</li>
+<li>headers：头部</li>
+</ul>
+</li>
+</ul>
+<p>3、parse模块：</p>
+<p>​    url-&gt;scheme://netloc/path;parameters?query#fragment</p>
+<ul>
+<li><p><code>urllib.parse.urlparse(url, scheme=&#39;&#39;, allow_fragments=True)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">20</span>]: o = urlparse(<span class="string">&#x27;http://www.cwi.nl:80/%7Eguido/Python.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: o</span><br><span class="line">Out[<span class="number">21</span>]: ParseResult(scheme=<span class="string">&#x27;http&#x27;</span>, netloc=<span class="string">&#x27;www.cwi.nl:80&#x27;</span>, path=<span class="string">&#x27;/%7Eguido/Python.html&#x27;</span>, params=<span class="string">&#x27;&#x27;</span>, query=<span class="string">&#x27;&#x27;</span>, fragment=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="logging模块"><a href="#logging模块" class="headerlink" title="logging模块"></a>logging模块</h3><p>有六个级别，未定义级别时默认情况下是WRAING级别。值越大级别越高，每个级别对于低于自己级别的信息日志都略过。</p>
+<ul>
+<li>NOTSET:0</li>
+<li>DEBUG:10</li>
+<li>INFO:20</li>
+<li>WARNING:30</li>
+<li>ERROR:40</li>
+<li>CRITICAL:50</li>
+</ul>
+<p><code>basicConfig(**kwargs)</code>方法更改一些日志的配置</p>
+<p>参数</p>
+<ul>
+<li><p>filename：用指定的文件名创建FiledHandler，使日志保存在指定的文件中。</p>
+</li>
+<li><p>filemode：文件打开方式，’a’,’w’，</p>
+</li>
+<li><p>format：指定handler使用时的日志显示格式。</p>
+<p>格式化串可能使用到的参数：name、levelno、levelname、pathname、filename、module、funcName、lineno、created（创建时间）、asctime（当前时间）、thread、treadName、process、message（用户消息）。</p>
+</li>
+<li><p>datarmt：指定日期时间格式。</p>
+</li>
+<li><p>level：设置rootlogger的日志级别。</p>
+</li>
+<li><p>stream：用指定的stream创建StreamHandler。可以指定sys.stderr、sys.stdout、文件。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(level=logging.INFO,format=</span><br><span class="line"><span class="string">&#x27;%(asctime)s %(filename)s %(module)s %(process)s-%(threadName)s&#x27;</span></span><br><span class="line"><span class="string">&#x27; %(levelname)s:%(message)s&#x27;</span>,datefmt=<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>)</span><br><span class="line">logging.info(<span class="string">&quot;hello world!&quot;</span>)</span><br><span class="line">&gt;&gt;&gt;<span class="number">2020</span><span class="number">-11</span><span class="number">-07</span> <span class="number">19</span>:<span class="number">32</span>:<span class="number">17</span> log.py log <span class="number">19020</span>-MainThread INFO:hello world!</span><br></pre></td></tr></table></figure>
+<p>实现日志</p>
+<ul>
+<li>创建一个logger，定义logger的级别等。getlogger、setLevel</li>
+<li>创建一个文件或流的Handler，定义级别、字符串格式等。setFormatter</li>
+<li>将Handler添加到logger。</li>
+<li>通过logger记录日志。logger.debug…</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">user = getpass.getuser() <span class="comment">#这个常用语多用户操作系统</span></span><br><span class="line">logger = logging.getLogger(user) <span class="comment">#获得一个logger对象</span></span><br><span class="line">logger.setLevel(logging.DEBUG)</span><br><span class="line">logFile = sys.argv[<span class="number">0</span>][<span class="number">0</span>:<span class="number">-3</span>]+<span class="string">&#x27;.log&#x27;</span></span><br><span class="line">formatter = logging.Formatter(<span class="string">&#x27;%(asctime)-12s %(levelname)s-8s \</span></span><br><span class="line"><span class="string">        %(name)-10s %(message)-12s&#x27;</span>) <span class="comment">#格式化</span></span><br><span class="line">logHand = logging.FileHandler(logFile) <span class="comment">#打开指定文件并作为日志输出对象</span></span><br><span class="line">logHand.setFormatter(formatter) <span class="comment">#格式化输出串</span></span><br><span class="line">logHand.setLevel(logging.ERROR) <span class="comment">#只用错误信息才会被记录进文件</span></span><br><span class="line">logger.addHandler(logHand)</span><br><span class="line"><span class="comment">#logger记录日志</span></span><br><span class="line">logger.dubug(<span class="string">&quot;This is debug!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h3><p>socket连接</p>
+<ul>
+<li>AF_INET-IPv4，SOCK_STREAM-TCP，SOCK_DGRAM-UDP</li>
+<li>通过socket模块创建Socket对象，`def <strong>init</strong>(self,<pre><code>         family: int = ...,
+         type: int = ...,
+         proto: int = ...) -&gt; None`，默认IPv4，TCP连接
+</code></pre></li>
+<li>family指定何种IP协议，type选择传输层协议。</li>
+<li>连接：connect，通过send(str)发送消息，通过recv(int)接受最大字节的消息，close关闭连接。</li>
+<li>服务器端通过bind绑定端口，listen监听，accept以(socket,addr)元组返回一个客服端的连接。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#echo_server.py</span></span><br><span class="line">  <span class="number">1</span>	<span class="keyword">import</span> socket</span><br><span class="line">  <span class="number">2</span> <span class="keyword">import</span> threading</span><br><span class="line">  <span class="number">3</span> <span class="keyword">import</span> time</span><br><span class="line">  <span class="number">4</span> s = socket.socket()</span><br><span class="line">  <span class="number">5</span> s.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">9999</span>))</span><br><span class="line">  <span class="number">6</span> s.listen(<span class="number">5</span>)</span><br><span class="line">  <span class="number">7</span> print(<span class="string">&quot;Wating for connection...&quot;</span>)</span><br><span class="line">  <span class="number">8</span> <span class="function"><span class="keyword">def</span> <span class="title">tcplink</span>(<span class="params">sock,addr</span>):</span></span><br><span class="line">  <span class="number">9</span>     print(<span class="string">&quot;Accept new connection from %s:%s...&quot;</span>%addr)</span><br><span class="line"> <span class="number">10</span>     sock.send(<span class="string">b&#x27;Welcome!&#x27;</span>)</span><br><span class="line"> <span class="number">11</span>     <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"> <span class="number">12</span>         data = sock.recv(<span class="number">1024</span>)</span><br><span class="line"> <span class="number">13</span>         time.sleep(<span class="number">0.1</span>)</span><br><span class="line"> <span class="number">14</span>         <span class="keyword">if</span> <span class="keyword">not</span> data <span class="keyword">or</span> data.decode(<span class="string">&#x27;utf-8&#x27;</span>)==<span class="string">&#x27;exit&#x27;</span>:</span><br><span class="line"> <span class="number">15</span>             <span class="keyword">break</span></span><br><span class="line"> <span class="number">16</span>         sock.send((<span class="string">&#x27;Hello,%s!&#x27;</span>%data.decode(<span class="string">&quot;utf-8&quot;</span>)).encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"> <span class="number">17</span>     sock.close()</span><br><span class="line"> <span class="number">18</span>     print(<span class="string">&#x27;Connection from %s:%s closed&#x27;</span>%addr)</span><br><span class="line"> <span class="number">19</span> <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"> <span class="number">20</span>     sock,addr = s.accept()</span><br><span class="line"> <span class="number">21</span>     t = threading.Thread(target=tcplink,args=(sock,addr))</span><br><span class="line"> <span class="number">22</span>     t.start()</span><br><span class="line"><span class="comment">#echo_client.py</span></span><br><span class="line">  <span class="number">1</span> <span class="keyword">import</span> socket</span><br><span class="line">  <span class="number">2</span> s = socket.socket()</span><br><span class="line">  <span class="number">3</span> s.connect((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">9999</span>))</span><br><span class="line">  <span class="number">4</span> print(s.recv(<span class="number">1024</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">  <span class="number">5</span> <span class="keyword">for</span> data <span class="keyword">in</span> [<span class="string">b&#x27;Mike&#x27;</span>,<span class="string">b&#x27;France&#x27;</span>,<span class="string">b&#x27;Jack&#x27;</span>]:</span><br><span class="line">  <span class="number">6</span>     s.send(data)</span><br><span class="line">  <span class="number">7</span>     print(s.recv(<span class="number">1024</span>).decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">  <span class="number">8</span> </span><br><span class="line">  <span class="number">9</span> s.send(<span class="string">b&#x27;exit&#x27;</span>)</span><br><span class="line"> <span class="number">10</span> s.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>MongoDB（pymongo)</p>
+<ul>
+<li>连接MongoDB：pymongo.MongoClient(host=’localhost’,port=27017)或者MongoClient(‘mongodb://localhost:27017/‘)，只有当collection中插入一个数据才会生效。</li>
+<li>指定数据库：db = client[‘xxx’] or client.xxx</li>
+<li>指定集合：collection = db[‘xxx’] or db.xxx</li>
+<li>插入数据：以字典的形式插入数据，collection.insert_one(data:dict)</li>
+<li>查询数据：find返回一个生成器，find_one返回一个数据项</li>
+<li>数据库存储形式：ObjectId,Value,Type。</li>
+</ul>
+<p>Redis(redis)</p>
+<ul>
+<li>以key-value存储</li>
+</ul>
+<h3 id="Pillow库"><a href="#Pillow库" class="headerlink" title="Pillow库"></a>Pillow库</h3><h4 id="图像显示"><a href="#图像显示" class="headerlink" title="图像显示"></a>图像显示</h4><ul>
+<li>从文件中加载图像使用<code>Image.open()</code>函数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">im = Image.open(url)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用属性检查文件内容</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">im.format<span class="comment">#图片形式</span></span><br><span class="line">im.size	<span class="comment">#文件尺寸</span></span><br><span class="line">im.mode<span class="comment">#颜色模式</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示图像使用<code>im.show()</code>方法</li>
+<li></li>
+</ul>
+<h4 id="图像处理"><a href="#图像处理" class="headerlink" title="图像处理"></a>图像处理</h4><ul>
+<li>剪切、粘贴图像</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从图像中复制出一个矩形选区，传入一个四元组表示左上右下的坐标</span></span><br><span class="line">box = (left,up,right,down)</span><br><span class="line">region = im.crop(box)</span><br><span class="line"><span class="comment">#粘贴</span></span><br><span class="line">im.paste(region,box)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>分离和合并颜色通道</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#分离彩色通道</span></span><br><span class="line">r,g,b = im.split()</span><br><span class="line"><span class="comment">#合并彩色通道</span></span><br><span class="line">Image.merge(<span class="string">&quot;RGB&quot;</span>,(b,g,r))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>几何变换</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#改变尺寸</span></span><br><span class="line">im.resize((<span class="number">128</span>,<span class="number">128</span>))</span><br><span class="line"><span class="comment">#左旋一定的度数</span></span><br><span class="line">im.rotate(<span class="number">45</span>)</span><br><span class="line"><span class="comment">#旋转图像</span></span><br><span class="line">im.transpose(Image.ROTATE_180)</span><br><span class="line"><span class="comment">#缩放</span></span><br><span class="line">im.thumbnail((w//<span class="number">2</span>,h//<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>颜色变换<ul>
+<li>支持<code>L</code>,<code>RGB</code>和<code>CMYK</code>模式转换</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">im.convert(<span class="string">&quot;L&quot;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>过滤器<code>ImageFilter</code>模块，支持的过滤器有</p>
+<ul>
+<li><p><code>BLUR</code>：模糊</p>
+</li>
+<li><p><code>CONTOUR</code>：轮廓</p>
+</li>
+<li><code>DETAL</code>：详情，就像是滤镜一样</li>
+<li><code>EDGE_ENHANCE\EDGE_ENHANCE_MORE</code>：边缘增强</li>
+<li><code>EMBOSS</code>：电磁波</li>
+<li><code>FIND_EDGES</code>：寻找边缘</li>
+<li><code>SMOOTH\SMOOTH_MORE</code>：光滑</li>
+<li><code>SHARPEN</code>：尖锐突出</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#调用filter方法实现过滤</span></span><br><span class="line">im.filter(ImageFilter.EMBOSS)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>点操作<code>point()</code></li>
+</ul>
+
       
     </div>
 
@@ -560,7 +701,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

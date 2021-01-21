@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/10/machine%20learning/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AF%84%E4%BC%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/10/machine%20learning/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E8%AF%84%E4%BC%B0/" class="post-title-link" itemprop="url">模型选择和评估</a>
+            <a href="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">pytroch基础</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-10 15:02:46" itemprop="dateCreated datePublished" datetime="2020-12-10T15:02:46+08:00">2020-12-10</time>
+      <time title="创建时间：2020-12-07 16:45:29" itemprop="dateCreated datePublished" datetime="2020-12-07T16:45:29+08:00">2020-12-07</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-11 12:28:00" itemprop="dateModified" datetime="2020-12-11T12:28:00+08:00">2020-12-11</time>
+        <time title="修改时间：2020-12-10 15:01:19" itemprop="dateModified" datetime="2020-12-10T15:01:19+08:00">2020-12-10</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,11 +297,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/sklearn/" itemprop="url" rel="index"><span itemprop="name">sklearn</span></a>
+          <a href="/categories/DeepLearning/" itemprop="url" rel="index"><span itemprop="name">DeepLearning</span></a>
         </span>
     </span>
 
@@ -315,150 +311,80 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h2><ul>
-<li><p>划分数据集</p>
-<p><code>model_selection.train_test_split(*array,**options)</code></p>
+          <p>深度网络框架：前馈神经网络、卷积神经网络和循环神经网络</p>
+<h2 id="Tensor张量"><a href="#Tensor张量" class="headerlink" title="Tensor张量"></a>Tensor张量</h2><h3 id="Tensor类型"><a href="#Tensor类型" class="headerlink" title="Tensor类型"></a>Tensor类型</h3><p><code>torch.Tensor</code>单数据类型多维矩阵，是默认tensor类型<code>torch.FloatTensor</code>的别名</p>
+<p>共有10种张量类型</p>
+<p><img src="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/image-20201207192512395.png" alt="image-20201207192512395"></p>
+<p><img src="/2020/12/07/DeepLearning/pytroch%E5%9F%BA%E7%A1%80/image-20201207192649237.png" alt="image-20201207192649237"></p>
+<h3 id="创建Tensor"><a href="#创建Tensor" class="headerlink" title="创建Tensor"></a>创建Tensor</h3><p>Tensor类似于Numpy的ndarrays，可以使用CPU运算</p>
+<ul>
+<li><p>生成一个未初始化的张量</p>
+<p><code>empty(*size, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False, pin_memory=False)</code></p>
 <p>参数</p>
 <ul>
-<li><code>*array</code>：数据集</li>
-<li>test_size：验证集的大小，如果为None，则等于0.25</li>
-<li>train_size：训练集大小比例</li>
-<li>random_state：随机种子</li>
-<li>shuffle：划分前是否打乱数据集</li>
-<li>stratify：如果不为None，则以类标签分层方式划分</li>
-</ul>
-<p>返回值</p>
-<ul>
-<li>训练集、验证集、训练标签、验证标签</li>
+<li>size：一个可变参数，tensor的大小</li>
+<li>out：output tensort</li>
+<li>layout：返回tensor的布局</li>
 </ul>
 </li>
-<li><p>交叉验证</p>
-<ul>
-<li><p>通过将原始数据分为多个数据集合，我们就大大减少了可用于模型学习的样本数量， 并且得到的结果依赖于集合对（训练，验证）的随机选择。通过交叉验证来解决这个问题。</p>
+<li><p>基于一个已经存在的tensor</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn_like(x,dtype=torch.float)</span><br><span class="line">x</span><br><span class="line">tensor([[ <span class="number">1.0880</span>,  <span class="number">1.3356</span>],</span><br><span class="line">        [<span class="number">-0.4618</span>, <span class="number">-1.9259</span>]])</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>将训练数据划分为k个较小集合，将k-1份集合作为训练集，剩余1份数据作为模型验证集。</p>
+<li><p>获取维度信息<code>size()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.size()</span><br><span class="line">torch.Size([<span class="number">2</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
 </li>
-<li>k-折交叉验证得到的结果是循环计算中的平均值，该方法计算代价高但不会浪费太多数据。</li>
-</ul>
+<li><p>获取类型额<code>type()</code></p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">x</span>.<span class="keyword">type</span>()</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<h3 id="计算交叉验证的指标"><a href="#计算交叉验证的指标" class="headerlink" title="计算交叉验证的指标"></a>计算交叉验证的指标</h3><p>使用交叉验证最简单的方法是在估计器和数据集上调用 <code>cross_val_score</code></p>
-<p><code>sklearn.model_selection.cross_val_score(estimator, X, y=None, *, groups=None, scoring=None, cv=None, n_jobs=None, verbose=0, fit_params=None, pre_dispatch=&#39;2*n_jobs&#39;, error_score=nan)</code></p>
-<p>参数</p>
-<ul>
-<li>estimator：学习器</li>
-<li>X：要拟合的数据</li>
-<li>y：在监督学习的情况下要尝试预测的目标变量</li>
-<li>scoring：得分的计算方式</li>
-<li>cv：折数，默认5折，也可以传入一个其他交叉策略</li>
-</ul>
-<p>返回值</p>
-<ul>
-<li>scores：每次交叉验证的估算器得分数组。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line">irls = datasets.load_iris()</span><br><span class="line">clf = SVC(gamma=<span class="string">&quot;auto&quot;</span>)</span><br><span class="line">cross_val_score(clf,irls.data,irls.target,cv=<span class="number">3</span>)</span><br><span class="line">&gt;&gt;&gt;array([<span class="number">0.98039216</span>, <span class="number">0.96078431</span>, <span class="number">0.97916667</span>])</span><br></pre></td></tr></table></figure>
-<p>cv默认使用KFold策略，也可以传入一个交叉验证迭代器</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> ShuffleSplit</span><br><span class="line">cv = ShuffleSplit(n_splits=<span class="number">5</span>,test_size=<span class="number">0.3</span>,random_state=<span class="number">0</span>)</span><br><span class="line">cross_val_score(clf,irls.data,irls.target,cv=cv)</span><br><span class="line">&gt;&gt;&gt;array([<span class="number">0.97777778</span>, <span class="number">0.95555556</span>, <span class="number">0.97777778</span>, <span class="number">0.93333333</span>, <span class="number">0.97777778</span>])</span><br></pre></td></tr></table></figure>
-<h4 id="cross-validate函数和多度量评估"><a href="#cross-validate函数和多度量评估" class="headerlink" title="cross_validate函数和多度量评估"></a>cross_validate函数和多度量评估</h4><p>cross_validata函数允许指定多个指标进行评估，除了测试得分还可以返回[‘test_score’, ‘fit_time’, ‘score_time’]的一个字典。</p>
-<p><code>cross_validate(
-    estimator,
-    X,
-    y=None,
-    groups=None,
-    scoring=None,
-    cv=&#39;warn&#39;,
-    n_jobs=None,
-    verbose=0,
-    fit_params=None,
-    pre_dispatch=&#39;2*n_jobs&#39;,
-    return_train_score=False,
-    return_estimator=False,
-    error_score=&#39;raise-deprecating&#39;,
-)</code></p>
-<p>返回值</p>
-<ul>
-<li>每次交叉验证的估算器得分数组，返回值包括得分/时间数组字典，字典包括<ul>
-<li>test_score：验证得分</li>
-<li>train_score：训练得分</li>
-<li>fit_time：拟合时间</li>
-<li>score_time：评分时间</li>
-<li>estimator：return_estimator参数设置为True时才可用，会返回每轮估计器。</li>
-</ul>
+<li><p>与numpy相互转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Tensor转换为numpy数组</span></span><br><span class="line">b = a.numpy()</span><br><span class="line"><span class="comment">#numpy数组转换为Tensor</span></span><br><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_validate</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> recall_score</span><br><span class="line">scoring = [<span class="string">&#x27;precision_macro&#x27;</span>, <span class="string">&#x27;recall_macro&#x27;</span>]</span><br><span class="line">clf = SVC(kernel=<span class="string">&#x27;linear&#x27;</span>, C=<span class="number">1</span>, random_state=<span class="number">0</span>)</span><br><span class="line">cross_validate(clf, irls.data, irls.target, scoring=scoring,cv=<span class="number">5</span>)</span><br><span class="line">&gt;&gt;&gt;&#123;<span class="string">&#x27;fit_time&#x27;</span>: array([<span class="number">0.00109005</span>, <span class="number">0.00119615</span>, <span class="number">0.00050402</span>, <span class="number">0.00143862</span>, <span class="number">0.</span>        ]),</span><br><span class="line"> <span class="string">&#x27;score_time&#x27;</span>: array([<span class="number">0.00306463</span>, <span class="number">0.00128889</span>, <span class="number">0.00103521</span>, <span class="number">0.00054073</span>, <span class="number">0.00199485</span>]),</span><br><span class="line"> <span class="string">&#x27;test_precision_macro&#x27;</span>: array([<span class="number">0.96969697</span>, <span class="number">1.</span>        , <span class="number">0.96969697</span>, <span class="number">0.96969697</span>, <span class="number">1.</span>        ]),</span><br><span class="line"> <span class="string">&#x27;test_recall_macro&#x27;</span>: array([<span class="number">0.96666667</span>, <span class="number">1.</span>        , <span class="number">0.96666667</span>, <span class="number">0.96666667</span>, <span class="number">1.</span>        ])&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="交叉验证迭代器"><a href="#交叉验证迭代器" class="headerlink" title="交叉验证迭代器"></a>交叉验证迭代器</h3><ul>
-<li><code>X_train,X_test,y_train,y_test = KFold(n_splits,*,shuffle=False,random_state=None)</code>：K折，不被分类影响</li>
-<li><code>RepeatedKFold(*,n_splits=5,n_repeats=10,random_state=None)</code>：重复K-Fold n次</li>
-<li><code>LeaveOneOut()</code>：留一法</li>
-<li><code>ShuffleSplit(n_splits=10, *, test_size=None, train_size=None, random_state=None)</code>：随机排列交叉验证</li>
-</ul>
-<h4 id="基于类标签、具有分层的交叉验证迭代器"><a href="#基于类标签、具有分层的交叉验证迭代器" class="headerlink" title="基于类标签、具有分层的交叉验证迭代器"></a>基于类标签、具有分层的交叉验证迭代器</h4><p>生成测试集，使它们全部包含相同的类分布，或尽可能接近。每个小集合中， 各个类别的样例比例大致和完整数据集中相同。</p>
-<ul>
-<li><code>StratifiedKFold(n_splits=5, *, shuffle=False, random_state=None)</code>：分层K折交叉验证器。</li>
-<li><code>StratifiedShuffleSplit(n_splits=10, *, test_size=None, train_size=None, random_state=None)</code>：分层随机交叉验证器。</li>
-</ul>
-<h2 id="调整超参数"><a href="#调整超参数" class="headerlink" title="调整超参数"></a>调整超参数</h2><p>超参数，即<u><strong>不能直接在估计器内学习的参数</strong></u>。在 scikit-learn 包中，它们作为估计器类中构造函数的参数进行传递。典型的示例有：用于支持向量分类器的 <code>C</code> 、<code>kernel</code> 和 <code>gamma</code> ，用于Lasso的 <code>alpha</code> 等。</p>
-<p>获取给定估计器的所有参数值和当前值，使用</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">estimator.get_params()</span><br></pre></td></tr></table></figure>
-<h3 id="网格追踪法"><a href="#网格追踪法" class="headerlink" title="网格追踪法"></a>网格追踪法</h3><p><code>model_selection.GridSearchCV(estimator, param_grid, *, scoring=None, n_jobs=None, iid=&#39;deprecated&#39;, refit=True, cv=None, verbose=0, pre_dispatch=&#39;2*n_jobs&#39;, error_score=nan, return_train_score=False)</code></p>
-<p>参数</p>
-<ul>
-<li>estimator：估计器</li>
-<li>param_grid：参数名称作为键，取值列表作为值的字典或字典列表。</li>
-<li>scoring：评分指标</li>
-<li>cv：确定交叉验证拆分策略</li>
-<li>refit：默认为True,程序将会以交叉验证训练集得到的最佳参数。在搜索参数结束后，用最佳参数结果再次拟合一遍全部数据集。</li>
-</ul>
-<p>属性</p>
-<ul>
-<li>best_estimator：fefit=False时不可用，返回剩余数据上得分最高的估计器参数</li>
-<li>best_score：best_estimator的交叉验证均值</li>
-<li>best<em>params</em>：参数</li>
-<li>n_splits：折数</li>
-<li>refit_time：最好模型拟合时间</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取内存占用率</span></span><br><span class="line"><span class="keyword">import</span> psutil</span><br><span class="line">psutil.virtual_memory().percent</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm, datasets</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line">parameters = &#123;<span class="string">&#x27;kernel&#x27;</span>:(<span class="string">&#x27;linear&#x27;</span>, <span class="string">&#x27;rbf&#x27;</span>), <span class="string">&#x27;C&#x27;</span>:[<span class="number">1</span>, <span class="number">10</span>]&#125;</span><br><span class="line">svc = svm.SVC(gamma=<span class="string">&quot;auto&quot;</span>)</span><br><span class="line">clf = GridSearchCV(svc, parameters)</span><br><span class="line">clf.fit(iris.data, iris.target)</span><br><span class="line">clf.best_estimator_,clf.best_score_,clf.best_params_</span><br><span class="line">&gt;&gt;&gt;(SVC(C=<span class="number">1</span>, cache_size=<span class="number">200</span>, class_weight=<span class="literal">None</span>, coef0=<span class="number">0.0</span>,</span><br><span class="line">     decision_function_shape=<span class="string">&#x27;ovr&#x27;</span>, degree=<span class="number">3</span>, gamma=<span class="string">&#x27;auto&#x27;</span>, kernel=<span class="string">&#x27;linear&#x27;</span>,</span><br><span class="line">     max_iter=<span class="number">-1</span>, probability=<span class="literal">False</span>, random_state=<span class="literal">None</span>, shrinking=<span class="literal">True</span>,</span><br><span class="line">     tol=<span class="number">0.001</span>, verbose=<span class="literal">False</span>), <span class="number">0.98</span>, &#123;<span class="string">&#x27;C&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;kernel&#x27;</span>: <span class="string">&#x27;linear&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="随机参数优化"><a href="#随机参数优化" class="headerlink" title="随机参数优化"></a>随机参数优化</h3><p><code>RandomizedSearchCV(estimator, param_distributions, *, n_iter=10, scoring=None, n_jobs=None, iid=&#39;deprecated&#39;, refit=True, cv=None, verbose=0, pre_dispatch=&#39;2*n_jobs&#39;, random_state=None, error_score=nan, return_train_score=False)</code></p>
-<p>参数</p>
-<ul>
-<li>param_distributions：参数的分布，字典形式</li>
-<li>n_iter：采样的参数设置数。 n_iter权衡了运行时间和解决方案质量。迭代次数</li>
-</ul>
-<h3 id="贝叶斯优化"><a href="#贝叶斯优化" class="headerlink" title="贝叶斯优化"></a>贝叶斯优化</h3><p>贝叶斯优化方法基于目标函数(评估指标)的过去评估结果建立替代函数，来找到最小化目标函数的值。</p>
-<h2 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h2><h3 id="指标metrics"><a href="#指标metrics" class="headerlink" title="指标metrics"></a>指标metrics</h3><p><code>sklearn.metrics</code>模块中有关评分指标</p>
-<p>分类</p>
-<ul>
-<li><code>accuracy_score(y_true,y_pred)</code>：分类精度</li>
-<li><code>f1_score</code>：f1的值，$\frac{2pr}{p+r}$</li>
-<li><code>f1_macro</code>：宏F1</li>
-<li><code>f1_micro</code>：微F1</li>
-<li><code>f1_weight</code>：加权平均F1</li>
-<li><code>log_loss</code>：对数损失，aka逻辑损失或交叉熵损失。$-(yt\log{yt}+(1-yt)\log{(1-yt)})$</li>
-<li><code>roc_auc</code>：</li>
-<li><code>recall</code>：召回率</li>
-<li><code>precison</code>：查准率，<u>精度acc是分类正确率，准度是正例分类正确率</u>。</li>
-</ul>
-<p>回归</p>
-<ul>
-<li><p><code>explained_variance_score</code>：解释偏差得分，$1-\frac{var(y-\hat y)}{var(y)}$，最好得分是1，分数越低模型越差</p>
-</li>
-<li><p><code>max_error</code>：最大误差$\max{|\hat y-y|}$</p>
-</li>
-<li><p><code>mean_absolute_error</code>：平均绝对误差$\frac{1}{n}\sum_{i=1}^n|y-\hat y|$</p>
-</li>
-<li><p><code>mean_squared_error</code>：均方误差$\frac{1}{n}\sum_{i=1}^n|y-\hat y|^2$</p>
-</li>
-<li><p><code>mean_squared_log_error</code>：当目标具有指数增长的趋势时，均分对数误差$\frac{1}{n}\sum_{i=1}^n(\log(1+y_i)-log(1+\hat y))^2$</p>
-<script type="math/tex; mode=display">
-\text{MAE}(y, \hat{y}) = \frac{1}{n_{\text{samples}}} \sum_{i=0}^{n_{\text{samples}}-1} \left| y_i - \hat{y}_i \right|.</script></li>
-<li><p><code>r2_score</code>：Coefficient of determination，确定系数</p>
-<script type="math/tex; mode=display">
-R^2 =  1-\frac{\sum_{i=1}^n(y_i-\hat{y}_i)^2}{\sum_{i=1}^n(y_i-\bar{y}_i)^2}</script><p>1-残差平方和与方差的比，可以为负值，为0时效果最好。</p>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><ul>
+<li><p>方式1：+</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + y</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-
+<ul>
+<li><p>方式2：add</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.add(y)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>out</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res = torch.empty(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">torch.add(x,y,out=res)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>in-place</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y.add_(x)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注意 任何使张量会发生变化的操作都有一个前缀 ‘_’</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.copy_(y)</span><br><span class="line">x.t_()</span><br></pre></td></tr></table></figure>
+<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><ul>
+<li><p><code>*</code>：表示对应元素相乘</p>
+</li>
+<li><p><code>torch.mm</code>：只能适用于矩阵乘法</p>
+</li>
+<li><code>torch.bmm</code>：适用于三维张量乘法</li>
+<li><code>torch.matmul</code>：适用于多维</li>
+<li><code>a@B</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="改变形状"><a href="#改变形状" class="headerlink" title="改变形状"></a>改变形状</h4><p><code>view(*shape) -&gt; Tensor</code></p>
+<p>可以用-1省缺最后一个维度的大小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.view(<span class="number">5</span>,<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="获取tensor的值"><a href="#获取tensor的值" class="headerlink" title="获取tensor的值"></a>获取tensor的值</h4><p><code>torch.Tensor.item()</code></p>
+<p>只能将一个元素的tensor转换为标量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">1</span>)</span><br><span class="line">x.item()</span><br></pre></td></tr></table></figure>
+<h3 id="GPU上运算"><a href="#GPU上运算" class="headerlink" title="GPU上运算"></a>GPU上运算</h3><p>通过<code>torch.cuda.is_available()</code>验证GPU正常安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">y = torch.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    x = x.cuda()</span><br><span class="line">    y = y.cuda()</span><br><span class="line">    print(x+y)</span><br><span class="line">&gt;&gt;&gt;tensor([[<span class="number">-1.4013</span>,  <span class="number">1.5702</span>],</span><br><span class="line">        [ <span class="number">1.2808</span>,  <span class="number">0.7981</span>]], device=<span class="string">&#x27;cuda:0&#x27;</span>)   </span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>通过<code>x.cpu()</code>将存储在GPU上的变量卸载在CPU</p>
+</li>
+<li><p>张量使用<code>to</code>方法移动到任何张量，使用<code>torch.device</code>移出移入设备</p>
+</li>
+</ul>
+<h2 id="自动微分"><a href="#自动微分" class="headerlink" title="自动微分"></a>自动微分</h2>
       
     </div>
 
@@ -479,7 +405,7 @@ R^2 =  1-\frac{\sum_{i=1}^n(y_i-\hat{y}_i)^2}{\sum_{i=1}^n(y_i-\bar{y}_i)^2}</sc
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

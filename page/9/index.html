@@ -193,20 +193,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -257,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/26/machine%20learning/%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/machine%20learning/PCA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Kobe.jpg">
@@ -271,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/26/machine%20learning/%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/" class="post-title-link" itemprop="url">特征选择</a>
+            <a href="/2020/11/25/machine%20learning/PCA/" class="post-title-link" itemprop="url">PCA</a>
         </h2>
 
         <div class="post-meta-container">
@@ -282,14 +282,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-26 16:01:56" itemprop="dateCreated datePublished" datetime="2020-11-26T16:01:56+08:00">2020-11-26</time>
+      <time title="创建时间：2020-11-25 21:08:34" itemprop="dateCreated datePublished" datetime="2020-11-25T21:08:34+08:00">2020-11-25</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-10 19:25:22" itemprop="dateModified" datetime="2020-12-10T19:25:22+08:00">2020-12-10</time>
+        <time title="修改时间：2020-12-01 21:33:56" itemprop="dateModified" datetime="2020-12-01T21:33:56+08:00">2020-12-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,97 +311,76 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h2><h3 id="错误率与精度"><a href="#错误率与精度" class="headerlink" title="错误率与精度"></a>错误率与精度</h3><p>错误率</p>
+          <h2 id="principal-component-analysis"><a href="#principal-component-analysis" class="headerlink" title="principal component analysis"></a>principal component analysis</h2><h3 id="正交投影矩阵"><a href="#正交投影矩阵" class="headerlink" title="正交投影矩阵"></a>正交投影矩阵</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>设$A\in\mathbb{R}^{m\times n},x\in\mathbb{R}^m,c\in\mathbb{R}^n$，$x_w$为投影，$x-x_w$正交所有基向量得</p>
 <script type="math/tex; mode=display">
-Err(y,\hat y) = \frac{1}{n}\sum_{i=1}^n\mathbb I(\hat y_iney_i)</script><p>精度</p>
-<script type="math/tex; mode=display">
-Acc = 1-Err</script><h3 id="查准率和查全率"><a href="#查准率和查全率" class="headerlink" title="查准率和查全率"></a>查准率和查全率</h3><p>对于二分类问题</p>
-<p><img src="/2020/11/26/machine%20learning/%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/1.png" alt="混淆矩阵"></p>
-<ul>
-<li><p>查准率</p>
-<script type="math/tex; mode=display">
-P = \frac{TP}{TP+FP}</script></li>
-<li><p>查全率(Recall)</p>
-<script type="math/tex; mode=display">
-R = \frac{TP}{TP+FN}</script></li>
-<li><p>$F_{\beta}$度量是查全率和查准率的加权调和平均</p>
-<script type="math/tex; mode=display">
-F_{\beta} = \frac{(1+\beta^2)\times P\times R}{(\beta^2\times P)+R}</script><p>如果$\beta=1$是查全率和查准率的调和平均</p>
-<script type="math/tex; mode=display">
-F_1 = \frac{2\times P\times R}{P+R}</script><p>$\beta&gt;1$时更注重查全率，$\beta&lt;1$时更注重查准率。</p>
+A^Tx_w=0\Rightarrow A^T(x-Ac) = \vec 0\Rightarrow x_w=Ac=A(A^TA)^{-1}A^Tx</script><p>所以投影矩阵为$P=A(A^TA)^{-1}A^T\in\mathbb{R}^{m\times m}$，rank(P) = k。</p>
+<p>如果A的列向量是正交规范基，那么$P=AIA^T$。</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><script type="math/tex; mode=display">
+\begin{align}
+&P = P^T\\
+&P^2 = P\\
+\end{align}</script><ul>
+<li><p>特征值只包含0和1。</p>
+</li>
+<li><p>正交投影矩阵是一个幂等矩阵。</p>
 </li>
 </ul>
+<h3 id="Rayleigh商"><a href="#Rayleigh商" class="headerlink" title="Rayleigh商"></a>Rayleigh商</h3><p><strong>对称矩阵A</strong>的瑞利商，定义R(x)一个标量，待求向量x</p>
+<script type="math/tex; mode=display">
+R(x) = \frac{x^TAx}{x^Tx}</script><h4 id="Rayleigh-Ritz-定理"><a href="#Rayleigh-Ritz-定理" class="headerlink" title="Rayleigh-Ritz 定理"></a>Rayleigh-Ritz 定理</h4><p>令A的特征值递增排列</p>
+<script type="math/tex; mode=display">
+\lambda_{min} = \lambda_1 \le\lambda_2\dots\le\lambda_{n-1}\le\lambda_{n}=\lambda_{max}</script><p>则</p>
+<script type="math/tex; mode=display">
+\max\frac{x^TAx}{x^Tx}=\max_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{max},若Ax=\lambda_{max}x\\
+\min\frac{x^TAx}{x^Tx}=\min_{x^Tx=1}\frac{x^TAx}{x^Tx}=\lambda_{min},若Ax=\lambda_{min}x\\</script><h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>A是对称矩阵所以存在一个正交矩阵M和对角矩阵$\Lambda=(\lambda_1,\dots,\lambda_n)$,使得$A=M\Lambda M^T$，所以</p>
+<script type="math/tex; mode=display">
+\frac{x^TAx}{x^Tx} = \frac{x^TM\Lambda M^Tx}{x^Tx} = \frac{p^T\Lambda p}{x^Tx}</script><p>其中$p=M^Tx$，所以</p>
+<script type="math/tex; mode=display">
+R(x) = \frac{p^T\Lambda p}{x^Tx} = \frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>所以有</p>
+<script type="math/tex; mode=display">
+\frac{\lambda_1||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\sum_{i=1}^n\lambda_i||p_i||^2}{\sum_{i=1}^nx_i^2}\le\frac{\lambda_n||p_i||^2}{\sum_{i=1}^nx_i^2}</script><p>容易求得$p_i^2=x_i^2$。所以</p>
+<script type="math/tex; mode=display">
+R(x)_{min}=\lambda_{min},R(x)_{max}=\lambda_{max}​</script><p>​    </p>
+<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><h4 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h4><h5 id="中心化"><a href="#中心化" class="headerlink" title="中心化"></a>中心化</h5><script type="math/tex; mode=display">
+\begin{align}
+&\mu = \frac{1}{m}\sum_{i=1}^m\mathbf x_i =\frac{1}{m}\mathbf X\mathbf 1\\
+\Sigma &= \frac{1}{m}\sum_{i=1}^m(\mathbf x-\mu)(\mathbf x-\mu)^T \\
+& = \frac{1}{m}[(\mathbf x_1,\dots,\mathbf x_m)-\mu(1,\dots,1)_m][(\mathbf x_1,\dots,\mathbf x_m)-\mu(1,\dots,1)_m]^T\\
+& = \frac{1}{m}(\mathbf X-\frac{1}{m}\mathbf {X1^T})(\mathbf X-\frac{1}{m}\mathbf {X1^T})^T\\
+& = \frac{1}{m}[\mathbf X(\mathbf I-\frac{1}{m}\mathbf {1^T})][\mathbf X(\mathbf I-\frac{1}{m}\mathbf {1^T})]^T\\
+\end{align}</script><p>记矩阵$\mathbf{1-\frac{1}{m}1^T}$为centering matrix，上式等价于</p>
+<script type="math/tex; mode=display">
+\Sigma = \frac{1}{m}\mathbf{XHH^TX}</script><p>让$\large\mathbf x$去均值中心化，$\sum_{i=1}^m\mathbf{x_i=0}$。定义$\mathcal P_k\in\mathbb R^{N\times N}$为N维秩为k的正交投影矩阵。</p>
+<p>将样本降维后，目标要最小化重构错误。</p>
+<script type="math/tex; mode=display">
+\min_{\mathbf P\in\mathcal P_k}||\mathbf{PX-X}||^2_F</script><p>样本的协方差矩阵$\mathrm{C}=\frac{1}{m}\mathrm{XX^T}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+||\mathbf{PX-X}||^2_F &= Tr[\mathbf{(PX-X)^T(PX-X)}]\\
+&=Tr[\mathbf{X^TP^2X-2X^TPX+X^TX}]\\
+&=-Tr[\mathbf{X^TPX}]+Tr[\mathbf{X^TX}]\\
+&=-Tr[\mathbf{X^TPX}]+costant\\
+\end{align}</script><hr>
+<script type="math/tex; mode=display">
+\underset{\mathrm P\in\mathcal P_k}{\arg\min}||\mathbf{PX-X}||^2_F=\underset{\mathrm P\in\mathcal P_k}{\arg\max}Tr[\mathbf{X^TPX}]</script><hr>
+
+<p>$\mathbf{P=UU^T},U\in\mathbb{R}^{N\times k}$包含正交规范列向量。$\mathbf{U}$由$\mathbf{C}$的最大前K个特征值对应的特征向量组成。</p>
 <ul>
-<li><p>平均数</p>
-<p>调和平均</p>
-</li>
+<li>$||u_i||=1，u_iu_j=0$。</li>
 </ul>
 <script type="math/tex; mode=display">
-H = \frac{1}{\frac{1}{n}\sum_{i=1}^n\frac{1}{x_i}}</script><p>​        几何平均</p>
-<script type="math/tex; mode=display">
-G = \sqrt[n] {\prod_{i=1}^n x_i}</script><p>有多个二分类混淆矩阵时，例如多次训练/测试，多个数据集上多次训练/测试，多分类问题等。</p>
-<p>第一种做法，在各个混淆矩阵上计算出查准和查全率</p>
-<ul>
-<li><p>宏查准率macro-P</p>
-<script type="math/tex; mode=display">
-\frac{1}{n}\sum_{i=1}^nP_i</script></li>
-<li><p>宏查全率macro-R</p>
-<script type="math/tex; mode=display">
-\frac{1}{n}\sum_{i=1}^nR_i</script></li>
-<li><p>宏F1macro-F1</p>
-<script type="math/tex; mode=display">
-\text{macro-F1} = \frac{2\times\text{macro-P}\times\text{macro-R}}{\text{macro-P+macro-R}}</script></li>
+\begin{align}
+Tr[\mathbf{X^TPX}] &= Tr[\mathbf{X^TUU^TX}]=Tr[\mathbf{U^TXX^TU}] \\
+&= \sum_{i=1}^ku_i^T\mathbf{XX^T}u_i = \sum_{i=1}^k\frac{u_i^T\mathbf{XX^T}u_i}{u_i^Tu_i}
+\end{align}</script><ul>
+<li>因为$\mathbf{XX^T}$与$\mathbf{C}$只相差缩放因子，所以两矩阵有相同的奇异向量。选择最大的前k个奇异值能最大化上式和。</li>
+<li>$\mathbf{Y=U_k^TX}$表示$\mathbf{X}$使用$\mathbf{U_k}$作为基向量，$\mathbf{PX=UU^TX=UY}$表示$\mathbf{Y}$在新空间下的线性组合(坐标)，即在新空间下的投影。</li>
 </ul>
-<p>第二种做法，在各混淆矩阵对应元素进行平均，得到TP、FP、TN、FN的平均值，再基于这些平均值计算</p>
-<ul>
-<li><p>微查准率micro-P</p>
+<p>PCA也可以被视为投射到最大方差子空间。在这种解释下，第一个主成分是从投影到最大方差方向的，由C的上最大奇异值对应的奇异向量决定。同样，对于1≤i≤k，第i个主成分，<br>是从最大方差的第i个方向上的投影得出，服从正交最大方差的前i − 1方向约束。</p>
+<h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><p><img src="/2020/11/25/machine%20learning/PCA/1.png" alt="PCA描述"></p>
+<p>对于${d}’$值可以通过通过k近邻分类器和交叉验证选取，还可以通过设置一个重构阈值，例如t=95%，满足</p>
 <script type="math/tex; mode=display">
-\frac{\overline{TP}}{\overline{TP}+\overline{FP}}</script></li>
-<li><p>微查全率micro-R</p>
-<script type="math/tex; mode=display">
-\frac{\overline{TP}}{\overline{TP}+\overline{FN}}</script></li>
-<li><p>微F1</p>
-<script type="math/tex; mode=display">
-\text{micro-F1} = \frac{2\times\text{micro-P}\times\text{micro-R}}{\text{micro-P+micro-R}}</script></li>
-</ul>
-<h3 id="ROC与AUC"><a href="#ROC与AUC" class="headerlink" title="ROC与AUC"></a>ROC与AUC</h3><h4 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h4><p>ROC空间将伪阳性率定义为X轴，真阳性率定义为Y轴。</p>
-<script type="math/tex; mode=display">
-TPR = \frac{TP}{TP+FN}\\
-FRP = \frac{FP}{FP+TN}</script><p>通过按照样例的预测值，从低到高调整阈值改变ROC曲线</p>
-<ul>
-<li>当阈值设定为最高时，没有样本被预测为正例，TPR和FRP都为0。此时坐标为(0,0)</li>
-<li>当阈值设定为最低时，没有样本被预测为反例，TPR和FRP都为1。此时坐标为(1,1)</li>
-<li>随着阈值的调低，TP和FP都增加，TN和FN都减少</li>
-</ul>
-<p>假设有$m^+$个正例，$m^-$个反例。设前一个标记点为(x,y)</p>
-<ul>
-<li>如果当前样本为正例，则对应标记点坐标为$(x,y+\frac{1}{m^+})$</li>
-<li>如果当前样本为反例，则对应标记点坐标为$(x+\frac{1}{m^-},y)$</li>
-</ul>
-<p><img src="/2020/11/26/machine%20learning/%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9/2.png" alt="ROC曲线" style="zoom:150%;"></p>
-<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>ROC曲线下方的面积，通过对ROC曲线下各部分面积求和得到。</p>
-<p>用于衡量分类器的优劣，分类器正确判断阳性样本的值高于阴性样本之几率 =AUC。</p>
-<h2 id="移除低方差特征"><a href="#移除低方差特征" class="headerlink" title="移除低方差特征"></a>移除低方差特征</h2><p><code>VarianceThreshold(threshold=0.0)</code></p>
-<p>移除所有那些方差不满足一些阈值的特征，例如移除整个数据集中特征值为o或1的比例超过80%的特征。布尔特征是伯努利随机变量，方差为$Var[X] = p(1-p)$。</p>
-<p>调用<code>fit_transform(X,[y])</code>方法应用在数据上。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> VarianceThreshold</span><br><span class="line">X = [[<span class="number">0</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">3</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>]]</span><br><span class="line">selector = VarianceThreshold()</span><br><span class="line">selector.fit_transform(X)</span><br><span class="line">&gt;&gt;&gt;array([[<span class="number">2</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">4</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>]])</span><br><span class="line"><span class="comment">####</span></span><br><span class="line">X = [[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]]</span><br><span class="line">sel = VarianceThreshold(threshold=(<span class="number">.8</span> * (<span class="number">1</span> - <span class="number">.8</span>)))</span><br><span class="line">sel.fit_transform(X)</span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">1</span>, <span class="number">1</span>]])</span><br></pre></td></tr></table></figure>
-<h2 id="单变量特征选择"><a href="#单变量特征选择" class="headerlink" title="单变量特征选择"></a>单变量特征选择</h2><p>基于单变量的统计测试来选择最好的特征</p>
-<h3 id="选择评分最高的K个特征"><a href="#选择评分最高的K个特征" class="headerlink" title="选择评分最高的K个特征"></a>选择评分最高的K个特征</h3><p><code>SelectKBest(score_func=&lt;function f_classif&gt;, *, k=10)</code></p>
-<p>参数</p>
-<ul>
-<li>score_func：接受数组X和y的函数，返回一个分数数组。</li>
-<li>k：int or “all”,default=10</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_digits</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> SelectKBest,chi2</span><br><span class="line"><span class="comment">#chi2计算卡方统计量</span></span><br><span class="line">X, y = load_digits(return_X_y = <span class="literal">True</span>)</span><br><span class="line">X_new = SelectKBest(chi2,k=<span class="number">20</span>).fit_transform(X,y)</span><br><span class="line">print(X.shape,X_new.shape)</span><br><span class="line">&gt;&gt;&gt;(<span class="number">1797</span>, <span class="number">64</span>) (<span class="number">1797</span>, <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="用户指定最高得分百分比"><a href="#用户指定最高得分百分比" class="headerlink" title="用户指定最高得分百分比"></a>用户指定最高得分百分比</h3><p><code>sklearn.feature_selection.SelectPercentile(score_func=&lt;function f_classif&gt;, *, percentile=10)</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_digits</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> SelectPercentile, chi2</span><br><span class="line">X, y = load_digits(return_X_y=<span class="literal">True</span>)</span><br><span class="line">X_new = SelectPercentile(chi2, percentile=<span class="number">10</span>).fit_transform(X, y)</span><br><span class="line">X.shape,X_new.shape</span><br><span class="line">&gt;&gt;&gt;((<span class="number">1797</span>, <span class="number">64</span>), (<span class="number">1797</span>, <span class="number">7</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="常见单变量统计测试"><a href="#常见单变量统计测试" class="headerlink" title="常见单变量统计测试"></a>常见单变量统计测试</h3><p><code>SelectFpr</code>假阳性率，<code>SelectFdr</code>假发现率，<code>SelectFwe</code>族系误差。</p>
-<h3 id="得分函数"><a href="#得分函数" class="headerlink" title="得分函数"></a>得分函数</h3><ul>
-<li>回归：<code>f_regression</code>单变量回归，<code>mutual_info_regression</code>连续目标量的互信息</li>
-<li>分类：<code>chi2</code>卡方、<code>f_classif</code>计算提供的样本的方差分析 F值、<code>mutual_info_classif</code>连续目标量的互信息</li>
-</ul>
-<p>这些基于 F-test(联合假设检验) 的方法计算两个随机变量之间的线性相关程度。另一方面，mutual information methods（互信息）能够计算任何种类的统计相关性，但是作为非参数的方法，互信息需要更多的样本来进行准确的估计。</p>
-<h2 id="使用SelectFromModel选取特征"><a href="#使用SelectFromModel选取特征" class="headerlink" title="使用SelectFromModel选取特征"></a>使用SelectFromModel选取特征</h2>
+\frac{\sum_{i=1}^{d'}\lambda_i}{\sum_{i=1}^{d}\lambda_i}\ge t</script>
       
     </div>
 
@@ -422,7 +401,7 @@ FRP = \frac{FP}{FP+TN}</script><p>通过按照样例的预测值，从低到高�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
